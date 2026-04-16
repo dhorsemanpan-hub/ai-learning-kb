@@ -98,14 +98,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">1<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">5</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">17</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">3</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">2<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">10</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">31</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">6</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">3.3%</span></div>
-<div class="pb"><div class="pf" style="width:3.3%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">6.7%</span></div>
+<div class="pb"><div class="pf" style="width:6.7%"></div></div>
 <div class="ptl">
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc"><div class="ptag">&#9675; 未开始</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -114,7 +114,8 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day 1 · 今日论文</h2><div class="sd">AI 全局观 · 比喻主题：&#127959; 建造摩天大楼</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">2</span> · 今日论文</h2><div class="sd" id="pdaydesc">神经网络基础 · 比喻主题：&#127981; 运营一座智能工厂</div></div>
+<div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
 <div id="rp"></div></section>
@@ -130,11 +131,11 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="gli"><div class="gld" style="background:#D3D3D3"></div>辅助概念</div>
 </div></section>
 <section id="s-concepts" class="sec">
-<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">17 个概念 · 搜索过滤 · 点击查看比喻</div></div>
+<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">31 个概念 · 搜索过滤 · 点击查看比喻</div></div>
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1 · 比喻主题：&#127959; 建造摩天大楼</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~2 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -150,38 +151,72 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
+var DAY=2;
+var DAYS=[
+{day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
+{day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'}
+];
 var P=[
-{id:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
+{id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
 d:'\u8fd9\u662f\u4eba\u5de5\u667a\u80fd\u7684\u5f00\u5c71\u4e4b\u4f5c\u3002\u56fe\u7075\u63d0\u51fa\u4e86\u8457\u540d\u7684\u201c\u56fe\u7075\u6d4b\u8bd5\u201d\u2014\u2014\u5982\u679c\u4e00\u53f0\u673a\u5668\u80fd\u8ba9\u4eba\u7c7b\u65e0\u6cd5\u5206\u8fa8\u5b83\u662f\u673a\u5668\u8fd8\u662f\u4eba\uff0c\u5c31\u53ef\u4ee5\u8ba4\u4e3a\u5b83\u5177\u6709\u201c\u667a\u80fd\u201d\u3002\u8bba\u6587\u8ba8\u8bba\u4e86\u201c\u673a\u5668\u80fd\u5426\u601d\u8003\u201d\u8fd9\u4e00\u54f2\u5b66\u95ee\u9898\uff0c\u5e76\u53cd\u9a73\u4e86\u4e5d\u5927\u53cd\u5bf9\u610f\u89c1\u3002\u56fe\u7075\u8fd8\u63d0\u51fa\u4e86\u201c\u513f\u7ae5\u673a\u5668\u201d\u6982\u5ff5\u2014\u2014\u9020\u4e00\u4e2a\u80fd\u901a\u8fc7\u5b66\u4e60\u6210\u957f\u7684\u513f\u7ae5\u5927\u8111\uff0c\u8fd9\u6b63\u662f\u73b0\u4ee3\u673a\u5668\u5b66\u4e60\u7684\u6838\u5fc3\u601d\u60f3\u3002',
 c:[{n:'\u56fe\u7075\u6d4b\u8bd5',d:'\u5224\u65ad\u673a\u5668\u662f\u5426\u5177\u6709\u667a\u80fd\u7684\u6807\u51c6\u6d4b\u8bd5',m:'\u5efa\u7b51\u9879\u76ee\u7684\u201c\u53ef\u884c\u6027\u8bc4\u4f30\u6807\u51c6\u201d'},
 {n:'\u4eba\u5de5\u667a\u80fd (AI)',d:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee'}],
 rt:'20 \u5206\u949f',rr:'\u5efa\u7acb\u201cAI \u662f\u4ec0\u4e48\u201d\u7684\u54f2\u5b66\u6839\u57fa'},
-{id:2,t:'A Few Useful Things to Know About Machine Learning',a:'Pedro Domingos',s:'Communications of the ACM',y:2012,r:5,u:'https://doi.org/10.1145/2347736.2347755',
+{id:2,day:1,t:'A Few Useful Things to Know About Machine Learning',a:'Pedro Domingos',s:'Communications of the ACM',y:2012,r:5,u:'https://doi.org/10.1145/2347736.2347755',
 d:'Domingos \u6559\u6388\u603b\u7ed3\u4e86\u673a\u5668\u5b66\u4e60\u4e2d\u6700\u91cd\u8981\u7684 12 \u6761\u201c\u884c\u4e1a\u7ecf\u9a8c\u201d\u3002\u89e3\u91ca\u4e86\u4e3a\u4ec0\u4e48\u6570\u636e\u6bd4\u7b97\u6cd5\u91cd\u8981\u3001\u8fc7\u62df\u5408\u4e3a\u4f55\u662f\u5934\u53f7\u654c\u4eba\u3001\u4e3a\u4ec0\u4e48\u6ca1\u6709\u201c\u4e07\u80fd\u7b97\u6cd5\u201d\u7b49\u6838\u5fc3\u6d1e\u5bdf\u3002\u4e0d\u9700\u8981\u6570\u5b66\u57fa\u7840\uff0c\u5374\u80fd\u8ba9\u4f60\u6df1\u523b\u7406\u89e3 ML \u7684\u672c\u8d28\u903b\u8f91\u3002',
 c:[{n:'\u673a\u5668\u5b66\u4e60 (ML)',d:'\u8ba9\u673a\u5668\u4ece\u6570\u636e\u4e2d\u81ea\u52a8\u53d1\u73b0\u89c4\u5f8b',m:'\u5927\u697c\u7684\u201c\u5730\u57fa\u65bd\u5de5\u65b9\u6cd5\u8bba\u201d'},
 {n:'\u8fc7\u62df\u5408 (Overfitting)',d:'\u6a21\u578b\u628a\u566a\u58f0\u4e5f\u5b66\u8fdb\u53bb\u4e86\uff0c\u6cdb\u5316\u80fd\u529b\u5dee',m:'\u53ea\u7814\u7a76\u4e00\u5757\u5730\u76ae\u7684\u65bd\u5de5\u961f\uff0c\u6362\u5757\u5730\u5c31\u5869\u4e86'},
 {n:'\u6cdb\u5316 (Generalization)',d:'\u6a21\u578b\u5728\u65b0\u6570\u636e\u4e0a\u4e5f\u80fd\u8868\u73b0\u826f\u597d',m:'\u9002\u7528\u4e8e\u4efb\u4f55\u5730\u8d28\u7684\u65bd\u5de5\u6807\u51c6'}],
 rt:'30 \u5206\u949f',rr:'\u6700\u5e73\u6613\u8fd1\u4eba\u7684 ML \u5165\u95e8'},
-{id:3,t:'Deep Learning (Review)',a:'Yann LeCun, Yoshua Bengio, Geoffrey Hinton',s:'Nature, Vol. 521',y:2015,r:5,u:'https://doi.org/10.1038/nature14539',
+{id:3,day:1,t:'Deep Learning (Review)',a:'Yann LeCun, Yoshua Bengio, Geoffrey Hinton',s:'Nature, Vol. 521',y:2015,r:5,u:'https://doi.org/10.1038/nature14539',
 d:'\u6df1\u5ea6\u5b66\u4e60\u9886\u57df\u6700\u91cd\u8981\u7684\u7efc\u8ff0\uff0c\u7531\u4e09\u4f4d\u5960\u57fa\u4eba\uff082018 \u56fe\u7075\u5956\u5f97\u4e3b\uff09\u8054\u5408\u64b0\u5199\u5e76\u53d1\u8868\u5728 Nature\u3002\u9610\u660e\u4e86\u201c\u6df1\u5ea6\u201d\u7684\u610f\u4e49\u2014\u2014\u66f4\u591a\u5c42\u6570\u610f\u5473\u7740\u66f4\u5f3a\u7684\u62bd\u8c61\u80fd\u529b\u3002',
 c:[{n:'\u6df1\u5ea6\u5b66\u4e60 (DL)',d:'\u7528\u591a\u5c42\u795e\u7ecf\u7f51\u7edc\u63d0\u53d6\u5c42\u5c42\u9012\u8fdb\u7684\u62bd\u8c61\u7279\u5f81',m:'\u6469\u5929\u5927\u697c\u7684\u201c\u94a2\u67b6\u7ed3\u6784\u201d'},
 {n:'\u53cd\u5411\u4f20\u64ad',d:'\u901a\u8fc7\u8ba1\u7b97\u8bef\u5dee\u9010\u5c42\u56de\u4f20\u6765\u8c03\u6574\u53c2\u6570',m:'\u4ece\u9876\u5c42\u5f80\u4e0b\u9010\u5c42\u6392\u67e5\u5e76\u4fee\u6b63\u95ee\u9898'},
 {n:'CNN',d:'\u4e13\u95e8\u5904\u7406\u56fe\u50cf\u7b49\u7f51\u683c\u6570\u636e\u7684\u6df1\u5ea6\u7f51\u7edc',m:'\u201c\u6ed1\u52a8\u626b\u63cf\u4eea\u201d\u68c0\u67e5\u5899\u9762\u88c2\u7f1d'},
 {n:'RNN',d:'\u80fd\u5904\u7406\u5e8f\u5217\u6570\u636e\u3001\u5177\u6709\u8bb0\u5fc6\u80fd\u529b\u7684\u7f51\u7edc',m:'\u65bd\u5de5\u65e5\u5fd7\u7684\u81ea\u52a8\u8bb0\u5f55\u5458'}],
 rt:'40 \u5206\u949f',rr:'\u7406\u89e3\u201c\u6df1\u5ea6\u201d\u4e3a\u4ec0\u4e48\u91cd\u8981'},
-{id:4,t:'Attention Is All You Need',a:'Vaswani, Shazeer \u7b49 8 \u4eba',s:'NeurIPS 2017',y:2017,r:5,u:'https://arxiv.org/abs/1706.03762',
+{id:4,day:1,t:'Attention Is All You Need',a:'Vaswani, Shazeer \u7b49 8 \u4eba',s:'NeurIPS 2017',y:2017,r:5,u:'https://arxiv.org/abs/1706.03762',
 d:'\u63d0\u51fa\u4e86 Transformer \u67b6\u6784\uff0c\u6838\u5fc3\u521b\u65b0\u662f\u81ea\u6ce8\u610f\u529b\u673a\u5236\u2014\u2014\u8ba9\u6a21\u578b\u540c\u65f6\u201c\u770b\u5230\u201d\u53e5\u5b50\u4e2d\u6240\u6709\u8bcd\u3002\u8bad\u7ec3\u53ef\u9ad8\u5ea6\u5e76\u884c\u5316\u3002\u88ab\u5f15 130000+ \u6b21\u3002',
 c:[{n:'Transformer',d:'\u57fa\u4e8e\u81ea\u6ce8\u610f\u529b\u7684\u795e\u7ecf\u7f51\u7edc\u67b6\u6784',m:'\u667a\u80fd\u7535\u68af\u7cfb\u7edf\u2014\u2014\u80fd\u77ac\u95f4\u76f4\u8fbe\u4efb\u610f\u697c\u5c42'},
 {n:'\u81ea\u6ce8\u610f\u529b\u673a\u5236',d:'\u8ba9\u6bcf\u4e2a\u5143\u7d20\u90fd\u80fd\u76f4\u63a5\u5173\u6ce8\u5176\u4ed6\u6240\u6709\u5143\u7d20',m:'\u201c\u5168\u697c\u5c42\u901a\u4fe1\u7cfb\u7edf\u201d'},
 {n:'\u5e76\u884c\u8ba1\u7b97',d:'\u591a\u4e2a\u4efb\u52a1\u540c\u65f6\u6267\u884c',m:'100 \u4e2a\u65bd\u5de5\u961f\u540c\u65f6\u5f00\u5de5'}],
 rt:'30 \u5206\u949f',rr:'\u7406\u89e3 Transformer \u7684\u6838\u5fc3\u521b\u65b0'},
-{id:5,t:'A Survey of Large Language Models',a:'Zhao, Zhou \u7b49 22 \u4eba',s:'arXiv preprint',y:2023,r:4,u:'https://arxiv.org/abs/2303.18223',
+{id:5,day:1,t:'A Survey of Large Language Models',a:'Zhao, Zhou \u7b49 22 \u4eba',s:'arXiv preprint',y:2023,r:4,u:'https://arxiv.org/abs/2303.18223',
 d:'\u5173\u4e8e LLM \u7684\u767e\u79d1\u5168\u4e66\u5f0f\u7efc\u8ff0\uff0c\u4ece\u9884\u8bad\u7ec3\u3001\u9002\u914d\u8c03\u4f18\u3001\u4f7f\u7528\u65b9\u6cd5\u3001\u80fd\u529b\u8bc4\u4f30\u56db\u4e2a\u7ef4\u5ea6\u5168\u9762\u68b3\u7406 LLM \u6280\u672f\u5168\u8c8c\u3002\u68b3\u7406\u4e86\u4ece GPT-1 \u5230 GPT-4 \u7684\u6f14\u8fdb\u8109\u7edc\u3002',
 c:[{n:'\u5927\u8bed\u8a00\u6a21\u578b (LLM)',d:'\u53c2\u6570\u91cf\u5de8\u5927\u3001\u5728\u6d77\u91cf\u6587\u672c\u4e0a\u9884\u8bad\u7ec3\u7684\u8bed\u8a00\u6a21\u578b',m:'\u5efa\u6210\u7684\u6469\u5929\u5927\u697c\u672c\u4f53'},
 {n:'\u9884\u8bad\u7ec3',d:'\u5728\u5927\u89c4\u6a21\u65e0\u6807\u6ce8\u6570\u636e\u4e0a\u8bad\u7ec3\u83b7\u5f97\u901a\u7528\u80fd\u529b',m:'\u201c\u6bdb\u576f\u623f\u201d\u9636\u6bb5'},
 {n:'\u5fae\u8c03',d:'\u5728\u7279\u5b9a\u4efb\u52a1\u6570\u636e\u4e0a\u7ee7\u7eed\u8bad\u7ec3\u4ee5\u9002\u914d\u9700\u6c42',m:'\u201c\u7cbe\u88c5\u4fee\u201d'},
 {n:'Prompt',d:'\u7ed9\u6a21\u578b\u7684\u8f93\u5165\u6307\u4ee4\uff0c\u5f15\u5bfc\u8f93\u51fa',m:'\u7535\u68af\u6309\u94ae\u2014\u2014\u6309\u6cd5\u4e0d\u540c\uff0c\u697c\u5c42\u4e0d\u540c'}],
-rt:'40 \u5206\u949f',rr:'\u4e32\u8054\u5168\u5c40\uff0c\u5efa\u7acb\u5927\u6a21\u578b\u5168\u8c8c'}
+rt:'40 \u5206\u949f',rr:'\u4e32\u8054\u5168\u5c40\uff0c\u5efa\u7acb\u5927\u6a21\u578b\u5168\u8c8c'},
+{id:6,day:2,t:'The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain',a:'Frank Rosenblatt',s:'Psychological Review, Vol. 65',y:1958,r:5,u:'https://doi.org/10.1037/h0042519',
+d:'\u795e\u7ecf\u7f51\u7edc\u7684\u5f00\u5c71\u4e4b\u4f5c\u3002Rosenblatt \u63d0\u51fa\u4e86\u611f\u77e5\u673a\u6a21\u578b\u2014\u2014\u4eba\u7c7b\u5386\u53f2\u4e0a\u7b2c\u4e00\u4e2a\u53ef\u4ee5\u201c\u5b66\u4e60\u201d\u7684\u4eba\u5de5\u795e\u7ecf\u5143\u6a21\u578b\u3002\u901a\u8fc7\u63a5\u6536\u591a\u4e2a\u8f93\u5165\u4fe1\u53f7\u3001\u52a0\u6743\u6c42\u548c\u3001\u9608\u503c\u5224\u65ad\uff0c\u611f\u77e5\u673a\u80fd\u5b66\u4f1a\u7b80\u5355\u7684\u5206\u7c7b\u4efb\u52a1\uff0c\u5960\u5b9a\u4e86\u6574\u4e2a\u795e\u7ecf\u7f51\u7edc\u9886\u57df\u7684\u57fa\u77f3\u3002',
+c:[{n:'\u611f\u77e5\u673a (Perceptron)',d:'\u6700\u57fa\u7840\u7684\u4eba\u5de5\u795e\u7ecf\u5143\u6a21\u578b\uff0c\u63a5\u6536\u8f93\u5165\u3001\u52a0\u6743\u6c42\u548c\u3001\u8f93\u51fa\u51b3\u7b56',m:'\u5de5\u5382\u91cc\u6700\u57fa\u7840\u7684\u201c\u8d28\u68c0\u5de5\u4eba\u201d'},
+{n:'\u6743\u91cd (Weight)',d:'\u8fde\u63a5\u5f3a\u5ea6\uff0c\u51b3\u5b9a\u6bcf\u4e2a\u8f93\u5165\u4fe1\u53f7\u7684\u91cd\u8981\u7a0b\u5ea6',m:'\u8d28\u68c0\u5de5\u4eba\u5fc3\u91cc\u7684\u201c\u7ecf\u9a8c\u6cd5\u5219\u201d'}],
+rt:'20 \u5206\u949f',rr:'\u4ece\u6700\u5c0f\u5355\u5143\u5f00\u59cb\u7406\u89e3\u201c\u4eba\u5de5\u795e\u7ecf\u5143\u201d'},
+{id:7,day:2,t:'Approximation by Superpositions of a Sigmoidal Function',a:'George Cybenko',s:'Mathematics of Control, Signals, and Systems',y:1989,r:5,u:'https://doi.org/10.1007/BF02551274',
+d:'\u4ece\u6570\u5b66\u4e0a\u4e25\u683c\u8bc1\u660e\u4e86\u4e07\u80fd\u8fd1\u4f3c\u5b9a\u7406\u2014\u2014\u53ea\u8981\u6709\u8db3\u591f\u591a\u7684\u795e\u7ecf\u5143\uff0c\u5355\u9690\u5c42\u7f51\u7edc\u5c31\u80fd\u903c\u8fd1\u4efb\u610f\u8fde\u7eed\u51fd\u6570\u3002\u5173\u952e\u5728\u4e8e\u6fc0\u6d3b\u51fd\u6570\u5fc5\u987b\u662f\u975e\u7ebf\u6027\u7684\u3002',
+c:[{n:'\u6fc0\u6d3b\u51fd\u6570 (Activation Function)',d:'\u5f15\u5165\u975e\u7ebf\u6027\u53d8\u6362\uff0c\u4f7f\u7f51\u7edc\u80fd\u62df\u5408\u590d\u6742\u6a21\u5f0f',m:'\u751f\u4ea7\u7ebf\u4e0a\u7684\u201c\u52a0\u5de5\u53d8\u5f62\u673a\u201d'},
+{n:'\u4e07\u80fd\u8fd1\u4f3c\u5b9a\u7406',d:'\u8db3\u591f\u5bbd\u7684\u5355\u9690\u5c42\u7f51\u7edc\u53ef\u4ee5\u903c\u8fd1\u4efb\u610f\u8fde\u7eed\u51fd\u6570',m:'\u8db3\u591f\u957f\u7684\u67d4\u6027\u751f\u4ea7\u7ebf\u53ef\u4ee5\u751f\u4ea7\u4efb\u4f55\u4ea7\u54c1'},
+{n:'Sigmoid \u51fd\u6570',d:'\u7ecf\u5178S\u5f62\u6fc0\u6d3b\u51fd\u6570\uff0c\u8f93\u51fa0~1',m:'\u201c\u767e\u5206\u6bd4\u8bc4\u5206\u5668\u201d'}],
+rt:'25 \u5206\u949f',rr:'\u7406\u89e3\u6fc0\u6d3b\u51fd\u6570\u8d4b\u4e88\u7f51\u7edc\u201c\u4e07\u80fd\u201d\u80fd\u529b'},
+{id:8,day:2,t:'Learning Representations by Back-Propagating Errors',a:'Rumelhart, Hinton, Williams',s:'Nature, Vol. 323',y:1986,r:5,u:'https://doi.org/10.1038/323533a0',
+d:'\u7cfb\u7edf\u5730\u63d0\u51fa\u5e76\u9a8c\u8bc1\u4e86\u53cd\u5411\u4f20\u64ad\u7b97\u6cd5\u2014\u2014\u901a\u8fc7\u94fe\u5f0f\u6cd5\u5219\u5c06\u8f93\u51fa\u5c42\u8bef\u5dee\u9010\u5c42\u56de\u4f20\uff0c\u8ba1\u7b97\u6bcf\u4e2a\u6743\u91cd\u5bf9\u8bef\u5dee\u7684\u8d21\u732e\uff0c\u7136\u540e\u76f8\u5e94\u8c03\u6574\u3002\u6ca1\u6709\u53cd\u5411\u4f20\u64ad\uff0c\u5c31\u6ca1\u6709\u540e\u6765\u7684\u6df1\u5ea6\u5b66\u4e60\u9769\u547d\u3002',
+c:[{n:'\u53cd\u5411\u4f20\u64ad (Backpropagation)',d:'\u901a\u8fc7\u94fe\u5f0f\u6cd5\u5219\u5c06\u8bef\u5dee\u9010\u5c42\u56de\u4f20\uff0c\u66f4\u65b0\u6bcf\u5c42\u6743\u91cd',m:'\u4ea7\u54c1\u8d28\u91cf\u8ffd\u6eaf\u7cfb\u7edf\uff0c\u9006\u7740\u751f\u4ea7\u7ebf\u67e5\u95ee\u9898'},
+{n:'\u68af\u5ea6 (Gradient)',d:'\u635f\u5931\u51fd\u6570\u5bf9\u53c2\u6570\u7684\u504f\u5bfc\u6570\uff0c\u6307\u793a\u8c03\u6574\u65b9\u5411',m:'\u6bcf\u9053\u5de5\u5e8f\u7684\u201c\u6539\u8fdb\u65b9\u5411\u6307\u793a\u706f\u201d'},
+{n:'\u635f\u5931\u51fd\u6570 (Loss Function)',d:'\u8861\u91cf\u9884\u6d4b\u503c\u4e0e\u771f\u5b9e\u503c\u5dee\u8ddd\u7684\u6307\u6807',m:'\u4ea7\u54c1\u7684\u201c\u8d28\u68c0\u8bc4\u5206\u8868\u201d'}],
+rt:'35 \u5206\u949f',rr:'\u6838\u5fc3\u4e2d\u7684\u6838\u5fc3\uff0c\u7406\u89e3\u7f51\u7edc\u5982\u4f55\u5b66\u4e60'},
+{id:9,day:2,t:'Understanding the Difficulty of Training Deep Feedforward Neural Networks',a:'Xavier Glorot, Yoshua Bengio',s:'AISTATS 2010',y:2010,r:5,u:'http://proceedings.mlr.press/v9/glorot10a.html',
+d:'\u6df1\u5165\u5206\u6790\u4e86\u6df1\u5ea6\u7f51\u7edc\u8bad\u7ec3\u4e2d\u7684\u68af\u5ea6\u6d88\u5931\u548c\u68af\u5ea6\u7206\u70b8\u95ee\u9898\uff0c\u63d0\u51fa\u4e86 Xavier \u521d\u59cb\u5316\u65b9\u6cd5\uff0c\u8ba9\u8bad\u7ec3\u6df1\u5c42\u7f51\u7edc\u6210\u4e3a\u53ef\u80fd\u3002',
+c:[{n:'\u68af\u5ea6\u6d88\u5931 (Gradient Vanishing)',d:'\u68af\u5ea6\u9010\u5c42\u7f29\u5c0f\u5230\u63a5\u8fd1\u96f6\uff0c\u6d45\u5c42\u51e0\u4e4e\u5b66\u4e0d\u5230\u4e1c\u897f',m:'\u8d28\u91cf\u62a5\u544a\u5c42\u5c42\u6253\u6298\uff0c\u5230\u7b2c\u4e00\u9053\u5de5\u5e8f\u5c31\u770b\u4e0d\u89c1\u4e86'},
+{n:'\u68af\u5ea6\u7206\u70b8 (Gradient Exploding)',d:'\u68af\u5ea6\u9010\u5c42\u81a8\u80c0\u5230\u6781\u5927\u503c\uff0c\u53c2\u6570\u66f4\u65b0\u5267\u70c8\u9707\u8361',m:'\u62a5\u544a\u88ab\u5c42\u5c42\u653e\u5927\uff0c\u8fc7\u5ea6\u53cd\u5e94\u5bfc\u81f4\u5de5\u5382\u6df7\u4e71'},
+{n:'\u6743\u91cd\u521d\u59cb\u5316 (Weight Initialization)',d:'\u8bbe\u5b9a\u795e\u7ecf\u7f51\u7edc\u53c2\u6570\u7684\u5408\u7406\u8d77\u59cb\u503c',m:'\u5de5\u5382\u5f00\u5de5\u524d\u7684\u201c\u8bbe\u5907\u6821\u51c6\u201d'}],
+rt:'30 \u5206\u949f',rr:'\u7406\u89e3\u6df1\u5c42\u8bad\u7ec3\u7684\u56f0\u96be\u4e0e\u89e3\u51b3\u4e4b\u9053'},
+{id:10,day:2,t:'Rectified Linear Units Improve Restricted Boltzmann Machines',a:'Vinod Nair, Geoffrey E. Hinton',s:'ICML 2010',y:2010,r:5,u:'https://dl.acm.org/doi/10.5555/3104322.3104425',
+d:'\u63d0\u51fa\u5e76\u9a8c\u8bc1\u4e86 ReLU \u6fc0\u6d3b\u51fd\u6570\u3002\u4e0e Sigmoid/Tanh \u76f8\u6bd4\uff0cReLU \u8ba1\u7b97\u9ad8\u6548\u3001\u7f13\u89e3\u68af\u5ea6\u6d88\u5931\u3001\u4ea7\u751f\u7a00\u758f\u6fc0\u6d3b\u3002\u51e0\u4e4e\u6240\u6709\u73b0\u4ee3\u6df1\u5ea6\u5b66\u4e60\u6a21\u578b\u90fd\u9ed8\u8ba4\u4f7f\u7528 ReLU \u6216\u5176\u53d8\u4f53\u3002',
+c:[{n:'ReLU',d:'f(x)=max(0,x)\uff0c\u6b63\u6570\u4fdd\u7559\u3001\u8d1f\u6570\u5f52\u96f6',m:'\u201c\u8d28\u91cf\u8fc7\u6ee4\u9600\u95e8\u201d\u2014\u2014\u6709\u4ef7\u503c\u4fe1\u53f7\u4fdd\u7559\uff0c\u566a\u58f0\u4e22\u5f03'},
+{n:'\u7a00\u758f\u6fc0\u6d3b (Sparse Activation)',d:'\u5927\u91cf\u795e\u7ecf\u5143\u8f93\u51fa\u4e3a\u96f6\uff0c\u53ea\u6709\u5c11\u90e8\u5206\u88ab\u6fc0\u6d3b',m:'\u6839\u636e\u8ba2\u5355\u53ea\u6fc0\u6d3b\u76f8\u5173\u5de5\u4f4d\uff0c\u8282\u7701\u80fd\u8017'},
+{n:'\u9690\u85cf\u5c42 (Hidden Layer)',d:'\u8f93\u5165\u5c42\u548c\u8f93\u51fa\u5c42\u4e4b\u95f4\u7684\u4e2d\u95f4\u5904\u7406\u5c42',m:'\u4ecb\u4e8e\u539f\u6750\u6599\u8fdb\u5382\u548c\u6210\u54c1\u51fa\u5382\u4e4b\u95f4\u7684\u52a0\u5de5\u8f66\u95f4'}],
+rt:'25 \u5206\u949f',rr:'\u7406\u89e3 ReLU \u4e3a\u4f55\u7b80\u5355\u5374\u5f3a\u5927'}
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -200,12 +235,29 @@ var C=[
 {l:'P',n:'\u63d0\u793a\u8bcd',e:'Prompt',df:'\u7ed9\u6a21\u578b\u7684\u8f93\u5165\u6307\u4ee4',m:'\u5927\u697c\u91cc\u7684\u7535\u68af\u6309\u94ae',dy:'Day 1',pp:'Zhao et al., 2023'},
 {l:'R',n:'\u5faa\u73af\u795e\u7ecf\u7f51\u7edc',e:'RNN',df:'\u80fd\u5904\u7406\u5e8f\u5217\u6570\u636e\u3001\u5177\u6709\u8bb0\u5fc6\u80fd\u529b',m:'\u65bd\u5de5\u65e5\u5fd7\u7684\u81ea\u52a8\u8bb0\u5f55\u5458',dy:'Day 1',pp:'LeCun et al., 2015'},
 {l:'T',n:'Transformer',e:'Transformer',df:'\u57fa\u4e8e\u81ea\u6ce8\u610f\u529b\u673a\u5236\u7684\u6838\u5fc3\u67b6\u6784',m:'\u667a\u80fd\u7535\u68af\u7cfb\u7edf',dy:'Day 1',pp:'Vaswani et al., 2017'},
-{l:'T',n:'\u56fe\u7075\u6d4b\u8bd5',e:'Turing Test',df:'\u5224\u65ad\u673a\u5668\u662f\u5426\u5177\u6709\u667a\u80fd\u7684\u6807\u51c6\u6d4b\u8bd5',m:'\u5efa\u7b51\u9879\u76ee\u7684\u9a8c\u6536\u6807\u51c6',dy:'Day 1',pp:'Turing, 1950'}
+{l:'T',n:'\u56fe\u7075\u6d4b\u8bd5',e:'Turing Test',df:'\u5224\u65ad\u673a\u5668\u662f\u5426\u5177\u6709\u667a\u80fd\u7684\u6807\u51c6\u6d4b\u8bd5',m:'\u5efa\u7b51\u9879\u76ee\u7684\u9a8c\u6536\u6807\u51c6',dy:'Day 1',pp:'Turing, 1950'},
+{l:'G',n:'\u611f\u77e5\u673a',e:'Perceptron',df:'\u6700\u57fa\u7840\u7684\u4eba\u5de5\u795e\u7ecf\u5143\u6a21\u578b',m:'\u5de5\u5382\u91cc\u7684\u201c\u8d28\u68c0\u5de5\u4eba\u201d',dy:'Day 2',pp:'Rosenblatt, 1958'},
+{l:'Q',n:'\u6743\u91cd',e:'Weight',df:'\u8fde\u63a5\u5f3a\u5ea6\uff0c\u51b3\u5b9a\u8f93\u5165\u4fe1\u53f7\u7684\u91cd\u8981\u7a0b\u5ea6',m:'\u8d28\u68c0\u5de5\u4eba\u7684\u201c\u7ecf\u9a8c\u6cd5\u5219\u201d',dy:'Day 2',pp:'Rosenblatt, 1958'},
+{l:'J',n:'\u6fc0\u6d3b\u51fd\u6570',e:'Activation Function',df:'\u5f15\u5165\u975e\u7ebf\u6027\u53d8\u6362\uff0c\u4f7f\u7f51\u7edc\u62df\u5408\u590d\u6742\u6a21\u5f0f',m:'\u751f\u4ea7\u7ebf\u4e0a\u7684\u201c\u52a0\u5de5\u53d8\u5f62\u673a\u201d',dy:'Day 2',pp:'Cybenko, 1989'},
+{l:'S',n:'Sigmoid \u51fd\u6570',e:'Sigmoid',df:'\u7ecf\u5178S\u5f62\u6fc0\u6d3b\u51fd\u6570\uff0c\u8f93\u51fa0~1',m:'\u201c\u767e\u5206\u6bd4\u8bc4\u5206\u5668\u201d',dy:'Day 2',pp:'Cybenko, 1989'},
+{l:'R',n:'ReLU',e:'Rectified Linear Unit',df:'f(x)=max(0,x)\uff0c\u6b63\u6570\u4fdd\u7559\u3001\u8d1f\u6570\u5f52\u96f6',m:'\u201c\u8d28\u91cf\u8fc7\u6ee4\u9600\u95e8\u201d',dy:'Day 2',pp:'Nair & Hinton, 2010'},
+{l:'Q',n:'\u524d\u5411\u4f20\u64ad',e:'Forward Propagation',df:'\u4fe1\u606f\u4ece\u8f93\u5165\u5c42\u9010\u5c42\u6d41\u5411\u8f93\u51fa\u5c42',m:'\u539f\u6750\u6599\u5728\u751f\u4ea7\u7ebf\u4e0a\u9010\u6b65\u52a0\u5de5\u6210\u6210\u54c1',dy:'Day 2',pp:'Rumelhart et al., 1986'},
+{l:'T',n:'\u68af\u5ea6',e:'Gradient',df:'\u635f\u5931\u51fd\u6570\u5bf9\u53c2\u6570\u7684\u504f\u5bfc\u6570',m:'\u6bcf\u9053\u5de5\u5e8f\u7684\u201c\u6539\u8fdb\u65b9\u5411\u6307\u793a\u706f\u201d',dy:'Day 2',pp:'Rumelhart et al., 1986'},
+{l:'S',n:'\u635f\u5931\u51fd\u6570',e:'Loss Function',df:'\u8861\u91cf\u9884\u6d4b\u503c\u4e0e\u771f\u5b9e\u503c\u5dee\u8ddd\u7684\u6307\u6807',m:'\u4ea7\u54c1\u7684\u201c\u8d28\u68c0\u8bc4\u5206\u8868\u201d',dy:'Day 2',pp:'Rumelhart et al., 1986'},
+{l:'T',n:'\u68af\u5ea6\u6d88\u5931',e:'Gradient Vanishing',df:'\u68af\u5ea6\u9010\u5c42\u7f29\u5c0f\u5230\u63a5\u8fd1\u96f6',m:'\u62a5\u544a\u5c42\u5c42\u6253\u6298\uff0c\u5230\u6e90\u5934\u5c31\u770b\u4e0d\u89c1\u4e86',dy:'Day 2',pp:'Glorot & Bengio, 2010'},
+{l:'T',n:'\u68af\u5ea6\u7206\u70b8',e:'Gradient Exploding',df:'\u68af\u5ea6\u9010\u5c42\u81a8\u80c0\u5230\u6781\u5927\u503c',m:'\u62a5\u544a\u88ab\u5c42\u5c42\u653e\u5927\uff0c\u8fc7\u5ea6\u53cd\u5e94',dy:'Day 2',pp:'Glorot & Bengio, 2010'},
+{l:'Q',n:'\u6743\u91cd\u521d\u59cb\u5316',e:'Weight Initialization',df:'\u8bbe\u5b9a\u795e\u7ecf\u7f51\u7edc\u53c2\u6570\u7684\u5408\u7406\u8d77\u59cb\u503c',m:'\u5de5\u5382\u5f00\u5de5\u524d\u7684\u201c\u8bbe\u5907\u6821\u51c6\u201d',dy:'Day 2',pp:'Glorot & Bengio, 2010'},
+{l:'X',n:'\u7a00\u758f\u6fc0\u6d3b',e:'Sparse Activation',df:'\u5927\u91cf\u795e\u7ecf\u5143\u8f93\u51fa\u4e3a\u96f6\uff0c\u53ea\u6709\u5c11\u90e8\u5206\u88ab\u6fc0\u6d3b',m:'\u6839\u636e\u8ba2\u5355\u53ea\u6fc0\u6d3b\u76f8\u5173\u5de5\u4f4d',dy:'Day 2',pp:'Nair & Hinton, 2010'},
+{l:'Y',n:'\u9690\u85cf\u5c42',e:'Hidden Layer',df:'\u8f93\u5165\u5c42\u548c\u8f93\u51fa\u5c42\u4e4b\u95f4\u7684\u4e2d\u95f4\u5904\u7406\u5c42',m:'\u4ecb\u4e8e\u8fdb\u5382\u548c\u51fa\u5382\u4e4b\u95f4\u7684\u52a0\u5de5\u8f66\u95f4',dy:'Day 2',pp:'Nair & Hinton, 2010'},
+{l:'W',n:'\u4e07\u80fd\u8fd1\u4f3c\u5b9a\u7406',e:'Universal Approximation Theorem',df:'\u8db3\u591f\u5bbd\u7684\u5355\u9690\u5c42\u7f51\u7edc\u53ef\u903c\u8fd1\u4efb\u610f\u8fde\u7eed\u51fd\u6570',m:'\u8db3\u591f\u957f\u7684\u67d4\u6027\u751f\u4ea7\u7ebf\u80fd\u4ea7\u4efb\u4f55\u4ea7\u54c1',dy:'Day 2',pp:'Cybenko, 1989'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
 {q:'Transformer \u4e3a\u4ec0\u4e48\u80fd\u53d6\u4ee3\u6240\u6709\u524d\u4ee3\u6a21\u578b\uff1f',a:'<p>\u4e09\u4e2a\u7ef4\u5ea6\u78be\u538b\u524d\u8f88\uff1a<strong>1)</strong> \u81ea\u6ce8\u610f\u529b\u8ba9\u4efb\u610f\u8bcd\u76f4\u63a5\u4e92\u901a\uff0c\u50cf\u76f4\u8fbe\u7535\u68af\uff1b<strong>2)</strong> \u53ef\u540c\u65f6\u5904\u7406\u6240\u6709\u8bcd\uff0c\u901f\u5ea6\u63d0\u5347\u6570\u91cf\u7ea7\uff1b<strong>3)</strong> \u6587\u672c\u3001\u56fe\u50cf\u3001\u97f3\u9891\u90fd\u80fd\u5904\u7406\uff0c\u4e00\u5957\u67b6\u6784\u6253\u5929\u4e0b\u3002</p>'},
-{q:'\u666e\u901a\u4eba\u7406\u89e3\u5927\u6a21\u578b\uff0c\u6700\u9700\u8981\u6293\u4f4f\u7684\u6838\u5fc3\u6982\u5ff5\u662f\u54ea\u51e0\u4e2a\uff1f',a:'<p>\u6293\u4f4f 5 \u4e2a\uff1a<strong>\u795e\u7ecf\u7f51\u7edc</strong>\uff08\u94a2\u67b6\u9aa8\u9abc\uff09\u3001<strong>Transformer</strong>\uff08\u667a\u80fd\u7535\u68af\uff09\u3001<strong>\u9884\u8bad\u7ec3</strong>\uff08\u6bdb\u576f\u623f\uff09\u3001<strong>\u5fae\u8c03/\u5bf9\u9f50</strong>\uff08\u7cbe\u88c5\u4fee\uff09\u3001<strong>Prompt</strong>\uff08\u7535\u68af\u6309\u94ae\uff09\u3002</p>'}
+{q:'\u666e\u901a\u4eba\u7406\u89e3\u5927\u6a21\u578b\uff0c\u6700\u9700\u8981\u6293\u4f4f\u7684\u6838\u5fc3\u6982\u5ff5\u662f\u54ea\u51e0\u4e2a\uff1f',a:'<p>\u6293\u4f4f 5 \u4e2a\uff1a<strong>\u795e\u7ecf\u7f51\u7edc</strong>\uff08\u94a2\u67b6\u9aa8\u9abc\uff09\u3001<strong>Transformer</strong>\uff08\u667a\u80fd\u7535\u68af\uff09\u3001<strong>\u9884\u8bad\u7ec3</strong>\uff08\u6bdb\u576f\u623f\uff09\u3001<strong>\u5fae\u8c03/\u5bf9\u9f50</strong>\uff08\u7cbe\u88c5\u4fee\uff09\u3001<strong>Prompt</strong>\uff08\u7535\u68af\u6309\u94ae\uff09\u3002</p>'},
+{q:'\u611f\u77e5\u673a\u5982\u6b64\u7b80\u5355\uff0c\u4e3a\u4ec0\u4e48\u88ab\u79f0\u4e3a\u795e\u7ecf\u7f51\u7edc\u7684\u201c\u539f\u70b9\u201d\uff1f',a:'<p>\u611f\u77e5\u673a\u786e\u7acb\u4e86\u4e09\u4e2a\u6838\u5fc3\u601d\u60f3\uff1a<strong>1)</strong> \u5206\u5e03\u5f0f\u8868\u793a\u2014\u2014\u4fe1\u606f\u5206\u6563\u5728\u6240\u6709\u6743\u91cd\u4e2d\uff1b<strong>2)</strong> \u901a\u8fc7\u8c03\u6574\u6743\u91cd\u6765\u5b66\u4e60\uff1b<strong>3)</strong> \u7aef\u5230\u7aef\u7684\u8f93\u5165\u8f93\u51fa\u6620\u5c04\u3002\u4ece\u611f\u77e5\u673a\u5230 GPT-4\uff0c\u6838\u5fc3\u601d\u60f3\u4e00\u8109\u76f8\u627f\u3002</p>'},
+{q:'\u4e3a\u4ec0\u4e48\u6fc0\u6d3b\u51fd\u6570\u5bf9\u795e\u7ecf\u7f51\u7edc\u5982\u6b64\u91cd\u8981\uff1f',a:'<p>\u6ca1\u6709\u975e\u7ebf\u6027\u6fc0\u6d3b\u51fd\u6570\uff0c\u65e0\u8bba\u5806\u591a\u5c11\u5c42\uff0c\u90fd\u7b49\u4ef7\u4e8e\u5355\u5c42\u7ebf\u6027\u53d8\u6362\u3002Cybenko(1989)\u8bc1\u660e\u6709\u4e86\u975e\u7ebf\u6027\u540e\uff0c\u7f51\u7edc\u7406\u8bba\u4e0a\u80fd\u903c\u8fd1\u4efb\u610f\u51fd\u6570\u3002ReLU \u7b80\u5355\u5374\u5f3a\u5927\uff0c\u6210\u4e3a\u73b0\u4ee3\u6df1\u5ea6\u5b66\u4e60\u6807\u914d\u3002</p>'},
+{q:'\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4ec0\u4e48\uff1f\u4e3a\u4ec0\u4e48\u5b83\u80fd\u8ba9\u795e\u7ecf\u7f51\u7edc\u201c\u5b66\u4e60\u201d\uff1f',a:'<p>\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4e00\u4e2a\u9ad8\u6548\u7684\u201c\u8d23\u4efb\u5206\u914d\u201d\u7b97\u6cd5\uff0c\u5229\u7528<strong>\u94fe\u5f0f\u6cd5\u5219</strong>\u7cbe\u786e\u8ba1\u7b97\u6bcf\u4e2a\u6743\u91cd\u5bf9\u8bef\u5dee\u7684\u8d21\u732e\uff0c\u7136\u540e\u6309\u8d23\u4efb\u5927\u5c0f\u8c03\u6574\u3002Glorot & Bengio(2010)\u89e3\u51b3\u4e86\u6df1\u5c42\u4e2d\u68af\u5ea6\u6d88\u5931/\u7206\u70b8\u7684\u95ee\u9898\u3002</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -224,9 +276,24 @@ var GN=[
 {id:'LM',lb:'\ud83d\udcac \u5927\u8bed\u8a00\u6a21\u578b',g:'app',df:'\u6d77\u91cf\u53c2\u6570\u8bed\u8a00\u6a21\u578b',m:'\u6469\u5929\u5927\u697c\u672c\u4f53'},
 {id:'PT',lb:'\ud83d\udcda \u9884\u8bad\u7ec3',g:'app',df:'\u83b7\u5f97\u901a\u7528\u80fd\u529b',m:'\u6bdb\u576f\u623f'},
 {id:'FT',lb:'\ud83c\udfa8 \u5fae\u8c03',g:'app',df:'\u9002\u914d\u7279\u5b9a\u4efb\u52a1',m:'\u7cbe\u88c5\u4fee'},
-{id:'PR',lb:'\ud83d\udd18 Prompt',g:'app',df:'\u5f15\u5bfc\u8f93\u51fa\u7684\u6307\u4ee4',m:'\u7535\u68af\u6309\u94ae'}
+{id:'PR',lb:'\ud83d\udd18 Prompt',g:'app',df:'\u5f15\u5bfc\u8f93\u51fa\u7684\u6307\u4ee4',m:'\u7535\u68af\u6309\u94ae'},
+{id:'PC',lb:'\ud83d\udc64 \u611f\u77e5\u673a',g:'tech',df:'\u6700\u57fa\u7840\u7684\u4eba\u5de5\u795e\u7ecf\u5143',m:'\u8d28\u68c0\u5de5\u4eba'},
+{id:'WT',lb:'\u2696 \u6743\u91cd',g:'aux',df:'\u8f93\u5165\u4fe1\u53f7\u7684\u91cd\u8981\u7a0b\u5ea6',m:'\u7ecf\u9a8c\u6cd5\u5219'},
+{id:'AF',lb:'\u26a1 \u6fc0\u6d3b\u51fd\u6570',g:'tech',df:'\u975e\u7ebf\u6027\u53d8\u6362',m:'\u52a0\u5de5\u53d8\u5f62\u673a'},
+{id:'SM',lb:'\u223f Sigmoid',g:'aux',df:'\u7ecf\u5178S\u5f62\u6fc0\u6d3b',m:'\u767e\u5206\u6bd4\u8bc4\u5206\u5668'},
+{id:'RL',lb:'\u23e9 ReLU',g:'tech',df:'max(0,x)',m:'\u8d28\u91cf\u8fc7\u6ee4\u9600\u95e8'},
+{id:'FP',lb:'\u27a1 \u524d\u5411\u4f20\u64ad',g:'tech',df:'\u4fe1\u606f\u4ece\u8f93\u5165\u6d41\u5411\u8f93\u51fa',m:'\u751f\u4ea7\u7ebf\u6b63\u5411\u6d41\u7a0b'},
+{id:'LF',lb:'\ud83d\udccb \u635f\u5931\u51fd\u6570',g:'aux',df:'\u9884\u6d4b\u4e0e\u771f\u5b9e\u7684\u5dee\u8ddd',m:'\u8d28\u68c0\u8bc4\u5206\u8868'},
+{id:'GR',lb:'\ud83d\udcc8 \u68af\u5ea6',g:'tech',df:'\u53c2\u6570\u8c03\u6574\u65b9\u5411',m:'\u6539\u8fdb\u65b9\u5411\u6307\u793a\u706f'},
+{id:'GV',lb:'\u274c \u68af\u5ea6\u6d88\u5931',g:'aux',df:'\u68af\u5ea6\u7f29\u5c0f\u5230\u8fd1\u96f6',m:'\u62a5\u544a\u5c42\u5c42\u6253\u6298'},
+{id:'GE2',lb:'\ud83d\udca5 \u68af\u5ea6\u7206\u70b8',g:'aux',df:'\u68af\u5ea6\u81a8\u80c0\u5230\u6781\u5927',m:'\u62a5\u544a\u5c42\u5c42\u653e\u5927'},
+{id:'WI',lb:'\ud83d\udd27 \u6743\u91cd\u521d\u59cb\u5316',g:'aux',df:'\u53c2\u6570\u5408\u7406\u8d77\u59cb\u503c',m:'\u8bbe\u5907\u6821\u51c6'},
+{id:'SA',lb:'\ud83d\udca0 \u7a00\u758f\u6fc0\u6d3b',g:'aux',df:'\u53ea\u6709\u5c11\u90e8\u5206\u795e\u7ecf\u5143\u6fc0\u6d3b',m:'\u6309\u9700\u6fc0\u6d3b\u5de5\u4f4d'},
+{id:'HL',lb:'\ud83d\udce6 \u9690\u85cf\u5c42',g:'tech',df:'\u4e2d\u95f4\u5904\u7406\u5c42',m:'\u52a0\u5de5\u8f66\u95f4'},
+{id:'UA',lb:'\ud83c\udf1f \u4e07\u80fd\u8fd1\u4f3c',g:'aux',df:'\u5355\u9690\u5c42\u53ef\u903c\u8fd1\u4efb\u610f\u51fd\u6570',m:'\u67d4\u6027\u4ea7\u7ebf\u4ea7\u4efb\u4f55\u4ea7\u54c1'}
 ];
-var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'}];
+var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
+{s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
 var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
 
@@ -236,16 +303,17 @@ function $(id){return document.getElementById(id)}
 function $$(sel,ctx){return(ctx||document).querySelectorAll(sel)}
 
 // ====== RENDER ======
-function rDG(){var g=$('dg');if(!g)return;var h='';for(var i=1;i<=30;i++)h+='<div class="dc '+(i===1?'done':'up')+'" title="Day '+i+': '+DT[i-1]+'">'+i+'</div>';g.innerHTML=h}
+function rDG(){var g=$('dg');if(!g)return;var h='';for(var i=1;i<=30;i++)h+='<div class="dc '+(i<=DAY?'done':'up')+'" title="Day '+i+': '+DT[i-1]+'">'+i+'</div>';g.innerHTML=h}
 
-function rP(){
-  var el=$('pcards');if(!el)return;var h='';
-  for(var i=0;i<P.length;i++){var p=P[i],tg='';for(var j=0;j<p.c.length;j++)tg+='<span class="ctag">'+p.c[j].n+'</span>';
-  h+='<div class="pcard" data-i="'+i+'"><div class="pnum">'+p.id+'</div><div class="ptit">'+p.t+'</div><div class="pmeta"><span>\ud83d\udc64 '+p.a+'</span> <span>\ud83d\udcc5 '+p.y+'</span> <span class="pstars">'+S(p.r)+'</span></div><div class="pdesc">'+p.d+'</div><div class="pcons">'+tg+'</div></div>'}
+function rP(fd){
+  fd=fd||DAY;var el=$('pcards');if(!el)return;var h='',cp=[];
+  for(var i=0;i<P.length;i++)if(P[i].day===fd)cp.push(P[i]);
+  for(var i=0;i<cp.length;i++){var p=cp[i],idx=P.indexOf(p),tg='';for(var j=0;j<p.c.length;j++)tg+='<span class="ctag">'+p.c[j].n+'</span>';
+  h+='<div class="pcard" data-i="'+idx+'"><div class="pnum">'+p.id+'</div><div class="ptit">'+p.t+'</div><div class="pmeta"><span>\ud83d\udc64 '+p.a+'</span> <span>\ud83d\udcc5 '+p.y+'</span> <span class="pstars">'+S(p.r)+'</span></div><div class="pdesc">'+p.d+'</div><div class="pcons">'+tg+'</div></div>'}
   el.innerHTML=h;
   var cs=$$('.pcard',el);for(var k=0;k<cs.length;k++)cs[k].addEventListener('click',function(){oP(+this.getAttribute('data-i'))});
-  var rp=$('rp');if(!rp)return;h='';
-  for(var m=0;m<P.length;m++)h+='<div class="rpst"><div class="rpsn">'+(m+1)+'</div><div class="rpsc"><h4>'+P[m].t+'</h4><div class="rpt">\u23f1 '+P[m].rt+'</div><div class="rpr">'+P[m].rr+'</div></div></div>';
+  var rp=$('rp');if(!rp)return;h='';var n=0;
+  for(var m=0;m<cp.length;m++){n++;h+='<div class="rpst"><div class="rpsn">'+n+'</div><div class="rpsc"><h4>'+cp[m].t+'</h4><div class="rpt">\u23f1 '+cp[m].rt+'</div><div class="rpr">'+cp[m].rr+'</div></div></div>'}
   rp.innerHTML=h}
 
 function oP(i){
@@ -311,6 +379,8 @@ function showS(name,el){var ss=$$('.sec');for(var i=0;i<ss.length;i++)ss[i].clas
 // ====== INIT ======
 document.addEventListener('DOMContentLoaded',function(){
   rDG();rP();rC();rQ();rI();
+  var dfb=$('dayfbs');if(dfb){var dh='';for(var d=0;d<DAYS.length;d++){dh+='<button class="fb'+(DAYS[d].day===DAY?' on':'')+'" data-day="'+DAYS[d].day+'">Day '+DAYS[d].day+'</button>'}dfb.innerHTML=dh;
+  var dbs=$$('.fb',dfb);for(var di=0;di<dbs.length;di++)dbs[di].addEventListener('click',function(){var dy=+this.getAttribute('data-day');var all=$$('.fb',dfb);for(var x=0;x<all.length;x++)all[x].classList.remove('on');this.classList.add('on');$('pdaynum').textContent=dy;var dd=DAYS[dy-1];$('pdaydesc').textContent=dd.theme+' · 比喻主题：'+dd.met;rP(dy)})}
   var ni=$$('.ni[data-s]');for(var i=0;i<ni.length;i++)ni[i].addEventListener('click',function(){showS(this.getAttribute('data-s'),this)});
   var mt=$('mtog');if(mt)mt.addEventListener('click',function(){$('side').classList.toggle('open')});
   var ov=$('ov');if(ov)ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('show')});
