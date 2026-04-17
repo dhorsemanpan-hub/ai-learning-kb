@@ -109,14 +109,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">2<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">10</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">31</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">6</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">3<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">15</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">44</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">9</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">6.7%</span></div>
-<div class="pb"><div class="pf" style="width:6.7%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">10%</span></div>
+<div class="pb"><div class="pf" style="width:10%"></div></div>
 <div class="ptl">
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc"><div class="ptag">&#9675; 未开始</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -125,7 +125,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day <span id="pdaynum">2</span> · 今日论文</h2><div class="sd" id="pdaydesc">神经网络基础 · 比喻主题：&#127981; 运营一座智能工厂</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">3</span> · 今日论文</h2><div class="sd" id="pdaydesc">CNN 与 RNN：卷积神经网络与循环神经网络 · 比喻主题：&#127916; 拍摄一部电影</div></div>
 <div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
@@ -142,11 +142,11 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="gli"><div class="gld" style="background:#D3D3D3"></div>辅助概念</div>
 </div></section>
 <section id="s-concepts" class="sec">
-<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">31 个概念 · 搜索过滤 · 点击查看比喻</div></div>
+<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">44 个概念 · 搜索过滤 · 点击查看比喻</div></div>
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~2 · 全部问答</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~3 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -162,10 +162,11 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
-var DAY=2;
+var DAY=3;
 var DAYS=[
 {day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
-{day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'}
+{day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'},
+{day:3,theme:'深度网络演进：CNN、RNN、LSTM 的诞生与动机',met:'\ud83c\udfac 拍摄一部电影'}
 ];
 var P=[
 {id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
@@ -267,7 +268,56 @@ why:'ReLU 是深度学习实用化的关键推手之一。2012 年 AlexNet（Ima
 c:[{n:'ReLU',d:'f(x)=max(0,x)，正数保留、负数归零',m:'"质量过滤闸门"——有价值信号保留，噪声丢弃'},
 {n:'稀疏激活 (Sparse Activation)',d:'大量神经元输出为零，只有少部分被激活',m:'根据订单只激活相关工位，节省能耗'},
 {n:'隐藏层 (Hidden Layer)',d:'输入层和输出层之间的中间处理层',m:'介于原材料进厂和成品出厂之间的加工车间'}],
-rt:'25 分钟',rr:'理解 ReLU 为何简单却强大'}
+rt:'25 分钟',rr:'理解 ReLU 为何简单却强大'},
+{id:11,day:3,t:'Gradient-Based Learning Applied to Document Recognition',a:'Yann LeCun, Léon Bottou, Yoshua Bengio, Patrick Haffner',s:'Proceedings of the IEEE, Vol. 86',y:1998,r:5,u:'https://doi.org/10.1109/5.726791',
+d:'CNN 的开山之作。LeCun 提出 LeNet-5 架构，第一个成功应用于实际场景的卷积神经网络。',
+abs:'多层神经网络在手写字符识别等模式识别任务中通过反向传播算法训练后能够取得优异的性能。由于该方法可以直接从图像像素（或其他低级表示）中学习适当的特征提取器，因此对输入的预处理需求极少。本文回顾了用于手写字符识别的各种方法，并对它们进行了比较。考虑了传统的模式识别方法以及各种神经网络方法。重点介绍了卷积神经网络，它是专门为处理二维形状的可变性而设计的。LeNet-5 的架构包含了 7 层（不计输入层），每一层都包含可训练的权重参数。输入是 32×32 像素的灰度图像。网络包含两个卷积层（每层由多个特征图组成，通过小的可学习卷积核在输入上滑动来提取局部特征），两个下采样层（通过平均池化来降低空间分辨率，增加平移不变性），然后是两个全连接层和一个输出层。整个系统的性能通过端到端训练来优化——从原始像素输入直接到最终分类结果，无需人工设计特征。论文还展示了基于图变换网络（GTN）的文档识别系统，将 LeNet-5 与语言模型、几何模型集成在一起，成功应用于银行支票上的手写数字串识别。',
+insights:'这篇论文之所以开创性，并非仅仅因为它在手写数字识别上取得了好成绩——而是因为它第一次系统性地展示了"从原始像素到最终决策"的端到端学习范式在视觉任务中的威力，并且从工程上证明了卷积神经网络可以大规模部署到实际应用中。\n\n要理解 CNN 的核心思想，可以用拍电影中"摄像师取景"的比喻。传统的图像识别方法就像让一个人面对一幅画，试图用一句话描述整幅画的所有细节——这几乎不可能。CNN 的做法完全不同：它让摄像师用一个小取景框（卷积核），在画面上从左到右、从上到下系统地滑动扫描。每次扫描时，取景框只关注画面的一小块区域（局部感受野），提取该区域的特征。然后换一个取景框（不同的卷积核），再扫描一遍，提取另一种特征。\n\n这种"局部扫描"策略有三大优势。第一是"局部连接"——每个神经元只看一小块区域，大幅减少参数量；一张 1000×1000 的图像用全连接需要 100 万个连接，用 3×3 卷积核只需 9 个。第二是"权重共享"——同一个卷积核在所有位置使用相同参数，赋予网络"平移不变性"。第三是"池化"——卷积后通过下采样压缩空间尺寸，使网络对微小偏移更鲁棒。\n\nLeNet-5 确立的"卷积-池化"交替堆叠范式，成为了后来所有 CNN（AlexNet、VGGNet、ResNet、EfficientNet 等）的基本设计模板。论文最令人印象深刻的是实际应用成果：LeNet-5 被部署到美国银行的支票识别系统中，在 1990 年代末处理了约 10% 的银行支票，证明了深度学习的商业可行性。\n\nCNN 的三大核心原则——局部连接、权重共享、池化——至今仍是计算机视觉的基石。即便在 Transformer 时代，Vision Transformer（ViT）在处理图像时也常常借助 CNN 的局部特征提取作为预处理步骤。LeCun 因在 CNN 领域的开创性贡献获得 2018 年图灵奖。',
+contribs:['提出并验证了 LeNet-5 架构——第一个成功的卷积神经网络，确立了"卷积-池化"交替堆叠的经典范式','系统阐述了 CNN 三大核心原则：局部连接、权重共享、池化——至今仍是所有 CNN 的基础','实现了从原始像素到分类结果的端到端训练，消除了对人工特征工程的依赖','将深度学习成功部署到银行支票识别等大规模商业应用，证明了技术的实用性和可扩展性'],
+why:'LeNet-5 是 CNN 的"开山之作"。虽然只有 7 层 6 万参数，但它确立的"卷积-池化-全连接"范式统治了计算机视觉 20 多年。LeCun 因此获 2018 图灵奖。今天 GPT-4 Vision 的视觉编码器仍沿用 CNN 的核心思想。',
+c:[{n:'卷积神经网络 (CNN)',d:'通过卷积核滑动扫描提取图像局部特征',m:'摄像师用取景框系统扫描场景'},
+{n:'卷积核 (Convolution Kernel)',d:'可学习的小矩阵，在输入上滑动提取特征',m:'摄像师的取景框——不同框捕捉不同视觉元素'},
+{n:'池化 (Pooling)',d:'对特征图下采样，压缩空间增加鲁棒性',m:'从特写退到中景再退到远景'}],
+rt:'30 分钟',rr:'理解 CNN 基本原理和"卷积-池化"范式'},
+{id:12,day:3,t:'ImageNet Classification with Deep Convolutional Neural Networks',a:'Alex Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton',s:'NeurIPS 2012',y:2012,r:5,u:'https://doi.org/10.1145/3065386',
+d:'AlexNet 在 ImageNet 竞赛中以压倒性优势夺冠，直接引爆了整个深度学习革命。',
+abs:'我们训练了一个大型深度卷积神经网络，将 ImageNet LSVRC-2010 竞赛中的 120 万张高分辨率图像分类到 1000 个不同的类别。在测试数据上，我们达到了 37.5% 和 17.0% 的 top-1 和 top-5 错误率，这远远优于此前的最优结果。该神经网络包含 6000 万个参数和 65 万个神经元，由 5 个卷积层（其中部分后接最大池化层）和 3 个全连接层组成，最终通过一个 1000 路 softmax 层输出分类结果。为了加速训练，我们使用了非饱和神经元（ReLU 激活函数）和一种高效的 GPU 卷积运算实现。为了减少全连接层中的过拟合，我们采用了一种称为"Dropout"的正则化方法，该方法被证明非常有效。我们还在 ILSVRC-2012 竞赛中提交了该模型的一个变体，取得了 15.3% 的 top-5 测试错误率，而第二名的错误率为 26.2%。',
+insights:'AlexNet 的意义远远超出了一场竞赛的胜利——它是现代深度学习革命的"点火事件"。在 AlexNet 之前，计算机视觉的主流方法是"手工特征+传统分类器"：人类专家花费数年精心设计特征提取器（如 SIFT、HOG、SURF），然后用 SVM 等传统算法分类。这些手工特征针对不同任务需要重新设计，流程缓慢且难以泛化。\n\nAlexNet 用"暴力美学"打破了这一范式。它的策略极其简单粗暴：用一个 6000 万参数的深度 CNN，直接从 120 万张图像的原始像素中"暴力"学习所有需要的特征。用电影比喻：之前的方法是请编剧先写好分镜头脚本，精确规定每个镜头该怎么拍；AlexNet 的方法是直接让摄像师看 120 万部电影，自己总结出怎么拍最好——结果"自学成才"的摄像师比所有资深编剧都拍得好。\n\nAlexNet 能成功依靠三个关键创新。第一是 ReLU 激活函数——论文明确比较了 ReLU 和传统 Tanh 的训练速度，发现 ReLU 快 6 倍。这是 ReLU 在大规模实践中的首次成功验证。第二是 GPU 并行训练——使用两块 NVIDIA GTX 580 GPU 并行训练，将训练时间缩短到约 5-6 天，开创了"GPU+深度学习"的计算范式。第三是 Dropout 正则化——训练时随机关闭 50% 的神经元，强迫网络学习更鲁棒的特征。\n\nAlexNet 在 AI 领域引发了一场"范式转移"：从 2012 年开始，几乎所有顶级计算机视觉竞赛的冠军都使用深度学习方法；投资机构大量资金涌入 AI 领域；Google、Facebook、百度纷纷成立 AI 实验室。Hinton 的学生 Krizhevsky 和他一起被 Google 收购了创业公司；另一位作者 Sutskever 联合创立了 OpenAI 并主导了 GPT 系列的开发。\n\n从更宏观的视角看，AlexNet 证明了三件事：（1）数据规模+计算规模+深层网络可以碾压人工设计的方法；（2）GPU 是深度学习的天然加速器；（3）深度学习不是"旧瓶装新酒"，而是真正有效的技术。这三个发现为后来的大模型时代铺平了道路——GPT-3/4 的成功，本质上就是 AlexNet 证明的"规模取胜"路线的极致延伸。',
+contribs:['在 ImageNet 竞赛上以 10.8 个百分点的巨大优势夺冠，证明深度 CNN 远超传统方法','首次大规模使用 GPU 训练深度学习模型，开创了"GPU+深度学习"的计算范式','引入 Dropout 正则化技术，有效解决了大型网络的过拟合问题','直接引爆了整个深度学习革命，推动 AI 从学术研究走向工业应用'],
+why:'AlexNet 是深度学习的"火种"。2012 年之前深度学习是小众研究方向；2012 年之后成为 AI 绝对主流。Hinton、Krizhevsky 被 Google 收购，Sutskever 联合创立了 OpenAI 并主导 GPT 系列开发。从 AlexNet 到 GPT-4 只花了 12 年。',
+c:[{n:'Dropout',d:'训练时随机关闭部分神经元，防止过拟合',m:'每次排练让一半演员缺席，正式演出反而更强'},
+{n:'GPU 训练',d:'使用图形处理器的并行计算能力加速训练',m:'多台摄像机同时拍不同角度'},
+{n:'特征图 (Feature Map)',d:'卷积层输出的二维激活图',m:'不同滤镜拍同一场景，每张照片是一张特征图'}],
+rt:'25 分钟',rr:'理解深度学习革命的引爆点'},
+{id:13,day:3,t:'Deep Residual Learning for Image Recognition',a:'Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun',s:'CVPR 2016',y:2016,r:5,u:'https://arxiv.org/abs/1512.03385',
+d:'何恺明提出 ResNet——通过残差连接解决了深层网络退化问题，首次训练 152 层超深网络。',
+abs:'越深的神经网络越难训练。我们提出了一个残差学习框架来简化比以往使用过的网络深得多的网络的训练。我们将各层重新表述为学习相对于层输入的残差函数，而非学习无参考的函数。我们提供了全面的实证证据表明，这些残差网络更容易优化，并且可以从显著增加的深度中获得精度提升。在 ImageNet 数据集上，我们评估了深度可达 152 层的残差网络——比 VGG 网络深 8 倍，但复杂度却更低。这些残差网络的集成在 ImageNet 测试集上取得了 3.57% 的错误率。这一结果在 ILSVRC 2015 分类任务中获得了第一名。我们还对 CIFAR-10 数据集进行了分析，使用了 100 层和 1000 层网络。表示的深度对许多视觉识别任务至关重要。仅凭极深的表示，我们就在 COCO 目标检测数据集上获得了 28% 的相对性能提升。深度残差网络是我们提交至 ILSVRC 和 COCO 2015 竞赛的方案的基础，我们在 ImageNet 检测、定位、COCO 检测和分割等多项任务上均获得了第一名。',
+insights:'ResNet 解决的问题看似简单——如何训练更深的网络——但解决方式是深度学习史上最优雅的设计之一。在 ResNet 之前，研究者发现一个违反直觉的现象：当网络层数从 20 层增加到 56 层时，训练精度反而下降了。注意这不是过拟合——连训练精度都下降了。理论上 56 层应该至少不比 20 层差，因为额外的层可以学成恒等映射。但让层自己学成恒等映射极其困难。\n\n用电影比喻：一部电影有 20 个场景时叙事流畅；硬加到 56 个场景，故事反而更混乱——多出来的场景不仅没推动剧情，反而引入了噪声和干扰。理论上这些场景可以拍成过渡空镜头（恒等映射），但导演在实践中很难自动做到这一点。\n\n何恺明的天才解决方案：不要让每层从零学习完整映射 H(x)，而是让它学习"残差" F(x) = H(x) - x。具体做法是添加一条"跳跃连接"（skip connection），让输入 x 直接跳过两三层与输出相加：H(x) = F(x) + x。如果某些层的最优解确实是恒等映射，网络只需要把 F(x) 学成零——而学"零"比学"恒等映射"容易得多。\n\n用电影比喻：之前要求每个场景必须独立构成完整剧情单元，创作压力巨大；有了残差连接后，每个场景只需要在已有剧情基础上添加"增量"——如果没什么好加的，就拍一个不影响主线的过渡镜头（F(x)≈0），剧情自然延续。\n\n残差连接还为梯度提供了一条"高速公路"——梯度可通过 skip connection 直接从深层传到浅层，不经过中间所有层的变换。这就像 152 层大楼安装了直通电梯，信息不再需要爬楼梯。从根本上缓解了梯度消失问题。\n\nResNet 让网络深度从 20 层跃升到 152 层甚至 1000 层以上，错误率降到 3.57%——首次超越人类在 ImageNet 上的识别能力（约 5%）。残差连接的思想被广泛应用到几乎所有深度学习架构中——Transformer 中的残差连接、DenseNet 中的密集连接、U-Net 中的跳跃连接，都是 ResNet 思想的延伸。',
+contribs:['提出残差学习框架和跳跃连接（skip connection），从根本上解决了深层网络退化问题','首次成功训练 152 层乃至 1000 层以上超深网络，证明了"深度"的价值','在 ImageNet 上达到 3.57% 错误率，首次超越人类水平（约 5%）','残差连接思想被后续几乎所有深度学习架构采用，包括 Transformer'],
+why:'ResNet 是 CNN 历史上最重要的架构创新。残差连接的思想如此基础和普适，今天几乎找不到不使用它的深度学习模型。Transformer 中的"残差连接+层归一化"直接源自 ResNet。以 20 万+被引量成为 AI 历史上引用量最高的论文之一。',
+c:[{n:'残差连接 (Skip Connection)',d:'让输入直接跳过若干层与输出相加',m:'每个新场景只在已有剧情基础上添加增量'},
+{n:'退化问题 (Degradation)',d:'更深网络训练精度反而下降',m:'场景太多的电影叙事反而混乱'}],
+rt:'30 分钟',rr:'理解"深度"如何被真正释放'},
+{id:14,day:3,t:'Long Short-Term Memory',a:'Sepp Hochreiter, Jürgen Schmidhuber',s:'Neural Computation, Vol. 9',y:1997,r:5,u:'https://doi.org/10.1162/neco.1997.9.8.1735',
+d:'提出 LSTM——通过精心设计的门控机制解决了 RNN 的长程依赖问题，统治序列建模领域近 20 年。',
+abs:'使用反向传播训练的循环神经网络学习短程依赖效果很好。然而，学习存储需要在延长的时间间隔后才能利用的信息，对于标准的循环神经网络架构来说极其困难。本文解释了这些问题存在的原因——误差信号在反向传播中要么以指数级增长要么以指数级衰减——即"梯度消失"和"梯度爆炸"问题。随后，本文提出了一种解决这些问题的新型高效、基于梯度的架构——LSTM（长短期记忆）。LSTM 的核心创新是一种特殊的记忆单元（memory cell），由一个自连接的线性单元和三个乘性门控单元组成。自连接的线性单元通过"恒等映射"在时间步之间传递信息，确保梯度以恒定比例反向流动，从而解决梯度消失问题。三个门控单元分别是：输入门控制新信息是否写入记忆单元；遗忘门控制是否清除旧信息；输出门控制记忆信息是否输出到下一层。每个门都是 sigmoid 层，输出值在 0（完全关闭）到 1（完全打开）之间。通过三个门的协调工作，LSTM 能选择性地记住重要信息、忘记不重要的信息、并在需要时输出存储的信息。实验证明 LSTM 可以在超过 1000 个时间步的延迟条件下学到精确的时序关系，远超传统 RNN。',
+insights:'LSTM 要解决的核心问题可以用一个简单类比来说明。想象你在拍一部 100 集的长篇电视剧。在第 3 集中，主角偶然发现一个神秘盒子；在第 97 集大结局中，盒子被打开揭示核心秘密。问题是：拍到第 97 集时，如何确保第 3 集那个盒子的信息还被记得？\n\n传统 RNN 的方式是"口口相传"：第 3 集告诉第 4 集"记住那个盒子"，第 4 集再告诉第 5 集……经过 94 次传递后，信息几乎必然丢失。从数学上看，每步梯度若为 0.9，经 94 步后变成 0.9^94≈0.00017——几乎为零。网络无法学到第 3 集和第 97 集之间的关联。\n\nHochreiter 和 Schmidhuber 的核心洞察是：不用"口口相传"，而是给每个记忆单元配一个独立的"保险柜"。保险柜通过恒等通道（自连接）在时间步之间无损传递信息，梯度也沿此通道以恒定比例（1.0）反向传播。然后用三把"钥匙"（门控机制）精确控制操作：\n\n**输入门**决定"要不要存新信息"——编剧判断最新剧情是否重要到要记进大纲。**遗忘门**决定"要不要清除旧信息"——编剧发现某条伏笔已回收，可以从大纲删除；但神秘盒子还没用到，必须保留。**输出门**决定"保险柜里的信息要不要拿出来用"——编剧在 20 条伏笔中只取出本集相关的 3 条。\n\n这三个门协同实现精确的"记忆管理"——什么时候记、记什么、什么时候忘、忘什么、什么时候用、用什么——全由网络自己学会。传统 RNN 完全不具备这种精细控制能力。\n\nLSTM 从 1997 年到 2017 年几乎统治了所有序列建模任务：机器翻译（Google 翻译 2016 年采用 LSTM）、语音识别（Siri、Google 语音助手核心模型）、文本生成、时间序列预测。它的"门控"思想也深刻影响了后续架构——Transformer 中的注意力机制可以看作一种"全局化"的门控，不再局限于记住或忘记前一步信息，而是直接关注序列任意位置。',
+contribs:['提出 LSTM 架构，通过恒等自连接和门控机制从根本上解决了梯度消失导致的长程依赖问题','设计了输入门、遗忘门、输出门三重门控机制，实现精确的记忆管理——选择性读写和擦除','实验证明 LSTM 能在超过 1000 步时间延迟上学到准确时序关系，远超传统 RNN','为后来的 GRU 和注意力机制设计提供了关键启发'],
+why:'LSTM 统治序列建模近 20 年（1997-2017），是从机器翻译到语音识别的核心技术。Google 翻译、Siri、Alexa 的早期版本都依赖 LSTM。即便在 Transformer 时代，LSTM 的"门控"思想仍深刻影响着现代架构设计。',
+c:[{n:'循环神经网络 (RNN)',d:'在时间步之间传递隐藏状态的序列处理网络',m:'电视剧集与集之间的剧情传承'},
+{n:'LSTM (长短期记忆)',d:'通过门控机制精确控制信息的记忆、遗忘和输出',m:'编剧的"剧情大纲保险柜"'},
+{n:'门控机制 (Gating)',d:'用 sigmoid 函数控制信息流动的开关',m:'保险柜的三把钥匙——存/删/用'}],
+rt:'35 分钟',rr:'理解序列建模和记忆管理的核心思想'},
+{id:15,day:3,t:'Sequence to Sequence Learning with Neural Networks',a:'Ilya Sutskever, Oriol Vinyals, Quoc V. Le',s:'NeurIPS 2014',y:2014,r:5,u:'https://arxiv.org/abs/1409.3215',
+d:'提出 Seq2Seq 框架——用两个 LSTM 作为编码器和解码器，开创了神经机器翻译时代。',
+abs:'深度神经网络是强大的模型，在困难的学习任务中取得了优异性能。尽管深度神经网络在输入和目标可被编码为固定维度向量时工作良好，但无法直接应用于序列到序列的映射问题。本文提出了一种通用的端到端序列学习方法，对序列结构做出最少假设。我们使用一个多层 LSTM 将输入序列映射到固定维度向量，然后用另一个深层 LSTM 将该向量解码为目标序列。在 WMT-14 英法翻译任务中，该系统取得了 34.8 的 BLEU 分数，而基于短语的统计机器翻译基线系统为 33.3。将 LSTM 用于 1000-best 列表重排序后，BLEU 提升至 36.5。一个有趣的技巧是将输入序列反转后送入编码器可显著提升性能，因为这引入了更多短程依赖关系。最后我们发现 LSTM 学到了对词序敏感且对主动/被动语态相对不变的有意义表示。',
+insights:'Seq2Seq 框架的优雅之处在于它将"理解"和"表达"分成了两个独立阶段，通过一个固定维度的上下文向量将它们串联起来。这个架构不仅解决了机器翻译问题，更为后来整个"编码器-解码器"范式（包括 Transformer）奠定了基础。\n\n用电影比喻：翻译一段话就像将一部法语电影改编成英语电影。Seq2Seq 的做法分两步：第一步是"观影理解"（编码器）——一个精通法语的影评人从头到尾看完法语电影，将整部电影浓缩成一份"内容摘要"（上下文向量）；第二步是"重新创作"（解码器）——一个精通英语的编剧只看这份摘要，用英语重新写出剧本。\n\n这个框架有三个深刻意义。第一，它证明了 LSTM 有能力将变长输入压缩成固定长度的语义向量——LSTM 真正"理解"了句子含义，而非逐词翻译。第二，它建立了"编码器-解码器"这一通用框架，不仅适用于翻译，还可用于问答、摘要、对话等所有序列到序列任务。Transformer 的整体架构仍然是"编码器-解码器"结构——直接承袭自 Seq2Seq。第三，论文发现反转输入序列能显著提升性能，暗示了序列模型中"信息距离"的重要性——正是后来注意力机制和 Transformer 要彻底解决的问题。\n\nSeq2Seq 的局限也很明显：将整个输入句子压缩到一个固定维度向量，当句子很长时必然丢失信息。这个问题在第二年被 Bahdanau 等人提出的"注意力机制"所解决——解码器在生成每个词时可以直接回头看编码器的所有隐藏状态，选择性关注最相关的部分。这种"注意力"机制后来被 Transformer 发扬光大，成为大模型的核心组件。\n\nSutskever（第一作者）后来联合创立了 OpenAI 并主导了 GPT 系列的开发。GPT 的"只用解码器"架构可以看作 Seq2Seq 解码器端的极致发展——不再需要显式的编码器，而是让解码器自己完成理解和生成的全部工作。从 Seq2Seq 到 GPT，我们可以清晰地看到"编码器逐渐简化、解码器逐渐强大"的演化趋势。',
+contribs:['提出"编码器-解码器"框架，建立了序列到序列映射的通用范式','证明 LSTM 能将变长输入压缩为有意义的固定长度语义表示','发现"输入反转"技巧，揭示了序列模型中信息距离的重要性','直接推动神经机器翻译取代统计机器翻译，并为注意力机制和 Transformer 奠定架构基础'],
+why:'Seq2Seq 是连接"传统 RNN"与"现代大模型"的关键桥梁。Transformer 的编码器-解码器架构直接承袭自 Seq2Seq。Sutskever 后来创立 OpenAI 并主导 GPT 系列，GPT 的"只用解码器"架构是 Seq2Seq 解码器端的极致发展。',
+c:[{n:'Seq2Seq (序列到序列)',d:'用编码器压缩输入、解码器生成输出',m:'影评人浓缩原片为摘要，编剧据此重新创作'},
+{n:'编码器-解码器 (Encoder-Decoder)',d:'理解输入+生成输出的通用序列处理架构',m:'影评人负责理解，编剧负责创作'},
+{n:'上下文向量 (Context Vector)',d:'编码器将输入压缩后得到的固定维度表示',m:'影评人写的那份"内容摘要"'}],
+rt:'30 分钟',rr:'理解从 RNN 到 Transformer 的过渡桥梁'}
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -300,7 +350,19 @@ var C=[
 {l:'Q',n:'\u6743\u91cd\u521d\u59cb\u5316',e:'Weight Initialization',df:'\u8bbe\u5b9a\u795e\u7ecf\u7f51\u7edc\u53c2\u6570\u7684\u5408\u7406\u8d77\u59cb\u503c',m:'\u5de5\u5382\u5f00\u5de5\u524d\u7684\u201c\u8bbe\u5907\u6821\u51c6\u201d',dy:'Day 2',pp:'Glorot & Bengio, 2010'},
 {l:'X',n:'\u7a00\u758f\u6fc0\u6d3b',e:'Sparse Activation',df:'\u5927\u91cf\u795e\u7ecf\u5143\u8f93\u51fa\u4e3a\u96f6\uff0c\u53ea\u6709\u5c11\u90e8\u5206\u88ab\u6fc0\u6d3b',m:'\u6839\u636e\u8ba2\u5355\u53ea\u6fc0\u6d3b\u76f8\u5173\u5de5\u4f4d',dy:'Day 2',pp:'Nair & Hinton, 2010'},
 {l:'Y',n:'\u9690\u85cf\u5c42',e:'Hidden Layer',df:'\u8f93\u5165\u5c42\u548c\u8f93\u51fa\u5c42\u4e4b\u95f4\u7684\u4e2d\u95f4\u5904\u7406\u5c42',m:'\u4ecb\u4e8e\u8fdb\u5382\u548c\u51fa\u5382\u4e4b\u95f4\u7684\u52a0\u5de5\u8f66\u95f4',dy:'Day 2',pp:'Nair & Hinton, 2010'},
-{l:'W',n:'\u4e07\u80fd\u8fd1\u4f3c\u5b9a\u7406',e:'Universal Approximation Theorem',df:'\u8db3\u591f\u5bbd\u7684\u5355\u9690\u5c42\u7f51\u7edc\u53ef\u903c\u8fd1\u4efb\u610f\u8fde\u7eed\u51fd\u6570',m:'\u8db3\u591f\u957f\u7684\u67d4\u6027\u751f\u4ea7\u7ebf\u80fd\u4ea7\u4efb\u4f55\u4ea7\u54c1',dy:'Day 2',pp:'Cybenko, 1989'}
+{l:'W',n:'\u4e07\u80fd\u8fd1\u4f3c\u5b9a\u7406',e:'Universal Approximation Theorem',df:'\u8db3\u591f\u5bbd\u7684\u5355\u9690\u5c42\u7f51\u7edc\u53ef\u903c\u8fd1\u4efb\u610f\u8fde\u7eed\u51fd\u6570',m:'\u8db3\u591f\u957f\u7684\u67d4\u6027\u751f\u4ea7\u7ebf\u80fd\u4ea7\u4efb\u4f55\u4ea7\u54c1',dy:'Day 2',pp:'Cybenko, 1989'},
+{l:'J',n:'卷积核',e:'Convolution Kernel',df:'可学习的小矩阵，在输入上滑动提取特定特征',m:'摄像师的取景框',dy:'Day 3',pp:'LeCun et al., 1998'},
+{l:'C',n:'池化',e:'Pooling',df:'对特征图下采样，压缩空间尺寸增加鲁棒性',m:'从特写退到中景再退到远景',dy:'Day 3',pp:'LeCun et al., 1998'},
+{l:'T',n:'特征图',e:'Feature Map',df:'卷积层输出的二维激活图，每张对应一种特征',m:'不同滤镜拍同一场景的照片',dy:'Day 3',pp:'LeCun et al., 1998'},
+{l:'D',n:'Dropout',e:'Dropout',df:'训练时随机关闭部分神经元，防止过拟合',m:'每次排练让一半演员缺席',dy:'Day 3',pp:'Krizhevsky et al., 2012'},
+{l:'G',n:'GPU 训练',e:'GPU Training',df:'使用图形处理器并行计算加速模型训练',m:'多台摄像机同时拍不同角度',dy:'Day 3',pp:'Krizhevsky et al., 2012'},
+{l:'C',n:'残差连接',e:'Residual Connection',df:'让输入直接跳过若干层与输出相加',m:'每个新场景只添加剧情增量',dy:'Day 3',pp:'He et al., 2016'},
+{l:'T',n:'退化问题',e:'Degradation Problem',df:'更深网络训练精度反而下降的现象',m:'场景太多的电影叙事反而混乱',dy:'Day 3',pp:'He et al., 2016'},
+{l:'L',n:'LSTM',e:'Long Short-Term Memory',df:'通过门控机制精确控制记忆的循环神经网络',m:'编剧的剧情大纲保险柜',dy:'Day 3',pp:'Hochreiter & Schmidhuber, 1997'},
+{l:'M',n:'门控机制',e:'Gating Mechanism',df:'用 sigmoid 函数控制信息流动的开关',m:'保险柜的三把钥匙——存/删/用',dy:'Day 3',pp:'Hochreiter & Schmidhuber, 1997'},
+{l:'S',n:'Seq2Seq',e:'Sequence to Sequence',df:'用编码器压缩输入、解码器生成输出的框架',m:'影评人浓缩原片为摘要，编剧据此重新创作',dy:'Day 3',pp:'Sutskever et al., 2014'},
+{l:'B',n:'编码器-解码器',e:'Encoder-Decoder',df:'理解输入+生成输出的通用序列处理架构',m:'影评人负责理解，编剧负责创作',dy:'Day 3',pp:'Sutskever et al., 2014'},
+{l:'S',n:'上下文向量',e:'Context Vector',df:'编码器将输入压缩后的固定维度表示',m:'影评人写的"内容摘要"',dy:'Day 3',pp:'Sutskever et al., 2014'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
@@ -308,7 +370,10 @@ var Q=[
 {q:'\u666e\u901a\u4eba\u7406\u89e3\u5927\u6a21\u578b\uff0c\u6700\u9700\u8981\u6293\u4f4f\u7684\u6838\u5fc3\u6982\u5ff5\u662f\u54ea\u51e0\u4e2a\uff1f',a:'<p>\u6293\u4f4f 5 \u4e2a\uff1a<strong>\u795e\u7ecf\u7f51\u7edc</strong>\uff08\u94a2\u67b6\u9aa8\u9abc\uff09\u3001<strong>Transformer</strong>\uff08\u667a\u80fd\u7535\u68af\uff09\u3001<strong>\u9884\u8bad\u7ec3</strong>\uff08\u6bdb\u576f\u623f\uff09\u3001<strong>\u5fae\u8c03/\u5bf9\u9f50</strong>\uff08\u7cbe\u88c5\u4fee\uff09\u3001<strong>Prompt</strong>\uff08\u7535\u68af\u6309\u94ae\uff09\u3002</p>'},
 {q:'\u611f\u77e5\u673a\u5982\u6b64\u7b80\u5355\uff0c\u4e3a\u4ec0\u4e48\u88ab\u79f0\u4e3a\u795e\u7ecf\u7f51\u7edc\u7684\u201c\u539f\u70b9\u201d\uff1f',a:'<p>\u611f\u77e5\u673a\u786e\u7acb\u4e86\u4e09\u4e2a\u6838\u5fc3\u601d\u60f3\uff1a<strong>1)</strong> \u5206\u5e03\u5f0f\u8868\u793a\u2014\u2014\u4fe1\u606f\u5206\u6563\u5728\u6240\u6709\u6743\u91cd\u4e2d\uff1b<strong>2)</strong> \u901a\u8fc7\u8c03\u6574\u6743\u91cd\u6765\u5b66\u4e60\uff1b<strong>3)</strong> \u7aef\u5230\u7aef\u7684\u8f93\u5165\u8f93\u51fa\u6620\u5c04\u3002\u4ece\u611f\u77e5\u673a\u5230 GPT-4\uff0c\u6838\u5fc3\u601d\u60f3\u4e00\u8109\u76f8\u627f\u3002</p>'},
 {q:'\u4e3a\u4ec0\u4e48\u6fc0\u6d3b\u51fd\u6570\u5bf9\u795e\u7ecf\u7f51\u7edc\u5982\u6b64\u91cd\u8981\uff1f',a:'<p>\u6ca1\u6709\u975e\u7ebf\u6027\u6fc0\u6d3b\u51fd\u6570\uff0c\u65e0\u8bba\u5806\u591a\u5c11\u5c42\uff0c\u90fd\u7b49\u4ef7\u4e8e\u5355\u5c42\u7ebf\u6027\u53d8\u6362\u3002Cybenko(1989)\u8bc1\u660e\u6709\u4e86\u975e\u7ebf\u6027\u540e\uff0c\u7f51\u7edc\u7406\u8bba\u4e0a\u80fd\u903c\u8fd1\u4efb\u610f\u51fd\u6570\u3002ReLU \u7b80\u5355\u5374\u5f3a\u5927\uff0c\u6210\u4e3a\u73b0\u4ee3\u6df1\u5ea6\u5b66\u4e60\u6807\u914d\u3002</p>'},
-{q:'\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4ec0\u4e48\uff1f\u4e3a\u4ec0\u4e48\u5b83\u80fd\u8ba9\u795e\u7ecf\u7f51\u7edc\u201c\u5b66\u4e60\u201d\uff1f',a:'<p>\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4e00\u4e2a\u9ad8\u6548\u7684\u201c\u8d23\u4efb\u5206\u914d\u201d\u7b97\u6cd5\uff0c\u5229\u7528<strong>\u94fe\u5f0f\u6cd5\u5219</strong>\u7cbe\u786e\u8ba1\u7b97\u6bcf\u4e2a\u6743\u91cd\u5bf9\u8bef\u5dee\u7684\u8d21\u732e\uff0c\u7136\u540e\u6309\u8d23\u4efb\u5927\u5c0f\u8c03\u6574\u3002Glorot & Bengio(2010)\u89e3\u51b3\u4e86\u6df1\u5c42\u4e2d\u68af\u5ea6\u6d88\u5931/\u7206\u70b8\u7684\u95ee\u9898\u3002</p>'}
+{q:'\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4ec0\u4e48\uff1f\u4e3a\u4ec0\u4e48\u5b83\u80fd\u8ba9\u795e\u7ecf\u7f51\u7edc\u201c\u5b66\u4e60\u201d\uff1f',a:'<p>\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4e00\u4e2a\u9ad8\u6548\u7684\u201c\u8d23\u4efb\u5206\u914d\u201d\u7b97\u6cd5\uff0c\u5229\u7528<strong>\u94fe\u5f0f\u6cd5\u5219</strong>\u7cbe\u786e\u8ba1\u7b97\u6bcf\u4e2a\u6743\u91cd\u5bf9\u8bef\u5dee\u7684\u8d21\u732e\uff0c\u7136\u540e\u6309\u8d23\u4efb\u5927\u5c0f\u8c03\u6574\u3002Glorot & Bengio(2010)\u89e3\u51b3\u4e86\u6df1\u5c42\u4e2d\u68af\u5ea6\u6d88\u5931/\u7206\u70b8\u7684\u95ee\u9898\u3002</p>'},
+{q:'CNN 为什么特别擅长处理图像？它与全连接网络有什么本质区别？',a:'<p>CNN 的设计完美匹配了图像数据的三个特性：<strong>1)</strong> 局部性——有意义的特征由相邻像素构成，卷积核恰好在局部区域操作；<strong>2)</strong> 平移不变性——猫在图片任何位置还是猫，权重共享天然具备此能力；<strong>3)</strong> 层次结构——像素→边缘→纹理→部件→物体，多层卷积逐层提取更抽象的特征。全连接网络完全忽略了像素的空间关系，参数量爆炸且效果差。</p>'},
+{q:'LSTM 的三个门分别解决了什么问题？为什么传统 RNN 无法处理长序列？',a:'<p>传统 RNN 通过矩阵乘法传递隐藏状态，经过T步后梯度要么指数级衰减（消失）要么膨胀（爆炸），超过约10-20步后早期信息几乎完全丢失。LSTM 用三个门精确解决三个子问题：<strong>输入门</strong>——什么时候把新信息存入记忆；<strong>遗忘门</strong>——什么时候清除过时的记忆；<strong>输出门</strong>——什么时候把记忆拿出来使用。关键在于记忆单元通过恒等自连接传递信息，梯度以恒定比例1.0反向传播，从根本上解决梯度消失。</p>'},
+{q:'CNN 和 RNN 的核心设计思想有何异同？它们是如何被 Transformer 统一的？',a:'<p><strong>相同点</strong>：都体现了"归纳偏置"思想——通过在结构中嵌入特定假设降低学习难度。<strong>不同点</strong>：CNN 擅长捕捉空间局部模式但缺乏时序建模；RNN 擅长时序依赖但必须串行处理。<strong>Transformer 的统一</strong>：自注意力机制不需要假设"特征是局部的"，也不需要串行处理，既能处理图像（ViT）也能处理序列（GPT/BERT），代价是需要更多数据才能学好。</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -341,10 +406,25 @@ var GN=[
 {id:'WI',lb:'\ud83d\udd27 \u6743\u91cd\u521d\u59cb\u5316',g:'aux',df:'\u53c2\u6570\u5408\u7406\u8d77\u59cb\u503c',m:'\u8bbe\u5907\u6821\u51c6'},
 {id:'SA',lb:'\ud83d\udca0 \u7a00\u758f\u6fc0\u6d3b',g:'aux',df:'\u53ea\u6709\u5c11\u90e8\u5206\u795e\u7ecf\u5143\u6fc0\u6d3b',m:'\u6309\u9700\u6fc0\u6d3b\u5de5\u4f4d'},
 {id:'HL',lb:'\ud83d\udce6 \u9690\u85cf\u5c42',g:'tech',df:'\u4e2d\u95f4\u5904\u7406\u5c42',m:'\u52a0\u5de5\u8f66\u95f4'},
-{id:'UA',lb:'\ud83c\udf1f \u4e07\u80fd\u8fd1\u4f3c',g:'aux',df:'\u5355\u9690\u5c42\u53ef\u903c\u8fd1\u4efb\u610f\u51fd\u6570',m:'\u67d4\u6027\u4ea7\u7ebf\u4ea7\u4efb\u4f55\u4ea7\u54c1'}
+{id:'UA',lb:'\ud83c\udf1f \u4e07\u80fd\u8fd1\u4f3c',g:'aux',df:'\u5355\u9690\u5c42\u53ef\u903c\u8fd1\u4efb\u610f\u51fd\u6570',m:'\u67d4\u6027\u4ea7\u7ebf\u4ea7\u4efb\u4f55\u4ea7\u54c1'},
+{id:'LN',lb:'\ud83d\udcf7 LeNet',g:'arch',df:'第一个成功的卷积神经网络',m:'第一部商业电影'},
+{id:'AN',lb:'\ud83d\udd25 AlexNet',g:'arch',df:'引爆深度学习革命的CNN',m:'票房爆炸的大片'},
+{id:'RS',lb:'\ud83c\udfd7 ResNet',g:'arch',df:'通过残差连接实现超深网络',m:'150场景的史诗电影'},
+{id:'RC',lb:'\u27a1 残差连接',g:'tech',df:'输入跳过若干层与输出相加',m:'每个场景只加增量'},
+{id:'CK',lb:'\ud83d\udd2d 卷积核',g:'tech',df:'可学习的小矩阵滑动提取特征',m:'摄像师的取景框'},
+{id:'PO',lb:'\ud83d\udcc9 池化',g:'tech',df:'下采样压缩空间尺寸',m:'特写→中景→远景'},
+{id:'FM',lb:'\ud83d\uddbc 特征图',g:'tech',df:'卷积层输出的激活图',m:'不同滤镜拍的照片'},
+{id:'DR',lb:'\ud83c\udfb2 Dropout',g:'aux',df:'随机关闭神经元防过拟合',m:'演员随机缺席排练'},
+{id:'GP',lb:'\ud83d\udcbb GPU训练',g:'aux',df:'用GPU并行计算加速训练',m:'多台摄像机同时拍'},
+{id:'LS',lb:'\ud83d\udd10 LSTM',g:'arch',df:'门控循环神经网络',m:'剧情保险柜'},
+{id:'GT',lb:'\ud83d\udd11 门控机制',g:'tech',df:'sigmoid控制信息流动',m:'三把钥匙'},
+{id:'S2',lb:'\ud83d\udd04 Seq2Seq',g:'arch',df:'编码器-解码器序列映射',m:'影评人+编剧'},
+{id:'ED',lb:'\ud83c\udfac 编码器-解码器',g:'arch',df:'理解输入+生成输出',m:'观影理解+重新创作'},
+{id:'CV',lb:'\ud83d\udcdd 上下文向量',g:'aux',df:'编码器输出的压缩表示',m:'内容摘要'}
 ];
 var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
-{s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'}];
+{s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'},
+{s:'CN',t:'LN'},{s:'CN',t:'AN'},{s:'CN',t:'RS'},{s:'RS',t:'RC'},{s:'CN',t:'CK'},{s:'CN',t:'PO'},{s:'CN',t:'FM'},{s:'AN',t:'DR'},{s:'AN',t:'GP'},{s:'RN',t:'LS'},{s:'LS',t:'GT'},{s:'LS',t:'S2'},{s:'S2',t:'ED'},{s:'ED',t:'CV'},{s:'ED',t:'TF'},{s:'RC',t:'TF'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
 var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
 
