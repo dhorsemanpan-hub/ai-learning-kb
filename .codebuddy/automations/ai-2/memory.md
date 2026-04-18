@@ -62,3 +62,27 @@
   5. *A Survey of Large Language Models* (Zhao et al., 2023) — ⭐⭐⭐⭐ LLM 百科全书式综述
 - **新增概念**：AI, ML, DL, 神经网络, CNN, RNN, Transformer, 自注意力, LLM, 预训练, 微调, Prompt, 反向传播, 过拟合, 泛化, 图灵测试, 并行计算
 - **下次主题：** Day 2 — 神经网络基础：感知机、激活函数、前向传播、反向传播
+
+### Day 2 — 2026-04-16
+- **主题：** 神经网络基础：感知机、激活函数、前向传播、反向传播
+- **比喻主题：** 🏭 运营一座智能工厂
+- **推荐论文：**
+  1. *The Perceptron* (Rosenblatt, 1958) — ⭐⭐⭐⭐⭐ 神经网络开山之作
+  2. *Approximation by Superpositions of a Sigmoidal Function* (Cybenko, 1989) — ⭐⭐⭐⭐⭐ 万能近似定理
+  3. *Learning Representations by Back-Propagating Errors* (Rumelhart, Hinton, Williams, 1986) — ⭐⭐⭐⭐⭐ 反向传播算法
+  4. *Understanding the Difficulty of Training Deep Feedforward Neural Networks* (Glorot, Bengio, 2010) — ⭐⭐⭐⭐⭐ 梯度消失/爆炸分析
+  5. *Rectified Linear Units Improve Restricted Boltzmann Machines* (Nair, Hinton, 2010) — ⭐⭐⭐⭐⭐ ReLU 激活函数
+- **新增概念**：感知机, 权重, 激活函数, Sigmoid, ReLU, 前向传播, 梯度, 损失函数, 梯度消失, 梯度爆炸, 权重初始化, 稀疏激活, 隐藏层, 万能近似定理
+- **下次主题：** Day 3 — 深度网络演进：CNN、RNN、LSTM 的诞生与动机
+
+### Day 3 — 2026-04-17
+- **主题：** 深度网络演进：CNN、RNN、LSTM 的诞生与动机
+- **比喻主题：** 🎬 拍摄一部电影
+- **推荐论文：**
+  1. *Gradient-Based Learning Applied to Document Recognition* (LeCun et al., 1998) — ⭐⭐⭐⭐⭐ CNN 奠基论文 (LeNet-5)
+  2. *Finding Structure in Time* (Elman, 1990) — ⭐⭐⭐⭐⭐ 简单 RNN (Elman Network)
+  3. *Long Short-Term Memory* (Hochreiter & Schmidhuber, 1997) — ⭐⭐⭐⭐⭐ LSTM 奠基论文
+  4. *ImageNet Classification with Deep Convolutional Neural Networks* (Krizhevsky, Sutskever, Hinton, 2012) — ⭐⭐⭐⭐⭐ AlexNet，引爆深度学习革命
+  5. *Deep Residual Learning for Image Recognition* (He et al., 2016) — ⭐⭐⭐⭐⭐ ResNet，残差连接
+- **新增概念**：卷积层, 权重共享, 池化层, 循环连接, 上下文单元, 序列建模, LSTM, 记忆细胞, 门控机制, Dropout, 数据增强, GPU训练, 残差学习, 跳跃连接, 退化问题
+- **下次主题：** Day 4 — 注意力机制与 Transformer：大模型的核心引擎

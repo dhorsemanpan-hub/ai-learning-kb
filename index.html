@@ -109,14 +109,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">3<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">15</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">44</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">9</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">4<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">20</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">58</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">12</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">10%</span></div>
-<div class="pb"><div class="pf" style="width:10%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">13%</span></div>
+<div class="pb"><div class="pf" style="width:13%"></div></div>
 <div class="ptl">
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc"><div class="ptag">&#9675; 未开始</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -125,7 +125,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day <span id="pdaynum">3</span> · 今日论文</h2><div class="sd" id="pdaydesc">CNN 与 RNN：卷积神经网络与循环神经网络 · 比喻主题：&#127916; 拍摄一部电影</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">4</span> · 今日论文</h2><div class="sd" id="pdaydesc">注意力机制与 Transformer：大模型的核心引擎 · 比喻主题：&#127925; 指挥一场交响乐团演出</div></div>
 <div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
@@ -142,11 +142,11 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="gli"><div class="gld" style="background:#D3D3D3"></div>辅助概念</div>
 </div></section>
 <section id="s-concepts" class="sec">
-<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">44 个概念 · 搜索过滤 · 点击查看比喻</div></div>
+<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">58 个概念 · 搜索过滤 · 点击查看比喻</div></div>
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~3 · 全部问答</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~4 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -162,11 +162,12 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
-var DAY=3;
+var DAY=4;
 var DAYS=[
 {day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
 {day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'},
-{day:3,theme:'深度网络演进：CNN、RNN、LSTM 的诞生与动机',met:'\ud83c\udfac 拍摄一部电影'}
+{day:3,theme:'深度网络演进：CNN、RNN、LSTM 的诞生与动机',met:'\ud83c\udfac 拍摄一部电影'},
+{day:4,theme:'注意力机制与 Transformer：大模型的核心引擎',met:'🧭 绘制一张世界地图'}
 ];
 var P=[
 {id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
@@ -317,7 +318,58 @@ why:'Seq2Seq 是连接"传统 RNN"与"现代大模型"的关键桥梁。Transfor
 c:[{n:'Seq2Seq (序列到序列)',d:'用编码器压缩输入、解码器生成输出',m:'影评人浓缩原片为摘要，编剧据此重新创作'},
 {n:'编码器-解码器 (Encoder-Decoder)',d:'理解输入+生成输出的通用序列处理架构',m:'影评人负责理解，编剧负责创作'},
 {n:'上下文向量 (Context Vector)',d:'编码器将输入压缩后得到的固定维度表示',m:'影评人写的那份"内容摘要"'}],
-rt:'30 分钟',rr:'理解从 RNN 到 Transformer 的过渡桥梁'}
+rt:'30 分钟',rr:'理解从 RNN 到 Transformer 的过渡桥梁'},
+{id:16,day:4,t:'Neural Machine Translation by Jointly Learning to Align and Translate',a:'Dzmitry Bahdanau, KyungHyun Cho, Yoshua Bengio',s:'ICLR 2015',y:2015,r:5,u:'https://arxiv.org/abs/1409.0473',
+d:'首次在 Seq2Seq 中引入注意力机制——让解码器在每一步都能动态"回头看"编码器的所有隐藏状态，彻底解决了信息瓶颈问题。',
+abs:'神经机器翻译是最近提出的一种机器翻译方法。与传统的统计机器翻译不同，神经机器翻译旨在构建一个单一的神经网络，该网络可以被联合调优以最大化翻译性能。最近提出的神经机器翻译模型通常属于编码器-解码器家族，即将源语言句子编码为一个固定长度的向量，然后解码器从该向量生成翻译结果。在本文中，我们推测使用固定长度向量是提升这种基本编码器-解码器架构性能的瓶颈，并提出通过允许模型自动（软）搜索与预测目标词相关的源句部分来扩展这一方法，而不需要将这些部分显式地形成为硬段。通过这种新方法，我们在英法翻译任务上取得了可与现有最先进的基于短语的统计机器翻译系统相媲美的翻译性能。此外，定性分析表明，模型发现的（软）对齐与我们的直觉非常吻合。当句子长度超过20个词后，传统Seq2Seq模型的BLEU分数急剧下降，而带有注意力机制的模型在句子长度达到50词以上时仍能保持稳定的翻译质量。',
+insights:'这篇论文的核心贡献是提出了"注意力机制"（Attention Mechanism），它解决了Seq2Seq模型中一个根本性的信息瓶颈——将整个输入句子压缩到一个固定长度的向量中。\n\n在Day 3我们学过，Sutskever等人（2014）的Seq2Seq模型用一个编码器LSTM将输入句子压缩成一个固定维度的"上下文向量"，然后解码器LSTM完全依赖这个向量来生成翻译。问题在于：无论输入句子有5个词还是500个词，上下文向量的维度是固定的。就像让指挥家在彩排结束后写一份简短的"整体印象笔记"，然后在正式演出时完全依赖这份笔记来指挥——对于一首简单的小夜曲可能还行，但对于一部有数百小节的马勒交响曲，指挥家不可能靠一份简短笔记完成精准指挥。\n\nBahdanau的注意力机制彻底改变了这个范式。它的做法是：解码器在生成每个输出词时，不再只依赖一个固定的上下文向量，而是动态地回头看编码器的所有隐藏状态，计算当前输出与每个输入位置的"相关性得分"（注意力权重），然后按这些得分对编码器隐藏状态做加权求和，得到一个针对当前输出位置定制的上下文向量。\n\n用交响乐比喻：指挥家在正式演出的每一个小节，都可以直接看到乐谱的每一页、观察到每一位乐手的状态，然后根据当前小节的需要，把注意力分配给最相关的声部——弦乐高潮时重点关注小提琴首席，铜管进入时转向圆号和长号。注意力分配是动态的——每个时刻关注的对象都不同。\n\n这个看似简单的改变产生了三个深远的影响。第一，性能提升立竿见影：在长句翻译上，传统Seq2Seq在句长超过20词后性能急剧下降，而注意力模型在50词以上仍然稳健。第二，注意力权重具有可解释性——可以可视化出模型在翻译每个词时"看向了"源句的哪些位置。第三，也是最重要的，这个"让模型自己学会在哪里看"的思想直接启发了Vaswani等人将注意力从辅助机制提升为唯一核心机制——Transformer的诞生。',
+contribs:['首次在Seq2Seq框架中引入注意力机制，让解码器在每一步都能动态关注编码器的所有位置，根本性解决了固定长度上下文向量的信息瓶颈','注意力权重具有可解释性——可视化后清晰展示源语言与目标语言之间的软对齐关系，为NLP可解释性研究开辟了新方向','在长句子翻译上取得了远超传统Seq2Seq的性能，将神经机器翻译的实用性提升到可与统计机器翻译竞争的水平','直接启发了Transformer的自注意力机制——从"解码器关注编码器"到"序列关注自身"'],
+why:'这篇论文是注意力机制的"开山之作"。在Transformer论文中被显著引用为核心先驱工作。没有Bahdanau注意力就没有Transformer，没有Transformer就没有GPT/BERT/ViT/Sora。被引40000+次，是深度学习历史上最具影响力的论文之一。',
+c:[{n:'注意力机制',d:'让模型在生成输出时动态关注输入的不同部分',m:'指挥家在每个小节根据需要把注意力分配给不同声部'},
+{n:'对齐',d:'源语言词与目标语言词之间的对应关系',m:'乐谱中原曲与改编曲之间的段落对应'},
+{n:'动态上下文向量',d:'针对当前输出位置定制的输入信息加权摘要',m:'指挥家在当前小节对所有声部的综合判断'}],
+rt:'25 分钟',rr:'理解注意力机制的直觉——从瓶颈到突破'},
+{id:17,day:4,t:'Attention Is All You Need',a:'Vaswani, Shazeer 等 8 人',s:'NeurIPS 2017',y:2017,r:5,u:'https://arxiv.org/abs/1706.03762',
+d:'提出 Transformer 架构——完全基于自注意力机制，彻底抛弃 RNN 和 CNN，被引 130000+ 次，成为现代所有大模型的基石。',
+abs:'当前主流的序列转录模型基于复杂的循环或卷积神经网络，采用编码器-解码器架构。性能最好的模型还通过注意力机制连接编码器和解码器。我们提出了一种全新的简洁网络架构——Transformer，它完全基于注意力机制，彻底摒弃了循环和卷积运算。在两项机器翻译任务上的实验表明，这些模型在翻译质量上更优越，同时具有更高的可并行性，所需训练时间也大幅减少。我们的模型在WMT 2014英德翻译任务上达到28.4 BLEU分，比现有最佳结果高出2个BLEU以上；在WMT 2014英法翻译任务上，在8块GPU上训练3.5天后建立了新的单模型最先进BLEU分数41.8。Transformer架构的核心是"缩放点积注意力"和"多头注意力"机制。前者计算查询与所有键的点积相似度，除以维度的平方根进行缩放，然后通过Softmax获得权重并对值加权求和；后者将注意力分成多个"头"并行计算，让模型能同时从不同的表示子空间关注信息。此外，论文引入了位置编码来注入序列中词元的位置信息，使用正弦和余弦函数生成不同频率的位置向量。模型还采用了残差连接和层归一化来稳定深层网络的训练。',
+insights:'Transformer是21世纪最重要的AI论文，它开创的架构统一了几乎所有AI子领域。要理解它为什么如此革命性，需要从它之前的世界说起。\n\n在2017年之前，处理序列数据的标准方式是RNN/LSTM。这些模型有两个致命缺陷：一是必须按顺序处理，无法并行；二是长距离依赖衰减。用交响乐比喻：RNN就像"接力传话"的乐团——第一小提琴把信息传给第二小提琴，再传给中提琴……经过整个弦乐组传到打击乐时信息已经失真。\n\nTransformer的核心创新——自注意力机制——彻底颠覆了这种模式。它的做法是：不再接力传话，而是让指挥家同时看到所有乐手，每个乐手也能同时听到所有其他乐手的演奏。具体来说，对于输入序列中的每个位置，模型生成三个向量——Query（"我在找什么"）、Key（"我有什么"）和Value（"我的内容"）。每个位置的Query与所有位置的Key做点积计算相似度，经Softmax归一化得到权重，最后用权重对所有Value加权求和。\n\n多头注意力则更进一步：不是只有一位指挥，而是同时有8位"副指挥"在工作——一位关注节奏对齐（语法），一位关注和声搭配（语义），一位关注力度呼应（指代）……最后综合所有判断。\n\n位置编码解决了注意力机制天生不知道顺序的问题。自注意力是"集合操作"——不关心元素位置。但语言显然有序。位置编码通过正弦/余弦函数为每个位置生成独特向量——就像乐谱上的小节号。\n\nTransformer还融合了残差连接（ResNet思想）和层归一化，使得可以堆叠到数十层乃至上百层。\n\nTransformer的影响前所未有：GPT（文本生成）、BERT（文本理解）、ViT（图像识别）、Whisper（语音识别）、AlphaFold 2（蛋白质预测）、Sora（视频生成）——现代AI的所有重大突破几乎都建立在Transformer之上。一个架构统一所有子领域，在AI历史上绝无仅有。',
+contribs:['提出完全基于注意力机制的Transformer架构，彻底抛弃RNN的循环结构，实现高度并行化训练','设计了Query-Key-Value的缩放点积注意力和多头注意力机制，让模型从多个表示子空间同时关注信息','引入位置编码用正弦/余弦函数解决纯注意力模型无法感知序列顺序的问题','将残差连接和层归一化融入Transformer Block，形成可无限堆叠的模块化设计'],
+why:'这可能是21世纪最重要的AI论文。被引130000+次，标题成为AI最著名口号。Transformer统一了NLP（GPT、BERT）、视觉（ViT）、语音（Whisper）、蛋白质（AlphaFold 2）、视频（Sora）等所有AI子领域。8位作者几乎全部创立或加入了AI独角兽公司。',
+c:[{n:'自注意力',d:'序列中每个位置直接关注所有其他位置',m:'每位乐手同时听到所有其他乐手并据此调整'},
+{n:'QKV',d:'注意力计算的三要素：Query/Key/Value',m:'"我找什么-我有什么标签-我的内容"'},
+{n:'多头注意力',d:'多组注意力并行计算，多视角理解',m:'多位副指挥同时从不同角度分析曲目'},
+{n:'位置编码',d:'注入序列位置信息的向量',m:'乐谱上的小节号'}],
+rt:'40 分钟',rr:'核心中的核心，必须细读'},
+{id:18,day:4,t:'BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding',a:'Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova',s:'NAACL 2019',y:2019,r:5,u:'https://arxiv.org/abs/1810.04805',
+d:'首次用 Transformer 编码器进行双向预训练，通过"遮盖语言模型"同时看上下文，刷新 11 项 NLP 基准。',
+abs:'我们引入了一种新的语言表示模型BERT（基于Transformer的双向编码器表示）。与最近的语言表示模型不同，BERT旨在通过联合条件化所有层中的左右上下文来从未标注文本中预训练深度双向表示。预训练的BERT模型只需添加一个额外的输出层即可进行微调，便可为广泛的任务创建最先进的模型。BERT在11项自然语言处理任务上获得了新的最先进结果，包括将GLUE基准推至80.5%（7.7个百分点的绝对提升），MultiNLI准确率达到86.7%，SQuAD v1.1问答F1分数达到93.2，以及SQuAD v2.0 F1达到83.1。BERT的预训练采用两个无监督任务：掩码语言模型（MLM）——随机遮盖输入中15%的词让模型预测；下一句预测（NSP）——判断两个句子是否相邻。MLM任务的关键创新在于它允许模型融合左右两个方向的上下文信息。',
+insights:'BERT的核心创新是"让Transformer不只是从左到右读，而是同时从两个方向理解文本"。这听起来似乎只是一个小改动，但它对NLP领域的冲击是颠覆性的。\n\n要理解BERT的突破，需要先知道在它之前的"单向"模型的问题。GPT-1采用"自左向右"训练——预测每个词时只能看左边上下文。用交响乐比喻：这就像要求指挥家在指挥每个小节时只能听到之前的演奏，不能提前知道后面的旋律走向。但理解代词"它"指的是什么，往往需要同时看上文和下文。\n\nBERT的解决方案是"遮盖语言模型"（MLM）——随机把15%的词用[MASK]遮住，让模型根据双向上下文来预测被遮的词。用交响乐比喻：排练时随机让一些乐手"静音"，让所有其他乐手（无论左边还是右边）都来判断"被静音的位置应该演奏什么音符"。因为需要同时参考左右两侧声部，乐手们被迫学会了对整首曲目的深度理解。\n\n双向预训练带来了巨大收益——BERT同时刷新了11项NLP基准最高分。它确立了"预训练+微调"的标准范式：先在海量无标注文本上预训练，再在少量任务数据上微调。\n\nBERT还引发了Transformer使用方式的重要分野：BERT路线（只用编码器，擅长理解）vs GPT路线（只用解码器，擅长生成）。前者在分类、实体识别等"理解"任务上更强；后者在文本生成、对话等任务上更强。最终GPT路线凭借Scaling Law胜出成为主流，但BERT首次向世界证明了"Transformer+预训练"的威力。\n\nBERT的影响是时代性的：它引发了2019年的"BERT-mania"，催生了RoBERTa、ALBERT、DeBERTa等数十种变体，在工业界被广泛部署于搜索引擎、推荐系统、智能客服等场景。Google搜索也在2019年宣布采用BERT来改善搜索结果理解。',
+contribs:['首次实现Transformer编码器的深度双向预训练，通过MLM让模型同时利用上下文两个方向的信息','确立了"预训练+微调"两阶段范式——先通用预训练再任务微调，成为NLP标准流程','同时刷新11项NLP基准记录，证明了大规模预训练Transformer的通用性和强大迁移能力','引发BERT路线（理解）vs GPT路线（生成）的技术路线之争，深刻影响大模型发展方向'],
+why:'BERT是NLP领域的"分水岭"。在BERT之前每个NLP任务需要独立设计模型；之后一个预训练模型加简单微调就能处理几乎所有任务。它引发了2019年的"BERT-mania"，被引90000+次。虽然GPT路线最终胜出，但BERT首次证明了"预训练+微调"范式的巨大潜力。',
+c:[{n:'双向预训练',d:'同时利用左右上下文来理解每个词',m:'指挥家在指挥每个小节时同时参考前后旋律'},
+{n:'遮盖语言模型 (MLM)',d:'随机遮住部分词让模型预测',m:'排练时随机静音让其他人判断该位置的音符'},
+{n:'预训练+微调',d:'先通用训练再任务适配',m:'先完成全曲排练再针对演出场地做微调'}],
+rt:'30 分钟',rr:'理解双向预训练的威力'},
+{id:19,day:4,t:'Improving Language Understanding by Generative Pre-Training (GPT)',a:'Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever',s:'OpenAI Technical Report',y:2018,r:5,u:'https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf',
+d:'GPT 系列的起点——首次将 Transformer 解码器用于大规模自回归预训练，开创了从 GPT-1 到 ChatGPT 的整条技术路线。',
+abs:'自然语言理解涵盖了广泛的多样化任务，如文本蕴含、问答、语义相似性评估和文档分类。虽然大量未标注文本语料库十分充裕，但用于学习这些特定任务的标注数据却十分稀缺。我们证明了通过在多样化的未标注文本语料库上对语言模型进行生成式预训练，然后在每个特定任务上进行判别性微调，可以实现巨大的性能提升。我们的通用任务无关模型在12个任务中有9个超越了使用专门架构的判别式训练模型——在常识推理上绝对提升8.9%，在问答上绝对提升5.7%。模型使用12层Transformer解码器，在BooksCorpus上进行预训练，总参数量约1.17亿。',
+insights:'GPT-1可能不是被引用最多的论文，但它开创的技术路线最终改变了世界——从GPT-1到ChatGPT再到GPT-4，这条"只用Transformer解码器+自回归预测"的路线成为大模型时代的绝对主流。\n\nGPT-1的核心思想惊人地简单：用Transformer的解码器部分（不要编码器），在海量文本上训练一个"预测下一个词"的模型。给定前面的词序列"今天天气很"，模型学习预测下一个词可能是"好"或"热"。通过在数十亿词上反复执行这个简单任务，模型逐渐学会了语法、语义、常识推理甚至世界知识。\n\n用交响乐比喻：GPT的训练方式就像让一个人从头到尾听了上万首交响曲，在每首曲子的每个小节处都被暂停并被问"接下来应该是什么音？"经过足够多的训练后，这个人不仅学会了预测下一个音符，还深刻理解了和声学、曲式结构、配器法等"音乐语法"——尽管从未被显式教授。\n\nGPT-1与BERT的关键区别在于信息流方向。BERT用"遮盖预测"让模型同时看上下文（双向），GPT用"预测下一个词"只看左边上下文（自回归）。表面上BERT的双向能力更强，但GPT的自回归方式有一个巨大优势：它天然具备生成能力——可以一个词一个词地"续写"文本，而BERT只能"填空"不能"续写"。\n\n这个差异在GPT-1时代还不明显，但随着模型规模增长，自回归路线展现出惊人潜力。GPT-2（15亿参数）、GPT-3（1750亿参数）逐步展示了"涌现能力"——上下文学习、少样本推理等小模型完全不具备的能力自然涌现。到了GPT-4/ChatGPT，"自回归+规模化"路线的优越性已无可争议。\n\nGPT-1还证明了"无监督预训练→有监督微调"的两阶段训练流程的有效性，为后来所有大模型的训练范式奠定了基础。',
+contribs:['首次将Transformer解码器用于大规模自回归预训练，确立了"预测下一个词"作为通用预训练任务','证明了"无监督预训练→有监督微调"两阶段范式在NLP各任务上的通用有效性','开创了GPT系列技术路线——只用Transformer解码器+自回归生成，后来的GPT-2/3/4都沿此发展','在12个任务中9个超越专用架构模型，证明了通用预训练模型的强大迁移能力'],
+why:'GPT-1是大模型时代的"种子"。虽然只有1.17亿参数（不到GPT-3的千分之一），但它确立的"Transformer解码器+自回归+预训练+微调"技术路线延续至今。从GPT-1到ChatGPT只隔了4年，这条路线最终改变了整个AI产业。',
+c:[{n:'自回归生成',d:'基于已有内容逐步预测下一个词',m:'指挥家根据已演奏旋律即兴指挥下一小节'},
+{n:'生成式预训练',d:'通过预测下一个词来学习语言通用表示',m:'通过听上万首曲子的"接龙游戏"学会音乐理论'},
+{n:'迁移学习',d:'预训练的通用能力迁移到具体任务',m:'学了通用指挥法后快速适配不同曲目'}],
+rt:'25 分钟',rr:'理解GPT路线的起点'},
+{id:20,day:4,t:'Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5)',a:'Colin Raffel, Noam Shazeer, Adam Roberts 等',s:'JMLR 2020',y:2020,r:5,u:'https://arxiv.org/abs/1910.10683',
+d:'Google 提出 T5——将所有 NLP 任务统一为"文本到文本"格式，系统性对比了数十个设计选择，是 Transformer 时代最全面的"实验百科全书"。',
+abs:'迁移学习已成为NLP中的强大技术。在本文中，我们通过引入一个统一的框架，将所有基于文本的语言问题转换为"文本到文本"格式，来探索NLP迁移学习技术的全景。我们的系统性研究比较了预训练目标、架构、未标注数据集、迁移方法和其他因素对数十项语言理解任务的影响。通过将探索中获得的洞见与规模和新的C4数据集相结合，我们在摘要、问答、文本分类等许多基准上取得了最先进结果。T5模型将所有NLP任务统一为相同的输入/输出格式：输入是一个文本字符串（可能带有任务前缀如"translate English to German:"），输出也是一个文本字符串。论文还构建了C4数据集（约750GB清洁英文文本），并系统性比较了编码器-解码器vs只用解码器vs只用编码器架构、不同的预训练目标和数据规模等。',
+insights:'T5论文的独特价值不在于提出某个新架构，而在于它是Transformer时代最系统、最全面的"实验百科全书"——通过大规模对照实验回答了研究者们关于预训练和微调的几乎所有问题。\n\nT5的核心洞见是一个极其优雅的统一框架：将所有NLP任务都转化为"文本输入→文本输出"格式。翻译？"translate English to German: The house is wonderful." → "Das Haus ist wunderbar."  摘要？"summarize: [长文本]" → "[摘要]"  情感分析？"sentiment: This movie is great." → "positive"\n\n用交响乐比喻：之前每种NLP任务就像不同类型的音乐演出——交响乐有交响乐的流程，歌剧有歌剧的。T5说：不管什么类型，都用统一的"乐团演出"格式——输入是乐谱（文本），输出是演奏（文本）。只需在乐谱开头加"类型标注"（任务前缀），同一个乐团就能演奏所有类型。\n\n这种统一化带来的好处是深远的。第一，工程上极大简化——一个模型、一个流程就能处理所有任务。第二，不同任务可以相互促进——翻译学到的语言知识帮助摘要，问答学到的推理帮助分类。第三，为后来的"大一统模型"（GPT-3的few-shot learning）奠定了概念基础。\n\nT5论文还系统比较了三种架构的优劣：编码器-解码器（T5采用）、只用解码器（GPT路线）、只用编码器（BERT路线）。结论是：对于需要生成输出的任务，编码器-解码器通常最优。但后来证明，当模型规模足够大时，纯解码器也能在所有任务上取得极好效果。\n\nT5还引入了C4数据集（750GB清洁英文文本），揭示了"数据质量"对大模型的关键重要性：去重、去噪、过滤低质量内容对最终模型质量的影响可能比增加参数更大。这个发现深刻影响了后续所有大模型的数据工程实践。',
+contribs:['提出"文本到文本"统一框架，将所有NLP任务（翻译、摘要、问答、分类等）转化为相同输入/输出格式','通过系统性大规模对比实验全面评估了架构、预训练目标、数据集规模等数十个设计维度','构建了C4数据集（750GB清洁英文文本），揭示了数据质量对大模型训练的关键重要性','验证了Transformer编码器-解码器架构在多任务设定下的优势'],
+why:'T5是Transformer时代的"实验圣经"——其系统性对比实验为后续所有大模型的设计决策提供了可靠经验依据。"将所有任务统一为文本到文本"的思想深刻影响了GPT-3的prompt范式和所有大模型的交互方式。被引18000+次。',
+c:[{n:'文本到文本',d:'所有任务统一为文本输入→文本输出',m:'所有演出统一为"看谱→演奏"格式'},
+{n:'任务前缀',d:'通过输入文本开头的指令标识任务类型',m:'乐谱开头的类型标注——交响曲/协奏曲'},
+{n:'C4数据集',d:'750GB清洁英文文本预训练数据集',m:'精心筛选的上万首经典乐曲曲库'}],
+rt:'30 分钟',rr:'理解文本到文本的统一范式'}
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -362,7 +414,20 @@ var C=[
 {l:'M',n:'门控机制',e:'Gating Mechanism',df:'用 sigmoid 函数控制信息流动的开关',m:'保险柜的三把钥匙——存/删/用',dy:'Day 3',pp:'Hochreiter & Schmidhuber, 1997'},
 {l:'S',n:'Seq2Seq',e:'Sequence to Sequence',df:'用编码器压缩输入、解码器生成输出的框架',m:'影评人浓缩原片为摘要，编剧据此重新创作',dy:'Day 3',pp:'Sutskever et al., 2014'},
 {l:'B',n:'编码器-解码器',e:'Encoder-Decoder',df:'理解输入+生成输出的通用序列处理架构',m:'影评人负责理解，编剧负责创作',dy:'Day 3',pp:'Sutskever et al., 2014'},
-{l:'S',n:'上下文向量',e:'Context Vector',df:'编码器将输入压缩后的固定维度表示',m:'影评人写的"内容摘要"',dy:'Day 3',pp:'Sutskever et al., 2014'}
+{l:'S',n:'上下文向量',e:'Context Vector',df:'编码器将输入压缩后的固定维度表示',m:'影评人写的"内容摘要"',dy:'Day 3',pp:'Sutskever et al., 2014'},
+{l:'Z',n:'注意力机制',e:'Attention Mechanism',df:'让模型在生成输出时动态关注输入的不同部分',m:'指挥家在每个小节把注意力分配给不同声部',dy:'Day 4',pp:'Bahdanau et al., 2015'},
+{l:'D',n:'对齐',e:'Alignment',df:'源语言词与目标语言词之间的对应关系',m:'乐谱中原曲与改编曲的段落对应',dy:'Day 4',pp:'Bahdanau et al., 2015'},
+{l:'Z',n:'自注意力',e:'Self-Attention',df:'序列中每个位置直接关注所有其他位置',m:'每位乐手同时听到所有其他乐手并据此调整',dy:'Day 4',pp:'Vaswani et al., 2017'},
+{l:'Q',n:'QKV',e:'Query-Key-Value',df:'注意力计算的三要素：查询/键/值',m:'"我找什么-我有什么标签-我的内容"',dy:'Day 4',pp:'Vaswani et al., 2017'},
+{l:'D',n:'多头注意力',e:'Multi-Head Attention',df:'多组注意力并行计算，从多角度理解输入',m:'多位副指挥同时从不同角度分析曲目',dy:'Day 4',pp:'Vaswani et al., 2017'},
+{l:'W',n:'位置编码',e:'Positional Encoding',df:'注入序列位置信息的向量',m:'乐谱上的小节号',dy:'Day 4',pp:'Vaswani et al., 2017'},
+{l:'S',n:'双向预训练',e:'Bidirectional Pre-training',df:'同时利用左右上下文来理解每个词',m:'指挥家同时参考前后旋律指挥当前小节',dy:'Day 4',pp:'Devlin et al., 2019'},
+{l:'Z',n:'遮盖语言模型',e:'Masked Language Model (MLM)',df:'随机遮住部分词让模型预测',m:'排练时随机静音让其他人判断该位置音符',dy:'Day 4',pp:'Devlin et al., 2019'},
+{l:'Z',n:'自回归生成',e:'Autoregressive Generation',df:'基于已有内容逐步预测下一个词',m:'根据已演奏旋律即兴指挥下一小节',dy:'Day 4',pp:'Radford et al., 2018'},
+{l:'S',n:'生成式预训练',e:'Generative Pre-Training',df:'通过预测下一个词来学习语言通用表示',m:'听上万首曲子的"接龙游戏"学会音乐理论',dy:'Day 4',pp:'Radford et al., 2018'},
+{l:'Q',n:'迁移学习',e:'Transfer Learning',df:'将预训练获得的通用能力迁移到具体任务',m:'通用指挥法快速适配不同曲目',dy:'Day 4',pp:'Radford et al., 2018'},
+{l:'W',n:'文本到文本',e:'Text-to-Text',df:'将所有NLP任务统一为文本输入→文本输出格式',m:'所有演出统一为"看谱→演奏"格式',dy:'Day 4',pp:'Raffel et al., 2020'},
+{l:'R',n:'任务前缀',e:'Task Prefix',df:'通过输入文本开头的指令标识任务类型',m:'乐谱开头的类型标注——交响曲/协奏曲',dy:'Day 4',pp:'Raffel et al., 2020'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
@@ -373,7 +438,10 @@ var Q=[
 {q:'\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4ec0\u4e48\uff1f\u4e3a\u4ec0\u4e48\u5b83\u80fd\u8ba9\u795e\u7ecf\u7f51\u7edc\u201c\u5b66\u4e60\u201d\uff1f',a:'<p>\u53cd\u5411\u4f20\u64ad\u7684\u672c\u8d28\u662f\u4e00\u4e2a\u9ad8\u6548\u7684\u201c\u8d23\u4efb\u5206\u914d\u201d\u7b97\u6cd5\uff0c\u5229\u7528<strong>\u94fe\u5f0f\u6cd5\u5219</strong>\u7cbe\u786e\u8ba1\u7b97\u6bcf\u4e2a\u6743\u91cd\u5bf9\u8bef\u5dee\u7684\u8d21\u732e\uff0c\u7136\u540e\u6309\u8d23\u4efb\u5927\u5c0f\u8c03\u6574\u3002Glorot & Bengio(2010)\u89e3\u51b3\u4e86\u6df1\u5c42\u4e2d\u68af\u5ea6\u6d88\u5931/\u7206\u70b8\u7684\u95ee\u9898\u3002</p>'},
 {q:'CNN 为什么特别擅长处理图像？它与全连接网络有什么本质区别？',a:'<p>CNN 的设计完美匹配了图像数据的三个特性：<strong>1)</strong> 局部性——有意义的特征由相邻像素构成，卷积核恰好在局部区域操作；<strong>2)</strong> 平移不变性——猫在图片任何位置还是猫，权重共享天然具备此能力；<strong>3)</strong> 层次结构——像素→边缘→纹理→部件→物体，多层卷积逐层提取更抽象的特征。全连接网络完全忽略了像素的空间关系，参数量爆炸且效果差。</p>'},
 {q:'LSTM 的三个门分别解决了什么问题？为什么传统 RNN 无法处理长序列？',a:'<p>传统 RNN 通过矩阵乘法传递隐藏状态，经过T步后梯度要么指数级衰减（消失）要么膨胀（爆炸），超过约10-20步后早期信息几乎完全丢失。LSTM 用三个门精确解决三个子问题：<strong>输入门</strong>——什么时候把新信息存入记忆；<strong>遗忘门</strong>——什么时候清除过时的记忆；<strong>输出门</strong>——什么时候把记忆拿出来使用。关键在于记忆单元通过恒等自连接传递信息，梯度以恒定比例1.0反向传播，从根本上解决梯度消失。</p>'},
-{q:'CNN 和 RNN 的核心设计思想有何异同？它们是如何被 Transformer 统一的？',a:'<p><strong>相同点</strong>：都体现了"归纳偏置"思想——通过在结构中嵌入特定假设降低学习难度。<strong>不同点</strong>：CNN 擅长捕捉空间局部模式但缺乏时序建模；RNN 擅长时序依赖但必须串行处理。<strong>Transformer 的统一</strong>：自注意力机制不需要假设"特征是局部的"，也不需要串行处理，既能处理图像（ViT）也能处理序列（GPT/BERT），代价是需要更多数据才能学好。</p>'}
+{q:'CNN 和 RNN 的核心设计思想有何异同？它们是如何被 Transformer 统一的？',a:'<p><strong>相同点</strong>：都体现了"归纳偏置"思想——通过在结构中嵌入特定假设降低学习难度。<strong>不同点</strong>：CNN 擅长捕捉空间局部模式但缺乏时序建模；RNN 擅长时序依赖但必须串行处理。<strong>Transformer 的统一</strong>：自注意力机制不需要假设"特征是局部的"，也不需要串行处理，既能处理图像（ViT）也能处理序列（GPT/BERT），代价是需要更多数据才能学好。</p>'},
+{q:'注意力机制的本质是什么？为什么它比 RNN 更适合处理长序列？',a:'<p>注意力机制的本质是<strong>基于相关性的动态信息检索</strong>。对于每个位置，它直接计算与所有其他位置的相关性得分，按相关性加权获取信息。关键在于"信息传递路径长度"：RNN中第1词到第1000词需要999步传递（信号逐步衰减），而注意力机制中任意两个位置间路径长度始终为1——就像指挥家能同时看到所有乐手，无需中间传递。Bahdanau(2015)首次验证了注意力在长句上的优势，Vaswani(2017)将其推到极致。</p>'},
+{q:'GPT 和 BERT 都用了 Transformer，为什么走向了不同的方向？',a:'<p>核心差异在于架构和训练任务。<strong>GPT</strong>用Transformer解码器+自回归（预测下一个词），只看左边上下文，天然擅长生成。<strong>BERT</strong>用Transformer编码器+MLM（预测被遮盖的词），同时看上下文，擅长理解。GPT最终胜出的关键是<strong>Scaling Law</strong>——当模型足够大时，自回归模型的"理解"能力也自然涌现，且可以通过上下文学习免去微调。</p>'},
+{q:'Transformer 中"多头注意力"和"位置编码"分别解决了什么根本性问题？',a:'<p><strong>多头注意力</strong>解决单一视角的局限——单头只能形成一种关注模式，多头让模型从语法、语义、指代等多个角度同时理解输入。用交响乐比喻：8位副指挥从节奏、和声、力度等不同角度同时分析。<strong>位置编码</strong>解决注意力天生不知道顺序的问题——自注意力是"集合操作"，"猫吃鱼"和"鱼吃猫"对它一样。位置编码用正弦/余弦函数为每个位置生成独特向量——就像乐谱上的小节号。去掉任何一个都会导致性能严重下降。</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -420,11 +488,23 @@ var GN=[
 {id:'GT',lb:'\ud83d\udd11 门控机制',g:'tech',df:'sigmoid控制信息流动',m:'三把钥匙'},
 {id:'S2',lb:'\ud83d\udd04 Seq2Seq',g:'arch',df:'编码器-解码器序列映射',m:'影评人+编剧'},
 {id:'ED',lb:'\ud83c\udfac 编码器-解码器',g:'arch',df:'理解输入+生成输出',m:'观影理解+重新创作'},
-{id:'CV',lb:'\ud83d\udcdd 上下文向量',g:'aux',df:'编码器输出的压缩表示',m:'内容摘要'}
+{id:'CV',lb:'\ud83d\udcdd 上下文向量',g:'aux',df:'编码器输出的压缩表示',m:'内容摘要'},
+{id:'ATN',lb:'\ud83c\udfb5 注意力机制',g:'tech',df:'动态关注输入不同部分',m:'指挥家的注意力分配'},
+{id:'QKV',lb:'\ud83c\udfb9 QKV',g:'tech',df:'Query-Key-Value三要素',m:'找什么-有什么-内容'},
+{id:'MHA',lb:'\ud83c\udfbc 多头注意力',g:'tech',df:'多组注意力并行计算',m:'多位副指挥'},
+{id:'PE',lb:'\ud83c\udfb6 位置编码',g:'tech',df:'注入序列位置信息',m:'乐谱小节号'},
+{id:'BT',lb:'\ud83d\udcda BERT',g:'arch',df:'双向预训练编码器',m:'全谱分析师'},
+{id:'GPT1',lb:'\ud83d\udcac GPT',g:'arch',df:'自回归预训练解码器',m:'即兴指挥'},
+{id:'T5M',lb:'\ud83c\udfaf T5',g:'arch',df:'文本到文本统一模型',m:'全能乐团'},
+{id:'MLM',lb:'\ud83c\udfad MLM',g:'tech',df:'遮盖词预测任务',m:'随机静音练习'},
+{id:'AR2',lb:'\u270d 自回归',g:'tech',df:'逐步预测下一个词',m:'即兴续写'},
+{id:'TL',lb:'\ud83d\udd04 迁移学习',g:'met',df:'通用能力迁移到新任务',m:'通用指挥法适配'},
+{id:'T2T',lb:'\ud83d\udcc4 文本到文本',g:'tech',df:'统一所有任务为文本格式',m:'统一演出格式'}
 ];
 var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
 {s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'},
-{s:'CN',t:'LN'},{s:'CN',t:'AN'},{s:'CN',t:'RS'},{s:'RS',t:'RC'},{s:'CN',t:'CK'},{s:'CN',t:'PO'},{s:'CN',t:'FM'},{s:'AN',t:'DR'},{s:'AN',t:'GP'},{s:'RN',t:'LS'},{s:'LS',t:'GT'},{s:'LS',t:'S2'},{s:'S2',t:'ED'},{s:'ED',t:'CV'},{s:'ED',t:'TF'},{s:'RC',t:'TF'}];
+{s:'CN',t:'LN'},{s:'CN',t:'AN'},{s:'CN',t:'RS'},{s:'RS',t:'RC'},{s:'CN',t:'CK'},{s:'CN',t:'PO'},{s:'CN',t:'FM'},{s:'AN',t:'DR'},{s:'AN',t:'GP'},{s:'RN',t:'LS'},{s:'LS',t:'GT'},{s:'LS',t:'S2'},{s:'S2',t:'ED'},{s:'ED',t:'CV'},{s:'ED',t:'TF'},{s:'RC',t:'TF'},
+{s:'TF',t:'ATN'},{s:'ATN',t:'QKV'},{s:'ATN',t:'MHA'},{s:'TF',t:'PE'},{s:'TF',t:'BT'},{s:'TF',t:'GPT1'},{s:'TF',t:'T5M'},{s:'BT',t:'MLM'},{s:'GPT1',t:'AR2'},{s:'T5M',t:'T2T'},{s:'ML',t:'TL'},{s:'TL',t:'BT'},{s:'TL',t:'GPT1'},{s:'CV',t:'ATN'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
 var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
 
