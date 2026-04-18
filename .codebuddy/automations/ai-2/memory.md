@@ -86,3 +86,15 @@
   5. *Deep Residual Learning for Image Recognition* (He et al., 2016) — ⭐⭐⭐⭐⭐ ResNet，残差连接
 - **新增概念**：卷积层, 权重共享, 池化层, 循环连接, 上下文单元, 序列建模, LSTM, 记忆细胞, 门控机制, Dropout, 数据增强, GPU训练, 残差学习, 跳跃连接, 退化问题
 - **下次主题：** Day 4 — 注意力机制与 Transformer：大模型的核心引擎
+
+### Day 4 — 2026-04-18
+- **主题：** 注意力机制与 Transformer：大模型的核心引擎
+- **比喻主题：** 🍳 经营一家米其林餐厅
+- **推荐论文：**
+  1. *Neural Machine Translation by Jointly Learning to Align and Translate* (Bahdanau, Cho, Bengio, 2015) — ⭐⭐⭐⭐⭐ 注意力机制开山之作
+  2. *Attention Is All You Need* (Vaswani et al., 2017) — ⭐⭐⭐⭐⭐ Transformer 奠基论文
+  3. *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding* (Devlin et al., 2019) — ⭐⭐⭐⭐⭐ 双向预训练里程碑
+  4. *Improving Language Understanding by Generative Pre-Training (GPT-1)* (Radford et al., 2018) — ⭐⭐⭐⭐⭐ GPT 系列起点
+  5. *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5)* (Raffel et al., 2020) — ⭐⭐⭐⭐⭐ 文本到文本统一范式
+- **新增概念**：注意力机制, 对齐, 动态上下文向量, 自注意力, QKV, 多头注意力, 位置编码, 缩放点积注意力, 双向预训练, 掩码语言模型(MLM), 预训练-微调范式, 自回归生成, 生成式预训练, Transformer解码器, 迁移学习, 文本到文本, 全局注意力, 局部注意力
+- **下次主题：** Day 5 — 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
