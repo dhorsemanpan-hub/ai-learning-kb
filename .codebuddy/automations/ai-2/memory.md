@@ -89,6 +89,18 @@
 
 ### Day 4 — 2026-04-18
 - **主题：** 注意力机制与 Transformer：大模型的核心引擎
+- **比喻主题：** 🎵 指挥一场交响乐团演出
+- **推荐论文：**
+  1. *Neural Machine Translation by Jointly Learning to Align and Translate* (Bahdanau, Cho, Bengio, 2015) — ⭐⭐⭐⭐⭐ 注意力机制奠基论文
+  2. *Attention Is All You Need* (Vaswani et al., 2017) — ⭐⭐⭐⭐⭐ Transformer 奠基论文
+  3. *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding* (Devlin et al., 2019) — ⭐⭐⭐⭐⭐ 双向预训练
+  4. *Improving Language Understanding by Generative Pre-Training* (Radford et al., 2018) — ⭐⭐⭐⭐⭐ GPT-1，自回归路线起点
+  5. *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer* (Raffel et al., 2020) — ⭐⭐⭐⭐⭐ T5，文本到文本统一框架
+- **新增概念**：注意力机制, 对齐, 自注意力, QKV, 多头注意力, 位置编码, 双向预训练, 遮盖语言模型(MLM), 自回归生成, 生成式预训练, 迁移学习, 文本到文本, 任务前缀, C4数据集
+- **下次主题：** Day 5 — 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
+
+### Day 4 — 2026-04-18
+- **主题：** 注意力机制与 Transformer：大模型的核心引擎
 - **比喻主题：** 🍳 经营一家米其林餐厅
 - **推荐论文：**
   1. *Neural Machine Translation by Jointly Learning to Align and Translate* (Bahdanau, Cho, Bengio, 2015) — ⭐⭐⭐⭐⭐ 注意力机制开山之作
@@ -98,3 +110,51 @@
   5. *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer (T5)* (Raffel et al., 2020) — ⭐⭐⭐⭐⭐ 文本到文本统一范式
 - **新增概念**：注意力机制, 对齐, 动态上下文向量, 自注意力, QKV, 多头注意力, 位置编码, 缩放点积注意力, 双向预训练, 掩码语言模型(MLM), 预训练-微调范式, 自回归生成, 生成式预训练, Transformer解码器, 迁移学习, 文本到文本, 全局注意力, 局部注意力
 - **下次主题：** Day 5 — 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
+
+### Day 5 — 2026-04-19
+- **主题：** 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
+- **比喻主题：** 🎭 培养一位全能翻译官
+- **推荐论文：**
+  1. *Efficient Estimation of Word Representations in Vector Space (Word2Vec)* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ 词向量开山之作
+  2. *Distributed Representations of Words and Phrases (Word2Vec 续)* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ 负采样+短语向量
+  3. *Deep Contextualized Word Representations (ELMo)* (Peters et al., 2018) — ⭐⭐⭐⭐⭐ 上下文动态词向量
+  4. *BERT: Pre-training of Deep Bidirectional Transformers* (Devlin et al., 2019) — ⭐⭐⭐⭐⭐ 预训练-微调范式
+  5. *GloVe: Global Vectors for Word Representation* (Pennington et al., 2014) — ⭐⭐⭐⭐⭐ 全局统计词向量
+- **新增概念**：词嵌入, 分布式假设, 词向量空间, CBOW, Skip-gram, 负采样, 短语向量, 上下文化表示, 双向LSTM特征, ELMo, 预训练-微调范式, 下一句预测(NSP), 共现矩阵, 全局统计
+- **下次主题：** Day 6 — GPT 系列演进：从 GPT-1 到 GPT-4，自回归生成的崛起
+
+### Day 6 — 2026-04-20
+- **主题：** GPT 系列演进：从 GPT-1 到 GPT-4，自回归生成的崛起
+- **比喻主题：** 🚀 建造一艘星际飞船
+- **推荐论文：**
+  1. *Language Models are Unsupervised Multitask Learners (GPT-2)* (Radford et al., 2019) — ⭐⭐⭐⭐⭐ 零样本多任务
+  2. *Language Models are Few-Shot Learners (GPT-3)* (Brown et al., 2020) — ⭐⭐⭐⭐⭐ 少样本学习里程碑
+  3. *Training Language Models to Follow Instructions with Human Feedback (InstructGPT)* (Ouyang et al., 2022) — ⭐⭐⭐⭐⭐ RLHF 对齐，ChatGPT 前身
+  4. *GPT-4 Technical Report* (OpenAI, 2023) — ⭐⭐⭐⭐⭐ 多模态旗舰，专业考试人类水平
+  5. *Scaling Laws for Neural Language Models* (Kaplan et al., 2020) — ⭐⭐⭐⭐⭐ 规模定律，大模型时代的"第一原理"
+- **新增概念**：零样本学习, 少样本学习, 上下文学习, 涌现能力, RLHF, 奖励模型, 对齐, 多模态, 幻觉, 规模定律, 计算最优, 样本效率, WebText
+- **下次主题：** Day 7 — 大语言模型全貌：参数、训练数据、Tokenizer、上下文窗口
+
+### Day 5 — 2026-04-19
+- **主题：** 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
+- **比喻主题：** 🌱 培育一棵参天大树
+- **推荐论文：**
+  1. *Efficient Estimation of Word Representations in Vector Space* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ Word2Vec
+  2. *Deep Contextualized Word Representations (ELMo)* (Peters et al., 2018) — ⭐⭐⭐⭐⭐ 上下文动态词表示
+  3. *BERT: Pre-training of Deep Bidirectional Transformers* (Devlin et al., 2019) — ⭐⭐⭐⭐⭐ 预训练+微调范式确立
+  4. *Distributed Representations of Words and Phrases* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ 负采样+短语向量
+  5. *GloVe: Global Vectors for Word Representation* (Pennington et al., 2014) — ⭐⭐⭐⭐⭐ 全局统计词向量
+- **新增概念**：词嵌入, 分布式假说, Skip-gram, 上下文化表示, 双向语言模型, 层次化特征, 预训练-微调范式, 下一句预测(NSP), 负采样, 短语向量, 共现矩阵, 全局统计
+- **下次主题：** Day 6 — GPT 系列演进：从 GPT-1 到 GPT-4，自回归生成的崛起
+
+### Day 5 — 2026-04-19
+- **主题：** 预训练范式：Word2Vec → ELMo → BERT，语言模型如何学会"理解"
+- **比喻主题：** 🎭 培养一位全能翻译官
+- **推荐论文：**
+  1. *Efficient Estimation of Word Representations in Vector Space (Word2Vec)* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ 词嵌入开山之作
+  2. *Deep Contextualized Word Representations (ELMo)* (Peters et al., 2018) — ⭐⭐⭐⭐⭐ 上下文化表示先驱
+  3. *BERT: Pre-training of Deep Bidirectional Transformers* (Devlin et al., 2019) — ⭐⭐⭐⭐⭐ 预训练-微调范式标杆
+  4. *Distributed Representations of Words and Phrases* (Mikolov et al., 2013) — ⭐⭐⭐⭐⭐ 负采样与短语向量
+  5. *GloVe: Global Vectors for Word Representation* (Pennington et al., 2014) — ⭐⭐⭐⭐⭐ 全局词向量模型
+- **新增概念**：词嵌入, 分布式假说, Skip-gram, 上下文化表示, 双向语言模型, 层次化特征, 预训练-微调范式, 下一句预测(NSP), 负采样, 短语向量, 共现矩阵, 概率比率, 全局统计
+- **下次主题：** Day 6 — GPT 系列演进：从 GPT-1 到 GPT-4，自回归生成的崛起
