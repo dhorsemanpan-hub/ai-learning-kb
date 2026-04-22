@@ -190,16 +190,15 @@
 **⚠ 每次自动化执行完成后，git push 必须遵循以下重试策略：**
 
 1. **强制重试**：`git push origin main` 失败时，必须至少重试 3 次，每次间隔 15 秒。
-2. **超时保护**：使用 `timeout 60 git push origin main` 限制单次推送最大耗时 60 秒，避免无限挂起。
-3. **网络预检**：push 前先用 `git ls-remote origin HEAD` 探测连通性；若失败，先等待 30 秒再尝试。
-4. **失败记录**：若 3 次重试后仍失败，必须在本文件追加 `push_pending: true` 标记和失败时间戳，并在下次执行时**首先补推**所有未推送的 commit。
-5. **本地备份**：即使 push 失败，commit 必须已成功创建，绝不能丢失内容。
-6. **兜底机制**：本地已部署 cron 脚本 `.codebuddy/scripts/auto-push-check.sh`（每小时运行一次），会自动检测并补推未推送的 commit。自动化任务的 push 步骤是"尽力而为"，即使失败 cron 也会兜底。
+2. **网络预检**：push 前先用 `git ls-remote origin HEAD` 探测连通性；若失败，先等待 30 秒再尝试。
+3. **失败记录**：若 3 次重试后仍失败，必须在本文件追加 `push_pending: true` 标记和失败时间戳，并在下次执行时**首先补推**所有未推送的 commit。
+4. **本地备份**：即使 push 失败，commit 必须已成功创建，绝不能丢失内容。
+5. **兜底机制**：本地已部署 cron 脚本 `.codebuddy/scripts/auto-push-check.sh`（每小时 15/45 分运行一次），会自动检测并补推未推送的 commit。自动化任务的 push 步骤是"尽力而为"，即使失败 cron 也会兜底。
 
-**push 重试伪代码：**
+**push 重试伪代码（macOS 无 `timeout` 命令，直接调用 git push）：**
 ```bash
 for i in 1 2 3; do
-  if timeout 60 git push origin main; then
+  if git push origin main; then
     echo "push success on attempt $i"
     break
   fi

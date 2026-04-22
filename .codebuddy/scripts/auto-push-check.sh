@@ -60,10 +60,19 @@ if [ "$NEED_PUSH" != "1" ]; then
   exit 0
 fi
 
+# 检测是否有 timeout/gtimeout 命令（macOS 默认没有 timeout）
+if command -v gtimeout >/dev/null 2>&1; then
+  TIMEOUT_CMD="gtimeout 60"
+elif command -v timeout >/dev/null 2>&1; then
+  TIMEOUT_CMD="timeout 60"
+else
+  TIMEOUT_CMD=""
+fi
+
 # 重试推送最多 3 次
 for i in 1 2 3; do
-  # 使用 timeout 限制单次推送最大耗时 60 秒
-  if timeout 60 git push origin "$BRANCH" >> "$LOG" 2>&1; then
+  # 使用 timeout 限制单次推送最大耗时 60 秒（若可用）
+  if $TIMEOUT_CMD git push origin "$BRANCH" >> "$LOG" 2>&1; then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✅ 推送成功（第 ${i} 次尝试）" >> "$LOG"
     exit 0
   fi
