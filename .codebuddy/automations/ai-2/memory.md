@@ -158,3 +158,54 @@
   5. *GloVe: Global Vectors for Word Representation* (Pennington et al., 2014) — ⭐⭐⭐⭐⭐ 全局词向量模型
 - **新增概念**：词嵌入, 分布式假说, Skip-gram, 上下文化表示, 双向语言模型, 层次化特征, 预训练-微调范式, 下一句预测(NSP), 负采样, 短语向量, 共现矩阵, 概率比率, 全局统计
 - **下次主题：** Day 6 — GPT 系列演进：从 GPT-1 到 GPT-4，自回归生成的崛起
+
+### Day 7 — 2026-04-21
+- **主题：** 大语言模型全貌：参数、训练数据、Tokenizer、上下文窗口
+- **比喻主题：** 🏰 建造一座巨型图书馆
+- **推荐论文：**
+  1. *LLaMA: Open and Efficient Foundation Language Models* (Touvron et al., 2023) — ⭐⭐⭐⭐⭐ 开源大模型里程碑
+  2. *Training Compute-Optimal Large Language Models (Chinchilla)* (Hoffmann et al., 2022) — ⭐⭐⭐⭐⭐ Scaling Law 2.0
+  3. *SentencePiece* (Kudo & Richardson, 2018) — ⭐⭐⭐⭐⭐ 现代 Tokenizer 标准实现
+  4. *Extending Context Window via Positional Interpolation* (Chen et al., 2023) — ⭐⭐⭐⭐ 长上下文关键技术
+  5. *Neural Machine Translation of Rare Words with Subword Units (BPE)* (Sennrich et al., 2016) — ⭐⭐⭐⭐⭐ BPE 原始论文
+- **新增概念**：参数量, 训练 Token 数, Chinchilla Law, 欠训练, Tokenizer, BPE, 子词, 词汇表, OOV, Token, 上下文窗口, RoPE, 位置插值, SentencePiece, LLaMA
+- **下次主题：** Day 8 — 指令微调与人类对齐：SFT、RLHF、DPO
+
+### Day 8 — 2026-04-22
+- **主题：** 指令微调与人类对齐：SFT、RLHF、DPO
+- **比喻主题：** 🎓 培养一名实习医生
+- **推荐论文：**
+  1. *Training Language Models to Follow Instructions with Human Feedback (InstructGPT)* (Ouyang et al., 2022) — ⭐⭐⭐⭐⭐ RLHF 里程碑
+  2. *Direct Preference Optimization (DPO)* (Rafailov et al., 2023) — ⭐⭐⭐⭐⭐ RLHF 的优雅简化
+  3. *Self-Instruct* (Wang et al., 2023) — ⭐⭐⭐⭐⭐ 自动指令生成
+  4. *Constitutional AI (CAI)* (Bai et al., 2022) — ⭐⭐⭐⭐⭐ Anthropic AI 安全对齐
+  5. *LIMA: Less Is More for Alignment* (Zhou et al., 2023) — ⭐⭐⭐⭐⭐ 表面对齐假说
+- **新增概念**：SFT, DPO, PPO, 偏好数据, Constitutional AI, RLAIF, 批评-修订, 表面对齐假说, 指令微调, 对齐税, 自我指令, LIMA
+- **下次主题：** Day 9 — 提示工程与上下文学习：Prompt、Few-shot、Chain-of-Thought
+
+---
+
+## Git Push 重试策略（重要 · 从 Day 9 起执行）
+
+**⚠ 每次自动化执行完成后，git push 必须遵循以下重试策略：**
+
+1. **强制重试**：`git push origin main` 失败时，必须至少重试 3 次，每次间隔 15 秒。
+2. **超时保护**：使用 `timeout 60 git push origin main` 限制单次推送最大耗时 60 秒，避免无限挂起。
+3. **网络预检**：push 前先用 `git ls-remote origin HEAD` 探测连通性；若失败，先等待 30 秒再尝试。
+4. **失败记录**：若 3 次重试后仍失败，必须在本文件追加 `push_pending: true` 标记和失败时间戳，并在下次执行时**首先补推**所有未推送的 commit。
+5. **本地备份**：即使 push 失败，commit 必须已成功创建，绝不能丢失内容。
+6. **兜底机制**：本地已部署 cron 脚本 `.codebuddy/scripts/auto-push-check.sh`（每小时运行一次），会自动检测并补推未推送的 commit。自动化任务的 push 步骤是"尽力而为"，即使失败 cron 也会兜底。
+
+**push 重试伪代码：**
+```bash
+for i in 1 2 3; do
+  if timeout 60 git push origin main; then
+    echo "push success on attempt $i"
+    break
+  fi
+  echo "push failed attempt $i, retrying in 15s..."
+  sleep 15
+done
+```
+
+**⚠ 下次执行第一步检查**：查看本文件末尾是否存在 `push_pending: true` 标记。若存在，必须先执行 `git push origin main` 补推未推送的 commit，成功后才能删除该标记并继续当天的新任务。

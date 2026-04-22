@@ -2,27 +2,67 @@
 
 ## 最近一次执行
 
-- **日期**：2026-04-18（周六）
-- **执行内容**：Day 4 — 注意力机制与 Transformer
-- **比喻主题**：🧭 绘制一张世界地图
+- **日期**：2026-04-22（周三）
+- **执行内容**：Day 7 & Day 8 补全并提交推送
 - **状态**：✅ 成功完成
 
 ## 完成项
 
-1. 生成 `AI论文学习-Day04-20260418.md`（含 5 篇论文深度解读）
-2. 更新 `index.html`（仪表盘 4/30、20 论文、58 概念、12 问答、13% 进度）
-3. 更新 AI 知识库文件（进度计划 Day 4 已完成）
-4. Git 提交并推送成功
+1. Day 7（大语言模型全貌）和 Day 8（指令微调与人类对齐）的 Markdown 学习文件已生成
+2. `index.html` 数据更新完成：
+   - `DAY` 变量更新为 8
+   - `DAYS` 数组新增 Day 7/8 两条
+   - `P` 数组新增 10 篇论文（Day 7: #31-35, Day 8: #36-40）
+   - `C` 数组新增 20 个概念
+   - `Q` 数组新增 6 个问答
+   - `GN/GL` 数组新增 13 个图谱节点和约 20 条连线
+   - 仪表盘统计更新：8/30 天，40 篇论文，101 个概念，24 个问答，进度 27%
+3. 知识库同步更新：
+   - `AI知识库/01-核心概念词典.md` 新增 Day 7/8 概念
+   - `AI知识库/02-知识图谱.md` 新增 Day 7/8 节点/连线和更新日志
+   - `AI知识库/03-论文索引.md` 新增 10 篇论文
+   - `AI知识库/04-每日三问三答汇总.md` 新增 6 个问答（Q19~Q24）
+4. `00-学习计划与进度.md` 更新 Day 7/8 状态为已完成
+5. Git 提交并推送成功
+
+## 当前进度
+
+- **已完成天数**：Day 1 ~ Day 8
+- **总论文数**：40 篇
+- **总概念数**：101+
+- **总问答数**：24
+- **进度**：8/30 = 27%
 
 ## 论文覆盖
 
-- #16 Bahdanau et al. 2015 - 注意力机制开山论文
-- #17 Vaswani et al. 2017 - Transformer（Attention Is All You Need）
-- #18 Devlin et al. 2019 - BERT 双向预训练
-- #19 Radford et al. 2018 - GPT-1 自回归预训练
-- #20 Raffel et al. 2020 - T5 文本到文本统一框架
+- Day 7: #31-35（LLaMA, Chinchilla, SentencePiece, Position Interpolation, BPE）
+- Day 8: #36-40（InstructGPT, DPO, Self-Instruct, Constitutional AI, LIMA）
+
+## Git Push 重试策略（重要）
+
+**⚠ 每次自动化执行完成后，执行 git push 必须遵循以下重试策略：**
+
+1. **强制重试**：`git push origin main` 失败时，必须至少重试 3 次，每次间隔 15 秒。
+2. **超时保护**：使用 `timeout 60 git push origin main` 限制单次推送最大耗时 60 秒，避免无限挂起。
+3. **网络预检**：push 前先用 `git ls-remote origin HEAD` 探测连通性；若失败，先等待 30 秒再尝试。
+4. **失败记录**：若 3 次重试后仍失败，必须在 memory.md 中写入 `push_pending: true` 标记和失败时间戳，并在下次执行时**首先补推**所有未推送的 commit。
+5. **本地备份**：即使 push 失败，commit 必须已成功创建，绝不能丢失内容。
+6. **兜底机制**：本地已部署 cron 脚本 `auto-push-check.sh`（每小时运行一次），会自动检测并补推未推送的 commit。自动化任务的 push 步骤是"尽力而为"，即使失败 cron 也会兜底。
+
+**push 重试伪代码：**
+```bash
+for i in 1 2 3; do
+  if timeout 60 git push origin main; then
+    echo "push success on attempt $i"
+    break
+  fi
+  echo "push failed attempt $i, retrying in 15s..."
+  sleep 15
+done
+```
 
 ## 注意事项
 
-- index.html 中 Day 4 的论文数据和概念/问答/图谱数据由前一次部分执行已添加（比喻主题为"交响乐"），本次补充了 Day04 的 Markdown 文件（比喻主题为"世界地图"），并修正了 DAYS 数组中的比喻主题、仪表盘数据等
-- 下一天应为 Day 5：预训练范式（2026-04-19）
+- 下一天应为 Day 9：提示工程与上下文学习（2026-04-23）
+- Day 9 比喻主题待定（建议围绕"Prompt / Few-shot / CoT"）
+- 若出现 `push_pending: true` 标记，下次执行开头必须先尝试补推
