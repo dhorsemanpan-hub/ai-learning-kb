@@ -183,6 +183,18 @@
 - **新增概念**：SFT, DPO, PPO, 偏好数据, Constitutional AI, RLAIF, 批评-修订, 表面对齐假说, 指令微调, 对齐税, 自我指令, LIMA
 - **下次主题：** Day 9 — 提示工程与上下文学习：Prompt、Few-shot、Chain-of-Thought
 
+### Day 9 — 2026-04-23
+- **主题：** 提示工程与上下文学习：Prompt、Few-shot、Chain-of-Thought
+- **比喻主题：** 🧙‍♂️ 召唤一位全知法师
+- **推荐论文：**
+  1. *Language Models are Few-Shot Learners (GPT-3)* (Brown et al., 2020) — ⭐⭐⭐⭐⭐ In-Context Learning 里程碑
+  2. *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models* (Wei et al., 2022) — ⭐⭐⭐⭐⭐ CoT 开山之作
+  3. *Self-Consistency Improves Chain of Thought Reasoning* (Wang et al., 2023) — ⭐⭐⭐⭐⭐ CoT 增强技术
+  4. *Large Language Models are Zero-Shot Reasoners* (Kojima et al., 2022) — ⭐⭐⭐⭐⭐ Zero-shot CoT
+  5. *Pre-train, Prompt, and Predict: A Systematic Survey* (Liu et al., 2023) — ⭐⭐⭐⭐⭐ Prompt 方法权威综述
+- **新增概念**：提示工程, Chain-of-Thought, Self-Consistency, Zero-shot CoT, 硬提示, 软提示, 上下文学习, 三范式演进, 推理触发, 多数投票, Prompt敏感性
+- **下次主题：** Day 10 — 生成式 AI 全景：文本/图像/音频/视频生成技术总览
+
 ---
 
 ## Git Push 重试策略（重要 · 从 Day 9 起执行）
