@@ -220,3 +220,15 @@ done
 ```
 
 **⚠ 下次执行第一步检查**：查看本文件末尾是否存在 `push_pending: true` 标记。若存在，必须先执行 `git push origin main` 补推未推送的 commit，成功后才能删除该标记并继续当天的新任务。
+
+### Day 13 — 2026-04-27
+- **主题：** 计算机视觉基础：目标检测、图像分割、视觉 Transformer
+- **比喻主题：** 🏥 运营一家综合医院
+- **推荐论文：**
+  1. *Rich Feature Hierarchies for Accurate Object Detection (R-CNN)* (Girshick et al., 2014) — ⭐⭐⭐⭐⭐ 深度学习目标检测奠基
+  2. *Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks* (Ren et al., 2015) — ⭐⭐⭐⭐⭐ 两阶段检测巅峰
+  3. *Fully Convolutional Networks for Semantic Segmentation (FCN)* (Long et al., 2015) — ⭐⭐⭐⭐⭐ 语义分割奠基
+  4. *An Image Is Worth 16x16 Words (ViT)* (Dosovitskiy et al., 2021) — ⭐⭐⭐⭐⭐ 视觉 Transformer 奠基
+  5. *You Only Look Once (YOLO)* (Redmon et al., 2016) — ⭐⭐⭐⭐⭐ 单阶段实时检测开山之作
+- **新增概念**：目标检测, 区域提议, RPN, 锚框, 语义分割, 全卷积网络(FCN), Vision Transformer(ViT), Patch Embedding, 归纳偏置, 单阶段检测, 实时检测
+- **下次主题：** Day 14 — 多模态模型：CLIP、GPT-4V、视觉-语言融合
