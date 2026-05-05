@@ -232,3 +232,27 @@ done
   5. *You Only Look Once (YOLO)* (Redmon et al., 2016) — ⭐⭐⭐⭐⭐ 单阶段实时检测开山之作
 - **新增概念**：目标检测, 区域提议, RPN, 锚框, 语义分割, 全卷积网络(FCN), Vision Transformer(ViT), Patch Embedding, 归纳偏置, 单阶段检测, 实时检测
 - **下次主题：** Day 14 — 多模态模型：CLIP、GPT-4V、视觉-语言融合
+
+### Day 14 — 2026-04-29
+- **主题：** 多模态模型：CLIP、GPT-4V、视觉-语言融合
+- **比喻主题：** 🌍 经营一家国际翻译社
+- **推荐论文：**
+  1. *Learning Transferable Visual Models From Natural Language Supervision (CLIP)* (Radford et al., 2021) — ⭐⭐⭐⭐⭐ 多模态学习里程碑
+  2. *Visual Instruction Tuning (LLaVA)* (Liu et al., 2023) — ⭐⭐⭐⭐⭐ 开源多模态模型标杆
+  3. *GPT-4 Technical Report（多模态部分）* (OpenAI, 2023) — ⭐⭐⭐⭐⭐ 多模态旗舰
+  4. *Flamingo: A Visual Language Model for Few-Shot Learning* (Alayrac et al., 2022) — ⭐⭐⭐⭐⭐ 多模态架构设计标杆
+  5. *Segment Anything (SAM)* (Kirillov et al., 2023) — ⭐⭐⭐⭐⭐ 视觉基础模型里程碑
+- **新增概念**：对比学习, 共享嵌入空间, 零样本迁移, 视觉指令微调, 投影层, 多模态大模型, 视觉推理, 可预测缩放, Perceiver Resampler, 交叉注意力, 多模态少样本学习, 可提示分割, 数据飞轮, 视觉基础模型
+- **下次主题：** Day 15 — 语音与音频 AI：ASR、TTS、音频生成
+
+### Day 15 — 2026-05-05
+- **主题：** 语音与音频 AI：ASR、TTS、音频生成
+- **比喻主题：** 🎙 经营一家顶级录音棚
+- **推荐论文：**
+  1. *Deep Speech 2: End-to-End Speech Recognition in English and Mandarin* (Amodei et al., 2016) — ⭐⭐⭐⭐⭐ 端到端ASR里程碑
+  2. *Attention-Based Models for Speech Recognition (LAS)* (Chorowski, Bahdanau et al., 2015) — ⭐⭐⭐⭐⭐ 注意力ASR开山之作
+  3. *Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)* (Radford et al., 2023) — ⭐⭐⭐⭐⭐ 通用ASR基础模型
+  4. *Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions (Tacotron 2)* (Shen et al., 2018) — ⭐⭐⭐⭐⭐ 神经TTS里程碑
+  5. *Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers (VALL-E)* (Wang et al., 2023) — ⭐⭐⭐⭐⭐ TTS范式革命
+- **新增概念**：端到端ASR, CTC损失, 声学模型, LAS架构, 弱监督ASR, Mel频谱图, 声码器, TTS端到端, 神经音频编解码器, 声音上下文学习, TTS即语言建模
+- **下次主题：** Day 16 — 强化学习：从 Q-Learning 到 PPO，AI 如何学会决策

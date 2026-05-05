@@ -109,14 +109,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">13<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">65</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">132</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">37</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">15<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">75</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">163</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">43</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">43%</span></div>
-<div class="pb"><div class="pf" style="width:43%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">50%</span></div>
+<div class="pb"><div class="pf" style="width:50%"></div></div>
 <div class="ptl">
 <div class="pc"><div class="ptag">&#9679; 已完成</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -125,7 +125,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day <span id="pdaynum">13</span> · 今日论文</h2><div class="sd" id="pdaydesc">计算机视觉基础：目标检测、图像分割、视觉 Transformer · 比喻主题：🏥 运营一家综合医院</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">15</span> · 今日论文</h2><div class="sd" id="pdaydesc">语音与音频 AI：ASR、TTS、音频生成 · 比喻主题：🎙 经营一家顶级录音棚</div></div>
 <div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
@@ -146,7 +146,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~13 · 全部问答</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~15 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -162,7 +162,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
-var DAY=13;
+var DAY=15;
 var DAYS=[
 {day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
 {day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'},
@@ -176,7 +176,9 @@ var DAYS=[
 {day:10,theme:'生成式 AI 全景：文本/图像/音频/视频生成技术总览',met:'🎨 经营一座万能创作工坊'},
 {day:11,theme:'自然语言理解：分类、实体识别、语义解析',met:'🔍 训练一支侦探团队'},
 {day:12,theme:'自然语言生成：摘要、翻译、对话系统',met:'✍️ 培养一位多面作家'},
-{day:13,theme:'计算机视觉基础：目标检测、图像分割、视觉 Transformer',met:'🏥 运营一家综合医院'}
+{day:13,theme:'计算机视觉基础：目标检测、图像分割、视觉 Transformer',met:'🏥 运营一家综合医院'},
+{day:14,theme:'多模态模型：CLIP、GPT-4V、视觉-语言融合',met:'🌍 经营一家国际翻译社'},
+{day:15,theme:'语音与音频 AI：ASR、TTS、音频生成',met:'🎙 经营一家顶级录音棚'}
 ];
 var P=[
 {id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
@@ -828,7 +830,107 @@ why:'YOLO 让目标检测从实验室走向实际应用。开创的"一阶段检
 c:[{n:'单阶段检测',d:'直接从全图一次性预测所有物体的位置和类别',m:'急诊科主任一眼扫过去同时完成所有诊断'},
 {n:'网格预测',d:'将图像分成网格，每个网格预测物体信息',m:'把X光片分区域，每个区域同时分析'},
 {n:'实时检测',d:'以视频帧率（30FPS+）处理图像的能力',m:'急诊室的"秒级出结果"能力'}],
-rt:'25 分钟',rr:'实时检测开山之作'}
+rt:'25 分钟',rr:'实时检测开山之作'},
+{id:66,day:14,t:'Learning Transferable Visual Models From Natural Language Supervision (CLIP)',a:'Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh 等 (OpenAI)',s:'ICML 2021',y:2021,r:5,u:'https://arxiv.org/abs/2103.00020',
+d:'通过自然语言监督信号在4亿图文对上训练视觉模型，实现零样本图像分类，无需标注数据即可迁移到新任务。',
+abs:'现有最先进的计算机视觉系统被训练来预测一组固定的预定义物体类别。这种受限的监督形式限制了模型的通用性和可用性，因为需要额外的标注数据来指定任何其他视觉概念。直接从关于图像的原始文本中学习是一种有前途的替代方案，它利用了更广泛的监督来源。我们证明了一个简单的预训练任务——预测哪个文本说明与哪个图像配对——是一种高效且可扩展的方法，可以从互联网上收集的4亿个（图像，文本）对数据集上从头学习最先进的图像表示。预训练之后，自然语言被用来引用所学的视觉概念（或描述新概念），从而实现模型向下游任务的零样本迁移。我们在超过30个不同的现有计算机视觉数据集上进行了基准测试，该模型在大多数任务上可以与完全监督的基线进行非平凡的竞争，例如在ImageNet上零样本性能匹配了原始ResNet-50的准确率。',
+insights:'CLIP 的核心洞察极其简洁却影响深远：与其费力地为每张图片标注固定类别，不如直接利用互联网上天然存在的图文配对数据。这将训练数据从人工标注的百万级扩展到了自然产生的数亿级。\n\n用国际翻译社比喻：传统视觉模型的训练像给翻译实习生发"标准对照手册"——只列了1000个固定词条（ImageNet的1000个类别），遇到手册没收录的词就傻眼了。CLIP让图片阅读部门和文字阅读部门的翻译员坐在一起阅读4亿份图文资料，学会判断"这张图和这段文字是否描述同一件事"。\n\n这种对比学习方法的精妙之处在于：一个批次中有N张图和N段文字，模型需要在N×N个组合中找出正确配对的N对。这迫使模型真正理解图像内容和文字含义的对应关系，而非死记硬背有限的类别标签。\n\n训练完成后，CLIP拥有了"通用翻译能力"：图片和文字被映射到同一个语义空间。要在新数据集分类？只需把类别名写成文字，计算相似度即可——完全不需要任何训练样本。CLIP在ImageNet上零样本就匹配了ResNet-50的有监督精度。\n\nCLIP的影响远超论文本身。它直接催生了DALL·E（文生图）、Stable Diffusion（用CLIP文本编码器引导图像生成）、GPT-4V（多模态理解）等一系列革命性应用。更重要的是，它证明了"语言是通用的监督信号"——用文字描述来监督视觉学习，比固定标签灵活得多、丰富得多。',
+contribs:['提出对比学习预训练框架，在4亿自然图文对上学习视觉表示，实现零样本迁移到30+视觉任务','证明自然语言是高效的视觉监督信号，打破传统视觉模型依赖固定类别标注的范式','建立图文共享嵌入空间技术范式，直接催生DALL·E、Stable Diffusion等文生图模型'],
+why:'CLIP是多模态AI时代的"开关"。证明视觉和语言可以共享同一表示空间，为后续所有多模态大模型（GPT-4V、Gemini、Claude 3）铺平了道路。其零样本迁移能力彻底改变了计算机视觉研究范式。被引25000+。',
+c:[{n:'对比学习',d:'通过区分正负样本对来学习表示的方法',m:'翻译社培训法：判断图文是否描述同一事物'},
+{n:'共享嵌入空间',d:'将图像和文本映射到同一向量空间',m:'翻译社的通用语——图文翻译成同一内部语言'},
+{n:'零样本迁移',d:'无需目标任务训练数据即可完成任务',m:'不看考试资料直接凭广泛阅读经验作答'}],
+rt:'30 分钟',rr:'多模态学习的基石'},
+{id:67,day:14,t:'Visual Instruction Tuning (LLaVA)',a:'Haotian Liu, Chunyuan Li, Qingyang Wu, Yong Jae Lee',s:'NeurIPS 2023',y:2023,r:5,u:'https://arxiv.org/abs/2304.08485',
+d:'首次提出视觉指令微调方法，用GPT-4生成多模态指令数据训练LLaVA模型，实现强大的多模态对话能力。',
+abs:'大型多模态模型的指令微调是一个相对未被充分探索的领域。本文首次尝试使用纯语言的GPT-4来生成多模态的语言-图像指令跟随数据。通过在这些生成数据上进行指令微调，我们引入了LLaVA：大型语言和视觉助手，一种端到端训练的大型多模态模型，连接了一个视觉编码器和一个LLM用于通用的视觉和语言理解。我们的早期实验表明了令人印象深刻的多模态聊天能力，在Science QA上达到了新的最先进准确率92.53%。我们开源了所有资产以促进该领域的进一步研究。',
+insights:'LLaVA回答了一个关键问题：如何让现有的强大语言模型"看见"图片？答案出奇地简洁——只需要一个"投影层"作为桥梁。\n\n用国际翻译社比喻：翻译社已有一位出色的文字总监（LLM），现在要让他也能处理图片。LLaVA的方案不是重新培养全能总监，而是配一位"图片翻译助理"（CLIP ViT）加一位"口译员"（投影层）。图片翻译助理把图片"读"成特征，口译员翻译成总监能理解的"语言"。\n\nLLaVA的架构令人惊讶地简单：CLIP ViT-L/14 + 线性投影层 + Vicuna。关键创新在训练数据构建——用GPT-4基于图片标题和边界框信息生成高质量多模态对话数据。这种"用强AI生成数据训练新AI"的方法开创了多模态训练数据新范式。\n\n训练分两阶段：第一阶段"预对齐"——冻结视觉编码器和LLM，只训练投影层学会图文对译。第二阶段"指令微调"——端到端微调投影层和LLM处理各种看图答题任务。\n\nLLaVA证明了重要的架构洞察：多模态能力不需要从头训练——可以通过最小化连接模块将预训练好的视觉和语言模型桥接起来。这大大降低了构建多模态模型的门槛和成本。\n\nLLaVA还揭示了"涌现式组合"的力量：两个单独不具备多模态能力的模型通过简单投影层连接后，涌现出了复杂的多模态对话能力。',
+contribs:['首次提出视觉指令微调概念，用GPT-4生成多模态指令数据，开创多模态训练数据构建新范式','设计极简但高效的多模态架构——视觉编码器+投影层+LLM，证明最小化连接即可实现强大多模态对话','完全开源模型、数据和代码，成为开源多模态大模型研究标杆'],
+why:'LLaVA让"开源多模态大模型"成为现实。证明不需要数十亿美元预算也能构建强大多模态AI——只需巧妙连接现有模型并用高质量数据微调。其架构设计和数据构建思路被后续几乎所有开源多模态模型采用。被引5000+。',
+c:[{n:'视觉指令微调',d:'用多模态指令数据训练模型的看图理解和应答能力',m:'给翻译社总监进行看图说话专项培训'},
+{n:'投影层',d:'将视觉特征映射到语言模型输入空间的简单网络',m:'图片翻译助理和文字总监之间的口译员'},
+{n:'多模态指令数据',d:'给定图片+文字指令→期望回答形式的训练数据',m:'翻译社的看图答题培训教材'}],
+rt:'25 分钟',rr:'开源多模态模型标杆'},
+{id:68,day:14,t:'GPT-4 Technical Report（多模态部分）',a:'OpenAI',s:'OpenAI 技术报告, 2023',y:2023,r:5,u:'https://arxiv.org/abs/2303.08774',
+d:'GPT-4是OpenAI的多模态大模型旗舰，首次将视觉理解能力集成到GPT系列中，在专业考试和多模态推理上达到人类水平。',
+abs:'我们报告了GPT-4的开发，这是一个大规模多模态模型，可以接受图像和文本输入并产生文本输出。虽然在许多现实场景中不如人类，但GPT-4在各种专业和学术基准测试中表现出人类水平的性能，包括通过模拟律师资格考试（成绩在应试者前10%左右）。GPT-4是一个基于Transformer的模型，经过预训练来预测下一个token。后训练对齐过程使模型在事实性和遵循期望行为方面得到提高。该项目的核心组成部分是开发基础设施和优化方法，使其在广泛规模范围内表现可预测。',
+insights:'GPT-4的多模态能力（GPT-4V）代表了多模态AI从学术研究走向产品落地的关键转折点。虽然技术报告对架构细节保密，但其表现揭示了几个重要方向。\n\n用国际翻译社比喻：如果CLIP建立了"通用翻译词典"，LLaVA证明了投影层可以连接视觉和语言，那么GPT-4V就是翻译社终于培养出的"全能总监"——不仅能翻译各种语言，还能读懂图表、理解表情、分析照片、解读影像，并基于视觉和文字信息进行复杂多步推理。\n\nGPT-4V的关键突破在于"视觉推理"的深度。之前的多模态模型大多停留在图片描述层面。GPT-4V则能进行深层推理——给它一张数学题照片能解题，给它复杂信息图表能提取数据分析趋势。这种飞跃来自GPT-4超强语言推理能力与视觉感知的深度融合。\n\n技术报告透露的另一关键信息是"可预测缩放"——OpenAI能用万分之一计算量的小模型准确预测GPT-4性能。这意味着多模态能力也遵循Scaling Law，为行业指明了方向。\n\nGPT-4V在专业考试中的表现尤其令人瞩目：通过律师资格考试（前10%）、医学执照考试等。这证明多模态理解不只是"看图说话"的玩具，而具有真正实用价值。\n\n然而GPT-4V也暴露了局限：视觉幻觉、空间推理不准确、OCR有时出错。这些问题的本质是视觉编码器的分辨率和空间理解能力尚未达到人类水平。',
+contribs:['首次将强大视觉理解能力集成到GPT系列，实现文本+图像输入的多模态交互，专业考试达人类前10%','证明多模态能力遵循可预测缩放定律，为行业指明更大规模=更强多模态的技术路线','将多模态AI从学术研究推向产品应用，让数亿用户首次体验多模态AI价值'],
+why:'GPT-4V是多模态AI从实验室走向大众的转折点。定义了"多模态大模型"的产品形态——对话式、多模态输入、支持复杂推理。后续Gemini、Claude 3等竞品都以GPT-4V为基准。',
+c:[{n:'多模态大模型',d:'能同时处理多种输入类型的大规模AI模型',m:'翻译社的全能总监——精通所有语言和媒介形式'},
+{n:'视觉推理',d:'基于图像信息进行逻辑推断的能力',m:'总监看完片子后不仅描述还能分析原因给建议'},
+{n:'可预测缩放',d:'用小模型性能准确预测大模型性能的能力',m:'从试用期表现准确预测正式员工水平'}],
+rt:'20 分钟',rr:'多模态产品标杆'},
+{id:69,day:14,t:'Flamingo: A Visual Language Model for Few-Shot Learning',a:'Jean-Baptiste Alayrac, Jeff Donahue 等 (DeepMind)',s:'NeurIPS 2022',y:2022,r:5,u:'https://arxiv.org/abs/2204.14198',
+d:'提出Flamingo视觉语言模型，通过交错视觉-文本架构实现强大的少样本多模态学习能力。',
+abs:'构建能够快速适应新任务的模型是AI中一个开放挑战。我们引入Flamingo，一系列视觉语言模型，仅通过少量输入/输出示例即可设置新任务。关键架构创新包括：Perceiver Resampler模块接收视觉编码器产生的时空特征并输出固定数量视觉token；在预训练LLM层之间交错的交叉注意力层使LLM可基于视觉token进行条件化。这些组件使Flamingo能优雅消化高分辨率图像或视频。在大规模多模态网页语料库训练后，Flamingo在16个多模态任务上创造了新的少样本学习最先进水平。',
+insights:'Flamingo是DeepMind对"多模态少样本学习"的优雅解答。GPT-3证明了语言模型的few-shot能力，Flamingo将这种能力拓展到视觉-语言领域。\n\n用国际翻译社比喻：CLIP训练翻译社建立图文词典，LLaVA训练总监看图答题。Flamingo的目标不同——培养一位"过目不忘的速学者"。给他看几个"这类图片应该这样描述"的示例，就能立刻举一反三。更厉害的是还能处理视频。\n\nFlamingo的两个架构创新极其精妙。第一个是Perceiver Resampler——无论输入多大、视频多长，都压缩为固定数量（如64个）的视觉token。像翻译社的"图片摘要部门"——无论多大图片集总输出标准长度摘要。\n\n第二个是交叉注意力层——在冻结LLM各层间插入可学习的交叉注意力模块，让LLM每一层都能"看到"视觉信息。这比LLaVA更深入——LLaVA只在输入端拼接视觉特征，Flamingo让视觉信息渗透到语言模型每一层。像口译员全程陪同总监，每步分析都能参考图片。\n\nFlamingo在16个多模态基准上创造few-shot新纪录。在许多任务上仅用4-32个示例就超越了用全部训练数据微调的模型，证明了多模态few-shot学习的巨大潜力。',
+contribs:['提出Perceiver Resampler将任意长度视觉输入压缩为固定数量token，解决多模态输入长度不一致问题','设计Gated Cross-Attention层在冻结LLM内部注入视觉信息，实现深层视觉-语言融合','在16个多模态基准上创造few-shot新纪录，证明多模态模型也能具备强大少样本适应能力'],
+why:'Flamingo证明了多模态few-shot学习的可行性，为低成本部署多模态AI指明方向。其Perceiver Resampler和交叉注意力设计成为后续多模态架构（Qwen-VL、InternVL）的关键组件。被引3500+。',
+c:[{n:'Perceiver Resampler',d:'将可变长度视觉特征压缩为固定数量token的模块',m:'图片摘要部门——无论多大图片集总输出标准长度摘要'},
+{n:'交叉注意力（多模态）',d:'让语言模型每层都能查看视觉信息的注意力机制',m:'口译员全程陪同总监每步分析都能参考图片'},
+{n:'多模态少样本学习',d:'仅通过少量图文示例快速适应新视觉任务',m:'翻译社的速学者——看几个例子就能举一反三'}],
+rt:'30 分钟',rr:'多模态架构设计标杆'},
+{id:70,day:14,t:'Segment Anything (SAM)',a:'Alexander Kirillov, Eric Mintun, Nikhila Ravi 等 (Meta AI)',s:'ICCV 2023',y:2023,r:5,u:'https://arxiv.org/abs/2304.02643',
+d:'提出图像分割基础模型SAM，通过prompt驱动的分割范式和11亿掩码数据集SA-1B，实现"分割一切"的通用视觉能力。',
+abs:'我们介绍了Segment Anything（SA）项目：一个用于图像分割的新任务、模型和数据集。在数据收集循环中使用我们的高效模型，我们构建了迄今最大的分割数据集，拥有超过11亿个掩码标注在1100万张图像上。该模型被设计和训练为可提示的，因此可以零样本迁移到新的图像分布和任务。我们评估了模型在多个任务上的能力，发现其零样本性能令人印象深刻——通常与甚至优于之前的完全监督结果。我们发布了SAM和SA-1B以促进计算机视觉基础模型研究。',
+insights:'SAM对计算机视觉的意义堪比GPT-3对NLP的意义——将"分割"从需要任务特定训练的窄任务变成通用"视觉基础能力"。\n\n用国际翻译社比喻：之前的分割模型像专科翻译——有的只翻医学文献，有的只翻法律文件。SAM则像"全能读图员"——你只需用手指点一下（点提示）、画个大概框（框提示）、或说一句话（文本提示），他就能精确勾勒出目标边界。不管医学影像、卫星照片还是日常照片都能处理。\n\nSAM的设计哲学直接借鉴NLP的"foundation model + prompt"范式。GPT-3通过prompt完成各种任务，SAM通过分割prompt完成各种分割任务。这种"可提示分割"打破了传统分割模型"一个模型只能分割特定类别"的限制。\n\n为实现这个雄心壮志，Meta AI构建了史无前例的数据引擎——用SAM早期版本辅助人工标注，再用标注数据改进SAM，如此循环。最终产出SA-1B：1100万张图像上的11亿个掩码，比之前最大数据集大400倍。\n\nSAM的架构精心设计：重型图像编码器（基于MAE预训练的ViT-H）只需运行一次，轻量级掩码解码器毫秒级响应各种prompt。SAM零样本迁移到未见过的领域就能与领域专用模型竞争甚至超越，证明视觉领域也存在类似NLP的"通用基础能力"。',
+contribs:['提出"可提示分割"范式——通过点、框、掩码或文本prompt驱动分割，将分割变为通用基础能力','构建SA-1B数据集（11亿掩码，比之前最大数据集大400倍），设计模型辅助标注的数据飞轮','实现强大零样本分割迁移能力，在跨域分割上匹配甚至超越领域专用模型'],
+why:'SAM被称为计算机视觉的"GPT-3时刻"——证明基础模型+提示范式在视觉领域同样有效。SA-1B和SAM已广泛应用于医学影像、遥感、自动驾驶等领域。被引8000+。',
+c:[{n:'可提示分割',d:'通过各种提示驱动的通用图像分割',m:'指一下或说一下全能读图员就能精确勾勒目标边界'},
+{n:'数据飞轮',d:'模型辅助标注→标注改进模型的正向循环',m:'自动翻译辅助人工校对再用结果改进自动翻译'},
+{n:'视觉基础模型',d:'在超大规模数据上预训练的通用视觉模型',m:'翻译社培养的万能读图员——不限领域通用能力'}],
+rt:'30 分钟',rr:'视觉基础模型里程碑'},
+{id:71,day:15,t:'Deep Speech 2: End-to-End Speech Recognition in English and Mandarin',a:'Dario Amodei, Sundaram Ananthanarayanan, Ren Jia et al. (Baidu Research)',s:'ICML 2016',y:2016,r:5,u:'https://arxiv.org/abs/1512.02595',
+d:'提出端到端深度学习语音识别系统，在英语和中文上达到或超越人类转录精度，彻底颠覆了传统ASR流水线。',
+abs:'我们展示了一种端到端深度学习方法可以达到最先进水平的语音识别系统。我们通过更好的模型架构、更大的数据集、优化的训练技术和部署基础设施来改进我们之前的工作Deep Speech。我们的端到端系统不需要手工设计的特征或组件——它直接从原始音频学习将语音转为文字的映射。我们的架构显著简化了语音识别的传统处理流水线，同时改善了准确率。我们表明端到端深度学习系统在英语和普通话两种语言中都可以达到或超越人类水平的转录精度。我们的英语系统在多个标准数据集上取得了最优结果。在普通话方面，我们的系统在Short Duration数据集上超越了人类级别的性能。该系统可以在生产环境中部署，并且我们描述了可以使训练和推理高效运行的基础设施和部署策略。',
+insights:'Deep Speech 2 的核心贡献不仅在于性能——更在于彻底改变了语音识别的"世界观"。\n\n在Deep Speech 2之前，语音识别是一条复杂的流水线：音频信号→声学特征提取（MFCC）→声学模型（GMM-HMM）→语言模型→解码器→文字。每个环节都需要专门的语音学专家，整个系统的每个组件都需要手工设计和精心调优。用录音棚比喻：传统ASR像一条老式分工流水线——降噪工程师、声学分析师、语音学家、语法专家各管一段，任何一个环节出错就功亏一篑。\n\nDeep Speech 2说："把这些全扔掉。给我足够多的语音-文字配对数据，一个深度网络端到端学会从声波到文字的映射。"这就像录音棚雇了一位全能录音师——他直接听原始录音，然后写出完美的文字稿，中间不需要任何额外的人工分析步骤。\n\n技术上，Deep Speech 2使用多层RNN配合CTC（Connectionist Temporal Classification）损失函数。CTC是一个精妙的设计：它允许模型输出与输入不同长度的序列（说一句话可能持续3秒=300帧，但文字只有20个字），通过引入"空白"标记让模型自己学习对齐。\n\nDeep Speech 2最震撼的结果是：在英语和普通话上均达到或超越人类转录精度。百度在这个项目上投入了11000小时英语数据和9400小时普通话数据，并开发了高效的GPU训练基础设施。\n\n这篇论文的影响力远超ASR领域本身——它证明了"端到端深度学习可以替代传统的复杂工程系统"这个普适命题，启发了后续NMT、TTS等领域的端到端革命。',
+contribs:['提出端到端语音识别架构，直接从原始音频到文字，彻底替代传统GMM-HMM多组件流水线，将ASR系统复杂度降低一个数量级','在英语和普通话上均达到或超越人类转录精度，首次证明深度学习ASR的实用价值','开发大规模GPU训练和高效部署基础设施，为后续端到端ASR铺平工程化道路','验证了"数据+算力+简单架构"范式在语音领域的有效性，与Scaling Law思想一脉相承'],
+why:'Deep Speech 2是语音识别从"传统工程"走向"深度学习"的转折点。证明端到端学习可以胜过数十年积累的专家系统，推动整个ASR行业向深度学习转型。其设计理念直接影响了Wav2Vec、Whisper等突破性工作。被引5000+。',
+c:[{n:'端到端ASR',d:'直接从原始音频到文字的单一模型',m:'全能录音师——从话筒到文字稿一人搞定'},
+{n:'CTC损失',d:'允许输入输出不等长的序列训练方法',m:'不需要逐帧对齐的"自由转录"训练法'},
+{n:'声学模型',d:'将音频特征映射为语音单元的模型',m:'录音棚的听力分析师'}],
+rt:'25 分钟',rr:'端到端ASR里程碑'},
+{id:72,day:15,t:'Attention-Based Models for Speech Recognition (LAS)',a:'Jan Chorowski, Dzmitry Bahdanau, Dmitriy Serdyuk, Kyunghyun Cho, Yoshua Bengio',s:'NeurIPS 2015',y:2015,r:5,u:'https://arxiv.org/abs/1506.07503',
+d:'首次将注意力机制引入语音识别，提出Listen-Attend-Spell（LAS）模型，让解码器在每一步动态关注音频不同位置。',
+abs:'最近对基于注意力的序列到序列模型的研究为端到端语音识别开辟了新道路。这种方法不需要传统语音识别系统中的许多工程组件，如隐马尔可夫模型、高斯混合模型、加权有限状态转换器或条件随机场。然而，将这些技术应用于大规模任务时面临几个挑战。我们引入并分析了多种注意力机制的变体，特别关注它们处理长输入序列（语音帧常达数百到数千帧）的能力。我们提出了基于位置的注意力和卷积注意力等扩展机制，改善了模型对长音频序列的处理能力。在TIMIT和WSJ等标准语音识别基准上，我们的注意力模型取得了有竞争力的结果，并且不需要外部语言模型或对齐信息。',
+insights:'这篇论文将Bahdanau在NMT中提出的注意力机制引入语音识别，开创了"听-关注-拼写"（Listen-Attend-Spell, LAS）范式。\n\n用录音棚比喻：传统CTC方法像速记员从头到尾匀速写——听到什么就写什么，不回头看。LAS则像一位资深录音文稿编辑：先完整"听"一遍录音（Listen，编码器将整段音频编码为高层表示），然后在写每个字时，回头"关注"（Attend）录音中最相关的片段，最后"拼写"（Spell）出文字。\n\nLAS的关键挑战在于：语音的输入序列极长。一句5秒的话在16kHz采样率下有80000个采样点，即使下采样到帧级别也有几百帧。相比之下，NMT的输入句子通常只有20-50个词。作者提出了几种解决方案：基于位置的注意力（让注意力考虑上一步关注的位置，鼓励单调前进）和卷积注意力（用卷积核捕捉注意力的局部结构）。\n\nLAS模型的突破性意义在于：它是第一个不需要CTC假设（条件独立性）、不需要外部语言模型、不需要任何对齐信息就能做语音识别的系统。整个系统只有一个目标：最大化"给定音频条件下文字序列的概率"。\n\n更深层的影响是：这篇论文证明了"注意力机制是跨模态的通用工具"——从文本翻译到语音识别，同一种机制都能奏效。这为后来Transformer统一所有序列任务奠定了概念基础。',
+contribs:['首次将注意力机制从NMT引入语音识别，提出Listen-Attend-Spell端到端架构，消除对外部语言模型和对齐信息的依赖','提出基于位置的注意力和卷积注意力变体，解决语音输入序列极长导致注意力分散的问题','证明注意力机制是跨模态通用工具，为后续Transformer在语音领域的应用铺平道路'],
+why:'LAS开创了Attention-based ASR范式，是从Deep Speech（CTC）到Whisper（Transformer）之间的关键桥梁。证明注意力机制不仅适用于文本，也完美适用于语音。被引4000+。',
+c:[{n:'LAS架构',d:'编码器听音频+注意力关注+解码器拼字的三段式架构',m:'录音文稿编辑——听、回放、写三步法'},
+{n:'基于位置的注意力',d:'注意力中考虑上一步位置鼓励单调推进',m:'编辑的书签——标记读到哪了防止重复回听'},
+{n:'序列到序列ASR',d:'用Seq2Seq框架从音频帧序列生成文字序列',m:'全能翻译——把声音语言翻译为文字语言'}],
+rt:'25 分钟',rr:'注意力ASR开山之作'},
+{id:73,day:15,t:'Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)',a:'Alec Radford, Jong Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, Ilya Sutskever (OpenAI)',s:'ICML 2023',y:2023,r:5,u:'https://arxiv.org/abs/2212.04356',
+d:'用68万小时多语言弱监督数据训练Transformer语音模型，在多语言ASR、翻译、语言检测上达到接近人类水平的鲁棒性。',
+abs:'我们研究了简单地将语音识别系统扩展到使用从互联网上收集的68万小时多语言和多任务的弱监督数据进行训练的能力。当扩展到这个规模时，我们的模型具有强大的鲁棒性，并能接近最先进的结果，无需对标准基准进行微调。当与之前的完全监督结果进行比较时，我们在Fleurs上接近人类精度和鲁棒性。我们正在开源模型和推理代码。Whisper架构是一个简单的编码器-解码器Transformer。输入音频被分成30秒的片段，转换为log-Mel频谱图，然后送入编码器。解码器被训练来预测相应的文本标题，并混合了特殊token来指导模型执行不同任务——语言识别、时间戳标注、多语言语音转录、以及英语语音翻译。该模型在99种不同语言上进行了训练。',
+insights:'Whisper对语音识别的意义，堪比CLIP对视觉识别的意义——用海量弱监督数据训练出具有惊人鲁棒性和泛化能力的通用模型。\n\n用录音棚比喻：之前的ASR系统像针对特定录音室条件调优的专用设备——在安静环境下效果很好，换个嘈杂场景就崩了。Whisper则像一位走遍世界99个国家的万国通译员——无论什么口音、什么背景噪音、什么语言，都能准确听写。他的秘诀不是天赋异禀，而是"见多识广"——听了68万小时各种真实环境的录音。\n\nWhisper的核心洞察极其朴素：与其在小数据集上精心优化模型架构，不如在超大规模多样化数据上训练一个简单模型。架构就是标准的Encoder-Decoder Transformer，没有任何花哨的改动。数据量是决定性因素——68万小时音频，覆盖99种语言，来自互联网上各种真实场景。\n\n这里的"弱监督"是关键词：Whisper的训练数据不是人工精标的——很多是自动生成的字幕、网页上的音频-文本配对。数据质量参差不齐，但量足够大。这与CLIP用4亿网络图文对训练的策略一模一样——"数据量的暴力"可以弥补"标注质量的不足"。\n\nWhisper的多任务设计也很精妙：通过特殊token前缀，同一个模型可以执行语音转录、语言识别、语音翻译等多种任务。这体现了GPT系列"用token控制任务"的设计哲学。\n\nWhisper最令人惊讶的特性是其零样本鲁棒性：在从未见过的噪声环境、口音、录音条件下，性能几乎不下降。这证明了大规模多样化训练数据带来的分布鲁棒性。',
+contribs:['用68万小时多语言弱监督数据训练Transformer ASR，覆盖99种语言，无需微调即具备强大的零样本鲁棒泛化能力','证明"大规模弱监督>小规模强监督"范式在语音领域有效，是CLIP思想在语音域的成功复刻','通过多任务token设计统一ASR、语言检测、语音翻译为单一模型','完全开源模型和代码，成为学术界和工业界最广泛使用的通用ASR基座'],
+why:'Whisper是语音识别的"GPT-3时刻"——证明Scaling规律在语音领域同样成立。让高质量多语言语音识别从昂贵商业服务变成免费开源工具，被全球数百万开发者直接使用。被引5000+。',
+c:[{n:'弱监督ASR',d:'用大量非精标的自然数据训练语音识别',m:'万国通译员靠走遍世界见多识广而非死读教材'},
+{n:'Mel频谱图',d:'将音频转为时频域表示的标准输入格式',m:'声音的视觉化翻译——把听觉变为可看的图'},
+{n:'零样本鲁棒性',d:'在未见过的环境中性能不下降',m:'无论换到哪个国家录音棚都能正常工作'}],
+rt:'30 分钟',rr:'通用ASR基础模型'},
+{id:74,day:15,t:'Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram Predictions (Tacotron 2)',a:'Jonathan Shen, Ruoming Pang, Ron J. Weiss, Mike Schuster et al. (Google)',s:'ICASSP 2018',y:2018,r:5,u:'https://arxiv.org/abs/1712.05884',
+d:'将Seq2Seq注意力模型与改进版WaveNet声码器结合，首次实现接近人类自然度的端到端语音合成（MOS 4.53 vs 人类4.58）。',
+abs:'本文描述了Tacotron 2，一个直接从文本合成语音的神经网络架构。该系统由一个循环序列到序列特征预测网络组成，该网络将字符嵌入映射为梅尔尺度频谱图，后接一个改进版WaveNet模型作为声码器，用于将频谱图条件转化为时域波形样本。我们的模型在合成语音的自然度方面达到了接近人类质量的平均意见得分（MOS）4.53，与专业录制的语音的MOS 4.58相比仅有细微差距。为了验证我们的设计选择，我们详细消融了系统的关键组件，描述了简化的WaveNet架构，并且这些简化使我们能够在比实时更快的条件下进行合成。',
+insights:'Tacotron 2解决了一个长期困扰语音合成领域的问题：如何让机器说话听起来像真人？\n\n用录音棚比喻：传统TTS像一条笨拙的流水线——文字先交给语言学家标注音素和韵律，再交给声学工程师查表生成声学参数，最后由信号处理器拼接波形。出来的声音虽然可辨识但"机器味"极重。Tacotron 2则像一位天才配音演员——看到文字剧本，直接用自然流畅的声音朗读出来，中间不需要任何"查字典标注"的机械步骤。\n\nTacotron 2的架构分两步，但每步都是神经网络端到端学习。第一步：Seq2Seq注意力网络将文字序列转为Mel频谱图——这捕捉了"说什么、怎么停顿、哪里重读"等韵律信息。第二步：改进版WaveNet将Mel频谱图转为最终的音频波形——这负责"声音听起来自然好听"。\n\n关键突破在于MOS（平均意见得分）4.53 vs 人类录音4.58——这是语音合成历史上第一次在感知质量上逼近人类。此前最好的系统通常在3.5-4.0之间，一听就知道是合成的。Tacotron 2合成的语音让普通听众几乎无法分辨真假。\n\nTacotron 2的成功有两个关键因素：第一，Seq2Seq+注意力让模型自己学习文字到韵律的映射，不需要手工标注音素和韵律。第二，WaveNet声码器虽然慢但生成质量极高——每个音频采样点都是条件化生成的，保证了波形的自然性。\n\n这篇论文直接开启了"神经TTS"时代——后续的FastSpeech、VITS、VALL-E都是在Tacotron 2奠定的框架上演进的。',
+contribs:['首次实现接近人类自然度（MOS 4.53 vs 4.58）的端到端文本到语音合成，突破传统TTS的"机器味"瓶颈','优雅地将Seq2Seq注意力模型与WaveNet声码器结合，确立了"声学模型+声码器"的现代TTS二阶段范式','系统性消融实验验证各组件贡献，并提出简化WaveNet实现超实时合成'],
+why:'Tacotron 2是TTS从"可辨识但不自然"跨越到"几乎以假乱真"的里程碑。确立的"Mel预测+声码器"范式至今仍是大多数TTS系统的基本架构。Siri、Google Assistant等商用语音助手的自然度飞跃直接受益于此。被引5000+。',
+c:[{n:'声码器',d:'将声学特征转为音频波形的模型',m:'录音棚的母带工程师——把粗剪变成发行级品质'},
+{n:'TTS端到端',d:'直接从文字生成语音无需中间语言学标注',m:'配音演员看到台词直接开口不需先标拼音'},
+{n:'MOS评分',d:'人类主观评价语音自然度的标准分数（1-5）',m:'听众评审团给配音打分'}],
+rt:'25 分钟',rr:'神经TTS里程碑'},
+{id:75,day:15,t:'Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers (VALL-E)',a:'Chengyi Wang, Sanyuan Chen, Yu Wu, Ziqiang Zhang, Long Zhou et al. (Microsoft)',s:'arXiv 2023',y:2023,r:5,u:'https://arxiv.org/abs/2301.02111',
+d:'将TTS重构为语言建模问题，用60000小时数据训练神经编解码器语言模型，仅需3秒语音样本即可克隆说话人声音。',
+abs:'我们引入了一种用于文本到语音合成的语言建模方法。具体来说，我们使用来自现成神经音频编解码器模型的离散码作为中间表示，并将TTS视为条件语言建模任务，而不是像之前的工作那样使用连续信号回归。在预训练阶段，我们将TTS的训练数据扩展到60000小时的英语语音，这比现有系统大数百倍。VALL-E涌现了上下文学习能力，可以用于仅使用3秒注册语音作为声学提示来合成高质量的个性化语音。实验结果表明，VALL-E在语音自然度和说话人相似度方面显著优于最先进的零样本TTS系统。此外，我们发现VALL-E可以保留说话人的情感和录音环境的声学条件。',
+insights:'VALL-E对TTS的革命性意义在于：它把语音合成从"信号处理问题"变成了"语言建模问题"。\n\n用录音棚比喻：传统TTS（包括Tacotron 2）像给每位配音演员定制专属发声系统——想要新声音就得重新录制数小时素材并重新训练。VALL-E则像一位超级声音克隆师——只需听目标人说3秒话，就能完美模仿那个人的声线、语调、情感，说任何新内容。这位克隆师的秘诀是：他听过60000小时各种人说话，学会了"声音的语言"。\n\n技术核心是将音频用神经编解码器（如EnCodec）压缩为离散token序列——就像文字是由有限的字符组成，声音也被表示为有限的"声音字母"。然后TTS就变成了一个标准的语言建模任务：给定文字token + 3秒音频token（作为prompt），预测后续的音频token。\n\n这里的关键洞察是：GPT式的自回归语言模型不仅能"续写文字"，也能"续写声音"。当输入一段3秒的声音样本时，模型会在上下文中理解这个人的声音特征（音色、语速、情感），然后生成与之一致的后续语音——这就是声音领域的"上下文学习"。\n\nVALL-E的训练数据量是决定性因素：60000小时，比之前最大的TTS数据集大100倍以上。正是这个规模让模型涌现了零样本声音克隆能力——只要见过足够多的说话人，新说话人也能通过类比来合成。\n\n这篇论文标志着TTS领域的范式转移：从"回归连续信号"到"生成离散token"，从"每人专属模型"到"一个模型克隆所有人"。后续的VALL-E X、VALL-E 2以及OpenAI的声音API都延续了这一路线。',
+contribs:['首次将TTS重构为离散token的语言建模问题，用GPT式自回归模型生成音频编解码器token，打通语言模型与语音合成的壁垒','在60000小时数据上训练涌现零样本声音克隆——仅需3秒样本即可克隆说话人音色、情感和录音环境','证明Scaling Law在TTS领域同样有效——数据量从百小时到万小时带来质的飞跃'],
+why:'VALL-E是声音合成的"GPT-3时刻"——将TTS从信号处理范式推向语言建模范式。3秒克隆能力开启了个性化语音的新纪元，同时也引发了对深度伪造的严肃安全讨论。被引1500+。',
+c:[{n:'神经音频编解码器',d:'将音频压缩为离散token序列的模型',m:'声音的速记符号——把连续声波变成离散字母'},
+{n:'声音上下文学习',d:'从3秒样本中理解说话人特征并生成一致语音',m:'克隆师只需听几秒就能完美模仿'},
+{n:'TTS即语言建模',d:'把语音合成视为条件自回归序列预测问题',m:'写声音就像写文章——一个token一个token生成'}],
+rt:'30 分钟',rr:'TTS范式革命'},
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -971,7 +1073,48 @@ var C=[
 {l:'P',n:'Patch Embedding',e:'Patch Embedding',df:'将图像小块映射为向量序列的过程',m:'把大片子切成小方块逐一录入分析系统',dy:'Day 13',pp:'Dosovitskiy et al., 2021'},
 {l:'G',n:'归纳偏置',e:'Inductive Bias',df:'模型架构中内置的关于数据特性的先验假设',m:'放射科医生的专业直觉——先局部再整体',dy:'Day 13',pp:'Dosovitskiy et al., 2021'},
 {l:'D',n:'单阶段检测',e:'One-Stage Detection',df:'直接从全图一次性预测所有物体位置和类别',m:'急诊科主任一眼扫过去同时完成所有诊断',dy:'Day 13',pp:'Redmon et al., 2016'},
-{l:'S',n:'实时检测',e:'Real-Time Detection',df:'以视频帧率（30FPS+）处理图像的能力',m:'急诊室的秒级出结果能力',dy:'Day 13',pp:'Redmon et al., 2016'}
+{l:'S',n:'实时检测',e:'Real-Time Detection',df:'以视频帧率（30FPS+）处理图像的能力',m:'急诊室的秒级出结果能力',dy:'Day 13',pp:'Redmon et al., 2016'},
+{l:'D',n:'对比学习',e:'Contrastive Learning',df:'通过区分正负样本对来学习表示的方法',m:'翻译社培训法：判断图文是否描述同一事物',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'G',n:'共享嵌入空间',e:'Shared Embedding Space',df:'将图像和文本映射到同一向量空间',m:'翻译社的通用语——图文翻译成同一内部语言',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'L',n:'零样本迁移',e:'Zero-Shot Transfer',df:'无需目标任务训练数据即可完成任务',m:'不看考试资料直接凭广泛阅读经验作答',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'S',n:'视觉指令微调',e:'Visual Instruction Tuning',df:'用多模态指令数据训练模型的看图理解和应答能力',m:'给翻译社总监进行看图说话专项培训',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'T',n:'投影层',e:'Projection Layer',df:'将视觉特征映射到语言模型输入空间的简单网络',m:'图片翻译助理和文字总监之间的口译员',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'D',n:'多模态指令数据',e:'Multimodal Instruction Data',df:'给定图片+文字指令→期望回答形式的训练数据',m:'翻译社的看图答题培训教材',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'D',n:'多模态大模型',e:'Multimodal LLM',df:'能同时处理多种输入类型的大规模AI模型',m:'翻译社的全能总监——精通所有语言和媒介形式',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'S',n:'视觉推理',e:'Visual Reasoning',df:'基于图像信息进行逻辑推断的能力',m:'总监看完片子后不仅描述还能分析原因给建议',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'K',n:'可预测缩放',e:'Predictable Scaling',df:'用小模型性能准确预测大模型性能的能力',m:'从试用期表现准确预测正式员工水平',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'P',n:'Perceiver Resampler',e:'Perceiver Resampler',df:'将可变长度视觉特征压缩为固定数量token的模块',m:'图片摘要部门——无论多大图片集总输出标准长度摘要',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'J',n:'交叉注意力（多模态）',e:'Cross-Attention',df:'让语言模型每层都能查看视觉信息的注意力机制',m:'口译员全程陪同总监每步分析都能参考图片',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'D',n:'多模态少样本学习',e:'Multimodal Few-Shot',df:'仅通过少量图文示例快速适应新视觉任务',m:'翻译社的速学者——看几个例子就能举一反三',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'K',n:'可提示分割',e:'Promptable Segmentation',df:'通过各种提示驱动的通用图像分割',m:'指一下或说一下全能读图员就能精确勾勒目标边界',dy:'Day 14',pp:'Kirillov et al., 2023'},
+{l:'S',n:'数据飞轮',e:'Data Flywheel',df:'模型辅助标注→标注改进模型的正向循环',m:'自动翻译辅助人工校对再用结果改进自动翻译',dy:'Day 14',pp:'Kirillov et al., 2023'},
+{l:'S',n:'视觉基础模型',e:'Vision Foundation Model',df:'在超大规模数据上预训练的通用视觉模型',m:'翻译社培养的万能读图员——不限领域通用能力',dy:'Day 14',pp:'Kirillov et al., 2023'},
+{l:'D',n:'对比学习',e:'Contrastive Learning',df:'通过拉近正样本对、推远负样本对来学习表示',m:'让配对的翻译官靠近、不配对的远离',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'L',n:'零样本分类',e:'Zero-shot Classification',df:'无需目标任务训练数据即可完成分类',m:'翻译官不需重新学习就能识别新展品',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'S',n:'视觉-语言对齐',e:'Vision-Language Alignment',df:'将图像和文本映射到同一语义空间',m:'两位翻译官将不同"语言"翻译为同一"通用语"',dy:'Day 14',pp:'Radford et al., 2021'},
+{l:'S',n:'视觉语言模型',e:'VLM',df:'能同时处理图像和文本的模型',m:'能同时看展品和讲解的博览会导览员',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'J',n:'交叉注意力',e:'Cross-Attention',df:'让一个模态的信息查询另一个模态',m:'馆长通过跨模态耳机获取图像信息',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'M',n:'门控机制（多模态）',e:'Gating (Multimodal)',df:'控制视觉信息注入语言模型的强度',m:'耳机的音量控制旋钮',dy:'Day 14',pp:'Alayrac et al., 2022'},
+{l:'S',n:'视觉指令微调',e:'Visual Instruction Tuning',df:'用图像+指令数据微调模型使其遵循视觉指令',m:'用真实看图任务训练导览员',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'T',n:'投影层',e:'Projection Layer',df:'将视觉特征映射到语言模型输入空间',m:'连接"视觉眼镜"和"语言大脑"的转换接口',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'D',n:'多模态对话',e:'Multimodal Dialogue',df:'基于图像进行多轮自然语言交互',m:'观众和导览员围绕展品深入讨论',dy:'Day 14',pp:'Liu et al., 2023'},
+{l:'D',n:'多模态大模型',e:'Multimodal LLM',df:'能同时处理文本、图像等多种输入的大规模模型',m:'博览会的"超级馆长"精通所有展馆',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'K',n:'可预测扩展',e:'Predictable Scaling',df:'用小规模实验预测大规模训练的效果',m:'用展馆模型预测真实展馆的运营效果',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'A',n:'安全对齐',e:'Safety Alignment',df:'训练模型拒绝有害请求并给出安全回答',m:'馆长培训中的安全守则和职业道德',dy:'Day 14',pp:'OpenAI, 2023'},
+{l:'S',n:'Sigmoid损失',e:'Sigmoid Loss',df:'对每个图文对独立做二元分类的损失函数',m:'一对一面试而非全场评比',dy:'Day 14',pp:'Zhai et al., 2023'},
+{l:'P',n:'批量大小',e:'Batch Size',df:'一次训练迭代中同时处理的样本数量',m:'评比大厅一次能容纳的参赛者数量',dy:'Day 14',pp:'Zhai et al., 2023'},
+{l:'S',n:'视觉编码器',e:'Visual Encoder',df:'将图像转换为向量表示的网络',m:'将展品翻译为"通用语"的视觉翻译官',dy:'Day 14',pp:'Zhai et al., 2023'},
+{l:'D',n:'端到端ASR',e:'End-to-End ASR',df:'直接从原始音频到文字的单一模型',m:'全能录音师——从话筒到文字稿一人搞定',dy:'Day 15',pp:'Amodei et al., 2016'},
+{l:'C',n:'CTC损失',e:'CTC Loss',df:'允许输入输出不等长的序列训练方法',m:'不需要逐帧对齐的自由转录训练法',dy:'Day 15',pp:'Amodei et al., 2016'},
+{l:'S',n:'声学模型',e:'Acoustic Model',df:'将音频特征映射为语音单元的模型',m:'录音棚的听力分析师',dy:'Day 15',pp:'Amodei et al., 2016'},
+{l:'L',n:'LAS架构',e:'Listen-Attend-Spell',df:'编码器听音频+注意力关注+解码器拼字的架构',m:'录音文稿编辑——听、回放、写三步法',dy:'Day 15',pp:'Chorowski et al., 2015'},
+{l:'W',n:'弱监督ASR',e:'Weakly-Supervised ASR',df:'用大量非精标的自然数据训练语音识别',m:'万国通译员靠走遍世界见多识广而非死读教材',dy:'Day 15',pp:'Radford et al., 2023'},
+{l:'M',n:'Mel频谱图',e:'Mel Spectrogram',df:'将音频转为模拟人耳感知的时频域表示',m:'声音的视觉化翻译——把听觉变为可看的图',dy:'Day 15',pp:'Radford et al., 2023'},
+{l:'S',n:'声码器',e:'Vocoder',df:'将声学特征转为音频波形的模型',m:'录音棚的母带工程师——把粗剪变成发行级品质',dy:'Day 15',pp:'Shen et al., 2018'},
+{l:'T',n:'TTS端到端',e:'End-to-End TTS',df:'直接从文字生成语音无需中间语言学标注',m:'配音演员看到台词直接开口不需先标拼音',dy:'Day 15',pp:'Shen et al., 2018'},
+{l:'S',n:'神经音频编解码器',e:'Neural Audio Codec',df:'将音频压缩为离散token序列的模型',m:'声音的速记符号——把连续声波变成离散字母',dy:'Day 15',pp:'Wang et al., 2023'},
+{l:'S',n:'声音上下文学习',e:'Voice In-Context Learning',df:'从3秒样本中理解说话人特征并生成一致语音',m:'克隆师只需听几秒就能完美模仿',dy:'Day 15',pp:'Wang et al., 2023'},
+{l:'T',n:'TTS即语言建模',e:'TTS as LM',df:'把语音合成视为条件自回归序列预测问题',m:'写声音就像写文章——一个token一个token生成',dy:'Day 15',pp:'Wang et al., 2023'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
@@ -1010,7 +1153,13 @@ var Q=[
 {q:'从 Seq2Seq 到 Transformer 到 GPT，NLG 技术经历了怎样的范式转变？',a:'<p>三阶段：<strong>Seq2Seq 时代（2014-17）</strong>每任务一个小模型；<strong>Transformer 时代（2017-20）</strong>架构统一但仍需微调；<strong>大模型时代（2020-至今）</strong>一个超大模型通过 Prompt 完成所有 NLG 任务。核心趋势从"专用"到"通用"：GPT-4 通过不同 Prompt 做翻译、摘要、对话、编程等所有生成任务。</p>'},
 {q:'目标检测中"两阶段"和"单阶段"方法的核心区别是什么？',a:'<p><strong>两阶段（R-CNN系列）</strong>先用RPN生成候选区域再精细分类——像先让护士初筛，再让医生逐一诊断。精度高但速度慢（~5FPS）。<strong>单阶段（YOLO系列）</strong>直接从全图一次预测所有物体——像急诊科主任一眼扫过去同时完成诊断。速度快（45+FPS）但小物体精度较低。核心取舍是<strong>速度vs精度</strong>：实时场景选单阶段，高精度场景选两阶段。2026年趋势是两条路线融合（如DETR用Transformer端到端检测）。</p>'},
 {q:'ViT 证明了 Transformer 可以处理图像，这对 AI 领域意味着什么？',a:'<p>三层意义：<strong>1) 架构统一</strong>——NLP用Transformer、CV也用Transformer，打通了领域壁垒。<strong>2) 多模态融合</strong>——视觉和语言共享架构使得 CLIP、GPT-4V、Gemini 等多模态模型成为可能。<strong>3) 数据vs归纳偏置</strong>——揭示了"数据足够多时，弱归纳偏置的通用架构优于强归纳偏置的专用架构"的深刻规律。ViT是Transformer从NLP走向所有AI领域的转折点。</p>'},
-{q:'从分类到检测到分割，计算机视觉任务的粒度如何递进？',a:'<p>三个任务从粗到细：<strong>分类</strong>输出整图一个标签（门诊挂号——有病/没病）；<strong>检测</strong>输出每个物体的边界框+类别（放射科——圈出病灶标注类型）；<strong>分割</strong>输出每个像素的类别（外科手术标注——逐像素勾勒边界）。难度递增核心原因是<strong>输出空间增大</strong>：分类1个标签、检测~100个框、分割~100万个像素标签。每一级需要更精细的空间信息，所以FCN需要跳跃连接、Mask R-CNN要在Faster R-CNN上加分割分支。</p>'}
+{q:'从分类到检测到分割，计算机视觉任务的粒度如何递进？',a:'<p>三个任务从粗到细：<strong>分类</strong>输出整图一个标签（门诊挂号——有病/没病）；<strong>检测</strong>输出每个物体的边界框+类别（放射科——圈出病灶标注类型）；<strong>分割</strong>输出每个像素的类别（外科手术标注——逐像素勾勒边界）。难度递增核心原因是<strong>输出空间增大</strong>：分类1个标签、检测~100个框、分割~100万个像素标签。每一级需要更精细的空间信息，所以FCN需要跳跃连接、Mask R-CNN要在Faster R-CNN上加分割分支。</p>'},
+{q:'为什么 CLIP 能用"文字"来搜索"图像"？它的零样本能力从何而来？',a:'<p>CLIP的零样本成功揭示了深层洞察：<strong>监督信号的"质量×数量"可以弥补甚至超越精确标注</strong>。传统方式用128万张ImageNet图片配1000个精确类别标签。CLIP方式用4亿张图片配自然语言描述——数量大300倍、信息密度更高（"一只橘色猫坐在蓝色沙发上"比标签"猫"丰富得多）、开放世界覆盖。用翻译社比喻：背1000个标准词条（ImageNet有监督），vs阅读4亿篇图文资料（CLIP对比学习）。后者虽然单篇不如词条精确，但积累的广度和深度最终超越了死记硬背。</p>'},
+{q:'多模态模型如何让"视觉"和"语言"对话？不同架构方案有何优劣？',a:'<p>三条技术路线：<strong>方案A-共享嵌入空间（CLIP）</strong>把图文映射到同一向量空间，简洁优雅、零样本强，但只能做匹配不能推理生成。<strong>方案B-输入端融合（LLaVA）</strong>用投影层把视觉特征转为LLM的token，架构简单复用LLM能力，但深层融合不够。<strong>方案C-深层交叉注意力（Flamingo）</strong>在LLM每层都插入交叉注意力模块，融合最深但成本最高。当前最强模型倾向B+C混合，并探索"原生多模态"——从预训练就同时处理图文。</p>'},
+{q:'SAM 的"可提示分割"和 GPT 的"可提示生成"有什么内在联系？',a:'<p>两者体现同一范式转移：<strong>从"任务特定模型"到"通用基础模型+提示"</strong>。GPT通过不同文本prompt完成所有NLP任务；SAM通过不同分割prompt完成所有分割任务；CLIP通过不同文本描述完成各种视觉任务。内在联系：<strong>当模型足够大、数据足够多时，模型学到的是"理解世界"的通用能力</strong>。用户只需通过prompt"指方向"。这预示着每个领域都将出现自己的"基础模型"：语言有GPT，分割有SAM，视觉-语言有CLIP，最终融合为真正的通用智能体。</p>'},
+{q:'从传统ASR到Whisper，语音识别经历了怎样的范式转变？',a:'<p>三阶段演进：<strong>传统流水线（~2015）</strong>——MFCC特征→GMM-HMM声学模型→语言模型→Viterbi解码，每环节需专家手工设计。<strong>端到端深度学习（2016-2022）</strong>——Deep Speech用RNN+CTC，LAS用注意力机制，一个网络替代整条流水线。<strong>基础模型时代（2023~）</strong>——Whisper用68万小时弱监督数据+标准Transformer暴力求解，99种语言零样本达人类水平。核心哲学与GPT、CLIP一致：<strong>简单架构+海量数据=超越精巧工程</strong>。</p>'},
+{q:'为什么VALL-E被称为TTS的"GPT-3时刻"？3秒声音克隆如何实现？',a:'<p>三个平行关系：GPT-3预测下一个文字token→VALL-E预测下一个音频token；GPT-3涌现上下文学习→VALL-E涌现声音克隆；GPT-3用4500亿token训练→VALL-E用60000小时训练。技术核心：用EnCodec将音频压缩为离散token，然后TTS就是"给定文字token+3秒音频prompt，自回归生成后续音频token"。3秒够用是因为模型在数万说话人上学会了声音空间结构——3秒足以定位到正确的音色坐标。</p>'},
+{q:'语音AI面临哪些独特的技术挑战？与NLP有什么根本区别？',a:'<p>三个根本性差异：<strong>1)信号连续且冗余</strong>——16000采样点/秒，大量静音和冗余，需Mel频谱图降维或编解码器离散化。<strong>2)时间对齐困难</strong>——"你好"可持续0.5秒或2秒，每字时长不固定；解决方案是CTC和注意力机制。<strong>3)说话人变异性</strong>——同一句话不同人说声学特征差异巨大；解决方案是大规模多说话人训练。这些挑战使语音AI整体滞后NLP约3-5年，但Whisper和VALL-E证明Scaling同样适用于语音。</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -1136,7 +1285,29 @@ var GN=[
 {id:'VITN',lb:'👁 ViT',g:'arch',df:'纯Transformer视觉分类模型',m:'全科主任全局会诊'},
 {id:'PATCH',lb:'🧩 Patch Embedding',g:'tech',df:'图像块映射为向量序列',m:'切片录入分析系统'},
 {id:'IBIAS',lb:'💡 归纳偏置',g:'aux',df:'模型架构内置的先验假设',m:'放射科专业直觉'},
-{id:'YOLON',lb:'🚀 YOLO',g:'arch',df:'单阶段实时目标检测',m:'急诊科主任一眼诊断'}
+{id:'YOLON',lb:'🚀 YOLO',g:'arch',df:'单阶段实时目标检测',m:'急诊科主任一眼诊断'},
+{id:'CLIPN',lb:'🌐 CLIP',g:'arch',df:'对比语言-图像预训练模型',m:'博览会双语翻译官'},
+{id:'CTRLN',lb:'🔗 对比学习',g:'tech',df:'拉近正样本推远负样本的学习方法',m:'配对翻译官靠近不配对远离'},
+{id:'VLAL',lb:'🌉 视觉-语言对齐',g:'tech',df:'将图像和文本映射到同一空间',m:'两位翻译官翻译为同一通用语'},
+{id:'FLAM',lb:'🦩 Flamingo',g:'arch',df:'冻结LM+视觉层的多模态VLM',m:'戴视觉眼镜的文字馆长'},
+{id:'XATN',lb:'🔀 交叉注意力',g:'tech',df:'让一个模态查询另一个模态',m:'跨模态耳机传递图像信息'},
+{id:'LLAVAN',lb:'👁 LLaVA',g:'arch',df:'开源视觉指令微调多模态模型',m:'速成培训的全能导览员'},
+{id:'VITN2',lb:'📐 视觉指令微调',g:'tech',df:'用图像+指令数据微调模型',m:'用看图任务训练导览员'},
+{id:'PROJN',lb:'🔌 投影层',g:'tech',df:'视觉特征到语言模型空间的映射',m:'连接眼睛和大脑的接口'},
+{id:'GPT4VN',lb:'🛸 GPT-4V',g:'arch',df:'多模态旗舰大模型',m:'博览会超级馆长'},
+{id:'SIGLN',lb:'📊 SigLIP',g:'arch',df:'sigmoid损失的视觉-语言预训练',m:'一对一面试的翻译官培训'},
+{id:'VLMN',lb:'👁‍🗨 VLM',g:'app',df:'能同时处理图像和文本的模型',m:'能看能说的智能导览系统'},
+{id:'ASRN',lb:'🎤 ASR',g:'app',df:'将语音转为文字',m:'录音棚的速记员'},
+{id:'TTSN',lb:'🔊 TTS',g:'app',df:'将文字转为语音',m:'录音棚的配音演员'},
+{id:'DSPN',lb:'🎙 Deep Speech',g:'arch',df:'端到端RNN+CTC语音识别',m:'全能录音师'},
+{id:'CTCN',lb:'📐 CTC',g:'tech',df:'序列不等长的训练损失',m:'自由转录训练法'},
+{id:'LASN',lb:'👂 LAS',g:'arch',df:'Listen-Attend-Spell注意力ASR',m:'录音文稿编辑'},
+{id:'WSPN',lb:'🌐 Whisper',g:'arch',df:'大规模弱监督多语言ASR',m:'万国通译员'},
+{id:'MELN',lb:'📊 Mel频谱图',g:'tech',df:'音频的时频域表示',m:'声音的视觉化翻译'},
+{id:'TACN',lb:'🎵 Tacotron 2',g:'arch',df:'Seq2Seq+WaveNet神经TTS',m:'天才配音演员'},
+{id:'VOCN',lb:'🎛 声码器',g:'tech',df:'从声学特征生成音频波形',m:'母带工程师'},
+{id:'VLEN',lb:'🧬 VALL-E',g:'arch',df:'语言建模式TTS 3秒声音克隆',m:'超级声音克隆师'},
+{id:'NACDN',lb:'🔡 音频编解码器',g:'tech',df:'将音频压缩为离散token',m:'声音的速记符号'}
 ];
 var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
 {s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'},
@@ -1149,7 +1320,9 @@ var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',
 {s:'PR',t:'PEN'},{s:'PEN',t:'COTN'},{s:'PEN',t:'ZCOTN'},{s:'COTN',t:'SCSTN'},{s:'COTN',t:'ZCOTN'},{s:'PEN',t:'HPM'},{s:'PEN',t:'SPM'},{s:'ICL2',t:'PEN'},{s:'EMG',t:'COTN'},{s:'PTF',t:'PPARN'},
 {s:'DL',t:'GANN'},{s:'DL',t:'VAEN'},{s:'DL',t:'DDPMN'},{s:'GANN',t:'DDPMN'},{s:'VAEN',t:'LTSN'},{s:'LTSN',t:'LDMN'},{s:'DDPMN',t:'LDMN'},{s:'LDMN',t:'T2IN'},{s:'DL',t:'WNETN'},{s:'AR2',t:'WNETN'},
 {s:'BT',t:'BERTN'},{s:'MLM',t:'BERTN'},{s:'BERTN',t:'NERN'},{s:'BERTN',t:'SENTN'},{s:'BERTN',t:'SRLN'},{s:'TF',t:'S2SN'},{s:'S2SN',t:'BATN'},{s:'BATN',t:'ATN'},{s:'S2SN',t:'PTRN'},{s:'PTRN',t:'ABSN'},{s:'S2SN',t:'DLGN'},{s:'DLGN',t:'IGPT'},
-{s:'CN',t:'RCNN'},{s:'RCNN',t:'FRCNN'},{s:'FRCNN',t:'RPNN'},{s:'RPNN',t:'ANCR'},{s:'FRCNN',t:'FCNN'},{s:'FCNN',t:'SEMSEG'},{s:'TF',t:'VITN'},{s:'VITN',t:'PATCH'},{s:'CN',t:'IBIAS'},{s:'VITN',t:'IBIAS'},{s:'CN',t:'YOLON'},{s:'YOLON',t:'RCNN'},{s:'VITN',t:'MMD'}];
+{s:'CN',t:'RCNN'},{s:'RCNN',t:'FRCNN'},{s:'FRCNN',t:'RPNN'},{s:'RPNN',t:'ANCR'},{s:'FRCNN',t:'FCNN'},{s:'FCNN',t:'SEMSEG'},{s:'TF',t:'VITN'},{s:'VITN',t:'PATCH'},{s:'CN',t:'IBIAS'},{s:'VITN',t:'IBIAS'},{s:'CN',t:'YOLON'},{s:'YOLON',t:'RCNN'},{s:'VITN',t:'MMD'},
+{s:'VITN',t:'CLIPN'},{s:'CLIPN',t:'CTRLN'},{s:'CLIPN',t:'VLAL'},{s:'CLIPN',t:'VLMN'},{s:'CLIPN',t:'FLAM'},{s:'FLAM',t:'XATN'},{s:'FLAM',t:'VLMN'},{s:'LM',t:'FLAM'},{s:'CLIPN',t:'LLAVAN'},{s:'LM',t:'LLAVAN'},{s:'LLAVAN',t:'VITN2'},{s:'LLAVAN',t:'PROJN'},{s:'LLAVAN',t:'VLMN'},{s:'GPT4M',t:'GPT4VN'},{s:'GPT4VN',t:'MMD'},{s:'GPT4VN',t:'VLMN'},{s:'CLIPN',t:'SIGLN'},{s:'SIGLN',t:'CTRLN'},{s:'SIGLN',t:'VLAL'},{s:'VITN2',t:'SFTN'},{s:'VLAL',t:'T2IN'},
+{s:'DL',t:'ASRN'},{s:'DL',t:'TTSN'},{s:'RN',t:'DSPN'},{s:'CTCN',t:'DSPN'},{s:'DSPN',t:'ASRN'},{s:'ATN',t:'LASN'},{s:'LASN',t:'ASRN'},{s:'TF',t:'WSPN'},{s:'WSPN',t:'ASRN'},{s:'LASN',t:'WSPN'},{s:'MELN',t:'WSPN'},{s:'MELN',t:'TACN'},{s:'S2SN',t:'TACN'},{s:'WNETN',t:'VOCN'},{s:'VOCN',t:'TACN'},{s:'TACN',t:'TTSN'},{s:'AR2',t:'VLEN'},{s:'NACDN',t:'VLEN'},{s:'VLEN',t:'TTSN'},{s:'ICL2',t:'VLEN'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
 var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9\u57fa\u7840','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
 
