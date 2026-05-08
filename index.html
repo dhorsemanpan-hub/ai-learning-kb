@@ -109,14 +109,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">15<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">75</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">163</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">43</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">16<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">80</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">176</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">46</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">50%</span></div>
-<div class="pb"><div class="pf" style="width:50%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">53%</span></div>
+<div class="pb"><div class="pf" style="width:53%"></div></div>
 <div class="ptl">
 <div class="pc"><div class="ptag">&#9679; 已完成</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -125,7 +125,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day <span id="pdaynum">15</span> · 今日论文</h2><div class="sd" id="pdaydesc">语音与音频 AI：ASR、TTS、音频生成 · 比喻主题：🎙 经营一家顶级录音棚</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">16</span> · 今日论文</h2><div class="sd" id="pdaydesc">强化学习：从 Q-Learning 到 PPO，AI 如何学会决策 · 比喻主题：🎮 训练一位电竞冠军选手</div></div>
 <div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
@@ -142,11 +142,11 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="gli"><div class="gld" style="background:#D3D3D3"></div>辅助概念</div>
 </div></section>
 <section id="s-concepts" class="sec">
-<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">83 个概念 · 搜索过滤 · 点击查看比喻</div></div>
+<div class="sh"><h2>&#128218; 核心概念词典</h2><div class="sd">96 个概念 · 搜索过滤 · 点击查看比喻</div></div>
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~15 · 全部问答</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~16 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -162,7 +162,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
-var DAY=15;
+var DAY=16;
 var DAYS=[
 {day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
 {day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'},
@@ -178,7 +178,8 @@ var DAYS=[
 {day:12,theme:'自然语言生成：摘要、翻译、对话系统',met:'✍️ 培养一位多面作家'},
 {day:13,theme:'计算机视觉基础：目标检测、图像分割、视觉 Transformer',met:'🏥 运营一家综合医院'},
 {day:14,theme:'多模态模型：CLIP、GPT-4V、视觉-语言融合',met:'🌍 经营一家国际翻译社'},
-{day:15,theme:'语音与音频 AI：ASR、TTS、音频生成',met:'🎙 经营一家顶级录音棚'}
+{day:15,theme:'语音与音频 AI：ASR、TTS、音频生成',met:'🎙 经营一家顶级录音棚'},
+{day:16,theme:'强化学习：从 Q-Learning 到 PPO，AI 如何学会决策',met:'🎮 训练一位电竞冠军选手'}
 ];
 var P=[
 {id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
@@ -931,6 +932,58 @@ c:[{n:'神经音频编解码器',d:'将音频压缩为离散token序列的模型
 {n:'声音上下文学习',d:'从3秒样本中理解说话人特征并生成一致语音',m:'克隆师只需听几秒就能完美模仿'},
 {n:'TTS即语言建模',d:'把语音合成视为条件自回归序列预测问题',m:'写声音就像写文章——一个token一个token生成'}],
 rt:'30 分钟',rr:'TTS范式革命'},
+{id:76,day:16,t:'Playing Atari with Deep Reinforcement Learning (DQN)',a:'Volodymyr Mnih, Kavukcuoglu, Silver, Graves et al. (DeepMind)',s:'NIPS 2013 / Nature 2015',y:2015,r:5,u:'https://arxiv.org/abs/1312.5602',
+d:'首次将深度学习与强化学习成功结合，用同一个神经网络直接从像素输入学会玩49款Atari游戏，部分超越人类水平。',
+abs:'我们提出了第一个深度学习模型，该模型能够使用强化学习直接从高维感知输入中成功地学习控制策略。该模型是一个卷积神经网络，使用Q-learning的变体进行训练，输入是原始像素，输出是估计未来奖励的价值函数。我们将此方法应用于Arcade Learning Environment中的七款Atari 2600游戏，无需调整架构或学习算法。我们发现在六款游戏中该方法超越了此前所有方法，其中三款超越了人类专家水平。本工作的关键技术创新包括：经验回放机制——将智能体的经验存储在数据集中，然后对多个episode的数据进行随机采样和训练，打破了样本间的时间相关性；使用目标网络——周期性地固定Q网络参数作为目标值的计算基准，避免了训练过程中目标值随参数更新而持续漂移导致的不稳定。这两项技术使得将非线性函数逼近器（深度网络）与Q-learning结合变得稳定可行。',
+insights:'DQN的伟大之处，不在于它在某个游戏上得了多少分，而在于它首次证明了一个看似不可能的命题：一个通用的深度神经网络，可以仅凭"看屏幕+收奖励"就学会玩各种不同的游戏——而且用的是完全相同的架构和超参数。\n\n用电竞比喻来理解：想象一个选手从未接触过任何游戏，你把他放在一台街机前，不给他任何说明书、不告诉他按钮是什么意思，只是在他得分时点头、失分时摇头。这位选手仅凭观察屏幕画面和你的点头/摇头反馈，就能逐渐学会每款游戏的最优打法。DQN就是这样一位"万能选手"。\n\n在DQN之前，强化学习和深度学习是两个互不相干的领域。强化学习理论优美但只能处理简单问题（状态空间小到可以枚举），深度学习擅长处理复杂感知但需要大量标注数据。DQN的突破在于找到了让两者稳定结合的方法。\n\n核心挑战是"不稳定性"。Q-learning本质上是用当前网络的输出来生成自己的训练目标（bootstrap），这就像"自己批改自己的试卷"——很容易产生正反馈循环导致发散。DQN用两招解决：第一招"经验回放"，把过去的经历存在记忆库里随机抽取训练，打破了数据的时间相关性；第二招"目标网络"，用一份冻结的旧网络来计算目标值，每隔一段时间才更新。类比电竞训练：经验回放就像选手不是只从最近的比赛学习，而是会随机回看过去各场比赛的录像；目标网络就像有一位"教练"——教练的评价标准不是实时变的，而是每隔一个月根据选手进步才调整一次。\n\nDQN的深层影响远超游戏。它证明了"感知-决策一体化"的可行性——不需要人工设计状态表示，神经网络可以直接从原始感知（像素）端到端地学会决策。这个思路后来被AlphaGo继承，被自动驾驶采用，也被ChatGPT的RLHF继承。',
+contribs:['首次证明深度神经网络可以直接从高维像素输入端到端学习强化学习策略，开创"深度强化学习"领域','提出经验回放和目标网络两大稳定训练技术，解决了深度网络+Q-learning的不稳定问题','实现真正的通用性——同一架构、同一超参数、无需领域知识即可学会49款不同游戏','为后续AlphaGo、机器人控制、RLHF等重大突破奠定了技术基础'],
+why:'DQN是深度强化学习的奠基之作，被引超30000次。它让DeepMind声名鹊起，直接催生了AlphaGo项目。更重要的是，它证明了AI可以在没有人类知识的情况下仅凭试错和奖励就学会复杂决策——为RLHF和自动驾驶等应用奠定了技术基础。',
+c:[{n:'深度强化学习',d:'用深度网络作为函数逼近器的强化学习',m:'让选手用"深度直觉"代替查表来做决策'},
+{n:'Q值函数',d:'评估在某状态执行某动作的长期价值',m:'选手对每个操作的"预期收益直觉"'},
+{n:'经验回放',d:'将历史经验存储后随机采样训练',m:'选手随机回看历史比赛录像而非只看最近一场'},
+{n:'目标网络',d:'用冻结的旧网络计算训练目标',m:'教练的评价标准每月更新一次而非实时变化'}],
+rt:'30 分钟',rr:'理解深度RL如何从感知到决策'},
+{id:77,day:16,t:'Policy Gradient Methods for Reinforcement Learning with Function Approximation',a:'Richard S. Sutton, David McAllester, Satinder Singh, Yishay Mansour',s:'NeurIPS 1999',y:1999,r:5,u:'https://proceedings.neurips.cc/paper/1999/hash/464d828b85b0bed98e80ade0a5c43b0f-Abstract.html',
+d:'策略梯度方法的理论奠基论文，证明了可以直接对策略参数求梯度来优化期望累积奖励，开辟了与值函数方法平行的RL路线。',
+abs:'函数逼近在强化学习中是必要的，因为大多数有趣问题的状态空间太大而无法枚举。然而，将函数逼近与值函数方法结合时面临理论和实践上的严重困难——甚至在简单问题上也可能发散。本文提供了一个替代方案：我们证明了一个精确的梯度公式，可以直接对策略的参数化表示求梯度。该公式不需要对环境动力学建模，适用于随机策略，并具有收敛保证。我们建立了策略梯度定理：在一定条件下，策略参数的梯度方向恰好是使得期望累积奖励最大化的方向。我们还展示了如何将actor-critic方法纳入这一框架，其中critic学习值函数以减少梯度估计的方差。',
+insights:'理解策略梯度，需要先理解RL的两条技术路线之争。\n\n第一条路线是"值函数方法"（如Q-learning/DQN）：先学会评估每个状态-动作对的价值，再根据价值选择动作。用电竞比喻：选手先建立起"什么局面下什么操作价值最高"的完整价值表，然后每次都选价值最高的操作。\n\n第二条路线是"策略梯度方法"：直接学习"在每个状态下应该怎么做"的策略函数，通过梯度上升来让累积奖励越来越大。用电竞比喻：选手不去算每个操作值多少分，而是直接优化自己的"反应模式"——哪种打法风格能赢更多比赛，就往那个方向强化。\n\n为什么需要策略梯度？因为值函数方法有两个根本性缺陷。第一，它处理"连续动作空间"时非常困难——如果动作是连续的（比如方向盘转角），你无法穷举所有动作来选最大Q值的。第二，它只能产生确定性策略，但很多场景需要随机策略——比如石头剪刀布，最优策略是随机出招。\n\nSutton等人证明了一个漂亮的定理：策略参数θ的梯度可以精确计算，而且不需要知道环境的动力学模型。具体来说，梯度等于"策略对数概率的梯度×Q值"在轨迹分布上的期望。\n\n论文还引入了Actor-Critic框架：actor是策略网络负责选动作，critic是值函数网络负责评估。就像电竞选手的训练体系：选手（actor）负责打比赛，教练组（critic）负责分析复盘打分，选手根据教练反馈调整打法。这个框架后来成为PPO、SAC、A3C等现代RL算法的统一基础。',
+contribs:['证明了策略梯度定理——直接对策略参数求梯度优化期望奖励的理论基础，无需环境模型','建立了Actor-Critic框架的理论依据——actor学策略、critic学价值函数协同优化','解决了值函数方法在连续动作空间和随机策略上的根本性缺陷','为后续A3C、TRPO、PPO等现代策略优化算法奠定了理论基石'],
+why:'策略梯度方法的理论奠基论文，被引超10000次。它开辟了与值函数方法平行的第二条RL技术路线。如果没有策略梯度理论，就不会有PPO，也不会有ChatGPT的RLHF对齐。今天AI对齐的核心技术根基就在这篇论文中。',
+c:[{n:'策略梯度',d:'直接对策略参数求梯度以最大化期望奖励',m:'选手直接优化打法风格让胜率越来越高'},
+{n:'Actor-Critic',d:'策略网络+值函数网络协同训练的框架',m:'选手+教练组的配合训练体系'},
+{n:'随机策略',d:'输出动作的概率分布而非确定性动作',m:'选手的操作带有创意性变化不完全可预测'}],
+rt:'25 分钟',rr:'建立策略优化的理论基础'},
+{id:78,day:16,t:'Proximal Policy Optimization Algorithms (PPO)',a:'John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, Oleg Klimov (OpenAI)',s:'arXiv 2017',y:2017,r:5,u:'https://arxiv.org/abs/1707.06347',
+d:'当前使用最广泛的强化学习算法，通过裁剪目标函数实现TRPO级别的训练稳定性，同时保持一阶梯度优化的简洁性。',
+abs:'我们提出了一类新的策略梯度方法用于强化学习，该方法在通过与环境交互进行数据采样和使用随机梯度上升优化替代目标函数之间交替进行。标准的策略梯度方法每个数据样本只执行一次梯度更新，而我们提出了一种新的目标函数，使得每批数据可以进行多个epoch的小批量更新。我们称之为近端策略优化（PPO），它具有信赖域策略优化（TRPO）的一些优点——数据效率和可靠的性能——但实现起来要简单得多：只使用一阶优化，兼容常见的循环神经网络架构，并且对超参数不太敏感。PPO的核心思想是限制策略更新的幅度：通过裁剪概率比率，确保新策略不会偏离旧策略太远。在一系列基准测试中，PPO在性能上与其他方法相当甚至更优，同时实现起来更加简单。',
+insights:'PPO是当前AI领域使用最广泛的强化学习算法——从机器人控制到游戏AI，从ChatGPT的RLHF到自动驾驶，几乎无处不在。它的成功不在于理论上的深刻创新，而在于工程上的极致平衡。\n\n理解PPO，需要先理解它解决的问题：策略梯度的"步长困难"。原始策略梯度有个致命问题——你不知道该更新多大步。步子太小学习太慢；步子太大策略可能突然变得很差。想象电竞选手某次训练后打法突变，突然从钻石段跌到白银段。这种不稳定性让策略梯度在实践中非常难用。\n\nTRPO用复杂的二阶优化来精确限制策略变化幅度，效果很好但实现极其复杂。PPO的天才在于用一个简单的"裁剪"技巧就达到了几乎相同的效果。\n\nPPO的核心思想极其优雅：计算新策略和旧策略的"概率比率"，如果新策略在某状态下选择某动作的概率是旧策略的r倍，那么目标函数中这个比率会被裁剪到[1-ε,1+ε]范围内。不管梯度有多大，策略的实际变化幅度都被硬性限制住了。\n\n用电竞比喻：选手每次训练后调整打法，但规定"单次调整幅度不超过10%"。比如原来在某局面有60%概率用技能A，调整后最多变成66%或最低54%——不允许突然从60%跳到95%。这种"温和改进"策略确保了进步的稳定性。\n\nPPO之所以成为ChatGPT背后RLHF的默认算法，是因为它完美适配了语言模型微调的需求：你不希望模型一次RLHF后就面目全非，裁剪机制保证了变化可控；它只用一阶梯度和Adam优化器，工程上无缝集成；它对超参数不敏感，大规模训练中非常省心。',
+contribs:['提出裁剪替代目标函数，用一阶优化实现TRPO级别的训练稳定性','达到了性能-简洁性-鲁棒性三者的极致平衡，成为最广泛使用的RL算法','可复用性极强：同一算法适用于游戏、机器人、NLP对齐等完全不同领域','直接支撑了InstructGPT/ChatGPT的RLHF训练，是大模型对齐的核心基础设施'],
+why:'PPO是当今使用最广泛的RL算法，被引超15000次。OpenAI基于PPO构建了InstructGPT和ChatGPT的RLHF管线。当讨论ChatGPT为何强大时，PPO是答案的核心组成部分。它还被广泛用于OpenAI Five（Dota2）、机器人学习等领域。',
+c:[{n:'PPO',d:'通过裁剪策略比率限制更新幅度的策略优化算法',m:'限制选手每次训练后打法变化不超过10%的规则'},
+{n:'裁剪目标函数',d:'将新旧策略概率比率限制在安全范围内',m:'训练强度的安全阀门——变化太大自动踩刹车'},
+{n:'信赖域',d:'限制策略更新不超出安全范围的优化约束',m:'选手的舒适区——每次只往外扩展一小步'}],
+rt:'30 分钟',rr:'当前最实用的RL算法'},
+{id:79,day:16,t:'Mastering the Game of Go with Deep Neural Networks and Tree Search (AlphaGo)',a:'David Silver, Aja Huang, Chris J. Maddison et al. (DeepMind)',s:'Nature 2016',y:2016,r:5,u:'https://doi.org/10.1038/nature16961',
+d:'AlphaGo系统论文。首次在围棋这一被认为"至少需要再10年"才能攻克的游戏中击败人类职业选手，震惊世界。',
+abs:'围棋由于其巨大的搜索空间和评估棋局位置的困难性，长期以来被视为人工智能中最具挑战性的经典游戏。我们引入了一种新的计算机围棋方法，使用"价值网络"来评估棋盘位置，使用"策略网络"来选择落子。这些深度神经网络通过人类专家棋局的监督学习和自我对弈的强化学习的新组合来训练。在不使用任何前瞻搜索的情况下，神经网络也能达到最先进的蒙特卡洛树搜索程序的水平。我们还引入了一种新的搜索算法，将蒙特卡洛模拟与价值网络和策略网络相结合。使用这种搜索算法，我们的程序AlphaGo在与其他围棋程序的对弈中达到了99.8%的胜率，并以5-0击败了欧洲围棋冠军。这是计算机程序首次在全尺寸围棋中击败人类职业棋手。',
+insights:'AlphaGo不仅是一个围棋程序，更是深度强化学习在复杂决策任务中第一个"杀手级应用"，它向世界证明了AI可以在最复杂的战略决策中超越人类。\n\n围棋为什么如此困难？棋盘有19×19=361个交叉点，合法状态数约为10^170（宇宙中原子数量才10^80），每步棋的分支因子约250。传统暴力搜索方法完全无能为力。\n\nAlphaGo的解决方案是三种技术的精妙融合。策略网络用人类专家棋谱监督学习训练，学会"在每个局面下人类高手大概率会下在哪里"——相当于教选手模仿职业选手的基本套路。价值网络训练来评估任意棋局"谁更可能赢"——相当于培养选手看一眼局面就知道谁占优的直觉。自我对弈强化学习让策略网络与自己对弈数百万局通过胜负奖励不断进化——相当于选手在模拟器中疯狂训练。\n\n最终AlphaGo将三者与蒙特卡洛树搜索（MCTS）结合：用策略网络引导搜索方向，用价值网络评估局面，用MCTS在有限时间内做出最优决策。\n\nAlphaGo的深层意义超越围棋本身。它证明了"人类知识引导+强化学习自我超越"的范式。先用人类数据让AI达到人类水平，再通过自我对弈让AI超越人类。这个范式后来被ChatGPT完美复制：先用人类文本预训练达到人类写作水平，再通过RLHF让模型超越平均人类的质量标准。',
+contribs:['首次在围棋中击败人类职业选手，证明深度RL可以解决此前不可能的复杂决策问题','提出策略网络+价值网络+MCTS的优雅组合框架，成为复杂决策问题的通用范式','开创监督学习预训练+强化学习自我超越的训练范式，启发了后续RLHF','激发了全球对AI能力边界的重新认知，推动了AI研究投资的大规模增长'],
+why:'AlphaGo是AI历史上最具公众影响力的里程碑之一。2016年击败李世石的比赛被全球数亿人观看。Nature发表被引超12000次。直接催生了AlphaZero和AlphaFold。其训练范式深刻影响了大模型的RLHF对齐技术路线。',
+c:[{n:'蒙特卡洛树搜索',d:'通过随机模拟评估决策树中各分支价值的搜索算法',m:'选手脑内快速模拟如果这样走后面可能怎样'},
+{n:'自我对弈',d:'智能体与自身历史版本对弈来不断进化',m:'选手和上个月的自己反复比赛来进步'},
+{n:'价值网络',d:'评估当前局面胜率的深度网络',m:'选手一眼看出谁占优势的直觉判断力'},
+{n:'策略网络',d:'输出每个动作概率的深度网络',m:'选手的本能反应——看到局面自动知道该怎么走'}],
+rt:'25 分钟',rr:'深度RL的杀手级应用'},
+{id:80,day:16,t:'Mastering the Game of Go without Human Knowledge (AlphaGo Zero)',a:'David Silver, Julian Schrittwieser, Karen Simonyan et al. (DeepMind)',s:'Nature 2017',y:2017,r:5,u:'https://doi.org/10.1038/nature24270',
+d:'完全抛弃人类棋谱，从零开始纯自我对弈学习，仅用3天就超越了所有人类棋手和之前所有版本的AlphaGo。',
+abs:'人工智能已经在多种困难领域达到了超人类水平——但这些系统都依赖于人类专业知识的指导。我们引入了一种纯粹基于强化学习的算法，不使用任何人类数据、人类先验知识或除游戏规则之外的任何领域知识。AlphaGo Zero完全通过与自身对弈来学习围棋，使用单一的神经网络同时预测策略和价值，使用更简单的蒙特卡洛树搜索，不使用任何人工特征。从随机落子开始，AlphaGo Zero在3天内以100-0击败了之前战胜李世石的AlphaGo版本，在40天训练后超越了此前最强的AlphaGo Master。此外，AlphaGo Zero在自我学习过程中发现了人类棋手经过数千年才发展出来的定式以及全新的人类从未使用过的策略。',
+insights:'如果说AlphaGo证明了"AI+人类知识可以超越人类"，那么AlphaGo Zero证明了一个更加震撼的命题："AI不需要人类知识也可以超越人类——而且更强"。\n\n这个发现的哲学意义极其深远。人类用了数千年发展围棋理论——定式、布局、手筋、收官技巧。AlphaGo Zero不看任何一盘人类棋谱，仅知道棋盘规则和胜负条件，就从零开始自我进化，3天超越所有人类，40天达到新高度。更惊人的是，它不仅重新发现了人类花几千年总结的围棋智慧，还发现了人类从未想到的新策略。\n\n用电竞比喻：一个选手从未观看任何比赛录像，不知道任何定式套路，只知道游戏规则和胜负条件。他把自己锁在训练室和镜子（过去的自己）反复对打，仅凭胜负来调整策略。3天后超越所有人类职业选手，而且发明了人类从未见过的招式。\n\n技术上AlphaGo Zero比AlphaGo更简洁。只用一个神经网络同时输出策略和价值，训练也更纯粹：无监督预训练步骤，纯粹是MCTS搜索→用搜索结果训练网络→更好的网络→更好的搜索的正反馈循环。\n\nAlphaGo Zero对今天的大模型研究有两个方向的影响。第一是自我改进方向：AI可以通过自我对弈不断进化，大模型能否通过自我对话来进化？这是Constitutional AI和Self-Play for LLM的核心思路。第二是tabula rasa学习的哲学意义：知识不一定需要从人类传承，AI可以从第一性原理独立发现知识——这暗示AI可能找到人类尚未发现的科学规律。',
+contribs:['证明了零知识强化学习可以从纯规则出发超越人类数千年积累的领域知识','提出更简洁的统一网络架构（单网络同时输出策略+价值），证明简洁架构更优','发现AI自我进化可以产生全新知识——超越人类认知边界的策略','建立了自我对弈+MCTS的通用学习框架，推广到国际象棋和将棋（AlphaZero）'],
+why:'AlphaGo Zero是"AI不需要人类就能超越人类"的最强证明，Nature发表被引超10000次。它彻底改变了AI研究者对人类知识角色的认知——人类数据可能是天花板。这个思想深刻影响了AI安全研究和AGI路径讨论。',
+c:[{n:'Tabula Rasa学习',d:'不使用任何人类先验知识从零学习',m:'选手不看任何教学视频从零开始自我摸索'},
+{n:'自我进化',d:'通过不断与更强的自己对弈来持续提升',m:'选手的对手永远是上个版本的自己'},
+{n:'统一网络',d:'单一网络同时输出策略和价值评估',m:'选手的直觉和判断力合为一体'}],
+rt:'20 分钟',rr:'理解超越人类的路径'},
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -1114,7 +1167,19 @@ var C=[
 {l:'T',n:'TTS端到端',e:'End-to-End TTS',df:'直接从文字生成语音无需中间语言学标注',m:'配音演员看到台词直接开口不需先标拼音',dy:'Day 15',pp:'Shen et al., 2018'},
 {l:'S',n:'神经音频编解码器',e:'Neural Audio Codec',df:'将音频压缩为离散token序列的模型',m:'声音的速记符号——把连续声波变成离散字母',dy:'Day 15',pp:'Wang et al., 2023'},
 {l:'S',n:'声音上下文学习',e:'Voice In-Context Learning',df:'从3秒样本中理解说话人特征并生成一致语音',m:'克隆师只需听几秒就能完美模仿',dy:'Day 15',pp:'Wang et al., 2023'},
-{l:'T',n:'TTS即语言建模',e:'TTS as LM',df:'把语音合成视为条件自回归序列预测问题',m:'写声音就像写文章——一个token一个token生成',dy:'Day 15',pp:'Wang et al., 2023'}
+{l:'T',n:'TTS即语言建模',e:'TTS as LM',df:'把语音合成视为条件自回归序列预测问题',m:'写声音就像写文章——一个token一个token生成',dy:'Day 15',pp:'Wang et al., 2023'},
+{l:'Q',n:'Q值函数',e:'Q-Value Function',df:'评估在某状态执行某动作的长期价值',m:'选手对每个操作的"预期收益直觉"',dy:'Day 16',pp:'Mnih et al., 2015'},
+{l:'S',n:'深度强化学习',e:'Deep RL',df:'用深度网络作为函数逼近器的强化学习',m:'让选手用深度直觉代替查表来做决策',dy:'Day 16',pp:'Mnih et al., 2015'},
+{l:'J',n:'经验回放',e:'Experience Replay',df:'将历史经验存储后随机采样训练',m:'选手随机回看历史比赛录像而非只看最近一场',dy:'Day 16',pp:'Mnih et al., 2015'},
+{l:'M',n:'目标网络',e:'Target Network',df:'用冻结的旧网络计算训练目标以稳定训练',m:'教练的评价标准每月更新一次而非实时变化',dy:'Day 16',pp:'Mnih et al., 2015'},
+{l:'C',n:'策略梯度',e:'Policy Gradient',df:'直接对策略参数求梯度以最大化期望奖励',m:'选手直接优化打法风格让胜率越来越高',dy:'Day 16',pp:'Sutton et al., 1999'},
+{l:'A',n:'Actor-Critic',e:'Actor-Critic',df:'策略网络+值函数网络协同训练的框架',m:'选手+教练组的配合训练体系',dy:'Day 16',pp:'Sutton et al., 1999'},
+{l:'S',n:'随机策略',e:'Stochastic Policy',df:'输出动作的概率分布而非确定性动作',m:'选手的操作带有创意性变化不完全可预测',dy:'Day 16',pp:'Sutton et al., 1999'},
+{l:'P',n:'PPO',e:'Proximal Policy Optimization',df:'通过裁剪策略比率限制更新幅度的策略优化算法',m:'限制选手每次训练后打法变化不超过10%的规则',dy:'Day 16',pp:'Schulman et al., 2017'},
+{l:'C',n:'裁剪目标函数',e:'Clipped Objective',df:'将新旧策略概率比率限制在安全范围内',m:'训练强度的安全阀门——变化太大自动踩刹车',dy:'Day 16',pp:'Schulman et al., 2017'},
+{l:'X',n:'信赖域',e:'Trust Region',df:'限制策略更新不超出安全范围的优化约束',m:'选手的舒适区——每次只往外扩展一小步',dy:'Day 16',pp:'Schulman et al., 2017'},
+{l:'M',n:'蒙特卡洛树搜索',e:'MCTS',df:'通过随机模拟评估决策树中各分支价值的搜索算法',m:'选手脑内快速模拟如果这样走后面可能怎样',dy:'Day 16',pp:'Silver et al., 2016'},
+{l:'Z',n:'自我对弈',e:'Self-Play',df:'智能体与自身历史版本对弈来不断进化',m:'选手和上个月的自己反复比赛来进步',dy:'Day 16',pp:'Silver et al., 2016'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
@@ -1159,7 +1224,10 @@ var Q=[
 {q:'SAM 的"可提示分割"和 GPT 的"可提示生成"有什么内在联系？',a:'<p>两者体现同一范式转移：<strong>从"任务特定模型"到"通用基础模型+提示"</strong>。GPT通过不同文本prompt完成所有NLP任务；SAM通过不同分割prompt完成所有分割任务；CLIP通过不同文本描述完成各种视觉任务。内在联系：<strong>当模型足够大、数据足够多时，模型学到的是"理解世界"的通用能力</strong>。用户只需通过prompt"指方向"。这预示着每个领域都将出现自己的"基础模型"：语言有GPT，分割有SAM，视觉-语言有CLIP，最终融合为真正的通用智能体。</p>'},
 {q:'从传统ASR到Whisper，语音识别经历了怎样的范式转变？',a:'<p>三阶段演进：<strong>传统流水线（~2015）</strong>——MFCC特征→GMM-HMM声学模型→语言模型→Viterbi解码，每环节需专家手工设计。<strong>端到端深度学习（2016-2022）</strong>——Deep Speech用RNN+CTC，LAS用注意力机制，一个网络替代整条流水线。<strong>基础模型时代（2023~）</strong>——Whisper用68万小时弱监督数据+标准Transformer暴力求解，99种语言零样本达人类水平。核心哲学与GPT、CLIP一致：<strong>简单架构+海量数据=超越精巧工程</strong>。</p>'},
 {q:'为什么VALL-E被称为TTS的"GPT-3时刻"？3秒声音克隆如何实现？',a:'<p>三个平行关系：GPT-3预测下一个文字token→VALL-E预测下一个音频token；GPT-3涌现上下文学习→VALL-E涌现声音克隆；GPT-3用4500亿token训练→VALL-E用60000小时训练。技术核心：用EnCodec将音频压缩为离散token，然后TTS就是"给定文字token+3秒音频prompt，自回归生成后续音频token"。3秒够用是因为模型在数万说话人上学会了声音空间结构——3秒足以定位到正确的音色坐标。</p>'},
-{q:'语音AI面临哪些独特的技术挑战？与NLP有什么根本区别？',a:'<p>三个根本性差异：<strong>1)信号连续且冗余</strong>——16000采样点/秒，大量静音和冗余，需Mel频谱图降维或编解码器离散化。<strong>2)时间对齐困难</strong>——"你好"可持续0.5秒或2秒，每字时长不固定；解决方案是CTC和注意力机制。<strong>3)说话人变异性</strong>——同一句话不同人说声学特征差异巨大；解决方案是大规模多说话人训练。这些挑战使语音AI整体滞后NLP约3-5年，但Whisper和VALL-E证明Scaling同样适用于语音。</p>'}
+{q:'语音AI面临哪些独特的技术挑战？与NLP有什么根本区别？',a:'<p>三个根本性差异：<strong>1)信号连续且冗余</strong>——16000采样点/秒，大量静音和冗余，需Mel频谱图降维或编解码器离散化。<strong>2)时间对齐困难</strong>——"你好"可持续0.5秒或2秒，每字时长不固定；解决方案是CTC和注意力机制。<strong>3)说话人变异性</strong>——同一句话不同人说声学特征差异巨大；解决方案是大规模多说话人训练。这些挑战使语音AI整体滞后NLP约3-5年，但Whisper和VALL-E证明Scaling同样适用于语音。</p>'},
+{q:'强化学习和监督学习到底有什么本质区别？为什么说RL更接近人类学习？',a:'<p>核心区别在于<strong>反馈信号的性质</strong>。监督学习的反馈是"标准答案"——每个输入对应正确输出，模型只需模仿。强化学习的反馈是"奖惩信号"——你不知道最优答案是什么，只知道这次做得好不好。RL更接近人类学习的三个原因：<strong>1)延迟奖励</strong>——人生决策的后果往往不是即时的，RL也处理这种"信用分配"问题；<strong>2)探索-利用权衡</strong>——人类在"做熟悉的事"和"尝试新事物"之间平衡；<strong>3)环境交互</strong>——人类通过与世界交互来学习，而非被动接收标注数据。</p>'},
+{q:'PPO为什么成了ChatGPT/RLHF的首选算法？相比其他RL算法有什么独特优势？',a:'<p>四个核心原因：<strong>1)稳定性</strong>——裁剪机制天然限制每次更新幅度，防止语言模型"灾难性遗忘"。<strong>2)简洁性</strong>——只用一阶梯度和Adam优化器，与预训练用完全相同的基础设施。<strong>3)样本效率</strong>——允许对同一批数据做多个epoch更新，在RLHF中很重要（奖励模型打分昂贵）。<strong>4)鲁棒性</strong>——对超参数不敏感，ε取0.1还是0.2差别不大，大规模训练中省心。PPO = "足够好+足够简单+足够鲁棒"。</p>'},
+{q:'AlphaGo Zero证明AI不需要人类知识就能超越人类，这对大模型研究有什么启示？',a:'<p>三层启示：<strong>1)自我改进的可行性</strong>——自我对弈→超越人类的路径是可行的，大模型能否通过自我生成→自我评判→自我改进？Constitutional AI正在探索。<strong>2)人类数据的天花板效应</strong>——AlphaGo Zero比用了人类棋谱的AlphaGo更强，暗示人类数据引入了"偏见天花板"。<strong>3)简洁性的力量</strong>——AlphaGo Zero架构更简洁却更强，呼应了GPT系列"简单自回归+暴力规模化"的成功哲学。</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -1307,7 +1375,20 @@ var GN=[
 {id:'TACN',lb:'🎵 Tacotron 2',g:'arch',df:'Seq2Seq+WaveNet神经TTS',m:'天才配音演员'},
 {id:'VOCN',lb:'🎛 声码器',g:'tech',df:'从声学特征生成音频波形',m:'母带工程师'},
 {id:'VLEN',lb:'🧬 VALL-E',g:'arch',df:'语言建模式TTS 3秒声音克隆',m:'超级声音克隆师'},
-{id:'NACDN',lb:'🔡 音频编解码器',g:'tech',df:'将音频压缩为离散token',m:'声音的速记符号'}
+{id:'NACDN',lb:'🔡 音频编解码器',g:'tech',df:'将音频压缩为离散token',m:'声音的速记符号'},
+{id:'RLN',lb:'🎮 强化学习',g:'top',df:'通过试错和奖励信号学习决策',m:'培养电竞冠军的训练体系'},
+{id:'MDPN',lb:'📐 MDP',g:'tech',df:'马尔可夫决策过程 RL数学框架',m:'游戏规则书'},
+{id:'QLN',lb:'📊 Q-Learning',g:'met',df:'基于值函数的经典RL算法',m:'逐步建立操作价值表'},
+{id:'DQNN',lb:'🧠 DQN',g:'arch',df:'深度网络+Q-Learning',m:'深度直觉代替查表'},
+{id:'ERPN',lb:'📼 经验回放',g:'tech',df:'存储历史经验随机采样训练',m:'回看历史比赛录像'},
+{id:'TNETN',lb:'🎯 目标网络',g:'tech',df:'冻结旧网络计算训练目标',m:'教练每月更新评价标准'},
+{id:'PGN',lb:'📈 策略梯度',g:'met',df:'直接对策略参数求梯度优化奖励',m:'直接优化打法风格'},
+{id:'ACN',lb:'🎭 Actor-Critic',g:'arch',df:'策略网络+值函数网络协同',m:'选手+教练组配合'},
+{id:'PPON',lb:'⚡ PPO',g:'arch',df:'裁剪策略优化 最广泛使用的RL算法',m:'限制每次调整幅度的规则'},
+{id:'MCTSN',lb:'🌳 MCTS',g:'met',df:'蒙特卡洛树搜索',m:'脑内模拟多种走法'},
+{id:'ALGN',lb:'🏆 AlphaGo',g:'app',df:'深度RL围棋系统击败人类',m:'AI电竞冠军'},
+{id:'SPLN',lb:'🔄 自我对弈',g:'tech',df:'智能体与自身历史版本对弈进化',m:'和过去的自己反复比赛'},
+{id:'TABLN',lb:'📝 Tabula Rasa',g:'aux',df:'零知识学习不使用人类先验',m:'从零开始自我摸索'}
 ];
 var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
 {s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'},
@@ -1322,7 +1403,8 @@ var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',
 {s:'BT',t:'BERTN'},{s:'MLM',t:'BERTN'},{s:'BERTN',t:'NERN'},{s:'BERTN',t:'SENTN'},{s:'BERTN',t:'SRLN'},{s:'TF',t:'S2SN'},{s:'S2SN',t:'BATN'},{s:'BATN',t:'ATN'},{s:'S2SN',t:'PTRN'},{s:'PTRN',t:'ABSN'},{s:'S2SN',t:'DLGN'},{s:'DLGN',t:'IGPT'},
 {s:'CN',t:'RCNN'},{s:'RCNN',t:'FRCNN'},{s:'FRCNN',t:'RPNN'},{s:'RPNN',t:'ANCR'},{s:'FRCNN',t:'FCNN'},{s:'FCNN',t:'SEMSEG'},{s:'TF',t:'VITN'},{s:'VITN',t:'PATCH'},{s:'CN',t:'IBIAS'},{s:'VITN',t:'IBIAS'},{s:'CN',t:'YOLON'},{s:'YOLON',t:'RCNN'},{s:'VITN',t:'MMD'},
 {s:'VITN',t:'CLIPN'},{s:'CLIPN',t:'CTRLN'},{s:'CLIPN',t:'VLAL'},{s:'CLIPN',t:'VLMN'},{s:'CLIPN',t:'FLAM'},{s:'FLAM',t:'XATN'},{s:'FLAM',t:'VLMN'},{s:'LM',t:'FLAM'},{s:'CLIPN',t:'LLAVAN'},{s:'LM',t:'LLAVAN'},{s:'LLAVAN',t:'VITN2'},{s:'LLAVAN',t:'PROJN'},{s:'LLAVAN',t:'VLMN'},{s:'GPT4M',t:'GPT4VN'},{s:'GPT4VN',t:'MMD'},{s:'GPT4VN',t:'VLMN'},{s:'CLIPN',t:'SIGLN'},{s:'SIGLN',t:'CTRLN'},{s:'SIGLN',t:'VLAL'},{s:'VITN2',t:'SFTN'},{s:'VLAL',t:'T2IN'},
-{s:'DL',t:'ASRN'},{s:'DL',t:'TTSN'},{s:'RN',t:'DSPN'},{s:'CTCN',t:'DSPN'},{s:'DSPN',t:'ASRN'},{s:'ATN',t:'LASN'},{s:'LASN',t:'ASRN'},{s:'TF',t:'WSPN'},{s:'WSPN',t:'ASRN'},{s:'LASN',t:'WSPN'},{s:'MELN',t:'WSPN'},{s:'MELN',t:'TACN'},{s:'S2SN',t:'TACN'},{s:'WNETN',t:'VOCN'},{s:'VOCN',t:'TACN'},{s:'TACN',t:'TTSN'},{s:'AR2',t:'VLEN'},{s:'NACDN',t:'VLEN'},{s:'VLEN',t:'TTSN'},{s:'ICL2',t:'VLEN'}];
+{s:'DL',t:'ASRN'},{s:'DL',t:'TTSN'},{s:'RN',t:'DSPN'},{s:'CTCN',t:'DSPN'},{s:'DSPN',t:'ASRN'},{s:'ATN',t:'LASN'},{s:'LASN',t:'ASRN'},{s:'TF',t:'WSPN'},{s:'WSPN',t:'ASRN'},{s:'LASN',t:'WSPN'},{s:'MELN',t:'WSPN'},{s:'MELN',t:'TACN'},{s:'S2SN',t:'TACN'},{s:'WNETN',t:'VOCN'},{s:'VOCN',t:'TACN'},{s:'TACN',t:'TTSN'},{s:'AR2',t:'VLEN'},{s:'NACDN',t:'VLEN'},{s:'VLEN',t:'TTSN'},{s:'ICL2',t:'VLEN'},
+{s:'ML',t:'RLN'},{s:'RLN',t:'MDPN'},{s:'RLN',t:'QLN'},{s:'QLN',t:'DQNN'},{s:'DQNN',t:'ERPN'},{s:'DQNN',t:'TNETN'},{s:'RLN',t:'PGN'},{s:'PGN',t:'ACN'},{s:'ACN',t:'PPON'},{s:'PPON',t:'RLHF2'},{s:'MCTSN',t:'ALGN'},{s:'DQNN',t:'ALGN'},{s:'ALGN',t:'SPLN'},{s:'SPLN',t:'TABLN'},{s:'DL',t:'DQNN'},{s:'CN',t:'DQNN'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
 var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9\u57fa\u7840','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
 

@@ -256,3 +256,15 @@ done
   5. *Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers (VALL-E)* (Wang et al., 2023) — ⭐⭐⭐⭐⭐ TTS范式革命
 - **新增概念**：端到端ASR, CTC损失, 声学模型, LAS架构, 弱监督ASR, Mel频谱图, 声码器, TTS端到端, 神经音频编解码器, 声音上下文学习, TTS即语言建模
 - **下次主题：** Day 16 — 强化学习：从 Q-Learning 到 PPO，AI 如何学会决策
+
+### Day 16 — 2026-05-08
+- **主题：** 强化学习：从 Q-Learning 到 PPO，AI 如何学会决策
+- **比喻主题：** 🎮 训练一位电竞冠军选手
+- **推荐论文：**
+  1. *Playing Atari with Deep Reinforcement Learning (DQN)* (Mnih et al., 2015) — ⭐⭐⭐⭐⭐ 深度强化学习奠基
+  2. *Policy Gradient Methods for RL with Function Approximation* (Sutton et al., 1999) — ⭐⭐⭐⭐⭐ 策略梯度理论奠基
+  3. *Proximal Policy Optimization Algorithms (PPO)* (Schulman et al., 2017) — ⭐⭐⭐⭐⭐ 最广泛使用的RL算法
+  4. *Mastering the Game of Go with Deep Neural Networks and Tree Search (AlphaGo)* (Silver et al., 2016) — ⭐⭐⭐⭐⭐ 深度RL杀手级应用
+  5. *Mastering the Game of Go without Human Knowledge (AlphaGo Zero)* (Silver et al., 2017) — ⭐⭐⭐⭐⭐ 零知识超越人类
+- **新增概念**：深度强化学习, Q值函数, 经验回放, 目标网络, 策略梯度, Actor-Critic, 随机策略, PPO, 裁剪目标函数, 信赖域, 蒙特卡洛树搜索, 自我对弈, Tabula Rasa
+- **下次主题：** Day 17 — 检索增强生成（RAG）：知识库 + 大模型的融合之道

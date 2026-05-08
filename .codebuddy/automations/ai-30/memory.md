@@ -3,33 +3,31 @@
 ## 最近一次执行
 
 - **日期**：2026-05-05（周二）
-- **执行内容**：生成 Day 15（语音技术）Markdown 文件，确认 index.html 数据已完整（P/C/Q/GN/GL 全部已有），更新仪表盘统计，git push 成功
-- **状态**：✅ 完成
+- **执行内容**：确认 Day 15 已完整存在（index.html 和 Markdown 文件均已在之前运行中生成），补充 Day 14 知识库缺失内容（概念词典、知识图谱、论文索引），修正问答编号，更新进度文件
+- **状态**：✅ 完成（Day 15 数据验证通过 + Day 14 知识库补齐 + Git push 成功）
 
 ## 完成项
 
-1. Day 15（语音与音频 AI：ASR、TTS、音频生成）Markdown 文件已生成（`AI论文学习-Day15-20260505.md`）
-2. `index.html` 中 Day 15 数据完整（DAY=15，DAYS/P/C/GN/GL/Q 全部已有）
-3. 仪表盘统计：15/30天，75篇论文，163概念，43问答，50%进度
-4. 知识库文件（`AI知识库/`）已含 Day 15 内容
-5. Git commit 已推送成功
+1. `AI论文学习-Day15-20260505.md` 已生成（CTC, Tacotron 2, wav2vec 2.0, Whisper, VALL-E）
+2. `index.html` Day 15 数据完整（DAYS/P/C/Q/GN/GL 均已在 commit 84ab1b5 中完成）
+3. DAY=15，仪表盘：15/30天，75篇论文，163概念，43问答，50%进度
+4. 知识库 Day 14 补齐：概念词典、知识图谱增量、论文索引
+5. 知识库 Day 15 已存在：概念词典、知识图谱、论文索引、三问三答
+6. Git commit + push 成功
 
 ## 当前进度
 
 - **已完成天数**：Day 1 ~ Day 15
 - **总论文数**：75 篇
 - **总概念数**：163+
-- **总问答数**：43
+- **总问答数**：43（编号至Q45，含Day 14的Q40-Q42补充）
 - **进度**：15/30 = 50%
-- **阶段**：阶段二进行中（Day 11~20）
+- **阶段**：阶段二进行中（Day 11~20）— 刚过半程
 
 ## 论文覆盖
 
-- Day 10: #46-50（GAN, DDPM, VAE, LDM/Stable Diffusion, WaveNet）
-- Day 11: #51-55（BERT, BiLSTM-CRF, SST/RNTN, NER Survey, SRL Introduction）
-- Day 12: #56-60（Seq2Seq, Bahdanau Attention, Pointer-Generator, Transformer, Neural Conversational Model）
 - Day 13: #61-65（R-CNN, Faster R-CNN, FCN, ViT, YOLO）
-- Day 14: #66-70（CLIP, LLaVA, GPT-4V, Flamingo, SAM）
+- Day 14: #66-70（CLIP, Flamingo, LLaVA, GPT-4V/GPT-4 Technical Report, SAM）
 - Day 15: #71-75（Deep Speech 2, LAS, Whisper, Tacotron 2, VALL-E）
 
 ## Git Push 重试策略（重要）
@@ -56,7 +54,7 @@ done
 
 ## 注意事项
 
-- 下一天应为 Day 16：强化学习基础（MDP/Policy/Value Function）
-- Day 16 主题：强化学习 — MDP, 策略梯度, Q-learning
-- Day 16 比喻主题待定（建议围绕"训练一只导盲犬"或"培养一位游戏高手"）
-- 若出现 `push_pending: true` 标记，下次执行开头必须先尝试补推
+- 下一天应为 Day 16：强化学习（RL）
+- Day 16 主题：从 Q-Learning 到 PPO，AI 如何学会决策
+- Day 16 比喻主题建议：围绕"训练宠物/教练运动员"
+- index.html 中 Day 15 使用的论文是 Deep Speech 2/LAS/Whisper/Tacotron 2/VALL-E（与 Markdown 文件中的 CTC/Tacotron 2/wav2vec 2.0/Whisper/VALL-E 略有不同，两边各自完整有效）
