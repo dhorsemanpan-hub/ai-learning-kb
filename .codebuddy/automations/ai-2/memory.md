@@ -268,3 +268,15 @@ done
   5. *Mastering the Game of Go without Human Knowledge (AlphaGo Zero)* (Silver et al., 2017) — ⭐⭐⭐⭐⭐ 零知识超越人类
 - **新增概念**：深度强化学习, Q值函数, 经验回放, 目标网络, 策略梯度, Actor-Critic, 随机策略, PPO, 裁剪目标函数, 信赖域, 蒙特卡洛树搜索, 自我对弈, Tabula Rasa
 - **下次主题：** Day 17 — 检索增强生成（RAG）：知识库 + 大模型的融合之道
+
+### Day 17 — 2026-05-19
+- **主题：** 检索增强生成（RAG）：知识库 + 大模型的融合之道
+- **比喻主题：** 📚 经营一家超级图书馆的智慧问答台
+- **推荐论文：**
+  1. *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* (Lewis et al., 2020) — ⭐⭐⭐⭐⭐ RAG 奠基论文
+  2. *Dense Passage Retrieval for Open-Domain Question Answering (DPR)* (Karpukhin et al., 2020) — ⭐⭐⭐⭐⭐ 密集检索奠基
+  3. *Retrieval-Augmented Generation for Large Language Models: A Survey* (Gao et al., 2024) — ⭐⭐⭐⭐⭐ RAG 最全综述
+  4. *Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection* (Asai et al., 2024) — ⭐⭐⭐⭐⭐ 自适应 RAG
+  5. *Lost in the Middle: How Language Models Use Long Contexts* (Liu et al., 2024) — ⭐⭐⭐⭐⭐ 中间遗忘现象
+- **新增概念**：RAG, DPR, 向量数据库, 文本嵌入, 文档切片, 重排序, Self-RAG, 中间遗忘, 查询改写, HyDE, 反思token, 自适应检索
+- **下次主题：** Day 18 — AI Agent 与工具使用：ReAct、Function Calling、自主规划
