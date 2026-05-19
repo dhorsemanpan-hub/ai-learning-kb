@@ -2,33 +2,31 @@
 
 ## 最近一次执行
 
-- **日期**：2026-05-05（周二）
-- **执行内容**：确认 Day 15 已完整存在（index.html 和 Markdown 文件均已在之前运行中生成），补充 Day 14 知识库缺失内容（概念词典、知识图谱、论文索引），修正问答编号，更新进度文件
-- **状态**：✅ 完成（Day 15 数据验证通过 + Day 14 知识库补齐 + Git push 成功）
+- **日期**：2026-05-19（周一）
+- **执行内容**：检测到 Day 17 已完整存在（Markdown 文件 + index.html 数据 + 知识库 + Git push 均已完成），跳过生成
+- **状态**：✅ 无需操作（Day 17 已于本次调度前完成）
 
 ## 完成项
 
-1. `AI论文学习-Day15-20260505.md` 已生成（CTC, Tacotron 2, wav2vec 2.0, Whisper, VALL-E）
-2. `index.html` Day 15 数据完整（DAYS/P/C/Q/GN/GL 均已在 commit 84ab1b5 中完成）
-3. DAY=15，仪表盘：15/30天，75篇论文，163概念，43问答，50%进度
-4. 知识库 Day 14 补齐：概念词典、知识图谱增量、论文索引
-5. 知识库 Day 15 已存在：概念词典、知识图谱、论文索引、三问三答
-6. Git commit + push 成功
+1. `AI论文学习-Day17-20260519.md` 已存在（RAG 原论文、DPR、RAG Survey、Self-RAG、Lost in the Middle）
+2. `index.html` DAY=17，DAYS/P/C/Q/GN/GL 均完整
+3. 仪表盘：17/30天，85篇论文，概念175+，问答数据完整，约57%进度
+4. 知识库 Day 17 已存在：概念词典、知识图谱、论文索引、三问三答
+5. Git commit `1b81596` 已推送成功
 
 ## 当前进度
 
-- **已完成天数**：Day 1 ~ Day 15
-- **总论文数**：75 篇
-- **总概念数**：163+
-- **总问答数**：43（编号至Q45，含Day 14的Q40-Q42补充）
-- **进度**：15/30 = 50%
-- **阶段**：阶段二进行中（Day 11~20）— 刚过半程
+- **已完成天数**：Day 1 ~ Day 17
+- **总论文数**：85 篇
+- **总概念数**：175+
+- **进度**：17/30 ≈ 57%
+- **阶段**：阶段二进行中（Day 11~20）
 
 ## 论文覆盖
 
-- Day 13: #61-65（R-CNN, Faster R-CNN, FCN, ViT, YOLO）
-- Day 14: #66-70（CLIP, Flamingo, LLaVA, GPT-4V/GPT-4 Technical Report, SAM）
 - Day 15: #71-75（Deep Speech 2, LAS, Whisper, Tacotron 2, VALL-E）
+- Day 16: #76-80（DQN, Policy Gradient, PPO, AlphaGo, AlphaGo Zero）
+- Day 17: #81-85（RAG, DPR, RAG Survey, Self-RAG, Lost in the Middle）
 
 ## Git Push 重试策略（重要）
 
@@ -54,7 +52,7 @@ done
 
 ## 注意事项
 
-- 下一天应为 Day 16：强化学习（RL）
-- Day 16 主题：从 Q-Learning 到 PPO，AI 如何学会决策
-- Day 16 比喻主题建议：围绕"训练宠物/教练运动员"
-- index.html 中 Day 15 使用的论文是 Deep Speech 2/LAS/Whisper/Tacotron 2/VALL-E（与 Markdown 文件中的 CTC/Tacotron 2/wav2vec 2.0/Whisper/VALL-E 略有不同，两边各自完整有效）
+- 下一天应为 Day 18：Agent（AI 智能体）
+- Day 18 主题：从 ReAct 到 AutoGPT，AI 如何自主规划与行动
+- Day 18 比喻主题建议：围绕"训练一位全能管家/特工"
+- index.html 中 Day 17 主题为 RAG（检索增强生成）
