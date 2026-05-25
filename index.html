@@ -109,14 +109,14 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <section id="s-dash" class="sec on">
 <div class="sh"><h2>&#128202; 学习仪表盘</h2><div class="sd">AI 大模型 30 天学习计划 · 实时进度追踪</div></div>
 <div class="sg">
-<div class="sc"><div class="si">&#128197;</div><div class="sv">18<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
-<div class="sc"><div class="si">&#128196;</div><div class="sv">90</div><div class="sl">已读论文</div></div>
-<div class="sc"><div class="si">&#129513;</div><div class="sv">187</div><div class="sl">掌握概念</div></div>
-<div class="sc"><div class="si">&#10067;</div><div class="sv">49</div><div class="sl">问答积累</div></div>
+<div class="sc"><div class="si">&#128197;</div><div class="sv">19<span style="font-size:18px;opacity:.5">/30</span></div><div class="sl">学习天数</div></div>
+<div class="sc"><div class="si">&#128196;</div><div class="sv">95</div><div class="sl">已读论文</div></div>
+<div class="sc"><div class="si">&#129513;</div><div class="sv">199</div><div class="sl">掌握概念</div></div>
+<div class="sc"><div class="si">&#10067;</div><div class="sv">52</div><div class="sl">问答积累</div></div>
 </div>
 <div class="ps">
-<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">60%</span></div>
-<div class="pb"><div class="pf" style="width:60%"></div></div>
+<div class="pt"><span>总体进度</span><span style="color:var(--cy);font-weight:700">63%</span></div>
+<div class="pb"><div class="pf" style="width:63%"></div></div>
 <div class="ptl">
 <div class="pc"><div class="ptag">&#9679; 已完成</div><div class="pn">阶段一：认知构建</div><div class="pdsc">Day 1~10</div></div>
 <div class="pc cur"><div class="ptag">&#9679; 当前阶段</div><div class="pn">阶段二：领域深潜</div><div class="pdsc">Day 11~20</div></div>
@@ -125,7 +125,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="dgl">&#128197; 30天学习日历</div><div class="dg" id="dg"></div>
 </div></section>
 <section id="s-papers" class="sec">
-<div class="sh"><h2>&#128214; Day <span id="pdaynum">18</span> · 今日论文</h2><div class="sd" id="pdaydesc">AI Agent（智能体）：从 ReAct 到 AutoGPT，AI 如何自主规划与行动 · 比喻主题：🕵️ 培训一位全能特工</div></div>
+<div class="sh"><h2>&#128214; Day <span id="pdaynum">19</span> · 今日论文</h2><div class="sd" id="pdaydesc">知识蒸馏与模型压缩：让大模型变小变快 · 比喻主题：🏺 经营一家高端餐厅的中央厨房</div></div>
 <div class="fbs" id="dayfbs" style="margin-bottom:20px"></div>
 <div class="pcards" id="pcards"></div>
 <div class="sh" style="margin-top:48px"><h2>&#128506; 推荐阅读路径</h2><div class="sd">总计约 2.5 小时</div></div>
@@ -146,7 +146,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="sbar"><input type="text" class="sinp" id="csrch" placeholder="&#128269; 搜索概念名称或定义..."></div>
 <div class="fbs" id="fbs"></div><div class="cgrid" id="cgrid"></div></section>
 <section id="s-qa" class="sec">
-<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~18 · 全部问答</div></div>
+<div class="sh"><h2>&#10067; 三问三答</h2><div class="sd">Day 1~19 · 全部问答</div></div>
 <div class="qlist" id="qlist"></div></section>
 <section id="s-idx" class="sec">
 <div class="sh"><h2>&#128203; 论文索引</h2><div class="sd">点击表头排序</div></div>
@@ -162,7 +162,7 @@ html{scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,sy
 <div class="overlay" id="ov"><div class="modal" id="mdl"></div></div>
 <script>
 // ====== DATA ======
-var DAY=18;
+var DAY=19;
 var DAYS=[
 {day:1,theme:'AI 全局观：什么是 AI、ML、DL，它们的关系与边界',met:'\ud83c\udfd7 建造摩天大楼'},
 {day:2,theme:'神经网络基础：感知机、激活函数、前向传播、反向传播',met:'\ud83c\udfed 运营一座智能工厂'},
@@ -181,7 +181,8 @@ var DAYS=[
 {day:15,theme:'语音与音频 AI：ASR、TTS、音频生成',met:'🎙 经营一家顶级录音棚'},
 {day:16,theme:'强化学习：从 Q-Learning 到 PPO，AI 如何学会决策',met:'🎮 训练一位电竞冠军选手'},
 {day:17,theme:'检索增强生成（RAG）：知识库 + 大模型的融合之道',met:'📚 经营一家超级图书馆的智慧问答台'},
-{day:18,theme:'AI Agent（智能体）：从 ReAct 到 AutoGPT，AI 如何自主规划与行动',met:'🕵️ 培训一位全能特工'}
+{day:18,theme:'AI Agent（智能体）：从 ReAct 到 AutoGPT，AI 如何自主规划与行动',met:'🕵️ 培训一位全能特工'},
+{day:19,theme:'知识蒸馏与模型压缩：让大模型变小变快',met:'🏺 经营一家高端餐厅的中央厨房'}
 ];
 var P=[
 {id:1,day:1,t:'Computing Machinery and Intelligence',a:'Alan M. Turing',s:'Mind, Vol. 59, No. 236',y:1950,r:5,u:'https://doi.org/10.1093/mind/LIX.236.433',
@@ -1086,7 +1087,56 @@ contribs:['提出"大脑-感知-行动"三层统一架构框架，为 LLM Agent 
 why:'被引 2800+ 次，LLM Agent 领域最全面最高引综述。为快速爆发的 Agent 研究提供结构化认知框架，所有开发 Agent 系统的团队几乎都参考这篇综述的分类框架。',
 c:[{n:'Agent 架构',d:'大脑-感知-行动三层统一框架',m:'特工的大脑+五感+手脚'},
 {n:'规划分解',d:'将复杂目标拆分为可执行的子任务序列',m:'特工把任务分解为侦查→渗透→执行→撤离'}],
-rt:'30 分钟',rr:'建立 Agent 完整技术全景认知'}
+rt:'30 分钟',rr:'建立 Agent 完整技术全景认知'},
+{id:91,day:19,t:'Distilling the Knowledge in a Neural Network',a:'Geoffrey Hinton, Oriol Vinyals, Jeff Dean',s:'NIPS Workshop 2015',y:2015,r:5,u:'https://arxiv.org/abs/1503.02531',
+d:'知识蒸馏的奠基论文。Hinton 提出用教师模型的"软标签"训练小模型，将大模型的"暗知识"传递给小模型。',
+abs:'提高几乎所有机器学习算法性能的一个非常简单的方法是在相同的数据上训练许多不同的模型，然后对它们的预测取平均。不幸的是，使用整个模型集成进行预测在部署到大量用户时过于计算密集，特别是当单个模型是大型神经网络时。Caruana及其合作者已经证明，可以将集成中的知识压缩到一个更容易部署的单一小模型中，我们使用一种不同的压缩技术来进一步发展这种方法。我们通过训练小模型来模仿大模型或模型集成产生的"软目标"（soft targets）来实现惊人的结果。当软目标具有高熵时，它们比硬目标提供更多的信息——每个训练样本的梯度方差更小，因此小模型可以用更少的数据和更高的学习率来训练。对于MNIST这样的任务，软目标携带的信息使得一个小模型可以在不使用的数字上获得良好的泛化能力。我们还引入了一种新的集成方法——由一个或多个完整模型和多个特定于不同类别混淆子集的专家模型组成——可以快速并行训练。',
+insights:'这篇论文的核心洞察看似简单但意义深远：大模型输出层的概率分布（软标签）比硬标签（one-hot）包含了丰富得多的信息。这些信息就是 Hinton 所说的"暗知识"（dark knowledge）。\n\n当一个已训练好的大模型对输入图片进行分类时，它不仅以高概率预测正确类别（如"猫"=0.9），还会在其他类别上给出有意义的概率——"豹"=0.05、"狗"=0.03。这些非零概率揭示了类别间的相似性结构，在硬标签中完全看不到。\n\n用中央厨房比喻：米其林大厨在教徒弟时，不会只说"好/不好"（硬标签），而是"90分，接近法式风格(0.05)，和意式手法也有关(0.03)"——这些细微判断包含大厨多年积累的隐性知识。\n\nHinton 引入"温度"概念：提高 softmax 温度参数 T，软化概率分布，放大小概率信息，传递更多暗知识。温度越高，分布越平滑，像大厨放慢动作让徒弟看清每个细节。\n\n用软标签训练的小模型在某些从未"见过"的类别上也能有良好表现，说明暗知识传递的是类别空间的结构化关系，而非样本记忆。这是知识蒸馏区别于简单模仿学习的核心价值。\n\n这篇论文开创了全新研究方向，后续 TinyBERT、DistilBERT、GPT-4o-mini 都建立在这一思想基础上。',
+contribs:['首次系统提出"知识蒸馏"概念，证明大模型软标签包含可迁移的"暗知识"——类别间相似性结构','引入温度参数 T 控制知识传递粒度，为蒸馏训练提供核心超参数设计','证明蒸馏小模型在未见类别上也能泛化，说明传递的是结构化知识而非样本记忆','提出专家混合蒸馏框架，为后续稀疏专家模型奠定思想基础'],
+why:'知识蒸馏领域开山之作，被引超16000次。提供了"将大模型能力转移到小模型"的理论框架，直接催生 DistilBERT、TinyBERT 等工作，是大模型民主化的核心技术。GPT-4o-mini 和 Claude Haiku 等轻量模型的成功都离不开蒸馏思想。',
+c:[{n:'知识蒸馏',d:'用大模型的软标签训练小模型',m:'大厨手把手带徒弟传授暗功'},
+{n:'软标签',d:'教师模型输出的完整概率分布',m:'大厨对每道菜的多维度评分'},
+{n:'温度参数',d:'控制概率分布平滑度的超参数',m:'大厨演示时放慢动作的程度'}],
+rt:'25 分钟',rr:'理解蒸馏的核心原理和暗知识概念'},
+{id:92,day:19,t:'DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter',a:'Victor Sanh, Lysandre Debut, Julien Chaumond, Thomas Wolf (Hugging Face)',s:'NeurIPS Workshop 2019',y:2019,r:5,u:'https://arxiv.org/abs/1910.01108',
+d:'Hugging Face 团队将知识蒸馏应用于 BERT，用 40% 更少的参数保留 97% 的性能，速度提升 60%，成为 NLP 模型压缩标杆。',
+abs:'随着大规模预训练模型在自然语言处理中变得越来越普遍，在边缘设备和受限计算环境下运行这些模型变得越来越具有挑战性。本文提出了一种利用知识蒸馏在预训练阶段压缩大型语言模型的方法。我们展示了如何有效地将 BERT 模型的大小减少 40%（同时保留 97% 的语言理解能力），并将其推理速度提升 60%。我们引入了三重损失函数，结合了语言建模损失、蒸馏损失和余弦嵌入损失。利用预训练阶段的大规模计算来获得高度压缩的通用语言模型，然后像 BERT 一样在下游任务上微调。我们验证了该方法在 GLUE 基准、文本分类、问答、NER 等多种 NLP 任务上的有效性。',
+insights:'DistilBERT 的价值不在于方法原创性（本质是 Hinton 蒸馏思想的工程化实践），而在于证明了重要的经济学命题：实际部署中，"足够好且便宜"往往比"最好但昂贵"更有价值。\n\n技术核心是三重损失函数设计：蒸馏损失（学生输出分布接近教师软标签）、MLM 损失（保证基础语言能力）、余弦嵌入损失（隐藏层表示方向一致）。三管齐下效果远超单一方式。\n\n用中央厨房比喻：大厨带徒弟同时用三种方式——让徒弟菜品味道接近大厨的（蒸馏损失），自己也要掌握食材基础（MLM 损失），烹饪思路和大厨一致（余弦嵌入损失）。\n\n架构设计的关键决策是"隔层取"——BERT-base 12层，DistilBERT 只保留6层。从教师第1、3、5、7、9、11层复制权重初始化学生，相当于"把大厨最核心秘方直接教给徒弟作为起点"。\n\n更深层启示是关于模型"冗余度"：BERT-base 1.1亿参数中相当一部分是冗余的。日常运营中60%的技能就足以覆盖97%的订单。这为后续压缩研究提供了信号：大模型并非所有参数都同等重要。',
+contribs:['首次在预训练阶段对BERT蒸馏，建立NLP模型压缩的工程范式和性能基准','设计三重损失函数（蒸馏+MLM+余弦嵌入），证明多角度知识传递更有效','量化"效率-性能"Pareto曲线——40%参数换取仅3%性能损失，定义实用部署标准','开源模型直接推动NLP在边缘设备和生产环境的大规模部署'],
+why:'模型民主化运动里程碑。在它之前部署BERT需要GPU服务器，在它之后手机和树莓派都能运行高质量NLP模型。被引超5000次，是 Hugging Face 生态中下载量最高的模型之一。',
+c:[{n:'DistilBERT',d:'蒸馏压缩后的轻量BERT',m:'大厨带出的快手徒弟'},
+{n:'三重损失',d:'同时优化蒸馏+MLM+嵌入对齐',m:'味道+基本功+思路三管齐下'}],
+rt:'20 分钟',rr:'看蒸馏如何落地到实际NLP模型'},
+{id:93,day:19,t:'LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale',a:'Tim Dettmers, Mike Lewis, Younes Belkada, Luke Zettlemoyer',s:'NeurIPS 2022',y:2022,r:5,u:'https://arxiv.org/abs/2208.07339',
+d:'首次实现大规模 Transformer 的 8-bit 量化推理而不损失性能，发现并解决了"涌现特征"问题，让 175B 模型在消费级 GPU 运行。',
+abs:'大型语言模型在少样本学习方面取得了变革性进展，但数十亿参数导致的内存需求使推理成本高昂且难以部署。我们开发了用于 Transformer 前馈和注意力投影层的 Int8 矩阵乘法过程，将推理内存减半同时保持完整精度性能。关键挑战：从 6.7B 参数开始，Transformer 出现"涌现特征"——个别隐藏维度激活值比其他维度大100倍以上，使标准量化失效。我们提出混合精度分解方案：含异常值的维度保持 FP16（约0.1%），其余 Int8。该方法使 OPT-175B 和 BLOOM-176B 实现零退化8-bit推理，是首个在如此规模实现无损量化的工作。',
+insights:'这篇论文解决了一个看似简单但非常棘手的工程问题：如何把大模型数值精度从16-bit降到8-bit，内存立刻减半，却不损失能力？\n\n核心发现是"涌现特征"——量化领域最重要的经验发现之一。超过6.7B参数后，极少数隐藏维度（约0.1%）的激活值异常巨大（比正常大100-1000倍），对预测至关重要。如果也量化到8-bit，精度损失会灾难性传播。\n\n用中央厨房比喻：大多数食材可用普通保鲜方式存储（8-bit），但极少数珍稀食材（松露、鱼子酱=涌现特征）必须精密温控保存（FP16）。混合精度方案就是"99.9%普通冰箱，0.1%专用恒温柜"。\n\n技术方案的优雅之处在于简洁：不需重新训练，不需校准数据集，推理时动态检测异常维度并分流处理。任何现有大模型都可直接使用，零成本获得50%内存节省。\n\n更深层科学贡献是对涌现特征现象的分析：这些异常值出现在特定维度位置，在不同输入上保持稳定。暗示大模型学到了"特权通道"——少数维度承载全局性重要信息。这不仅对量化有意义，还为理解大模型内部表示提供新视角。',
+contribs:['发现"涌现特征"现象——超6.7B参数后Transformer出现系统性异常值，是量化核心难题','提出混合精度分解方案，仅0.1%维度保持FP16其余Int8，实现零退化量化','首次在175B规模实现无损8-bit推理，让单张消费级GPU运行百亿参数模型','无需重训练或校准即可使用，为大模型普及化打开技术大门'],
+why:'大模型部署民主化的关键技术突破。直接催生bitsandbytes库，成为Hugging Face生态最广泛使用的量化方案，是LLaMA/Mistral等开源模型本地运行的基础设施。',
+c:[{n:'量化',d:'降低数值精度以减少内存和计算',m:'精密天平换成普通秤省空间'},
+{n:'涌现特征',d:'少数维度出现异常大的激活值',m:'极少数需特殊保存的珍稀食材'},
+{n:'混合精度',d:'不同部分用不同精度计算',m:'普通冰箱+顶级食材专用恒温柜'}],
+rt:'25 分钟',rr:'理解量化技术和涌现特征问题'},
+{id:94,day:19,t:'QLoRA: Efficient Finetuning of Quantized LLMs',a:'Tim Dettmers, Artidoro Pagnoni, Ari Holtzman, Luke Zettlemoyer',s:'NeurIPS 2023',y:2023,r:5,u:'https://arxiv.org/abs/2305.14314',
+d:'将 4-bit 量化与 LoRA 结合，让 65B 参数模型在单张 48GB GPU 上微调，三项技术创新使性能几乎无损。',
+abs:'我们提出 QLoRA，一种高效微调方法，将内存使用降至足以在单张48GB GPU上微调65B参数模型，同时保持完整16-bit微调性能。QLoRA通过冻结的4-bit量化预训练语言模型反向传播梯度到低秩适配器（LoRA）。我们最好的模型 Guanaco 在 Vicuna 基准达到 ChatGPT 99.3% 性能水平，仅需单GPU训练24小时。QLoRA引入多项创新：(a) 4-bit NormalFloat（NF4）——信息论最优数据类型；(b) 双重量化——对量化常数再量化减少内存；(c) 分页优化器——利用统一内存管理峰值。我们微调超过1000个模型，证明即使使用更小的高质量数据集也能达到最先进水平。',
+insights:'QLoRA 的革命性在于同时解决两个矛盾问题：极致内存效率（4-bit = 模型内存缩小4倍）和完整微调性能（与16-bit全参数微调相当）。此前人们认为量化必然损害梯度质量。\n\n三项创新的巧妙组合：NF4 数据类型利用权重接近正态分布的经验事实，分布中间区域分得更细（概率高），两端更粗（概率低），比均匀量化多保留约5%信息量。\n\n双重量化——量化参数本身也占内存，对量化参数再做一次量化，将每个参数元数据开销从0.5bits降到0.127bits。分页优化器将优化器状态放在CPU内存，需要时换入GPU，避免OOM。\n\n用中央厨房比喻：NF4是按食材使用频率设计存储空间——常用食材小格精细分类，罕用食材大箱粗放。双重量化是"连标签纸都要省"。分页优化器是"后厨满了临时把不常用工具放仓库"。\n\nQLoRA 最深远的影响：让消费级GPU（RTX 3090/4090）的个人开发者也能微调65B大模型。训练成本从数万美元降到不到100美元，直接推动了开源LLM社区的爆发。',
+contribs:['首次实现4-bit量化模型无损微调，打破"量化损害微调质量"的普遍认知','提出NF4数据类型——信息论最优正态分布量化方案，比均匀量化多保留5%信息','双重量化+分页优化器工程创新，进一步压缩内存至理论极限','让单张消费级GPU微调65B模型成为现实，推动开源LLM社区爆发'],
+why:'将大模型微调门槛从企业级GPU集群降到个人消费显卡，是AI民主化标志性技术。被引超3000次，2023年影响力最大的LLM论文之一，催生了Hugging Face PEFT库生态。',
+c:[{n:'QLoRA',d:'4-bit量化+LoRA低秩适配的高效微调',m:'缩微菜谱+极简工具做出大厨水平'},
+{n:'NF4',d:'针对正态分布的最优4-bit量化方案',m:'按使用频率优化存储空间分配'},
+{n:'LoRA',d:'低秩适配器——只训练少量新增参数',m:'只改调料配方不动核心食谱'}],
+rt:'30 分钟',rr:'掌握当前最实用的高效微调方法'},
+{id:95,day:19,t:'The Llama 3 Herd of Models',a:'Meta AI (Dubey et al.)',s:'arXiv 2024 (Meta Technical Report)',y:2024,r:5,u:'https://arxiv.org/abs/2407.21783',
+d:'Meta 开源 Llama 3 系列（8B/70B/405B），展示工业级知识蒸馏从 405B 压缩出高质量 8B/70B 小模型的完整实践。',
+abs:'现代人工智能系统由基础模型驱动。本文介绍 Llama 3 系列语言模型，支持多语言、代码生成、推理和工具使用。最大模型为 405B 参数密集 Transformer，128K token 上下文窗口。预训练使用超 15 万亿 token 多语言文本。后训练结合 SFT 和 RLHF。得益于规模化预训练数据和改进训练配方，Llama 3 405B 匹配甚至超越 GPT-4 级别性能。通过知识蒸馏，8B 和 70B 模型显著优于同等规模竞品。我们相信这些是同规模最好的开源模型。',
+insights:'Llama 3 技术报告展示了"工业级知识蒸馏"最新实践——如何从405B"超级大厨"蒸馏出8B和70B"精英连锁店厨师"。\n\n最核心洞察：验证了"大模型训练+蒸馏到小模型"优于"直接训练小模型"。直接训练8B的性能远不如从405B蒸馏到8B，即使后者训练成本更低。知识蒸馏不仅是"压缩技术"，更是"知识传递"机制。\n\n蒸馏策略上使用多阶段蒸馏：预训练阶段用教师logits（在线蒸馏），后训练阶段用教师生成的高质量合成数据。特别是"拒绝采样"——教师生成多个候选回答选最好的训练学生。"大厨做多版选最佳给徒弟临摹"。\n\n训练效率工程方面展示了16000张H100 GPU的4D并行：数据并行+张量并行+流水线并行+序列并行、混合精度BF16+FP8、优化通信调度。从1台到16000台的扩展涉及通信、负载均衡、容错等复杂问题。\n\n更深层启示关于"开源与闭源竞争"：405B达GPT-4级别，8B蒸馏版超越同规模所有竞品。证明"开放权重+蒸馏+社区微调"可持续产出高质量模型。',
+contribs:['工业级验证"先训大再蒸小"优于"直接训小"路线，8B蒸馏超越同规模所有竞品','展示多阶段蒸馏+拒绝采样完整工业实践，提供可复现训练配方','16000 GPU 4D并行训练工程实践——通信优化、容错恢复、混合精度系统化方案','开源405B打破"开源不如闭源"认知壁垒，加速AI民主化'],
+why:'截至2024年最强大的开源大模型，改变AI行业竞争格局。蒸馏方法论证明405B→8B（50:1压缩比）仍保留大部分核心能力，为所有构建高效小模型的团队提供工程参考。',
+c:[{n:'在线蒸馏',d:'训练时实时使用教师模型输出作为目标',m:'大厨在旁边一步步实时指导'},
+{n:'拒绝采样',d:'教师生成多个回答选最好的训练学生',m:'大厨做多版选最佳给徒弟临摹'},
+{n:'4D并行',d:'数据+张量+流水线+序列并行组合',m:'中央厨房的4维流水线管理'}],
+rt:'30 分钟',rr:'工业级蒸馏+压缩的完整实践'}
 ];
 var C=[
 {l:'A',n:'\u4eba\u5de5\u667a\u80fd',e:'AI',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd\u884c\u4e3a\u7684\u6280\u672f\u603b\u79f0',m:'\u201c\u5efa\u9020\u6469\u5929\u5927\u697c\u201d\u8fd9\u4e2a\u5b8f\u5927\u5de5\u7a0b\u9879\u76ee',dy:'Day 1',pp:'Turing, 1950'},
@@ -1303,7 +1353,18 @@ var C=[
 {l:'Z',n:'自动课程',e:'Automatic Curriculum',df:'Agent 自主生成递进式学习目标',m:'教官根据学员水平动态调整训练难度',dy:'Day 18',pp:'Wang et al., 2023'},
 {l:'D',n:'多Agent协作',e:'Multi-Agent Collaboration',df:'多个 Agent 组队分工完成复杂任务',m:'特工团队分工协作执行联合行动',dy:'Day 18',pp:'Park et al., 2023'},
 {l:'G',n:'规划分解',e:'Task Decomposition',df:'将复杂目标拆分为可执行的子任务序列',m:'特工把任务分解为侦查→渗透→执行→撤离',dy:'Day 18',pp:'Wang et al., 2024'},
-{l:'Y',n:'涌现社会行为',e:'Emergent Social Behavior',df:'多个简单 Agent 交互后产生的非预设复杂群体行为',m:'25个特工自发形成的情报网络和社会结构',dy:'Day 18',pp:'Park et al., 2023'}
+{l:'Y',n:'涌现社会行为',e:'Emergent Social Behavior',df:'多个简单 Agent 交互后产生的非预设复杂群体行为',m:'25个特工自发形成的情报网络和社会结构',dy:'Day 18',pp:'Park et al., 2023'},
+{l:'Z',n:'知识蒸馏',e:'Knowledge Distillation',df:'用大模型的软标签训练小模型传递暗知识',m:'大厨手把手带徒弟传授暗功',dy:'Day 19',pp:'Hinton et al., 2015'},
+{l:'R',n:'软标签',e:'Soft Targets',df:'教师模型输出的完整概率分布',m:'大厨对每道菜的多维度评分',dy:'Day 19',pp:'Hinton et al., 2015'},
+{l:'W',n:'温度参数',e:'Temperature',df:'控制软标签概率分布平滑度的超参数',m:'大厨演示时放慢动作的程度',dy:'Day 19',pp:'Hinton et al., 2015'},
+{l:'L',n:'量化',e:'Quantization',df:'降低数值精度以减少内存和计算开销',m:'精密天平换成普通秤省空间',dy:'Day 19',pp:'Dettmers et al., 2022'},
+{l:'Y',n:'涌现特征',e:'Outlier Features',df:'少数隐藏维度出现异常大的激活值',m:'极少数需特殊保存的珍稀食材',dy:'Day 19',pp:'Dettmers et al., 2022'},
+{l:'H',n:'混合精度',e:'Mixed Precision',df:'不同部分用不同数值精度计算',m:'普通冰箱+顶级食材专用恒温柜',dy:'Day 19',pp:'Dettmers et al., 2022'},
+{l:'D',n:'DistilBERT',e:'DistilBERT',df:'蒸馏压缩后的轻量BERT保留97%性能',m:'大厨带出的快手徒弟',dy:'Day 19',pp:'Sanh et al., 2019'},
+{l:'Q',n:'QLoRA',e:'QLoRA',df:'4-bit量化+LoRA低秩适配的高效微调方法',m:'缩微菜谱+极简工具做出大厨水平',dy:'Day 19',pp:'Dettmers et al., 2023'},
+{l:'N',n:'NF4',e:'4-bit NormalFloat',df:'针对正态分布权重的信息论最优4-bit量化',m:'按使用频率优化存储空间分配',dy:'Day 19',pp:'Dettmers et al., 2023'},
+{l:'L',n:'LoRA',e:'Low-Rank Adaptation',df:'低秩适配器——只训练少量新增参数实现高效微调',m:'只改调料配方不动核心食谱',dy:'Day 19',pp:'Hu et al., 2022'},
+{l:'J',n:'剪枝',e:'Pruning',df:'去掉不重要的权重连接减少模型冗余',m:'精简菜单去掉冷门菜品',dy:'Day 19',pp:'Meta AI, 2024'}
 ];
 var Q=[
 {q:'AI\u3001\u673a\u5668\u5b66\u4e60\u3001\u6df1\u5ea6\u5b66\u4e60\u5230\u5e95\u662f\u4ec0\u4e48\u5173\u7cfb\uff1f',a:'<p>\u5c42\u5c42\u5305\u542b\u7684\u5173\u7cfb\u3002<strong>AI \u2283 ML \u2283 DL</strong>\u3002AI \u662f\u6574\u4e2a\u201c\u667a\u6167\u57ce\u5e02\u5efa\u8bbe\u201d\u9879\u76ee\uff0cML \u662f\u6700\u6210\u529f\u7684\u201c\u5efa\u9020\u65b9\u6cd5\u8bba\u201d\uff0cDL \u662f ML \u4e2d\u6700\u5f3a\u5927\u7684\u201c\u7ed3\u6784\u5de5\u827a\u201d\u3002\u201c\u5927\u6a21\u578b\u201d\u5c5e\u4e8e DL \u7684\u5e94\u7528\u5206\u652f\u2014\u2014LLM\u3002</p>'},
@@ -1357,7 +1418,10 @@ var Q=[
 {q:'Self-RAG的"自适应检索"为什么比"每次都检索"效果更好？',a:'<p>三个原因：<strong>1)噪声干扰</strong>——不相关的检索结果会误导模型生成错误内容，比不检索还糟。<strong>2)效率</strong>——简单问题（如闲聊、数学计算）不需要外部知识，强行检索浪费时间和算力。<strong>3)自我审核</strong>——Self-RAG用反思token自动验证"我的回答有证据支持吗"，类似人类学者的fact-check习惯。7B的Self-RAG超越ChatGPT+RAG证明了：聪明地少检索 > 暴力多检索。</p>'},
 {q:'AI Agent 与普通 ChatGPT 对话的本质区别是什么？',a:'<p>核心区别在于<strong>主动性和自主性</strong>。ChatGPT是"你问我答"的被动模式——人类提问，AI回答，一轮结束。Agent是"给我目标，我自己搞定"的主动模式——分解任务、调用工具、观察结果、动态调整，整个流程由Agent自主决策。更深层的区别在于<strong>循环结构</strong>：ChatGPT是单轮映射（输入→输出），Agent是多轮循环（感知→思考→行动→观察→再思考……直到目标达成）。Agent能使用外部工具、从失败中学习、积累经验。</p>'},
 {q:'为什么大模型时代之前没有出现真正实用的 Agent？',a:'<p>LLM同时突破了三个关键瓶颈：<strong>1)通用推理能力</strong>——之前的Agent需人工编写推理规则，只能处理预定义场景；LLM具备通用常识推理。<strong>2)自然语言接口</strong>——之前需形式化的状态表示和动作空间定义，开发成本极高；LLM让Agent能用自然语言理解任务和调用工具。<strong>3)工具使用</strong>——之前与外部系统交互需专门适配；LLM通过Function Calling自动生成API调用。大模型不是加了一项能力，而是同时解决了Agent的"大脑"（推理）、"嘴巴"（交流）和"手"（工具使用）三个问题。</p>'},
-{q:'当前 AI Agent 最大的限制是什么？距离"完全自主"还有多远？',a:'<p>三大核心限制：<strong>错误累积</strong>——每步95%准确率，10步后只有60%。一步小错可能后续全部偏离。<strong>长期规划薄弱</strong>——擅长战术级操作但难以维持跨数十步的一致性目标。<strong>安全性边界模糊</strong>——自主Agent拥有工具权限，推理出错或被攻击可能造成不可逆后果。距离"完全自主"乐观估计还需3-5年突破性进展。当前务实模式是"人机协作"——Agent处理80%常规步骤，关键决策由人类审核。</p>'}
+{q:'当前 AI Agent 最大的限制是什么？距离"完全自主"还有多远？',a:'<p>三大核心限制：<strong>错误累积</strong>——每步95%准确率，10步后只有60%。一步小错可能后续全部偏离。<strong>长期规划薄弱</strong>——擅长战术级操作但难以维持跨数十步的一致性目标。<strong>安全性边界模糊</strong>——自主Agent拥有工具权限，推理出错或被攻击可能造成不可逆后果。距离"完全自主"乐观估计还需3-5年突破性进展。当前务实模式是"人机协作"——Agent处理80%常规步骤，关键决策由人类审核。</p>'},
+{q:'知识蒸馏和直接训练小模型有什么区别？为什么蒸馏出来的小模型更好？',a:'<p>核心原因是<strong>信息密度不同</strong>。直接训练用"硬标签"——每样本只知道正确答案。蒸馏用教师完整概率分布——"这是猫(0.9)，但也有点像豹(0.05)..."。后者每样本信息量是前者数十倍。用厨房比喻：直接训练是只看成品照片自学，蒸馏训练是大厨边做边讲"这道菜接近法式风格，用了类似意式手法..."。Llama 3证明：从405B蒸馏到8B > 直接训练8B，差距在需要推理和世界知识的任务上尤为明显。</p>'},
+{q:'量化从32-bit到4-bit为什么不会严重损害模型能力？',a:'<p>关于"信息冗余"的深刻问题。模型权重中有效信息远少于理论位宽能携带的信息。权重分布高度集中（近似正态），32-bit可表示40亿个值但实际值域很窄。NF4用16个离散级别覆盖权重分布最密集区域，实际信息损失远小于87.5%。用厨房比喻：高精度秤可分辨0.001克差异，但做菜时"大约5克"就完全够用。关键例外是"涌现特征"——少数维度需高精度，LLM.int8()的混合精度方案正为此设计。</p>'},
+{q:'模型压缩技术（蒸馏、量化、剪枝、LoRA）之间是什么关系？如何选择？',a:'<p>四大技术各有特点且可组合：<strong>蒸馏</strong>——大模型教小模型，压缩比5-50x，需重训练（DistilBERT, Llama-8B）。<strong>量化</strong>——降低精度，2-8x，不需重训练（LLM.int8, GPTQ）。<strong>剪枝</strong>——去掉不重要权重，2-10x，需重训练（SparseGPT）。<strong>LoRA</strong>——低秩适配，2-4x，微调即可。最佳实践是组合：先蒸馏得到小模型→再量化降精度→最后QLoRA做领域适配。如Llama3-8B（蒸馏）→4-bit量化→QLoRA微调=个人GPU可用的高质量定制模型。</p>'}
 ];
 var GN=[
 {id:'AI',lb:'\ud83e\udd16 \u4eba\u5de5\u667a\u80fd',g:'top',df:'\u8ba9\u673a\u5668\u6a21\u62df\u4eba\u7c7b\u667a\u80fd',m:'\u6574\u4e2a\u6469\u5929\u5927\u697c\u5de5\u7a0b'},
@@ -1538,7 +1602,19 @@ var GN=[
 {id:'ACURN',lb:'📈 自动课程',g:'met',df:'Agent自主生成递进学习目标',m:'动态调整训练难度'},
 {id:'MAGTN',lb:'👥 多Agent协作',g:'app',df:'多个Agent组队完成复杂任务',m:'特工团队联合行动'},
 {id:'TDECN',lb:'📋 规划分解',g:'met',df:'将复杂目标拆为子任务序列',m:'侦查→渗透→执行→撤离'},
-{id:'EMGSN',lb:'✨ 涌现社会行为',g:'app',df:'多Agent交互涌现的群体行为',m:'自发形成的情报网络'}
+{id:'EMGSN',lb:'✨ 涌现社会行为',g:'app',df:'多Agent交互涌现的群体行为',m:'自发形成的情报网络'},
+{id:'KDN',lb:'🏺 知识蒸馏',g:'tech',df:'用大模型软标签训练小模型',m:'大厨带徒弟传授暗功'},
+{id:'SOFTN2',lb:'📊 软标签',g:'tech',df:'教师模型输出的完整概率分布',m:'大厨对菜品多维评分'},
+{id:'TEMPN2',lb:'🌡 温度参数',g:'aux',df:'控制软标签平滑度',m:'大厨放慢动作的程度'},
+{id:'DBTN2',lb:'📦 DistilBERT',g:'arch',df:'蒸馏压缩的轻量BERT',m:'大厨带出的快手徒弟'},
+{id:'QUANTN2',lb:'🔢 量化',g:'tech',df:'降低数值精度减少内存',m:'精密天平换成普通秤'},
+{id:'INT8N2',lb:'8️⃣ LLM.int8()',g:'arch',df:'混合精度8-bit大模型推理',m:'普通冰箱+专用恒温柜'},
+{id:'OUTLN2',lb:'⚡ 涌现特征',g:'aux',df:'少数维度异常大的激活值',m:'需特殊保存的珍稀食材'},
+{id:'QLRAN2',lb:'🎯 QLoRA',g:'arch',df:'4-bit量化+LoRA高效微调',m:'缩微菜谱+极简工具'},
+{id:'NF4N2',lb:'📐 NF4',g:'tech',df:'正态分布最优4-bit量化',m:'按频率优化存储空间'},
+{id:'LORAN2',lb:'🔗 LoRA',g:'tech',df:'低秩适配器参数高效微调',m:'只改调料不动食谱'},
+{id:'PRUNN2',lb:'✂️ 剪枝',g:'tech',df:'去掉不重要权重减少冗余',m:'精简菜单去掉冷门菜'},
+{id:'LLAM3N2',lb:'🦙 Llama 3',g:'arch',df:'Meta开源系列405B/70B/8B',m:'连锁品牌中央厨房体系'}
 ];
 var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',t:'DL'},{s:'DL',t:'NN'},{s:'DL',t:'BP'},{s:'DL',t:'CN'},{s:'DL',t:'RN'},{s:'DL',t:'TF'},{s:'TF',t:'AT'},{s:'TF',t:'PA'},{s:'TF',t:'LM'},{s:'LM',t:'PT'},{s:'LM',t:'FT'},{s:'LM',t:'PR'},
 {s:'NN',t:'PC'},{s:'PC',t:'WT'},{s:'NN',t:'HL'},{s:'HL',t:'AF'},{s:'AF',t:'SM'},{s:'AF',t:'RL'},{s:'RL',t:'SA'},{s:'NN',t:'FP'},{s:'BP',t:'GR'},{s:'BP',t:'LF'},{s:'GR',t:'GV'},{s:'GR',t:'GE2'},{s:'GV',t:'WI'},{s:'AF',t:'UA'},
@@ -1556,9 +1632,10 @@ var GL=[{s:'AI',t:'TT'},{s:'AI',t:'ML'},{s:'ML',t:'OF'},{s:'ML',t:'GE'},{s:'ML',
 {s:'DL',t:'ASRN'},{s:'DL',t:'TTSN'},{s:'RN',t:'DSPN'},{s:'CTCN',t:'DSPN'},{s:'DSPN',t:'ASRN'},{s:'ATN',t:'LASN'},{s:'LASN',t:'ASRN'},{s:'TF',t:'WSPN'},{s:'WSPN',t:'ASRN'},{s:'LASN',t:'WSPN'},{s:'MELN',t:'WSPN'},{s:'MELN',t:'TACN'},{s:'S2SN',t:'TACN'},{s:'WNETN',t:'VOCN'},{s:'VOCN',t:'TACN'},{s:'TACN',t:'TTSN'},{s:'AR2',t:'VLEN'},{s:'NACDN',t:'VLEN'},{s:'VLEN',t:'TTSN'},{s:'ICL2',t:'VLEN'},
 {s:'ML',t:'RLN'},{s:'RLN',t:'MDPN'},{s:'RLN',t:'QLN'},{s:'QLN',t:'DQNN'},{s:'DQNN',t:'ERPN'},{s:'DQNN',t:'TNETN'},{s:'RLN',t:'PGN'},{s:'PGN',t:'ACN'},{s:'ACN',t:'PPON'},{s:'PPON',t:'RLHF2'},{s:'MCTSN',t:'ALGN'},{s:'DQNN',t:'ALGN'},{s:'ALGN',t:'SPLN'},{s:'SPLN',t:'TABLN'},{s:'DL',t:'DQNN'},{s:'CN',t:'DQNN'},
 {s:'LM',t:'RAGN'},{s:'RAGN',t:'DPRN'},{s:'RAGN',t:'VDBN'},{s:'RAGN',t:'CHKN'},{s:'RAGN',t:'RRKN'},{s:'DPRN',t:'EMBN'},{s:'EMBN',t:'VDBN'},{s:'BT',t:'DPRN'},{s:'RAGN',t:'SRAGN'},{s:'SRAGN',t:'RAGN'},{s:'RAGN',t:'QRWN'},{s:'QRWN',t:'HYDEN'},{s:'RAGN',t:'LIMN'},{s:'AT',t:'LIMN'},{s:'CTXW',t:'LIMN'},{s:'HAL',t:'RAGN'},
-{s:'LM',t:'AGTN'},{s:'AGTN',t:'REACTN'},{s:'AGTN',t:'TOOLN'},{s:'AGTN',t:'MSTRN'},{s:'AGTN',t:'REFLN'},{s:'AGTN',t:'SKILN'},{s:'AGTN',t:'ACURN'},{s:'AGTN',t:'TDECN'},{s:'AGTN',t:'MAGTN'},{s:'MAGTN',t:'EMGSN'},{s:'REACTN',t:'TOOLN'},{s:'REACTN',t:'COTN'},{s:'TOOLN',t:'RAGN'},{s:'MSTRN',t:'REFLN'},{s:'REFLN',t:'TDECN'},{s:'SKILN',t:'ACURN'},{s:'PPON',t:'AGTN'},{s:'RAGN',t:'AGTN'}];
+{s:'LM',t:'AGTN'},{s:'AGTN',t:'REACTN'},{s:'AGTN',t:'TOOLN'},{s:'AGTN',t:'MSTRN'},{s:'AGTN',t:'REFLN'},{s:'AGTN',t:'SKILN'},{s:'AGTN',t:'ACURN'},{s:'AGTN',t:'TDECN'},{s:'AGTN',t:'MAGTN'},{s:'MAGTN',t:'EMGSN'},{s:'REACTN',t:'TOOLN'},{s:'REACTN',t:'COTN'},{s:'TOOLN',t:'RAGN'},{s:'MSTRN',t:'REFLN'},{s:'REFLN',t:'TDECN'},{s:'SKILN',t:'ACURN'},{s:'PPON',t:'AGTN'},{s:'RAGN',t:'AGTN'},
+{s:'LM',t:'KDN'},{s:'KDN',t:'SOFTN2'},{s:'KDN',t:'TEMPN2'},{s:'KDN',t:'DBTN2'},{s:'BT',t:'DBTN2'},{s:'LM',t:'QUANTN2'},{s:'QUANTN2',t:'INT8N2'},{s:'QUANTN2',t:'NF4N2'},{s:'INT8N2',t:'OUTLN2'},{s:'NF4N2',t:'QLRAN2'},{s:'LORAN2',t:'QLRAN2'},{s:'FT',t:'LORAN2'},{s:'SFTN',t:'LORAN2'},{s:'LM',t:'PRUNN2'},{s:'KDN',t:'LLAM3N2'},{s:'LLAMA',t:'LLAM3N2'},{s:'QUANTN2',t:'LLAM3N2'},{s:'EMG',t:'OUTLN2'}];
 var GC={top:'#FF6B6B',met:'#4ECDC4',tech:'#45B7D1',arch:'#96CEB4',app:'#FFEAA7',aux:'#D3D3D3'};
-var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9\u57fa\u7840','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RLHF','Agent','RAG','\u84b8\u998f','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI'];
+var DT=['AI\u5168\u5c40\u89c2','\u795e\u7ecf\u7f51\u7edc','CNN/RNN','Transformer','\u9884\u8bad\u7ec3','GPT\u6f14\u8fdb','LLM\u5168\u8c8c','\u5fae\u8c03\u5bf9\u9f50','Prompt\u5de5\u7a0b','\u751f\u6210\u5f0fAI','\u81ea\u7136\u8bed\u8a00\u7406\u89e3','NLG','\u89c6\u89c9\u57fa\u7840','\u591a\u6a21\u6001','\u8bed\u97f3','\u5f3a\u5316\u5b66\u4e60','RAG','Agent','\u6a21\u578b\u538b\u7f29','Scaling','\u6d8c\u73b0','MoE','\u957f\u4e0a\u4e0b\u6587','\u5e7b\u89c9','\u5b89\u5168','\u5f00\u6e90','\u4e16\u754c\u6a21\u578b','\u5177\u8eab\u667a\u80fd','AGI','\u603b\u7ed3'];
 
 // ====== HELPERS ======
 function S(n){var o='';for(var i=0;i<n;i++)o+='\u2b50';return o}

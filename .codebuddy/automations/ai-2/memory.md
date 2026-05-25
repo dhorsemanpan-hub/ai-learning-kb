@@ -280,3 +280,27 @@ done
   5. *Lost in the Middle: How Language Models Use Long Contexts* (Liu et al., 2024) — ⭐⭐⭐⭐⭐ 中间遗忘现象
 - **新增概念**：RAG, DPR, 向量数据库, 文本嵌入, 文档切片, 重排序, Self-RAG, 中间遗忘, 查询改写, HyDE, 反思token, 自适应检索
 - **下次主题：** Day 18 — AI Agent 与工具使用：ReAct、Function Calling、自主规划
+
+### Day 18 — 2026-05-19
+- **主题：** AI Agent 与工具使用：ReAct、Function Calling、自主规划
+- **比喻主题：** 🕵️ 培训一位全能特工
+- **推荐论文：**
+  1. *ReAct: Synergizing Reasoning and Acting in Language Models* (Yao et al., 2023) — ⭐⭐⭐⭐⭐ Agent 核心范式
+  2. *Toolformer: Language Models Can Teach Themselves to Use Tools* (Schick et al., 2023) — ⭐⭐⭐⭐⭐ 工具学习
+  3. *Voyager: An Open-Ended Embodied Agent with LLMs* (Wang et al., 2023) — ⭐⭐⭐⭐⭐ 终身学习Agent
+  4. *Generative Agents: Interactive Simulacra of Human Behavior* (Park et al., 2023) — ⭐⭐⭐⭐⭐ 多Agent社会模拟
+  5. *A Survey on LLM based Autonomous Agents* (Wang et al., 2024) — ⭐⭐⭐⭐⭐ Agent全景综述
+- **新增概念**：ReAct, 工具调用, 记忆流, 反思机制, 技能库, 自动课程, 多Agent协作, 规划分解, 涌现社会行为
+- **下次主题：** Day 19 — 知识蒸馏与模型压缩：让大模型变小变快
+
+### Day 19 — 2026-05-25
+- **主题：** 知识蒸馏与模型压缩：让大模型变小变快
+- **比喻主题：** 🏺 经营一家高端餐厅的中央厨房
+- **推荐论文：**
+  1. *Distilling the Knowledge in a Neural Network* (Hinton, Vinyals, Dean, 2015) — ⭐⭐⭐⭐⭐ 知识蒸馏奠基论文
+  2. *DistilBERT* (Sanh et al., 2019) — ⭐⭐⭐⭐⭐ NLP模型压缩标杆
+  3. *LLM.int8()* (Dettmers et al., 2022) — ⭐⭐⭐⭐⭐ 大规模无损8-bit量化
+  4. *QLoRA* (Dettmers et al., 2023) — ⭐⭐⭐⭐⭐ 4-bit量化+LoRA高效微调
+  5. *The Llama 3 Herd of Models* (Meta AI, 2024) — ⭐⭐⭐⭐⭐ 工业级蒸馏实践
+- **新增概念**：知识蒸馏, 软标签, 温度参数, 量化, 涌现特征, 混合精度, DistilBERT, QLoRA, NF4, LoRA, 剪枝
+- **下次主题：** Day 20 — Scaling Laws 与计算最优训练：为什么"大力出奇迹"

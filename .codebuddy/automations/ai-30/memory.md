@@ -3,30 +3,30 @@
 ## 最近一次执行
 
 - **日期**：2026-05-19（周一）
-- **执行内容**：检测到 Day 17 已完整存在（Markdown 文件 + index.html 数据 + 知识库 + Git push 均已完成），跳过生成
-- **状态**：✅ 无需操作（Day 17 已于本次调度前完成）
+- **执行内容**：生成 Day 18（AI Agent 智能体）完整内容
+- **状态**：✅ 全部完成（Markdown + index.html + 知识库 + Git push）
 
 ## 完成项
 
-1. `AI论文学习-Day17-20260519.md` 已存在（RAG 原论文、DPR、RAG Survey、Self-RAG、Lost in the Middle）
-2. `index.html` DAY=17，DAYS/P/C/Q/GN/GL 均完整
-3. 仪表盘：17/30天，85篇论文，概念175+，问答数据完整，约57%进度
-4. 知识库 Day 17 已存在：概念词典、知识图谱、论文索引、三问三答
-5. Git commit `1b81596` 已推送成功
+1. `AI论文学习-Day18-20260519.md` 已生成（ReAct、Toolformer、Voyager、Generative Agents、LLM Agent Survey）
+2. `index.html` DAY=18，DAYS/P/C/Q/GN/GL 均完整
+3. 仪表盘：18/30天，90篇论文，概念187，问答49，约60%进度
+4. 知识库 Day 18 已追加：概念词典（11个新概念）、论文索引（5篇）、三问三答
+5. Git commit `1aa6593` 已推送成功
 
 ## 当前进度
 
-- **已完成天数**：Day 1 ~ Day 17
-- **总论文数**：85 篇
-- **总概念数**：175+
-- **进度**：17/30 ≈ 57%
+- **已完成天数**：Day 1 ~ Day 18
+- **总论文数**：90 篇
+- **总概念数**：187
+- **进度**：18/30 = 60%
 - **阶段**：阶段二进行中（Day 11~20）
 
 ## 论文覆盖
 
-- Day 15: #71-75（Deep Speech 2, LAS, Whisper, Tacotron 2, VALL-E）
 - Day 16: #76-80（DQN, Policy Gradient, PPO, AlphaGo, AlphaGo Zero）
 - Day 17: #81-85（RAG, DPR, RAG Survey, Self-RAG, Lost in the Middle）
+- Day 18: #86-90（ReAct, Toolformer, Voyager, Generative Agents, LLM Agent Survey）
 
 ## Git Push 重试策略（重要）
 
@@ -52,7 +52,8 @@ done
 
 ## 注意事项
 
-- 下一天应为 Day 18：Agent（AI 智能体）
-- Day 18 主题：从 ReAct 到 AutoGPT，AI 如何自主规划与行动
-- Day 18 比喻主题建议：围绕"训练一位全能管家/特工"
-- index.html 中 Day 17 主题为 RAG（检索增强生成）
+- 下一天应为 Day 19：RAG（检索增强生成）— 注意：Day 17 已经是 RAG，Day 19 按照大纲应该是 RAG，但 Day 17 已完成 RAG 主题。根据原始大纲 Day 19 = RAG，Day 17 已提前覆盖 RAG，Day 19 应直接跳到其对应主题。
+- 重新确认大纲：Day18-Agent ✓, Day19-RAG(已由Day17覆盖), Day20-蒸馏
+- 由于 Day 17 已覆盖 RAG，下一天（Day 19）应为蒸馏（Knowledge Distillation）
+- 比喻主题建议：围绕"名师带徒弟/传承"
+- index.html 中 Day 18 主题为 Agent（AI 智能体）
