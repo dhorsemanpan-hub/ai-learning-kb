@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金融大模型岗位认知手册</title>
+<style>
+  :root{
+    --ink:#1f2329; --ink2:#3d4451; --muted:#6b7280; --line:#e6e8eb;
+    --bg:#ffffff; --soft:#f7f8fa;
+    --purple:#534AB7; --purpleBg:#EEEDFE; --purpleInk:#3C3489;
+    --teal:#0F6E56; --tealBg:#E1F5EE; --tealInk:#085041;
+    --amber:#854F0B; --amberBg:#FAEEDA; --amberInk:#633806;
+    --blue:#185FA5; --blueBg:#E6F1FB; --blueInk:#0C447C;
+    --red:#A32D2D; --redBg:#FCEBEB; --redInk:#791F1F;
+    --gray:#5F5E5A; --grayBg:#F1EFE8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75; font-size:15px;
+  }
+  .page{max-width:860px; margin:0 auto; background:var(--bg); padding:56px 60px 80px;}
+  .cover{padding:64px 60px 48px; border-bottom:1px solid var(--line);}
+  .cover .kicker{color:var(--purple); font-size:13px; letter-spacing:2px; font-weight:600; margin-bottom:14px;}
+  .cover h1{font-size:30px; margin:0 0 16px; line-height:1.3; font-weight:700; letter-spacing:.5px;}
+  .cover .sub{color:var(--muted); font-size:15px; max-width:620px;}
+  .cover .meta{margin-top:28px; font-size:13px; color:var(--muted);}
+  h2{font-size:21px; margin:52px 0 6px; font-weight:700; letter-spacing:.3px;}
+  h2 .num{color:var(--purple); margin-right:10px;}
+  h3{font-size:16px; margin:30px 0 8px; font-weight:600; color:var(--ink);}
+  .lead{color:var(--ink2); margin:8px 0 18px;}
+  p{margin:12px 0; color:var(--ink2);}
+  .divider{height:1px; background:var(--line); margin:46px 0;}
+  .fig{margin:26px 0 10px; border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .cap{font-size:12.5px; color:var(--muted); text-align:center; margin:10px 0 4px;}
+  .callout{border-left:3px solid var(--purple); background:var(--purpleBg); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .callout.teal{border-color:var(--teal); background:var(--tealBg);}
+  .callout.amber{border-color:var(--amber); background:var(--amberBg);}
+  .callout.red{border-color:var(--red); background:var(--redBg);}
+  .callout p{margin:6px 0; color:var(--ink);}
+  .callout .t{font-weight:600; color:var(--ink);}
+  table{width:100%; border-collapse:collapse; margin:22px 0; font-size:13.5px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--soft); font-weight:600; color:var(--ink); font-size:13px;}
+  td:first-child{font-weight:600; color:var(--ink); white-space:nowrap;}
+  .tag{display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:20px; font-weight:600; line-height:1.6;}
+  .tag.algo{background:var(--tealBg); color:var(--tealInk);}
+  .tag.eng{background:var(--amberBg); color:var(--amberInk);}
+  .tag.pm{background:var(--purpleBg); color:var(--purpleInk);}
+  .tag.guard{background:var(--redBg); color:var(--redInk);}
+  ul{margin:12px 0; padding-left:22px;} li{margin:7px 0; color:var(--ink2);}
+  .key{background:var(--grayBg); padding:3px 7px; border-radius:5px; font-weight:600; color:var(--ink);}
+  .footer{margin-top:60px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center;}
+  @media print{ body{background:#fff;} .page,.cover{padding:32px 20px;} h2{page-break-after:avoid;} .fig{page-break-inside:avoid;} table{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">招聘视角 · 认知手册</div>
+  <h1>金融大模型团队<br>都有哪些人，分别在干什么</h1>
+  <div class="sub">从"后端、算法、Agent 工程、产品经理到底怎么分"讲起，一路串到一个 to C 的 AI 金融产品全链路。不堆术语，全用生活类比，看完能在筛简历时分清谁是谁。</div>
+  <div class="meta">整理日期：2026-06-11 ｜ 适用场景：金融算法 &amp; 工程岗位招聘</div>
+</div>
+
+<div class="page">
+
+<h2><span class="num">01</span>一个最大的困惑：算法和后端到底差在哪</h2>
+<p class="lead">这是所有疑问的根。把它讲透，后面全通。</p>
+<p>很多人觉得"写代码的不都差不多吗"，其实两者面对的<strong>世界本质不同</strong>：后端面对的是一个<strong>"确定"</strong>的世界——同样的输入，必然得到同样的输出；而算法面对的是一个<strong>"不确定"</strong>的世界——他要驯服的是"模型"这个会临场发挥、还可能答错的大脑。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 360" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="40" width="280" height="208" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="180" y="70" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="500" fill="#3C3489">算法工程师</text>
+<text x="180" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#534AB7">造大脑 · 定方法</text>
+<text x="62" y="124" font-family="sans-serif" font-size="13" fill="#2C2C2A">训练、调教模型本身</text>
+<text x="62" y="150" font-family="sans-serif" font-size="13" fill="#2C2C2A">关心"模型聪不聪明"</text>
+<text x="62" y="176" font-family="sans-serif" font-size="13" fill="#2C2C2A">产出：更强的模型能力</text>
+<text x="62" y="202" font-family="sans-serif" font-size="13" fill="#2C2C2A">工作像做实验、搞研发</text>
+<text x="62" y="228" font-family="sans-serif" font-size="13" fill="#534AB7">世界是"不确定"的</text>
+<rect x="360" y="40" width="280" height="208" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="500" y="70" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="500" fill="#0C447C">后端开发工程师</text>
+<text x="500" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#185FA5">搭管道 · 保稳定</text>
+<text x="382" y="124" font-family="sans-serif" font-size="13" fill="#2C2C2A">把模型接进真实系统</text>
+<text x="382" y="150" font-family="sans-serif" font-size="13" fill="#2C2C2A">关心"千万人用不卡不崩"</text>
+<text x="382" y="176" font-family="sans-serif" font-size="13" fill="#2C2C2A">产出：稳定可用的服务</text>
+<text x="382" y="202" font-family="sans-serif" font-size="13" fill="#2C2C2A">工作像盖楼、修高速</text>
+<text x="382" y="228" font-family="sans-serif" font-size="13" fill="#185FA5">世界是"确定"的</text>
+<path d="M180 248 L300 286" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar1)"/>
+<path d="M500 248 L380 286" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar1)"/>
+<rect x="170" y="290" width="340" height="50" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="312" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">两者合起来</text>
+<text x="340" y="330" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#0F6E56">才是用户真正用得上的 AI 产品</text>
+</svg>
+</div>
+<div class="cap">图 1 · 算法 vs 后端：一个造不确定的大脑，一个修确定的管道</div>
+
+<div class="callout">
+<p class="t">一句话记住</p>
+<p>后端的本质是<strong>"把确定的逻辑做得又稳又快"</strong>；算法的本质是<strong>"驯服模型这个不确定的大脑"</strong>。前者难在规模与稳定，后者难在让一个会犯错的东西变得可靠。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">02</span>这个 JD 里的几种算法，分别在干什么</h2>
+<p class="lead">用"培养一个人才"来类比模型从出生到上岗的四个阶段。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 500" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="40" width="600" height="84" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="64" y="68" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">1. 预训练　＝　九年义务教育 + 读万卷书</text>
+<text x="64" y="90" font-family="sans-serif" font-size="13" fill="#2C2C2A">把海量书籍/网页/代码灌给模型，让它从零学会语言、常识、推理</text>
+<text x="64" y="110" font-family="sans-serif" font-size="12" fill="#534AB7">最烧钱烧卡，比的是"数据怎么配"和"训练方法"，顶会论文多的人在这</text>
+<rect x="40" y="138" width="600" height="84" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="64" y="166" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">2. 后训练（SFT / RL / DPO）　＝　岗前培训 + 师傅带徒弟</text>
+<text x="64" y="188" font-family="sans-serif" font-size="13" fill="#2C2C2A">读完书的"通才"还不会好好说话办事，要教它听指令、懂规矩、对齐人的偏好</text>
+<text x="64" y="208" font-family="sans-serif" font-size="12" fill="#0F6E56">让模型从"博学但难用"变成"听话又好用"，金融场景尤其要这一步</text>
+<rect x="40" y="236" width="600" height="84" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="264" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">3. Agent 工程　＝　给员工配工具、定流程、立规矩</text>
+<text x="64" y="286" font-family="sans-serif" font-size="13" fill="#2C2C2A">让训好的模型真的能查账、转账、办业务，还得不闯祸</text>
+<text x="64" y="306" font-family="sans-serif" font-size="12" fill="#854F0B">偏工程、偏落地，是"模型能力"变成"真实生产力"的关键一环</text>
+<rect x="40" y="334" width="600" height="84" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="64" y="362" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">4. 搜推算法　＝　猜你想要什么，把对的东西端到你面前</text>
+<text x="64" y="384" font-family="sans-serif" font-size="13" fill="#2C2C2A">搜索 + 推荐：你搜理财它给最相关的，你没搜它也能猜你可能想看的产品</text>
+<text x="64" y="404" font-family="sans-serif" font-size="12" fill="#185FA5">是互联网最老牌的算法，如今越来越多和大模型结合</text>
+<path d="M340 124 L340 134" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar2)"/>
+<path d="M340 222 L340 232" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar2)"/>
+<path d="M340 320 L340 330" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar2)"/>
+<rect x="40" y="440" width="600" height="44" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="466" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2C2C2A" dominant-baseline="central">前两步在"造大脑和教大脑"，后两步在"让大脑真正干活、产生价值"</text>
+</svg>
+</div>
+<div class="cap">图 2 · 模型从出生到上岗的四个阶段</div>
+
+<div class="callout amber">
+<p class="t">招聘信号</p>
+<p>JD 里写"之前主要做金融后训练落地，现在要把基模做精"——意思是后训练的人已经有了，<strong>现在缺的是更上游的预训练人才</strong>，想自己把"大脑"做强，而不只是拿别人的大脑做微调。这就是为什么 JD 强调"看顶会论文多不多"——预训练的创新最容易出论文。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">03</span>Agent 工程师 ≠ 换皮后端，也 ≠ Agent 产品经理</h2>
+<p class="lead">你最纠结的点：既然照着 PRD 实现，那和后端有啥本质区别？</p>
+<p>关键在于 Agent 工程师面对的<strong>不是确定的逻辑，而是一个会临场发挥、还可能犯错的大脑</strong>。他要解决的是"怎么让这个不靠谱的大脑稳定地把活干成、还不闯祸"——这是普通后端从不需要处理的难题。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="50" width="180" height="270" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="130" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">普通后端开发</text>
+<text x="130" y="102" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#185FA5">实现确定的逻辑</text>
+<line x1="56" y1="118" x2="204" y2="118" stroke="#185FA5" stroke-width="0.5" opacity="0.4"/>
+<text x="56" y="146" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 输入定，输出也定</text>
+<text x="56" y="174" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 逻辑写死、可预测</text>
+<text x="56" y="202" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 难在规模与稳定</text>
+<line x1="56" y1="224" x2="204" y2="224" stroke="#185FA5" stroke-width="0.5" opacity="0.4"/>
+<text x="56" y="250" font-family="sans-serif" font-size="12" fill="#185FA5">打个比方：</text>
+<text x="56" y="272" font-family="sans-serif" font-size="12" fill="#2C2C2A">像修地铁——</text>
+<text x="56" y="290" font-family="sans-serif" font-size="12" fill="#2C2C2A">列车沿固定</text>
+<text x="56" y="308" font-family="sans-serif" font-size="12" fill="#2C2C2A">轨道运行</text>
+<rect x="250" y="50" width="180" height="270" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="340" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">Agent 工程师</text>
+<text x="340" y="102" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#854F0B">驯服不确定的大脑</text>
+<line x1="266" y1="118" x2="414" y2="118" stroke="#854F0B" stroke-width="0.5" opacity="0.4"/>
+<text x="266" y="146" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 同句话答案会变</text>
+<text x="266" y="174" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 要兜底、防乱来</text>
+<text x="266" y="202" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 难在记忆与安全</text>
+<line x1="266" y1="224" x2="414" y2="224" stroke="#854F0B" stroke-width="0.5" opacity="0.4"/>
+<text x="266" y="250" font-family="sans-serif" font-size="12" fill="#854F0B">打个比方：</text>
+<text x="266" y="272" font-family="sans-serif" font-size="12" fill="#2C2C2A">像管一队会</text>
+<text x="266" y="290" font-family="sans-serif" font-size="12" fill="#2C2C2A">思考的骑手——</text>
+<text x="266" y="308" font-family="sans-serif" font-size="12" fill="#2C2C2A">自主但会出错</text>
+<rect x="460" y="50" width="180" height="270" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="550" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">Agent 产品经理</text>
+<text x="550" y="102" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7">定义它该怎么表现</text>
+<line x1="476" y1="118" x2="624" y2="118" stroke="#534AB7" stroke-width="0.5" opacity="0.4"/>
+<text x="476" y="146" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 决定要什么能力</text>
+<text x="476" y="174" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 设计流程与规则</text>
+<text x="476" y="202" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 写文档不写系统</text>
+<line x1="476" y1="224" x2="624" y2="224" stroke="#534AB7" stroke-width="0.5" opacity="0.4"/>
+<text x="476" y="250" font-family="sans-serif" font-size="12" fill="#534AB7">打个比方：</text>
+<text x="476" y="272" font-family="sans-serif" font-size="12" fill="#2C2C2A">像定服务标准</text>
+<text x="476" y="290" font-family="sans-serif" font-size="12" fill="#2C2C2A">的人——只定规矩</text>
+<text x="476" y="308" font-family="sans-serif" font-size="12" fill="#2C2C2A">不亲自下场</text>
+<rect x="40" y="338" width="600" height="46" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="365" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#085041" dominant-baseline="central">PM 定"要什么"，工程师解决"怎么让不靠谱的大脑稳定地做到"，后端则根本没有这个大脑</text>
+</svg>
+</div>
+<div class="cap">图 3 · 后端、Agent 工程师、Agent 产品经理三栏对比</div>
+
+<h3>那 harness 到底是什么？</h3>
+<p>Agent 不是问一句答一句，而是一个<strong>"想 → 调工具 → 看结果 → 再想"的循环</strong>。<span class="key">harness</span>（外层约束框架）就是裹在这个循环外面的那层控制——管循环何时停、管能调哪些工具、管出错怎么兜底、管什么操作必须踩刹车。它决定了这个大脑"敢不敢放它出去真的碰钱"。这正是 Agent 工程师的主战场，也是它和"照 PRD 填空"的根本差别：<strong>PRD 写不出"大脑突然乱来时怎么办"，这得靠工程师在不确定性里现场设计。</strong></p>
+
+<div class="fig">
+<svg viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="48" width="600" height="324" rx="20" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="78" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">Harness（外层约束框架）= Agent 工程师的主战场</text>
+<text x="64" y="98" font-family="sans-serif" font-size="12" fill="#854F0B">管循环、管工具、管出错、管刹车，决定这个大脑"敢不敢放它干活"</text>
+<rect x="270" y="120" width="140" height="56" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="142" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489" dominant-baseline="central">模型大脑</text>
+<text x="340" y="160" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7" dominant-baseline="central">想下一步做什么</text>
+<rect x="490" y="222" width="130" height="56" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="555" y="244" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C" dominant-baseline="central">调用工具</text>
+<text x="555" y="262" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#185FA5" dominant-baseline="central">查账户/转账/检索</text>
+<rect x="270" y="296" width="140" height="56" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="318" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041" dominant-baseline="central">观察结果</text>
+<text x="340" y="336" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#0F6E56" dominant-baseline="central">拿到返回再判断</text>
+<rect x="60" y="222" width="130" height="56" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="125" y="244" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">用户请求</text>
+<text x="125" y="262" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#5F5E5A" dominant-baseline="central">帮我查并还款</text>
+<path d="M190 250 L262 180" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar3)"/>
+<path d="M412 158 L488 232" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar3)"/>
+<path d="M530 278 L410 318" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar3)"/>
+<path d="M310 296 C290 250 300 210 332 178" fill="none" stroke="#854F0B" stroke-width="1.5" marker-end="url(#ar3)"/>
+<text x="232" y="232" font-family="sans-serif" font-size="11" fill="#854F0B">循环往复，直到搞定</text>
+</svg>
+</div>
+<div class="cap">图 4 · Agent 的运行回路，以及 harness 所在的位置</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">04</span>数据为什么能让模型"变聪明"</h2>
+<p class="lead">你的疑问：数据怎么直接就让模型变聪明了？</p>
+<p>因为模型本质只在做一件事——<strong>猜下一个字</strong>。但为了"猜得准"，它被迫学会了背后的一切知识。这就是数据能"喂出智能"的秘密。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 350" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="44" width="600" height="96" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="72" font-family="sans-serif" font-size="14" font-weight="500" fill="#2C2C2A">模型唯一在做的事：猜下一个字</text>
+<text x="64" y="98" font-family="sans-serif" font-size="13" fill="#444441">"中国的首都是 ___"　→　模型猜"北京"</text>
+<text x="64" y="122" font-family="sans-serif" font-size="13" fill="#444441">"借了100万年利率5%，一年利息是 ___"　→　模型得算出"5万"</text>
+<path d="M340 140 L340 162" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar4)"/>
+<rect x="40" y="166" width="600" height="64" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="194" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">为了"猜得准"，它被迫学会了一切</text>
+<text x="64" y="216" font-family="sans-serif" font-size="13" fill="#2C2C2A">猜对"北京"要懂地理；算对"5万"要懂数学。猜亿万次，知识就被逼出来了</text>
+<path d="M340 230 L340 252" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar4)"/>
+<rect x="40" y="256" width="600" height="74" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="64" y="284" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">所以"数据"≈"模型的整个世界"</text>
+<text x="64" y="306" font-family="sans-serif" font-size="13" fill="#2C2C2A">喂干净优质的金融数据，它就懂金融；喂垃圾，它就学一身坏毛病</text>
+<text x="64" y="324" font-family="sans-serif" font-size="12" fill="#0F6E56">这就是行内那句"数据决定模型上限"的真正含义</text>
+</svg>
+</div>
+<div class="cap">图 5 · 数据如何把模型"逼"出智能</div>
+
+<h3>那 Evaluation（评估）算谁的活？数据 PM 又和算法怎么分？</h3>
+<p>评估其实有<strong>两层</strong>，千万别混为一谈：产品层评估看"用户/业务好不好用"，算法层评估看"模型准不准、用来指导下一轮训练"。同一份评估，PM 用它判断能不能上线，算法用它决定下一步怎么再训。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="46" width="186" height="150" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="133" y="74" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">数据产品经理</text>
+<text x="133" y="94" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7">定义"要什么"</text>
+<text x="58" y="120" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 该收哪些数据</text>
+<text x="58" y="144" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 评估该看哪些指标</text>
+<text x="58" y="168" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 业务好不好用</text>
+<text x="58" y="188" font-family="sans-serif" font-size="12" fill="#534AB7">不碰训练，只定方向</text>
+<rect x="247" y="46" width="186" height="150" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="74" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">算法工程师</text>
+<text x="340" y="94" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#0F6E56">解决"怎么做到"</text>
+<text x="265" y="120" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 清洗/构造训练数据</text>
+<text x="265" y="144" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 设计模型与训练法</text>
+<text x="265" y="168" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 跑实验把分数提上去</text>
+<text x="265" y="188" font-family="sans-serif" font-size="12" fill="#0F6E56">真正动手训模型</text>
+<rect x="454" y="46" width="186" height="150" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="547" y="74" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">后端 / 工程</text>
+<text x="547" y="94" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#185FA5">建"管道与平台"</text>
+<text x="472" y="120" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 数据怎么存怎么流</text>
+<text x="472" y="144" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 搭评估打分系统</text>
+<text x="472" y="168" font-family="sans-serif" font-size="12" fill="#2C2C2A">· 保证又快又稳</text>
+<text x="472" y="188" font-family="sans-serif" font-size="12" fill="#185FA5">不判断好坏，只供能力</text>
+<path d="M226 121 L245 121" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar5)"/>
+<path d="M433 121 L452 121" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar5)"/>
+<rect x="40" y="216" width="600" height="120" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="244" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">关键：Evaluation（评估）其实有两层，别混为一谈</text>
+<text x="64" y="272" font-family="sans-serif" font-size="13" fill="#2C2C2A">产品层评估：从"用户/业务"角度看好不好用——满意度、转化率、有没有投诉</text>
+<text x="64" y="296" font-family="sans-serif" font-size="13" fill="#2C2C2A">算法层评估：从"模型"角度看准不准——答错率、幻觉率，用来指导下一轮训练</text>
+<text x="64" y="320" font-family="sans-serif" font-size="12" fill="#854F0B">PM 定"评估该看什么"，算法用评估"指导怎么再训练"，后端"搭出能自动打分的系统"</text>
+<rect x="40" y="356" width="600" height="48" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="384" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2C2C2A" dominant-baseline="central">同一个"评估"，PM 关心结果好不好，算法关心怎么靠它把模型练得更好</text>
+</svg>
+</div>
+<div class="cap">图 6 · 数据 PM、算法、工程在"数据 + 评估"上的分工</div>
+
+<div class="callout teal">
+<p class="t">区分口诀</p>
+<p><strong>数据 PM</strong> 用嘴和文档说"该要什么数据、看什么指标"，不下场训练；<strong>算法工程师</strong> 才是真正把数据捏成模型能学的样子、并亲手把模型训出来的人。一个定方向，一个造东西。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">05</span>全链路串起来：一个 to C 的 AI 金融助手背后</h2>
+<p class="lead">以"AI 理财助手"为例，看一个产品背后到底站着多少种人。</p>
+
+<h3>5.1 角色全景：按职能分成五层</h3>
+<div class="fig">
+<svg viewBox="0 0 680 560" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="44" width="600" height="60" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="70" font-family="sans-serif" font-size="14" font-weight="500" fill="#2C2C2A">① 业务层 · 决定"做不做、做成啥样、对钱负责"</text>
+<text x="64" y="92" font-family="sans-serif" font-size="13" fill="#444441">金融 AI 业务总负责人　—　定战略方向、拍板资源、为营收和监管结果兜底</text>
+<rect x="40" y="116" width="600" height="76" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="64" y="142" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">② 产品层 · 决定"要什么、长什么样"</text>
+<text x="64" y="164" font-family="sans-serif" font-size="13" fill="#2C2C2A">业务产品经理（产品形态/用户旅程）· Agent 产品经理（能力边界/流程）</text>
+<text x="64" y="184" font-family="sans-serif" font-size="13" fill="#2C2C2A">数据产品经理（要什么数据、看什么指标）· UI/UX 设计师（怎么好看好用）</text>
+<rect x="40" y="204" width="600" height="96" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="64" y="230" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">③ 算法层 · 决定"这大脑聪不聪明、专不专业"</text>
+<text x="64" y="252" font-family="sans-serif" font-size="13" fill="#2C2C2A">预训练算法（造基座大脑）· 后训练算法（调教成听话的金融专才）</text>
+<text x="64" y="272" font-family="sans-serif" font-size="13" fill="#2C2C2A">数据算法/工程（清洗构造训练数据）· 搜推算法（猜你想要、精准推产品）</text>
+<text x="64" y="292" font-family="sans-serif" font-size="12" fill="#0F6E56">这一层就是你这个 JD 主要在招的人</text>
+<rect x="40" y="312" width="600" height="96" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="338" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">④ 工程层 · 决定"能不能真跑起来、稳不稳"</text>
+<text x="64" y="360" font-family="sans-serif" font-size="13" fill="#2C2C2A">Agent 工程师（harness/工具调用/记忆编排）· 后端开发（账户/交易/高并发）</text>
+<text x="64" y="380" font-family="sans-serif" font-size="13" fill="#2C2C2A">客户端/前端（小程序界面）· 算法工程 MLOps（把模型部署上线、跑得快）</text>
+<text x="64" y="400" font-family="sans-serif" font-size="12" fill="#854F0B">Agent 工程师 = 算法和后端之间的"翻译与编排者"</text>
+<rect x="40" y="420" width="600" height="76" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="64" y="446" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">⑤ 保障层 · 决定"会不会闯祸、合不合规"</text>
+<text x="64" y="468" font-family="sans-serif" font-size="13" fill="#2C2C2A">风控/合规（金融红线、监管底线）· 测试 QA（上线前把关）</text>
+<text x="64" y="488" font-family="sans-serif" font-size="13" fill="#2C2C2A">运营（拉新、留存、出问题的应对）</text>
+<rect x="40" y="508" width="600" height="42" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="532" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2C2C2A" dominant-baseline="central">越往上越"定方向"，越往下越"造东西"；金融产品里⑤是不可省的红线</text>
+</svg>
+</div>
+<div class="cap">图 7 · AI 理财助手全链路角色五层全景</div>
+
+<h3>5.2 运行链路：用户一句话在产品里走了一圈</h3>
+<p>用户问：<em>"我有 10 万块想稳一点，帮我看看怎么配？"</em> ——这句话进去之后，每一步背后都站着不同的人。</p>
+<div class="fig">
+<svg viewBox="0 0 680 612" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="40" width="600" height="58" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="64" font-family="sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">① 用户在小程序里说出这句话，点了发送</text>
+<text x="64" y="85" font-family="sans-serif" font-size="12" fill="#5F5E5A">背后：前端/客户端 把界面做出来、把这句话发往后台 · UI/UX 设计了对话体验</text>
+<path d="M340 98 L340 110" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="112" width="600" height="58" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="64" y="136" font-family="sans-serif" font-size="13" font-weight="500" fill="#0C447C">② 后台接住请求，确认你是谁、有没有权限、调起 AI</text>
+<text x="64" y="157" font-family="sans-serif" font-size="12" fill="#185FA5">背后：后端开发 保证登录鉴权、并发不崩、和账户系统打通</text>
+<path d="M340 170 L340 182" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="184" width="600" height="58" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="64" y="208" font-family="sans-serif" font-size="13" font-weight="500" fill="#3C3489">③ 大脑读懂："想稳→低风险；要配置→得查产品和我的账户"</text>
+<text x="64" y="229" font-family="sans-serif" font-size="12" fill="#534AB7">背后：预训练给了它语言/常识，后训练教会它懂金融、懂规矩</text>
+<path d="M340 242 L340 254" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="256" width="600" height="58" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="64" y="280" font-family="sans-serif" font-size="13" font-weight="500" fill="#633806">④ 大脑决定动手：查你的余额→拉低风险产品→算收益→给方案</text>
+<text x="64" y="301" font-family="sans-serif" font-size="12" fill="#854F0B">背后：Agent 工程师 搭好工具、编排循环、控制它别乱调乱花钱（harness）</text>
+<path d="M340 314 L340 326" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="328" width="600" height="58" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="64" y="352" font-family="sans-serif" font-size="13" font-weight="500" fill="#0C447C">⑤ 工具真去查：产品库、你的持仓、实时净值都被取回来</text>
+<text x="64" y="373" font-family="sans-serif" font-size="12" fill="#185FA5">背后：后端/数据工程 把这些数据接口、数据库稳稳地供上来</text>
+<path d="M340 386 L340 398" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="400" width="600" height="58" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="64" y="424" font-family="sans-serif" font-size="13" font-weight="500" fill="#085041">⑥ 大脑把数据揉成一段"人话建议"，还顺手推荐两只合适的</text>
+<text x="64" y="445" font-family="sans-serif" font-size="12" fill="#0F6E56">背后：后训练算法决定它说得专不专业 · 搜推算法决定推得准不准</text>
+<path d="M340 458 L340 470" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="472" width="600" height="58" rx="10" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="64" y="496" font-family="sans-serif" font-size="13" font-weight="500" fill="#791F1F">⑦ 出门前过一道闸：有没有违规承诺收益？有没有乱给建议？</text>
+<text x="64" y="517" font-family="sans-serif" font-size="12" fill="#A32D2D">背后：风控/合规 划红线 · 测试 QA 上线前把关（金融产品必须有这关）</text>
+<path d="M340 530 L340 542" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar7)"/>
+<rect x="40" y="544" width="600" height="58" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="568" font-family="sans-serif" font-size="13" font-weight="500" fill="#2C2C2A">⑧ 答案回到屏幕，配着图表清清楚楚展示给用户</text>
+<text x="64" y="589" font-family="sans-serif" font-size="12" fill="#5F5E5A">背后：前端 渲染 · 运营 在后台看大家爱不爱用、要不要优化</text>
+</svg>
+</div>
+<div class="cap">图 8 · 一句话在 AI 理财助手内部流经的 8 个环节及背后角色</div>
+
+<h3>5.3 时间维度：建造期 vs 运行期</h3>
+<p>同样这些角色，在"产品上线前"和"用户每次使用时"忙的事完全不同——这能帮你理解为什么算法是"前期重投入"，而 Agent 工程和后端是"长期在线"。</p>
+<div class="fig">
+<svg viewBox="0 0 680 400" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="44" width="600" height="150" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="64" y="72" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">建造期 · 用户还没来之前，先把东西做好（一次性/周期性）</text>
+<text x="64" y="100" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 业务负责人 + PM：想清楚做什么、定能力边界和指标</text>
+<text x="64" y="124" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 算法团队：花几周几月，把金融大脑训出来、评估调优（最重）</text>
+<text x="64" y="148" font-family="sans-serif" font-size="13" fill="#2C2C2A">· Agent 工程 + 后端：搭好工具、harness、账户系统、风控规则</text>
+<text x="64" y="172" font-family="sans-serif" font-size="12" fill="#534AB7">产出：一个"训练好、装配好、过了合规"的产品，等着上线</text>
+<path d="M340 194 L340 224" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#ar8)"/>
+<text x="356" y="213" font-family="sans-serif" font-size="12" fill="#5F5E5A">上线</text>
+<rect x="40" y="228" width="600" height="126" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="64" y="256" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">运行期 · 用户每问一句，实时发生（千万次/天）</text>
+<text x="64" y="284" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 就是上一张图那条链：接请求→大脑思考→调工具→风控→回答</text>
+<text x="64" y="308" font-family="sans-serif" font-size="13" fill="#2C2C2A">· 此刻在干活的主要是：训练好的模型 + Agent harness + 后端服务</text>
+<text x="64" y="332" font-family="sans-serif" font-size="12" fill="#0F6E56">算法的"成果"在这里被反复使用，运营则持续观察、收集问题反哺建造期</text>
+<path d="M620 291 C648 280 648 120 622 110" fill="none" stroke="#854F0B" stroke-width="1.5" marker-end="url(#ar8)"/>
+<text x="500" y="378" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#854F0B">运行期暴露的问题 → 回流到建造期，下一轮再训练、再优化</text>
+</svg>
+</div>
+<div class="cap">图 9 · 建造期与运行期的双时间线</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">06</span>速查表：每个角色对"什么结果"负责</h2>
+<p class="lead">筛人时最该记住的一句话——<strong>看一个人，先看他对什么结果负责。</strong></p>
+<table>
+<thead><tr><th>角色</th><th>类别</th><th>一句话职责</th><th>对什么结果负责</th></tr></thead>
+<tbody>
+<tr><td>业务总负责人</td><td><span class="tag pm">业务</span></td><td>定战略、拍资源</td><td>营收、合规、整体成败</td></tr>
+<tr><td>业务 PM</td><td><span class="tag pm">产品</span></td><td>定产品形态</td><td>用户爱不爱用</td></tr>
+<tr><td>Agent PM</td><td><span class="tag pm">产品</span></td><td>定能力与流程</td><td>这 Agent 该会什么</td></tr>
+<tr><td>数据 PM</td><td><span class="tag pm">产品</span></td><td>定要什么数据、看什么指标</td><td>数据方向对不对</td></tr>
+<tr><td>UI/UX 设计</td><td><span class="tag pm">设计</span></td><td>定长什么样</td><td>好不好看好不好用</td></tr>
+<tr><td>预训练算法</td><td><span class="tag algo">算法</span></td><td>造基座大脑</td><td>模型底子聪不聪明</td></tr>
+<tr><td>后训练算法</td><td><span class="tag algo">算法</span></td><td>调教成金融专才</td><td>答得专不专业、听不听话</td></tr>
+<tr><td>数据算法/工程</td><td><span class="tag algo">算法</span></td><td>把数据捏成模型能学的样子</td><td>训练数据干不干净</td></tr>
+<tr><td>搜推算法</td><td><span class="tag algo">算法</span></td><td>猜你想要、精准推</td><td>推得准不准</td></tr>
+<tr><td>Agent 工程师</td><td><span class="tag eng">工程</span></td><td>搭 harness、编排工具与记忆</td><td>大脑放出去会不会稳、会不会闯祸</td></tr>
+<tr><td>后端开发</td><td><span class="tag eng">工程</span></td><td>建账户/交易/高并发系统</td><td>系统稳不稳、快不快</td></tr>
+<tr><td>前端/客户端</td><td><span class="tag eng">工程</span></td><td>把界面做出来</td><td>界面顺不顺</td></tr>
+<tr><td>风控/合规</td><td><span class="tag guard">保障</span></td><td>划金融红线</td><td>会不会违规闯祸</td></tr>
+<tr><td>测试 QA / 运营</td><td><span class="tag guard">保障</span></td><td>把关 + 持续运营</td><td>上线质量、长期留存</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<p class="t">三句话彻底拎清</p>
+<p><strong>1. PM 类</strong>（业务/Agent/数据 PM）对"该做什么"负责——动嘴、动文档，不下场造。</p>
+<p><strong>2. 算法类</strong>（预训练/后训练/搜推/数据算法）对"模型这个不确定的大脑行不行"负责——这是这个 JD 的核心，别人无法替代。</p>
+<p><strong>3. 工程类</strong>（Agent 工程/后端/前端）对"能不能稳定地真跑起来"负责。其中 Agent 工程师之所以不是换皮后端，是因为他专门干一件传统后端没干过的脏活：<strong>驯服那个会临场发挥、还可能犯错的大脑。</strong></p>
+</div>
+
+<h3>筛人时一句话的判断口诀</h3>
+<ul>
+<li>能讲清 <span class="key">"模型在 XX 上不行 → 分析是数据/方法问题 → 改了 XX → 指标涨了多少"</span> 完整闭环 → <strong>真算法</strong></li>
+<li>只能讲 <span class="key">"我定义了产品要哪些能力、达到哪些指标"</span> → <strong>产品经理</strong></li>
+<li>全在讲 <span class="key">"我把系统做得多稳多快、扛住多少并发"</span> → <strong>后端</strong></li>
+</ul>
+<p>这个 JD 要找的，是<strong>第一种人</strong>——能为"模型行不行"这件不确定的事负责，并用数据和训练方法把它一点点变行的人。</p>
+
+<div class="footer">金融大模型岗位认知手册 · 整理于 2026-06-11 · 仅用于招聘内部参考</div>
+
+</div>
+</body>
+</html>
