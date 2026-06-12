@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大模型算法方向技术下探</title>
+<style>
+  :root{
+    --ink:#1f2329; --ink2:#3d4451; --muted:#6b7280; --line:#e6e8eb;
+    --bg:#ffffff; --soft:#f7f8fa;
+    --purple:#534AB7; --purpleBg:#EEEDFE; --purpleInk:#3C3489;
+    --teal:#0F6E56; --tealBg:#E1F5EE; --tealInk:#085041;
+    --amber:#854F0B; --amberBg:#FAEEDA; --amberInk:#633806;
+    --blue:#185FA5; --blueBg:#E6F1FB; --blueInk:#0C447C;
+    --red:#A32D2D; --redBg:#FCEBEB; --redInk:#791F1F;
+    --pink:#993556; --pinkBg:#FBEAF0; --pinkInk:#72243E;
+    --gray:#5F5E5A; --grayBg:#F1EFE8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.8; font-size:15px;
+  }
+  .page{max-width:880px; margin:0 auto; background:var(--bg); padding:56px 64px 80px;}
+  .cover{padding:64px 64px 48px; border-bottom:1px solid var(--line);}
+  .cover .kicker{color:var(--purple); font-size:13px; letter-spacing:2px; font-weight:600; margin-bottom:14px;}
+  .cover h1{font-size:30px; margin:0 0 16px; line-height:1.35; font-weight:700; letter-spacing:.5px;}
+  .cover .sub{color:var(--muted); font-size:15px; max-width:680px;}
+  .cover .meta{margin-top:28px; font-size:13px; color:var(--muted);}
+  h2{font-size:21px; margin:54px 0 6px; font-weight:700; letter-spacing:.3px;}
+  h2 .num{color:var(--purple); margin-right:10px;}
+  h3{font-size:16px; margin:30px 0 8px; font-weight:600; color:var(--ink);}
+  h4{font-size:14px; margin:20px 0 4px; font-weight:600; color:var(--ink2);}
+  .lead{color:var(--ink2); margin:8px 0 18px; font-size:15px;}
+  p{margin:12px 0; color:var(--ink2);}
+  .essence{background:var(--soft); border-radius:10px; padding:12px 16px; margin:14px 0; font-size:14px; color:var(--ink2);}
+  .essence b{color:var(--ink);}
+  .divider{height:1px; background:var(--line); margin:48px 0;}
+  .fig{margin:26px 0 10px; border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .cap{font-size:12.5px; color:var(--muted); text-align:center; margin:10px 0 4px;}
+  .callout{border-left:3px solid var(--purple); background:var(--purpleBg); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .callout.teal{border-color:var(--teal); background:var(--tealBg);}
+  .callout.amber{border-color:var(--amber); background:var(--amberBg);}
+  .callout.red{border-color:var(--red); background:var(--redBg);}
+  .callout.blue{border-color:var(--blue); background:var(--blueBg);}
+  .callout p{margin:6px 0; color:var(--ink);}
+  .callout .t{font-weight:600; color:var(--ink);}
+  table{width:100%; border-collapse:collapse; margin:22px 0; font-size:13.5px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--soft); font-weight:600; color:var(--ink); font-size:13px;}
+  td:first-child{font-weight:600; color:var(--ink);}
+  ul{margin:12px 0; padding-left:22px;} li{margin:7px 0; color:var(--ink2);}
+  .key{background:var(--grayBg); padding:2px 7px; border-radius:5px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss{margin:18px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .gloss .row{display:flex; gap:0; border-bottom:1px solid var(--line);}
+  .gloss .row:last-child{border-bottom:none;}
+  .gloss .term{flex:0 0 156px; background:var(--soft); padding:11px 14px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss .def{padding:11px 14px; color:var(--ink2); font-size:13.5px;}
+  .footer{margin-top:60px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center;}
+  @media print{ body{background:#fff;} .page,.cover{padding:32px 22px;} h2{page-break-after:avoid;} .fig{page-break-inside:avoid;} table{page-break-inside:avoid;} .gloss{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">技术下探 · 算法专业视角</div>
+  <h1>大模型算法六大板块<br>技术链路、机制与前沿张力</h1>
+  <div class="sub">纯技术视角，不涉及岗位与应用。把预训练、后训练/RL、推理与效率、Agent、多模态、搜推/RAG 六条线各自的真实技术链路、内部机制、当前核心难题与前沿打法摊开讲透。术语配大白话，但深度直抵行内一线讨论的那一层。</div>
+  <div class="meta">整理日期：2026-06-12 ｜ 视角：算法技术纵深 ｜ 版本：v2 加深版</div>
+</div>
+
+<div class="page">
+
+<h2><span class="num">00</span>主线：一个模型如何被"逼"成能干活</h2>
+<p class="lead">这些板块不是并列学科，而是同一条能力演化主线上的不同重心，外加贯穿全程的效率与评估底座。</p>
+<p>大模型算法的所有努力，本质在回答一个问题：<strong>怎么把一个只会"预测下一个 token"的概率模型，逼成"能可靠完成复杂任务"的系统。</strong>能力沿"生成 → 释放 → 扩展"递进；而推理效率、评估这两件事像地基，托着上面所有方向。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 280" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="34" y="50" width="124" height="66" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="96" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#3C3489">预训练</text>
+<text x="96" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#534AB7">能力压进参数</text>
+<rect x="176" y="50" width="124" height="66" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="238" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#085041">后训练 / RL</text>
+<text x="238" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#0F6E56">激发并对齐</text>
+<rect x="318" y="50" width="124" height="66" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="380" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#633806">Agent 算法</text>
+<text x="380" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#854F0B">长链条自主</text>
+<rect x="460" y="50" width="124" height="66" rx="10" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
+<text x="522" y="78" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#72243E">多模态</text>
+<text x="522" y="98" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#993556">接上感知</text>
+<rect x="602" y="50" width="44" height="66" rx="10" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="624" y="78" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="500" fill="#791F1F">搜推</text>
+<text x="624" y="96" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#A32D2D">RAG</text>
+<path d="M158 83 L174 83" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#m0)"/>
+<path d="M300 83 L316 83" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#m0)"/>
+<path d="M442 83 L458 83" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#m0)"/>
+<path d="M584 83 L600 83" fill="none" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#m0)"/>
+<rect x="34" y="146" width="612" height="50" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="340" y="167" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="500" fill="#0C447C">底座：推理与效率（KV cache、量化、投机解码、蒸馏）</text>
+<text x="340" y="186" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#185FA5">底座：评估（benchmark 污染、LLM-as-judge）——决定上面一切是否可信</text>
+<rect x="34" y="210" width="612" height="48" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="340" y="231" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">能力的"生成→释放→扩展"主线，全程被效率与评估两块地基托着</text>
+<text x="340" y="249" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#5F5E5A">本文 01–05 讲能力主线，06 讲贯穿全栈的效率与评估</text>
+</svg>
+</div>
+<div class="cap">图 0 · 六大板块在能力主线与效率/评估地基上的位置</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">01</span>预训练（基模）：底座能力从哪来</h2>
+<div class="essence"><b>技术本质：</b>在自回归（预测下一个 token）这个极简目标下，靠规模把通用能力压进参数。所有难点都在"如何把规模与数据工程化"，而非那个 loss 公式本身。</div>
+
+<h3>1.1 架构：Transformer 之上的工程化分化</h3>
+<p>主干仍是 Decoder-only Transformer，但近年的关键创新全在"如何在固定算力下塞进更多有效能力、并能推得起"。逐层看：</p>
+<div class="gloss">
+<div class="row"><div class="term">Dense vs MoE</div><div class="def">MoE（混合专家）把 FFN 层换成多个"专家"，每个 token 经路由只激活 Top-K 个——总参数可达万亿级，实际计算只动一小部分。难点：① 路由负载均衡（加 auxiliary loss 或用 loss-free 的偏置调节，防止少数专家被挤爆）；② 训练不稳；③ 推理时专家分布在多卡，通信开销大。是当前冲规模的主路线。</div></div>
+<div class="row"><div class="term">注意力变体</div><div class="def">MHA→GQA→MQA 是"查询头共享多少组 KV"的谱系，越共享越省 KV cache、推理越快，但表达力略降，GQA 是当前折中主流。更新的 MLA（多头潜在注意力）把 KV 压成低秩潜向量，进一步省显存。</div></div>
+<div class="row"><div class="term">归一化与残差</div><div class="def">普遍用 Pre-Norm（norm 放在子层前）保证深层训练稳定；RMSNorm 取代 LayerNorm（去掉均值项，更快）。这些细节直接关系到能不能把模型训到几十上百层不发散。</div></div>
+<div class="row"><div class="term">激活函数</div><div class="def">FFN 里 SwiGLU（门控+SiLU）几乎成了标配，比 ReLU/GeLU 收敛更好。看似小改动，但在大规模上累积出明显增益。</div></div>
+<div class="row"><div class="term">位置编码与长程</div><div class="def">RoPE（旋转位置编码）是主流；扩长上下文靠对 RoPE 频率做插值 / NTK 缩放 / YaRN。真正难的不是"塞得进 128K"，而是塞进去后"中间段信息被忽略"（lost-in-the-middle）和注意力被稀释。</div></div>
+</div>
+
+<h3>1.2 数据：预训练真正的胜负手</h3>
+<p>架构趋同后，拉开模型差距的主要是数据。这条流水线比想象的重得多：</p>
+<ul>
+<li><span class="key">配比 mixture</span>：中/英/代码/数学/学科语料的比例直接决定能力画像。一个反直觉但已被反复验证的结论——<strong>大量代码与数学语料能显著提升通用推理</strong>，所以做中文模型也要喂海量代码。</li>
+<li><span class="key">质量与去重</span>：大规模<strong>语义级</strong>去重（MinHash/SimHash + 近似聚类，而非字面匹配）、质量分类器打分、毒性与隐私过滤。"垃圾进垃圾出"在这里是字面意义。</li>
+<li><span class="key">课程与退火</span>：训练并非均匀采样。常用"课程学习"由易到难，末期用 <strong>annealing</strong>（学习率衰减阶段换上最高质量数据收尾），对最终质量影响巨大。</li>
+<li><span class="key">合成数据</span>：高质量真实语料逼近"数据墙"后，用强模型生成训练数据成为最热也最有争议的方向——风险是"模型近亲繁殖"导致分布坍缩（model collapse）。</li>
+<li><span class="key">数据污染</span>：训练集若混入评测集，会让 benchmark 虚高。去污染（decontamination）是发布可信模型的必备步骤，也与第 06 节评估强相关。</li>
+</ul>
+
+<h3>1.3 Tokenizer：常被忽视但影响深远</h3>
+<p>模型不认字，先用 BPE/Unigram 把文本切成 subword token。词表设计直接影响：中文与多语言的压缩率、数字怎么切（按位切对算术更友好）、罕见词与代码符号的处理。词表一旦定下、预训练开跑就难改，是"地基中的地基"。</p>
+
+<h3>1.4 训练工程：把几百上千卡拧成一台机器</h3>
+<div class="fig">
+<svg viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="44" width="288" height="92" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="60" y="70" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#3C3489">并行策略（组合使用 = 3D/4D 并行）</text>
+<text x="60" y="93" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">数据并行 DP：复制模型、切分数据</text>
+<text x="60" y="113" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">张量并行 TP：把一层算子切到多卡</text>
+<text x="60" y="131" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">流水线 PP + 序列并行 SP：切层 / 切序列</text>
+<rect x="352" y="44" width="288" height="92" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="372" y="70" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#085041">显存与精度</text>
+<text x="372" y="93" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">ZeRO 分片：把优化器状态/梯度切散</text>
+<text x="372" y="113" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">混合精度 bf16 + 重计算省显存</text>
+<text x="372" y="131" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">激活检查点：用算力换显存</text>
+<rect x="40" y="150" width="600" height="84" rx="12" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="60" y="176" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#791F1F">稳定性：大规模训练的"暗礁"</text>
+<text x="60" y="200" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">loss spike（损失突然飙升）的预防与从 checkpoint 恢复</text>
+<text x="60" y="222" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">学习率 schedule、梯度裁剪、optimizer（AdamW 及省显存变体）、硬件容错</text>
+</svg>
+</div>
+<div class="cap">图 1 · 预训练训练工程的三大块：并行 / 显存精度 / 稳定性</div>
+
+<h3>1.5 规模规律与"能力涌现"</h3>
+<p><span class="key">Scaling Law</span> 决定"给定算力，模型多大、数据多少最优"。Kaplan 早期偏大模型，<strong>Chinchilla</strong> 修正为"数据其实喂少了，参数与数据应同比增长"；如今因推理成本敏感，转向"<strong>小模型 + 过度训练</strong>"（喂远超 Chinchilla 最优的数据量，换更便宜的推理）。<span class="key">涌现能力</span>（某些能力到一定规模才突然出现）是否真实、还是评测指标的错觉，仍是开放争论。</p>
+
+<div class="callout amber">
+<p class="t">前沿张力</p>
+<p>① 真实高质量语料逼近"数据墙" → 合成数据 / 数据效率 / 多 epoch 复用成焦点；② 推理成本主导决策 → 架构走 MoE + 小激活、训练走过度训练；③ 长上下文从"能读"卷向"读得准"，并与下文的 KV cache 效率深度耦合。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">02</span>后训练 / 对齐：RL 为什么成了主战场</h2>
+<div class="essence"><b>技术本质：</b>预训练把能力"存"进去了，但模型不知道何时、以何种方式取出来。后训练做两件事——<b>激发</b>（按指令/格式/推理链输出）与<b>对齐</b>（符合偏好与安全约束）。这一阶段是当前创新最密集处。</div>
+
+<h3>2.1 SFT：模仿学习，质量压倒数量</h3>
+<p>用高质量"指令—回答"对做监督微调。要点比看上去深：</p>
+<ul>
+<li><span class="key">数据质量</span>：已成共识——几千到几万条精挑数据，胜过百万条噪声。多样性和难度分布比总量重要。</li>
+<li><span class="key">拒绝采样 rejection sampling</span>：让模型自己生成多个答案，用奖励/规则筛出最优再回灌训练。是 SFT 与 RL 之间的桥梁，也是"自我提升"的雏形。</li>
+<li><span class="key">样本打包与损失掩码</span>：多条短样本 packing 进一个序列提效率；只对"回答"部分算 loss（mask 掉指令），避免模型学着复述提问。</li>
+</ul>
+
+<h3>2.2 奖励建模 RM：整条 RLHF 的天花板</h3>
+<p>训一个模型预测"人类更偏好哪个回答"，多用 <strong>Bradley-Terry</strong> 框架从成对偏好里学标量分数。两条关键分化：</p>
+<table>
+<thead><tr><th>类型</th><th>奖励粒度</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>ORM 结果奖励</td><td>只看最终答案好坏</td><td>标注便宜，但对长推理"知其然不知其所以然"</td></tr>
+<tr><td>PRM 过程奖励</td><td>给推理每一步打分</td><td>对数学/推理显著更优，但步级标注昂贵、难规模化</td></tr>
+</tbody>
+</table>
+<p>RM 自身的脆弱性是核心隐患：它只是人类偏好的<strong>代理</strong>，一旦被过度优化就会偏离真实意图（即下文的 reward hacking）。</p>
+
+<h3>2.3 偏好优化算法：一张谱系</h3>
+<div class="fig">
+<svg viewBox="0 0 680 270" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="44" width="600" height="78" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="60" y="70" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#633806">在线 RL 路线（需显式奖励/采样，重但上限高）</text>
+<text x="60" y="94" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">PPO：actor-critic + KL 约束，强但要维护约 4 个模型、不稳</text>
+<text x="60" y="114" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">GRPO：去 critic，用"组内相对优劣"估计优势，省约一半资源，训推理模型热门</text>
+<rect x="40" y="134" width="600" height="58" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="60" y="160" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#085041">离线/直接偏好路线（无需在线采样，轻而稳）</text>
+<text x="60" y="183" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">DPO 及变体：IPO（防过拟合）、KTO（用单条好/坏而非成对）、ORPO（合并 SFT 与对齐）</text>
+<rect x="40" y="204" width="600" height="52" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="60" y="230" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#0C447C">RLVR：奖励来自可验证信号（答案对错 / 代码能否跑通）</text>
+<text x="60" y="250" font-family="sans-serif" font-size="11.5" fill="#185FA5">奖励干净、可无限扩展——是 o1 / R1 类"推理模型"爆发的引擎</text>
+</svg>
+</div>
+<div class="cap">图 2 · 偏好优化的三条路线：在线 RL / 直接偏好 / 可验证奖励</div>
+
+<h3>2.4 推理模型：RLVR 如何"训"出长思维链</h3>
+<p>这是近一年最大的范式跃迁。传统 RLHF 对齐的是"人类偏好"（主观），而 <span class="key">RLVR</span> 对齐的是"客观正确"——在数学、代码这类<strong>答案可自动验证</strong>的任务上，只要答对就给奖励。由于奖励无噪声、可大规模生成，模型在 RL 中自发学会<strong>更长的推理链、自我检查、回溯纠错</strong>（所谓 test-time scaling：推理时多想，正确率随之上升）。难题随之而来：如何把这套搬到"没有标准答案"的开放任务上，是当前最硬的开放问题。</p>
+
+<div class="gloss">
+<div class="row"><div class="term">KL 约束</div><div class="def">RL 训练时拉一根"皮筋"，防止模型为讨好奖励而偏离原始分布太远（否则会胡言乱语或丢失通用能力）。</div></div>
+<div class="row"><div class="term">reward hacking</div><div class="def">模型钻奖励漏洞拿高分而非真做好——如废话凑长度、迎合 RM 的偏见。RL 最顽固的隐患。</div></div>
+<div class="row"><div class="term">对齐税</div><div class="def">alignment tax：对齐/安全约束往往让模型在某些通用能力上略降，如何减小这个代价是持续课题。</div></div>
+<div class="row"><div class="term">test-time scaling</div><div class="def">推理时让模型多想几步/多采样几条再选，用"想得更久"换正确率，是推理模型的核心红利。</div></div>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">03</span>推理与效率：托起一切的工程地基</h2>
+<div class="essence"><b>技术本质：</b>训出来只是一半，能否便宜、快速、稳定地"跑起来"决定了模型可不可用。这一块独立成一门重活，且与架构、长上下文深度耦合——本版把它从附属提为独立板块。</div>
+
+<h3>3.1 自回归推理的根本瓶颈</h3>
+<p>大模型逐 token 生成，且每步都要回看前文，因此瓶颈不在算力而在<strong>显存带宽</strong>（要反复搬运 KV）。围绕这个瓶颈，衍生出一整套优化：</p>
+<div class="gloss">
+<div class="row"><div class="term">KV cache</div><div class="def">把已生成 token 的 Key/Value 缓存下来避免重算。它是推理提速的关键，但显存占用随上下文线性增长——长上下文之所以贵，主因就在这。</div></div>
+<div class="row"><div class="term">PagedAttention</div><div class="def">像操作系统管内存那样分页管理 KV cache（vLLM 的核心），大幅减少碎片、提升吞吐。配合 continuous batching 动态拼批。</div></div>
+<div class="row"><div class="term">量化</div><div class="def">把权重/激活从 16 位压到 8 位甚至 4 位（GPTQ/AWQ 等），省显存、加速，代价是少量精度损失。是落地部署的标配。</div></div>
+<div class="row"><div class="term">投机解码</div><div class="def">speculative decoding：用一个小"草稿模型"先快速猜几个 token，大模型一次性并行校验，平均每步省时。无损加速的主流手段。</div></div>
+<div class="row"><div class="term">知识蒸馏</div><div class="def">用大模型当老师，把能力"教"给小模型——小模型推理更便宜。当前小模型变强，蒸馏功不可没。</div></div>
+<div class="row"><div class="term">Prefill vs Decode</div><div class="def">推理分两阶段：prefill（并行处理输入提示，算力密集）和 decode（逐 token 生成，带宽密集）。两阶段特性不同，催生 P/D 分离部署等优化。</div></div>
+</div>
+
+<div class="callout blue">
+<p class="t">为什么把它单列一节</p>
+<p>推理效率不是"训练完之后的小事"——它<strong>反向决定架构选型</strong>（为什么用 GQA/MLA、为什么用 MoE 的小激活、为什么追求小模型），也决定长上下文、推理模型这些方向能不能真正落地。算法与系统在这里高度交织。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">04</span>Agent 算法：从"会说"到"会做事"</h2>
+<div class="essence"><b>技术本质：</b>让模型在"观察→思考→行动→再观察"的多步循环里可靠完成长链条任务。这里讲的是<b>怎么训练模型本身具备这种能力</b>，而非在外面搭运行框架。</div>
+
+<h3>4.1 两代范式</h3>
+<div class="fig">
+<svg viewBox="0 0 680 230" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="44" width="290" height="166" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="185" y="72" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#2C2C2A">第一代：免训练（prompt-based）</text>
+<text x="60" y="100" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· ReAct：推理与行动交替</text>
+<text x="60" y="124" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· Reflexion：失败后自我反思再试</text>
+<text x="60" y="148" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· 思维链 / 思维树 / 自一致性</text>
+<text x="60" y="178" font-family="sans-serif" font-size="11" fill="#5F5E5A">快，但天花板受底座限制、不稳定</text>
+<rect x="350" y="44" width="290" height="166" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="495" y="72" text-anchor="middle" font-family="sans-serif" font-size="13.5" font-weight="500" fill="#633806">第二代：train-based（当前前沿）</text>
+<text x="370" y="100" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· 直接用 RL 训"做整个任务"的能力</text>
+<text x="370" y="124" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· 任务完成即奖励（RLVR 思路外推）</text>
+<text x="370" y="148" font-family="sans-serif" font-size="11.5" fill="#2C2C2A">· 需轨迹数据 + 可交互沙盒环境</text>
+<text x="370" y="178" font-family="sans-serif" font-size="11" fill="#854F0B">投入最猛、也最不成熟</text>
+</svg>
+</div>
+<div class="cap">图 3 · Agent 算法的两代范式</div>
+
+<h3>4.2 train-based 的四大核心难题</h3>
+<ul>
+<li><span class="key">轨迹数据</span>：需要大量"完整任务执行过程"（含工具调用、中间观察、成败结果）。真实轨迹稀缺，多靠强模型在沙盒里 rollout 生成，质量与多样性难保证。</li>
+<li><span class="key">长程信用分配</span>：任务几十步，最后失败，到底哪一步错的？把稀疏的最终奖励正确分配回中间步骤，是 agent RL 最难的技术点；过程奖励、步级 critic、回溯式归因都是尝试方向。</li>
+<li><span class="key">工具学习</span>：不只是会生成调用格式，而是学会"何时该调、调哪个、参数怎么填、返回报错怎么恢复"。错误处理与重规划能力尤其关键。</li>
+<li><span class="key">环境与评估</span>：要可交互、可重置、可大规模并行的沙盒供反复试错；评估要做到"任务级"（任务有没有真完成），而非只看单轮回答像不像。</li>
+</ul>
+
+<div class="callout amber">
+<p class="t">前沿张力</p>
+<p>把 RLVR 外推到 agent（任务完成即奖励），训练长程、多轮、带真实工具的策略；context 工程（如何在有限窗口里维持长任务记忆）与多智能体协作训练同步起步。本质难点是：<strong>真实世界任务的奖励既稀疏又难验证</strong>，这让 RLVR 的红利无法直接复制。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">05</span>多模态：把感知接进认知</h2>
+<div class="essence"><b>技术本质：</b>让语言模型处理非文本信息。一个根本分叉必须分开看——<b>理解</b>和<b>生成</b>是两套技术、两条技能栈。</div>
+
+<h3>5.1 理解：看懂图/视频/音再用语言回应</h3>
+<p>主流结构是 <strong>视觉编码器 + 连接器 + 语言大模型</strong>：图像经编码器（多基于 ViT/CLIP）变成视觉 token，经连接器（projector，可以是简单 MLP，也可以是 Q-Former 这类重采样器）映射进语言模型的表示空间。训练两阶段——先<strong>图文对齐预训练</strong>（海量图文对让两个空间对上），再<strong>多模态指令微调</strong>（学会按指令答关于图的问题）。</p>
+<h4>关键难题</h4>
+<ul>
+<li><span class="key">视觉 token 爆炸</span>：高分辨率图、长视频会产生海量视觉 token，挤占上下文且拖慢推理，催生 token 压缩/重采样技术。</li>
+<li><span class="key">细粒度对齐</span>：OCR、小目标、图表数字、密集文档的精确理解，是当前最难啃也最高价值的部分。</li>
+<li><span class="key">模态干扰</span>：接入视觉后纯文本能力退化（"看懂了但变笨了"），需精细配比缓解。</li>
+<li><span class="key">原生多模态</span>：从"后期拼接编码器"走向"预训练阶段就混合多模态一起训"，对齐更深，是演进方向。</li>
+</ul>
+
+<h3>5.2 生成：另一套体系</h3>
+<p>文生图/视频主力是<strong>扩散模型</strong>：从纯噪声一步步"去噪"还原图像。架构从 U-Net 转向 <strong>DiT（Diffusion Transformer）</strong>，<strong>flow matching</strong> 让训练与采样更快更稳。也有走自回归路线（把图像离散成 token 像文本一样生成）的流派。与"理解"几乎是两拨人的技能栈。</p>
+
+<div class="gloss">
+<div class="row"><div class="term">ViT</div><div class="def">视觉版 Transformer，把图片切成 patch 当 token，让模型像读文字一样读图。</div></div>
+<div class="row"><div class="term">CLIP 对比学习</div><div class="def">用海量图文对做对比训练，让"图"和"描述它的文字"在表示空间靠近——图文互通的基石。</div></div>
+<div class="row"><div class="term">连接器 / Q-Former</div><div class="def">把视觉特征对齐并压缩进语言空间的桥接模块，决定视觉信息进入大脑时的质量与数量。</div></div>
+<div class="row"><div class="term">扩散 / DiT</div><div class="def">去噪式生成范式；DiT 用 Transformer 替换 U-Net 骨架，更易随规模扩展，是当前文生图/视频主流。</div></div>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">06</span>搜推 / RAG：检索体系与大模型的融合</h2>
+<div class="essence"><b>技术本质：</b>从海量候选里高效挑出"最该返回的"并排好。它有自成一体的工业体系，与 LLM 是两条历史线，如今在向量化与 RAG 上深度融合。</div>
+
+<h3>6.1 经典两段式</h3>
+<div class="fig">
+<svg viewBox="0 0 680 210" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="m6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="44" width="150" height="74" rx="12" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="115" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#791F1F">召回</text>
+<text x="115" y="96" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2C2C2A">百万→几百，双塔+ANN</text>
+<rect x="250" y="44" width="150" height="74" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="325" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#633806">精排</text>
+<text x="325" y="96" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2C2C2A">深度 CTR，特征交叉</text>
+<rect x="460" y="44" width="180" height="74" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="550" y="74" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#085041">重排 + A/B</text>
+<text x="550" y="96" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#2C2C2A">多样性/业务规则/线上验证</text>
+<path d="M190 81 L248 81" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#m6)"/>
+<path d="M400 81 L458 81" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#m6)"/>
+<rect x="40" y="138" width="600" height="56" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="60" y="164" font-family="sans-serif" font-size="12.5" font-weight="500" fill="#0C447C">大模型重构：语义召回（Embedding 升级）· 生成式推荐（语义 ID 直接生成）</text>
+<text x="60" y="184" font-family="sans-serif" font-size="11.5" fill="#185FA5">序列建模把用户行为当"序列"预测下一个交互，越来越像语言建模</text>
+</svg>
+</div>
+<div class="cap">图 4 · 搜推经典漏斗与大模型带来的重构</div>
+
+<h3>6.2 RAG：检索增强生成的工程纵深</h3>
+<p>RAG 是搜推与大模型结合最成熟的形态：回答前先检索相关资料，再让模型基于资料作答，从而压制幻觉、可溯源、能用专有/最新数据。看似简单，工程链路其实很深：</p>
+<ul>
+<li><span class="key">切块 chunking</span>：文档怎么切——切太碎丢上下文，切太大引入噪声；语义切分、重叠窗口、层级结构都是讲究。</li>
+<li><span class="key">检索</span>：稠密向量检索（懂语义）+ 稀疏检索（BM25，懂关键词）混合，往往优于单一路线。</li>
+<li><span class="key">重排 rerank</span>：用 cross-encoder 对检索结果精排，把最相关的放前面，对最终质量影响极大。</li>
+<li><span class="key">查询改写 / 多跳</span>：把用户口语问题改写成更好检索的形式；复杂问题拆成多步检索（multi-hop）。</li>
+<li><span class="key">Agentic RAG</span>：让模型自主决定"要不要检索、检索什么、够不够再来一轮"，是 RAG 与 Agent 的合流方向。</li>
+</ul>
+
+<div class="gloss">
+<div class="row"><div class="term">双塔模型</div><div class="def">用户与物品各自编码成向量、看谁更配，召回阶段经典结构，支持离线建索引。</div></div>
+<div class="row"><div class="term">ANN 近似检索</div><div class="def">在海量向量里快速找"最接近"的（HNSW/IVF 等索引），让搜索从对字面升级到对语义。</div></div>
+<div class="row"><div class="term">Embedding 模型</div><div class="def">把文本/物品映射成语义向量，是语义召回与 RAG 的共同底座，其质量直接决定检索上限。</div></div>
+<div class="row"><div class="term">生成式推荐</div><div class="def">给每个物品一个语义 ID，把推荐建模成"生成下一个物品 ID"的序列问题，让 LLM 直接生成——新范式，仍在探索。</div></div>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">07</span>评估：决定上面一切是否可信</h2>
+<div class="essence"><b>技术本质：</b>没有可靠评估，所有"提升"都是自欺。评估之难，丝毫不亚于训练本身，且随能力变强而更难。</div>
+<ul>
+<li><span class="key">基准污染</span>：评测集泄进训练集让分数虚高，是最普遍的陷阱；需要严格去污染与持续更新的"防泄露"评测集。</li>
+<li><span class="key">LLM-as-judge</span>：用强模型当裁判给回答打分，规模化但有偏（偏好长答案、偏好自己的风格、位置偏置），需校准。</li>
+<li><span class="key">能力 vs 安全</span>：既要测能力（推理、知识、代码），也要测安全/对齐（拒答、越狱、偏见、幻觉率），两类评测方法论不同。</li>
+<li><span class="key">过程 vs 结果</span>：对推理与 agent 任务，只看最终答案不够，要评估推理过程、工具使用是否合理——与 PRM、agent 评估同源。</li>
+<li><span class="key">动态/对抗评估</span>：静态榜单容易被刷，转向动态生成题目、人类对战（如竞技场式 Elo）和对抗性红队测试。</li>
+</ul>
+
+<div class="callout teal">
+<p class="t">为什么评估值得单列收尾</p>
+<p>预训练的数据去污染、后训练的奖励设计、agent 的任务级评估、RAG 的检索质量度量——<strong>每一个方向的"前沿张力"最终都汇到"我们怎么知道它真的变好了"</strong>。评估是贯穿全栈、却最容易被低估的硬骨头。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">08</span>一表收束：六大板块如何咬合</h2>
+<div class="callout blue">
+<p><strong>预训练</strong>把能力压进参数 → <strong>后训练 / RL</strong> 激发并对齐（RLVR 正把它从"对齐偏好"推向"对齐正确"）→ <strong>Agent 算法</strong>让能力在长链条任务里自主释放 → <strong>多模态</strong>给它接上感知 → <strong>搜推 / RAG</strong> 给它接上海量外部事实。全程被<strong>推理效率</strong>托底、被<strong>评估</strong>校验。</p>
+</div>
+<table>
+<thead><tr><th>板块</th><th>一句话技术内核</th><th>当前最热的点</th><th>最硬的未解难题</th></tr></thead>
+<tbody>
+<tr><td>预训练</td><td>规模 + 数据把能力压进参数</td><td>MoE、合成数据、过度训练</td><td>数据墙、合成数据导致的分布坍缩</td></tr>
+<tr><td>后训练 / RL</td><td>激发能力并对齐偏好/正确性</td><td>RLVR、GRPO、推理模型</td><td>开放任务如何设计可验证奖励、reward hacking</td></tr>
+<tr><td>推理与效率</td><td>便宜快速稳定地跑起来</td><td>投机解码、量化、PagedAttention</td><td>长上下文 KV 显存的线性增长</td></tr>
+<tr><td>Agent 算法</td><td>训模型自主完成长链条任务</td><td>agent RL、轨迹合成</td><td>长程信用分配、稀疏难验证奖励</td></tr>
+<tr><td>多模态</td><td>把视觉/语音接进语言认知</td><td>原生多模态、高分辨率理解</td><td>细粒度对齐、模态干扰、视觉 token 爆炸</td></tr>
+<tr><td>搜推 / RAG</td><td>从海量候选高效挑选并增强生成</td><td>语义召回、Agentic RAG、生成式推荐</td><td>检索质量度量、多跳推理可靠性</td></tr>
+</tbody>
+</table>
+
+<div class="footer">大模型算法方向技术下探 v2 · 整理于 2026-06-12 · 纯算法技术纵深视角 · 内部参考</div>
+
+</div>
+</body>
+</html>
