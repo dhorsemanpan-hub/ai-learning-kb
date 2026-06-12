@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法方向细化认知手册</title>
+<style>
+  :root{
+    --ink:#1f2329; --ink2:#3d4451; --muted:#6b7280; --line:#e6e8eb;
+    --bg:#ffffff; --soft:#f7f8fa;
+    --purple:#534AB7; --purpleBg:#EEEDFE; --purpleInk:#3C3489;
+    --teal:#0F6E56; --tealBg:#E1F5EE; --tealInk:#085041;
+    --amber:#854F0B; --amberBg:#FAEEDA; --amberInk:#633806;
+    --blue:#185FA5; --blueBg:#E6F1FB; --blueInk:#0C447C;
+    --red:#A32D2D; --redBg:#FCEBEB; --redInk:#791F1F;
+    --pink:#993556; --pinkBg:#FBEAF0; --pinkInk:#72243E;
+    --gray:#5F5E5A; --grayBg:#F1EFE8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75; font-size:15px;
+  }
+  .page{max-width:860px; margin:0 auto; background:var(--bg); padding:56px 60px 80px;}
+  .cover{padding:64px 60px 48px; border-bottom:1px solid var(--line);}
+  .cover .kicker{color:var(--purple); font-size:13px; letter-spacing:2px; font-weight:600; margin-bottom:14px;}
+  .cover h1{font-size:30px; margin:0 0 16px; line-height:1.3; font-weight:700; letter-spacing:.5px;}
+  .cover .sub{color:var(--muted); font-size:15px; max-width:640px;}
+  .cover .meta{margin-top:28px; font-size:13px; color:var(--muted);}
+  h2{font-size:21px; margin:52px 0 6px; font-weight:700; letter-spacing:.3px;}
+  h2 .num{color:var(--purple); margin-right:10px;}
+  h3{font-size:16px; margin:30px 0 8px; font-weight:600; color:var(--ink);}
+  .lead{color:var(--ink2); margin:8px 0 18px;}
+  p{margin:12px 0; color:var(--ink2);}
+  .divider{height:1px; background:var(--line); margin:46px 0;}
+  .fig{margin:26px 0 10px; border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .cap{font-size:12.5px; color:var(--muted); text-align:center; margin:10px 0 4px;}
+  .callout{border-left:3px solid var(--purple); background:var(--purpleBg); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .callout.teal{border-color:var(--teal); background:var(--tealBg);}
+  .callout.amber{border-color:var(--amber); background:var(--amberBg);}
+  .callout.red{border-color:var(--red); background:var(--redBg);}
+  .callout.blue{border-color:var(--blue); background:var(--blueBg);}
+  .callout p{margin:6px 0; color:var(--ink);}
+  .callout .t{font-weight:600; color:var(--ink);}
+  table{width:100%; border-collapse:collapse; margin:22px 0; font-size:13.5px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--soft); font-weight:600; color:var(--ink); font-size:13px;}
+  td:first-child{font-weight:600; color:var(--ink); white-space:nowrap;}
+  .tag{display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:20px; font-weight:600; line-height:1.6; white-space:nowrap;}
+  .tag.core{background:var(--tealBg); color:var(--tealInk);}
+  .tag.high{background:var(--redBg); color:var(--redInk);}
+  .tag.mid{background:var(--amberBg); color:var(--amberInk);}
+  .tag.rel{background:var(--blueBg); color:var(--blueInk);}
+  ul{margin:12px 0; padding-left:22px;} li{margin:7px 0; color:var(--ink2);}
+  .key{background:var(--grayBg); padding:2px 7px; border-radius:5px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss{margin:18px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .gloss .row{display:flex; gap:0; border-bottom:1px solid var(--line);}
+  .gloss .row:last-child{border-bottom:none;}
+  .gloss .term{flex:0 0 168px; background:var(--soft); padding:11px 14px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss .def{padding:11px 14px; color:var(--ink2); font-size:13.5px;}
+  .footer{margin-top:60px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center;}
+  @media print{ body{background:#fff;} .page,.cover{padding:32px 20px;} h2{page-break-after:avoid;} .fig{page-break-inside:avoid;} table{page-break-inside:avoid;} .gloss{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">招聘视角 · 认知手册 · 第二册</div>
+  <h1>大模型"算法"到底分几种<br>每一种在做什么、怎么招</h1>
+  <div class="sub">接上一册的全链路认知，这一册专门把"算法"这一层拆开揉碎：分成哪些类、各自适合什么业务、技术栈是什么、日常在干什么活、那些技术名词到底啥意思。基模、后训练、Agent、多模态、搜推——一次讲清，配上招聘判断口诀。</div>
+  <div class="meta">整理日期：2026-06-12 ｜ 适用场景：金融大模型算法岗位招聘 ｜ 配套：第一册《岗位认知手册》</div>
+</div>
+
+<div class="page">
+
+<h2><span class="num">01</span>先建坐标系：算法不是铁板一块</h2>
+<p class="lead">"算法工程师"是个大筐，里面装着差别极大的几种人。先有张全局地图。</p>
+<p>上一册我们说"算法 = 驯服模型这个不确定的大脑"。但<strong>造大脑、教大脑、放大脑出去干活</strong>是完全不同的手艺，再叠加"它处理文字还是图片、是搜索推荐还是自主决策"，就分出了好几个工种。理解算法的第一步，是看懂这两条轴：<span class="key">纵向 = 模型的生命周期阶段</span>，<span class="key">横向 = 它处理什么数据/解决什么问题</span>。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 300" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a01" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="46" width="172" height="92" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="126" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">造大脑</text>
+<text x="126" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7">基模 / 预训练算法</text>
+<text x="126" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7">从零训出底座</text>
+<rect x="254" y="46" width="172" height="92" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">教大脑</text>
+<text x="340" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#0F6E56">后训练 / RL 算法</text>
+<text x="340" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#0F6E56">调教成听话专才</text>
+<rect x="468" y="46" width="172" height="92" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="554" y="78" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">放出去干活</text>
+<text x="554" y="100" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#854F0B">Agent 算法</text>
+<text x="554" y="120" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#854F0B">学会规划与用工具</text>
+<path d="M212 92 L252 92" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a01)"/>
+<path d="M426 92 L466 92" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a01)"/>
+<text x="340" y="172" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#5F5E5A">↑ 纵轴：模型生命周期（一个大脑从出生到上岗）</text>
+<rect x="40" y="196" width="290" height="72" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="185" y="224" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#0C447C">横轴：它处理什么</text>
+<text x="185" y="248" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#185FA5">纯文字 NLP · 图音视频 多模态</text>
+<rect x="350" y="196" width="290" height="72" rx="12" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
+<text x="495" y="224" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#72243E">横轴：它解决什么</text>
+<text x="495" y="248" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#993556">搜索推荐 · 用强化学习对齐</text>
+</svg>
+</div>
+<div class="cap">图 1 · 理解算法的两条轴：生命周期阶段 × 技术领域</div>
+
+<div class="callout">
+<p class="t">一句话记住</p>
+<p>别问"他是不是算法"，要问<strong>"他在生命周期的哪一段、处理哪种数据"</strong>。一个训基模的人和一个做搜推的人，虽然都叫算法，技术栈和思维方式可能天差地别。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">02</span>分类总图：把所有算法岗放进格子</h2>
+<p class="lead">两条轴一交叉，就是一张能给候选人"对号入座"的矩阵。</p>
+<p>下面这张图是全册的骨架。纵向三段是生命周期，横向是技术领域。你筛简历时，先把候选人丢进某个格子，再看这个格子是不是你 JD 要的——这比纠结"他算不算大模型算法"高效得多。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 380" role="img" xmlns="http://www.w3.org/2000/svg">
+<text x="40" y="34" font-family="sans-serif" font-size="12" fill="#5F5E5A">纵：生命周期　　横：技术领域</text>
+<rect x="40" y="46" width="120" height="40" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="100" y="70" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">　</text>
+<rect x="166" y="46" width="156" height="40" rx="6" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="244" y="66" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="500" fill="#0C447C">文本 NLP / LLM</text>
+<rect x="328" y="46" width="156" height="40" rx="6" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
+<text x="406" y="66" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="500" fill="#72243E">多模态</text>
+<rect x="490" y="46" width="150" height="40" rx="6" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="565" y="66" text-anchor="middle" font-family="sans-serif" font-size="12.5" font-weight="500" fill="#791F1F">搜索 / 推荐</text>
+
+<rect x="40" y="92" width="120" height="84" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="100" y="128" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#3C3489">造大脑</text>
+<text x="100" y="148" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#534AB7">预训练</text>
+<rect x="166" y="92" width="156" height="84" rx="6" fill="#fff" stroke="#185FA5" stroke-width="0.5"/>
+<text x="244" y="126" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">文本基模算法</text>
+<text x="244" y="146" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">千问 / 文心 / GPT 类</text>
+<rect x="328" y="92" width="156" height="84" rx="6" fill="#fff" stroke="#993556" stroke-width="0.5"/>
+<text x="406" y="126" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">多模态基模算法</text>
+<text x="406" y="146" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">图文 / 视频统一训练</text>
+<rect x="490" y="92" width="150" height="84" rx="6" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="565" y="134" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#888780">（搜推不走</text>
+<text x="565" y="152" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#888780">预训练这条线）</text>
+
+<rect x="40" y="182" width="120" height="84" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="100" y="218" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#085041">教大脑</text>
+<text x="100" y="238" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#0F6E56">后训练 / RL</text>
+<rect x="166" y="182" width="156" height="84" rx="6" fill="#fff" stroke="#185FA5" stroke-width="0.5"/>
+<text x="244" y="216" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">SFT / RLHF / DPO</text>
+<text x="244" y="236" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">对齐、懂金融、不乱说</text>
+<rect x="328" y="182" width="156" height="84" rx="6" fill="#fff" stroke="#993556" stroke-width="0.5"/>
+<text x="406" y="216" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">多模态对齐</text>
+<text x="406" y="236" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">让它看懂图再好好答</text>
+<rect x="490" y="182" width="150" height="84" rx="6" fill="#fff" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="565" y="216" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">排序 / 精排</text>
+<text x="565" y="236" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">用 RL 优化点击转化</text>
+
+<rect x="40" y="272" width="120" height="84" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="100" y="308" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="500" fill="#633806">放出去</text>
+<text x="100" y="328" text-anchor="middle" font-family="sans-serif" font-size="11.5" fill="#854F0B">Agent</text>
+<rect x="166" y="272" width="156" height="84" rx="6" fill="#fff" stroke="#185FA5" stroke-width="0.5"/>
+<text x="244" y="306" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">Agent 算法</text>
+<text x="244" y="326" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">规划 / 用工具 / 反思</text>
+<rect x="328" y="272" width="156" height="84" rx="6" fill="#fff" stroke="#993556" stroke-width="0.5"/>
+<text x="406" y="306" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">多模态 Agent</text>
+<text x="406" y="326" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">看屏幕 / 操作界面</text>
+<rect x="490" y="272" width="150" height="84" rx="6" fill="#fff" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="565" y="306" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#2C2C2A">智能推荐 Agent</text>
+<text x="565" y="326" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888780">对话式选品 / 配置</text>
+</svg>
+</div>
+<div class="cap">图 2 · 算法岗位双维度矩阵（横向技术领域 × 纵向生命周期）</div>
+
+<div class="callout teal">
+<p class="t">怎么用这张图</p>
+<p>本 JD 的核心格子是<strong>左两列的"造大脑 + 教大脑"</strong>（文本/多模态基模、后训练 RL）和<strong>底排的 Agent 算法</strong>。搜推是相关方向、加分项。候选人落在哪个格子，决定了他和你的匹配度。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">03</span>先排个雷：传统机器学习 ≠ 大模型算法</h2>
+<p class="lead">这是筛简历最容易踩的坑——同样写"算法/机器学习"，可能是两套完全不同的体系。</p>
+<p>很多简历写着"机器学习算法工程师""8 年算法经验"，但他做的可能是<strong>传统机器学习</strong>——靠人工设计特征、训练小模型做风控评分、点击率预测。这套手艺很值钱，但和你要的<strong>大模型（LLM）算法</strong>是两个时代的东西。看不清，就会把"搜推老兵"误当成"基模新锐"。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 320" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="46" width="290" height="244" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="185" y="76" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#2C2C2A">传统机器学习</text>
+<text x="185" y="96" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#5F5E5A">2010s 主流 · 至今仍大量在用</text>
+<line x1="60" y1="112" x2="310" y2="112" stroke="#5F5E5A" stroke-width="0.5" opacity="0.3"/>
+<text x="60" y="138" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 人工设计"特征"喂给模型</text>
+<text x="60" y="164" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 模型小、针对单一任务</text>
+<text x="60" y="190" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 多在判断/预测：会不会违约</text>
+<text x="60" y="216" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 技术栈：XGBoost、LR、特征工程</text>
+<text x="60" y="242" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 典型岗：风控、CTR、搜推排序</text>
+<text x="60" y="272" font-family="sans-serif" font-size="12" fill="#5F5E5A">像老中医：靠经验抓药、对症下药</text>
+
+<rect x="350" y="46" width="290" height="244" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="495" y="76" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#3C3489">大模型 / LLM 算法</text>
+<text x="495" y="96" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#534AB7">2020s 主流 · 本 JD 的核心</text>
+<line x1="370" y1="112" x2="620" y2="112" stroke="#534AB7" stroke-width="0.5" opacity="0.3"/>
+<text x="370" y="138" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 喂海量原始数据，自己学特征</text>
+<text x="370" y="164" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 模型巨大、一个顶通用多任务</text>
+<text x="370" y="190" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 多在生成：写报告、答问、决策</text>
+<text x="370" y="216" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 技术栈：Transformer、预训练、RLHF</text>
+<text x="370" y="242" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 典型岗：基模、后训练、Agent</text>
+<text x="370" y="272" font-family="sans-serif" font-size="12" fill="#534AB7">像全科学霸：博览群书、举一反三</text>
+</svg>
+</div>
+<div class="cap">图 3 · 两套算法体系对比：特征工程小模型 vs 预训练大模型</div>
+
+<div class="callout amber">
+<p class="t">筛简历判断口诀</p>
+<p>看到 <span class="key">XGBoost / LightGBM / 特征工程 / CTR / 评分卡</span> 为主 → 偏<strong>传统 ML</strong>（搜推、风控背景）。看到 <span class="key">预训练 / Transformer / SFT / RLHF / 千亿参数</span> 为主 → 才是<strong>大模型算法</strong>。两者不是高低，是不同赛道；本 JD 主要要后者。<strong>但注意：搜推岗往往两套都懂，是天然的过渡人才。</strong></p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">04</span>基模算法（预训练）：造大脑的人</h2>
+<p class="lead">最上游、最烧钱、最容易出顶会论文，也是本 JD 最想补强的方向。</p>
+<p><strong>做什么：</strong>从零把一个通用大模型训出来——决定模型多大、用什么数据、怎么配比、训练怎么更高效不崩。这是"打地基"的活，地基决定了整栋楼的上限。<br>
+<strong>适用业务：</strong>不直接对某个业务，而是产出"底座大脑"，供下游所有金融场景共用。JD 里"我们需要更精细化地把基模做起来"指的就是这群人。</p>
+
+<h3>技术栈名词（大白话版）</h3>
+<div class="gloss">
+<div class="row"><div class="term">Transformer</div><div class="def">几乎所有大模型的"通用发动机"骨架。你不用懂内部，但候选人必须张口就能聊它的变体和取舍。</div></div>
+<div class="row"><div class="term">Token / Tokenizer</div><div class="def">模型不认字，先把文字切成一小块一小块的"积木"（token）。Tokenizer 就是那把切积木的刀，切法好坏直接影响中文和数字处理。</div></div>
+<div class="row"><div class="term">参数量</div><div class="def">模型"脑容量"大小，常说的 7B、72B 就是 70 亿、720 亿个旋钮。越大越聪明，但越贵越难训。</div></div>
+<div class="row"><div class="term">Scaling Law</div><div class="def">"规模定律"——多大模型、多少数据、多少算力能换来多少智能，有可预测的规律。预训练高手靠它决定怎么花钱最划算。</div></div>
+<div class="row"><div class="term">MoE 混合专家</div><div class="def">把一个大模型拆成很多"专科医生"，每次只叫醒相关的几个，省算力又保能力。当下基模的主流架构之一。</div></div>
+<div class="row"><div class="term">分布式 / 并行训练</div><div class="def">一张卡装不下、算不动，得几百上千张显卡协同干一件事。怎么切分、怎么不互相等待，是硬功夫。</div></div>
+<div class="row"><div class="term">数据配比</div><div class="def">中文多少、代码多少、数学多少、金融语料多少——这个"配方"极大影响模型擅长什么。行内说"数据决定上限"主要指这里。</div></div>
+</div>
+
+<h3>日常工作内容</h3>
+<ul>
+<li>设计/改进模型结构和训练方法，跑大规模实验，盯着损失曲线调参；</li>
+<li>清洗、配比、去重海量训练数据（脏活但极关键）；</li>
+<li>解决训练中途崩溃、变慢、算力浪费等工程难题；</li>
+<li>读最新顶会论文、复现、把好点子用进自家模型。</li>
+</ul>
+
+<div class="callout">
+<p class="t">招聘判断口诀</p>
+<p>真预训练高手能讲清 <span class="key">"我们当时数据配比怎么定、为什么这么定、改了之后哪类能力涨了"</span>，能聊 Scaling Law 和架构取舍。<strong>顶会论文 5-10 篇</strong>在这个方向是合理硬通货——因为预训练创新最容易发论文。只会"调用 API、做提示词"的，不是这一档。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">05</span>后训练算法 + 强化学习 RL 专题：教大脑的人</h2>
+<p class="lead">基模是"博学但不会做人"的通才，后训练把它调教成"听话、专业、不乱说"的金融专才。RL 是这一步越来越核心的武器。</p>
+<p><strong>做什么：</strong>在已有基模上做精调和对齐，让它听指令、符合人类偏好、在金融场景里既专业又守规矩。<br>
+<strong>适用业务：</strong>几乎所有要落地的金融 AI 都离不开——让通用大脑变成"懂理财、会答客户、不乱承诺收益"的专家。JD 说"之前主要做金融后训练落地"就是这层。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 300" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a05" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<rect x="40" y="50" width="180" height="180" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="130" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">SFT 监督微调</text>
+<text x="130" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#0F6E56">手把手给标准答案</text>
+<text x="60" y="136" font-family="sans-serif" font-size="12" fill="#2C2C2A">"这类问题</text>
+<text x="60" y="158" font-family="sans-serif" font-size="12" fill="#2C2C2A">就该这么答"</text>
+<text x="60" y="190" font-family="sans-serif" font-size="11.5" fill="#0F6E56">像老师给范文</text>
+<text x="60" y="210" font-family="sans-serif" font-size="11.5" fill="#0F6E56">让学生照着学</text>
+<rect x="250" y="50" width="180" height="180" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="340" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">RLHF / DPO</text>
+<text x="340" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#854F0B">给反馈让它自己悟</text>
+<text x="270" y="136" font-family="sans-serif" font-size="12" fill="#2C2C2A">"这个答得好</text>
+<text x="270" y="158" font-family="sans-serif" font-size="12" fill="#2C2C2A">那个答得差"</text>
+<text x="270" y="190" font-family="sans-serif" font-size="11.5" fill="#854F0B">像教练反复打分</text>
+<text x="270" y="210" font-family="sans-serif" font-size="11.5" fill="#854F0B">让它越练越对味</text>
+<rect x="460" y="50" width="180" height="180" rx="12" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="550" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#791F1F">奖励模型 RM</text>
+<text x="550" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#A32D2D">当"裁判"打分</text>
+<text x="480" y="136" font-family="sans-serif" font-size="12" fill="#2C2C2A">替人给海量</text>
+<text x="480" y="158" font-family="sans-serif" font-size="12" fill="#2C2C2A">回答自动评分</text>
+<text x="480" y="190" font-family="sans-serif" font-size="11.5" fill="#A32D2D">没它，RL 没法</text>
+<text x="480" y="210" font-family="sans-serif" font-size="11.5" fill="#A32D2D">大规模跑起来</text>
+<path d="M220 140 L248 140" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a05)"/>
+<path d="M430 140 L458 140" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a05)"/>
+<text x="340" y="262" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#5F5E5A">从"照着学" → "被打分反复练" → "训练一个裁判来规模化打分"</text>
+<text x="340" y="284" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#A32D2D">越往右越像强化学习 RL，也越是当下的核心竞争力</text>
+</svg>
+</div>
+<div class="cap">图 4 · 后训练三件套：SFT → RLHF/DPO → 奖励模型</div>
+
+<h3>技术栈名词（大白话版）</h3>
+<div class="gloss">
+<div class="row"><div class="term">SFT 监督微调</div><div class="def">给模型看大量"好问题—好答案"的范例，让它照着学会某种风格或专业能力。最基础的教法。</div></div>
+<div class="row"><div class="term">RLHF</div><div class="def">"用人类反馈做强化学习"。不直接给答案，而是对模型的多个回答排好坏，让它自己往人喜欢的方向进化。</div></div>
+<div class="row"><div class="term">DPO</div><div class="def">RLHF 的简化版，更省事、更稳。同样是"喜欢这个不喜欢那个"，但训练流程更短，近两年很流行。</div></div>
+<div class="row"><div class="term">奖励模型 RM</div><div class="def">一个专门"当裁判"的小模型，替人类给海量回答自动打分。没有它，RL 没法大规模跑。</div></div>
+<div class="row"><div class="term">PPO / GRPO</div><div class="def">两种具体的强化学习算法（"怎么根据打分去更新模型"的配方）。GRPO 是近期更高效的新宠，候选人聊得出区别说明在一线。</div></div>
+<div class="row"><div class="term">对齐 Alignment</div><div class="def">让模型的行为"对齐"人类期望——有用、诚实、无害。金融场景里还要叠一层"合规对齐"。</div></div>
+<div class="row"><div class="term">幻觉</div><div class="def">模型一本正经地胡说八道、编造不存在的数据。金融里这是大忌，后训练的重要目标就是压幻觉。</div></div>
+</div>
+
+<div class="callout amber">
+<p class="t">招聘判断口诀</p>
+<p>真后训练高手能讲清 <span class="key">"模型有个毛病 → 我用 SFT/DPO/RL 哪种手段、配了什么数据 → 这个指标降了多少"</span> 的完整闭环。<strong>会聊 RL（PPO/GRPO）、自己搭过奖励模型</strong>的，是当下最抢手的一档——因为这正是从"能用"迈向"好用"的关键，也是各家拉开差距的地方。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">06</span>Agent 算法：教大脑"自己干活"的人</h2>
+<p class="lead">注意：这里说的是 Agent <strong>算法</strong>，和上一册讲的 Agent <strong>工程</strong>是两拨人、两件事。</p>
+<p><strong>做什么：</strong>让模型本身学会"自主完成多步任务"的能力——会拆解目标、会决定该调哪个工具、做错了会反思纠正。这是在"训练模型的脑回路"，让它天生擅长当 Agent。<br>
+<strong>和 Agent 工程的区别：</strong>算法侧训"大脑会不会规划用工具"，工程侧（上一册的 harness）搭"外面的笼子和管道让它安全落地"。一个改大脑，一个搭环境。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="40" y="50" width="290" height="160" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="185" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#633806">Agent 算法（改大脑）</text>
+<text x="60" y="112" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 训练模型学会"规划—执行—反思"</text>
+<text x="60" y="138" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 用 RL 教它"多步任务怎么做对"</text>
+<text x="60" y="164" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 让它天生会判断该调哪个工具</text>
+<text x="60" y="192" font-family="sans-serif" font-size="12" fill="#854F0B">像训练一个会自己想办法的员工</text>
+<rect x="350" y="50" width="290" height="160" rx="12" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="495" y="80" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="500" fill="#0C447C">Agent 工程（搭环境）</text>
+<text x="370" y="112" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 搭 harness：管循环、管刹车</text>
+<text x="370" y="138" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 接工具、做记忆、保证不闯祸</text>
+<text x="370" y="164" font-family="sans-serif" font-size="12.5" fill="#2C2C2A">· 让训好的大脑能稳定上线干活</text>
+<text x="370" y="192" font-family="sans-serif" font-size="12" fill="#185FA5">像给员工配工具、定流程、立规矩</text>
+</svg>
+</div>
+<div class="cap">图 5 · Agent 算法 vs Agent 工程：改大脑 vs 搭环境</div>
+
+<h3>技术栈名词（大白话版）</h3>
+<div class="gloss">
+<div class="row"><div class="term">Function Calling</div><div class="def">让模型学会"该用工具时，吐出一份格式规范的调用指令"。是 Agent 能动手做事的基本功。</div></div>
+<div class="row"><div class="term">ReAct</div><div class="def">"边想边做"的范式：想一步→做一步→看结果→再想。让模型像人一样推进多步任务。</div></div>
+<div class="row"><div class="term">CoT 思维链</div><div class="def">让模型"把推理过程一步步写出来"再给答案，复杂问题更不容易错。算 Agent 的基础能力。</div></div>
+<div class="row"><div class="term">Agent 记忆</div><div class="def">让 Agent 记住之前发生过什么、用户是谁、做到哪一步。算法侧研究怎么记得准、不串台。</div></div>
+<div class="row"><div class="term">RL for Agent</div><div class="def">用强化学习直接训练"做整个任务"的能力——任务成功就奖励。当下让 Agent 变强的最前沿手段。</div></div>
+</div>
+
+<div class="callout amber">
+<p class="t">招聘判断口诀</p>
+<p>Agent 算法候选人应能讲 <span class="key">"我怎么训模型让它在多步任务上成功率更高"</span>（RL、轨迹数据、反思机制）。如果他只讲"我写提示词、连了几个工具、调通了流程"——那更偏 <strong>Agent 工程 / 应用</strong>，不是算法。本 JD 的"agent 工程"那条更看重<strong>绩效好、做过非内部系统的 harness</strong>，属工程侧；若能兼具 Agent 算法能力则是稀缺加分。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">07</span>多模态算法：让大脑长出眼睛和耳朵</h2>
+<p class="lead">前面说的基模多是纯文字，多模态算法让模型能同时看图、听音、读视频。</p>
+<p><strong>做什么：</strong>训练模型理解或生成多种形态的内容——看懂一张财报截图、识别身份证、读懂 K 线图、甚至生成讲解视频。核心难点是让"图像/语音"和"文字"在模型里对齐到同一个理解空间。<br>
+<strong>金融场景适用性：</strong>票据/合同/身份证识别、研报图表解读、客服语音、视频化投教内容——多模态在金融里落地点很多，但相比文本基模，目前是"重要但更偏特定场景"的方向。</p>
+
+<h3>技术栈名词（大白话版）</h3>
+<div class="gloss">
+<div class="row"><div class="term">ViT</div><div class="def">"视觉版 Transformer"，把图片也切成小块当 token 处理，让大模型能像读文字一样读图。</div></div>
+<div class="row"><div class="term">CLIP</div><div class="def">让"图"和"描述它的文字"在模型里靠得很近的一种训练法。是图文互通的基石。</div></div>
+<div class="row"><div class="term">扩散模型 Diffusion</div><div class="def">主流的"文生图/视频"技术：从一团噪点一步步"去噪"还原出清晰图像。AI 画图、生成视频靠它。</div></div>
+<div class="row"><div class="term">多模态对齐</div><div class="def">把图像编码器和语言大脑"焊"在一起，让模型看完图能用语言准确说出来。多模态训练的核心活。</div></div>
+</div>
+
+<div class="callout blue">
+<p class="t">招聘判断口诀</p>
+<p>多模态候选人要能讲清 <span class="key">"图像怎么编码、怎么和文本对齐、训练数据怎么配"</span>。注意区分两类：做<strong>理解</strong>（看图答题）和做<strong>生成</strong>（文生图/视频）技术栈有别。结合本 JD，金融更常用"理解类"多模态（证件、票据、图表）；纯生成方向匹配度相对低。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">08</span>搜推算法：最老牌、也最懂"把对的东西端到你面前"</h2>
+<p class="lead">JD 把搜推列为相关方向。它既是传统 ML 的主场，也正在和大模型快速融合。</p>
+<p><strong>做什么：</strong>你搜一下给最相关结果（搜索），你没搜也能猜你想要并推给你（推荐）。在金融里就是"推匹配你风险偏好的理财/贷款产品""搜一下基金给最相关的"。<br>
+<strong>和大模型的融合：</strong>传统搜推靠"召回+排序"两段式；大模型时代越来越多用<span class="key">向量检索</span>和 <span class="key">RAG</span>，让推荐更懂语义、更像对话。</p>
+
+<h3>技术栈名词（大白话版）</h3>
+<div class="gloss">
+<div class="row"><div class="term">召回 / 排序</div><div class="def">搜推的两段式：先从百万商品里粗筛出几百个"可能相关"（召回），再精挑细排出最该给你看的几个（排序）。</div></div>
+<div class="row"><div class="term">Embedding 向量</div><div class="def">把一段文字/一个商品变成一串数字坐标，意思相近的坐标就靠得近。是"语义搜索"的基础。</div></div>
+<div class="row"><div class="term">向量检索</div><div class="def">在海量向量里快速找出"意思最接近"的那些。让搜索从"对字面"升级到"对意思"。</div></div>
+<div class="row"><div class="term">双塔模型</div><div class="def">把"用户"和"商品"各自编码成向量，看谁和谁更配。推荐系统的经典结构。</div></div>
+<div class="row"><div class="term">RAG 检索增强</div><div class="def">回答前先去知识库检索相关资料，再让大模型基于资料作答。让大模型不靠瞎编、能引用最新/专有数据。金融问答里极常用。</div></div>
+</div>
+
+<div class="callout blue">
+<p class="t">招聘判断口诀</p>
+<p>搜推候选人能聊 <span class="key">召回排序、双塔、向量检索、A/B 实验、点击/转化指标</span>。<strong>同时懂传统搜推又会 RAG/向量化的人，是连接传统与大模型的稀缺过渡人才</strong>，对金融搜推场景很有价值。</p>
+</div>
+
+<div class="divider"></div>
+
+<h2><span class="num">09</span>能力分级 · 人才地图 · 速查表</h2>
+<p class="lead">最后落到最实操的：怎么判断深浅、从哪挖人、一张表速查。</p>
+
+<h3>9.1 能力分级：硬通货怎么读</h3>
+<table>
+<thead><tr><th>层级</th><th>典型表现</th><th>怎么判断</th></tr></thead>
+<tbody>
+<tr><td>初级</td><td>能跑通别人的训练/微调流程，按指导调参、清数据</td><td>讲得清流程，但讲不清"为什么这么设计"</td></tr>
+<tr><td>中级</td><td>能独立负责一个方向，定方案、定数据策略、出指标</td><td>能讲清完整闭环：问题→方案→效果，有自己的判断</td></tr>
+<tr><td>资深</td><td>能定整个模型/方向的技术路线，带人，有标志性产出</td><td>有"代表作"：主导过知名模型、核心论文、或重大业绩</td></tr>
+</tbody>
+</table>
+<div class="callout">
+<p class="t">硬通货的正确读法</p>
+<p><strong>顶会论文</strong>（NeurIPS/ICML/ICLR/ACL/CVPR 等）：预训练、多模态方向 5-10 篇是合理硬通货，看一作和引用；<strong>榜单/比赛</strong>（Kaggle、各类 benchmark 榜首）：说明实战调优能力强；<strong>落地业绩</strong>：Agent/后训练/搜推更该看"上线了什么、指标涨了多少、扛了多大流量"。<strong>不同方向看不同硬通货——别拿论文数去要求 Agent 工程的人。</strong></p>
+</div>
+
+<h3>9.2 人才地图：各类算法从哪挖、有多稀缺</h3>
+<table>
+<thead><tr><th>方向</th><th>稀缺度</th><th>从哪些团队挖（参考）</th></tr></thead>
+<tbody>
+<tr><td>基模 / 预训练</td><td><span class="tag high">极稀缺</span></td><td>头部基模团队：阿里千问、字节、百度文心、月之暗面、DeepSeek、智谱等</td></tr>
+<tr><td>后训练 / RL</td><td><span class="tag high">很稀缺</span></td><td>同上各基模团队的对齐/后训练组；做过 RLHF 落地的尤其抢手</td></tr>
+<tr><td>Agent 算法</td><td><span class="tag mid">较稀缺</span></td><td>头部 Agent 产品团队、做过 coding/通用 agent 的团队</td></tr>
+<tr><td>多模态</td><td><span class="tag mid">较稀缺</span></td><td>多模态基模团队、视觉/语音强的研究院</td></tr>
+<tr><td>搜推</td><td><span class="tag rel">相对充足</span></td><td>各大厂搜索推荐部门，人才池大，会 RAG 的更值钱</td></tr>
+</tbody>
+</table>
+<div class="callout amber">
+<p class="t">结合本 JD 的策略</p>
+<p>JD 点名"通用基模算法的人（阿里夸克、千问 toC、字节、百度文心）"——精准对应<strong>极稀缺的基模/预训练池</strong>。这类人薪资高、流动谨慎，建议"优质优先、强将与潜力均可"，并用"应用在元宝/微信/WorkBuddy 等真实金融场景"作为吸引点。后训练和 Agent 可适当放宽到"有强落地业绩"的候选人。</p>
+</div>
+
+<h3>9.3 速查表：听到这句话 → 大概率是哪类算法</h3>
+<table>
+<thead><tr><th>候选人这么说</th><th>大概率是</th><th>本 JD</th></tr></thead>
+<tbody>
+<tr><td>"我研究数据配比、架构、Scaling Law，发了 N 篇顶会"</td><td>基模 / 预训练</td><td><span class="tag core">最看重</span></td></tr>
+<tr><td>"我做 SFT/RLHF/DPO、搭过奖励模型、压幻觉"</td><td>后训练 / RL</td><td><span class="tag core">很看重</span></td></tr>
+<tr><td>"我用 RL 提升 agent 多步任务成功率、做轨迹数据"</td><td>Agent 算法</td><td><span class="tag core">看重</span></td></tr>
+<tr><td>"我搭 harness、做工具调用和落地、绩效好"</td><td>Agent 工程</td><td><span class="tag core">看重</span></td></tr>
+<tr><td>"我做图文对齐、ViT、扩散模型"</td><td>多模态</td><td><span class="tag mid">看场景</span></td></tr>
+<tr><td>"我做召回排序、双塔、向量检索、RAG"</td><td>搜推</td><td><span class="tag rel">相关/加分</span></td></tr>
+<tr><td>"我做 XGBoost、特征工程、评分卡、CTR"</td><td>传统 ML</td><td><span class="tag rel">需甄别</span></td></tr>
+</tbody>
+</table>
+
+<div class="callout teal">
+<p class="t">全册最后一句话</p>
+<p>判断一个算法候选人，永远先问两件事：<strong>① 他在模型生命周期的哪一段（造/教/放出去）？② 他处理哪种数据、解决哪类问题（文本/多模态/搜推/RL）？</strong> 落进格子，再看硬通货和闭环讲述能力。本 JD 要的核心，是<strong>能为"基模和后训练这个不确定的大脑到底行不行"负责</strong>的人。</p>
+</div>
+
+<div class="footer">算法方向细化认知手册（第二册）· 整理于 2026-06-12 · 配套第一册《岗位认知手册》· 仅用于招聘内部参考</div>
+
+</div>
+</body>
+</html>
