@@ -47,6 +47,9 @@
   .callout.blue{border-color:var(--blue); background:var(--blueBg);}
   .callout p{margin:6px 0; color:var(--ink);}
   .callout .t{font-weight:600; color:var(--ink);}
+  .fin{border:1px solid var(--tealBg); border-left:3px solid var(--teal); background:#fff; padding:13px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .fin .tag{display:inline-block; font-size:11px; padding:1px 9px; border-radius:20px; background:var(--tealBg); color:var(--tealInk); font-weight:600; margin-right:8px;}
+  .fin p{margin:6px 0; color:var(--ink2); font-size:13.5px;}
   table{width:100%; border-collapse:collapse; margin:22px 0; font-size:13.5px;}
   th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
   th{background:var(--soft); font-weight:600; color:var(--ink); font-size:13px;}
@@ -67,8 +70,8 @@
 <div class="cover">
   <div class="kicker">技术下探 · 算法专业视角</div>
   <h1>大模型算法六大板块<br>技术链路、机制与前沿张力</h1>
-  <div class="sub">纯技术视角，不涉及岗位与应用。把预训练、后训练/RL、推理与效率、Agent、多模态、搜推/RAG 六条线各自的真实技术链路、内部机制、当前核心难题与前沿打法摊开讲透。术语配大白话，但深度直抵行内一线讨论的那一层。</div>
-  <div class="meta">整理日期：2026-06-12 ｜ 视角：算法技术纵深 ｜ 版本：v2 加深版</div>
+  <div class="sub">以技术纵深为主轴，把预训练、后训练/RL、推理与效率、Agent、多模态、搜推/RAG 六条线各自的真实技术链路、内部机制、当前核心难题与前沿打法摊开讲透。术语配大白话，但深度直抵行内一线讨论的那一层。每个板块末尾另附「金融落地」小注，点出该技术在金融场景的应用切口。</div>
+  <div class="meta">整理日期：2026-06-12 ｜ 视角：算法技术纵深 + 金融应用补注 ｜ 版本：v3 融合版</div>
 </div>
 
 <div class="page">
@@ -166,6 +169,10 @@
 <p>① 真实高质量语料逼近"数据墙" → 合成数据 / 数据效率 / 多 epoch 复用成焦点；② 推理成本主导决策 → 架构走 MoE + 小激活、训练走过度训练；③ 长上下文从"能读"卷向"读得准"，并与下文的 KV cache 效率深度耦合。</p>
 </div>
 
+<div class="fin">
+<p><span class="tag">金融落地</span>预训练在金融的切口主要是<strong>继续预训练（continual pretraining）</strong>：在通用底座上灌入金融语料（研报、财报、招股书、合规条款、行情与交易数据）做领域增强，而非从零自研。数据配比要补强<strong>数字/表格/时序</strong>语料以提升数值推理；Tokenizer 对金额、比率、长数字的切分方式直接影响算术准确性；长上下文能力对应"读完整份财报/合同再回答"的刚需。</p>
+</div>
+
 <div class="divider"></div>
 
 <h2><span class="num">02</span>后训练 / 对齐：RL 为什么成了主战场</h2>
@@ -218,6 +225,10 @@
 <div class="row"><div class="term">test-time scaling</div><div class="def">推理时让模型多想几步/多采样几条再选，用"想得更久"换正确率，是推理模型的核心红利。</div></div>
 </div>
 
+<div class="fin">
+<p><span class="tag">金融落地</span>后训练是金融大模型落地最吃重的一环。金融是<strong>强正确性、强合规</strong>领域，恰好契合 <span class="key">可验证奖励（RLVR）+ 过程奖励（PRM）</span>：利息/收益测算、合规判断、引用准确性都能构造客观可验证信号，比单纯对齐人类偏好更可靠。安全对齐要额外叠一层"不得承诺收益、不得提供违规建议"的<strong>合规红线对齐</strong>；压低幻觉（编造数据/条款）是金融后训练的头号 KPI。</p>
+</div>
+
 <div class="divider"></div>
 
 <h2><span class="num">03</span>推理与效率：托起一切的工程地基</h2>
@@ -237,6 +248,10 @@
 <div class="callout blue">
 <p class="t">为什么把它单列一节</p>
 <p>推理效率不是"训练完之后的小事"——它<strong>反向决定架构选型</strong>（为什么用 GQA/MLA、为什么用 MoE 的小激活、为什么追求小模型），也决定长上下文、推理模型这些方向能不能真正落地。算法与系统在这里高度交织。</p>
+</div>
+
+<div class="fin">
+<p><span class="tag">金融落地</span>金融场景对效率的诉求很具体：① C 端高并发（如微信支付级流量）下，量化 + 投机解码 + PagedAttention 决定单位成本扛不扛得住；② 用蒸馏出的小模型承接高频简单咨询、大模型只接复杂决策，是常见的成本分层；③ 读长财报/合同的长上下文场景，KV cache 显存是主要瓶颈，直接影响能不能一次性塞下整份文档。</p>
 </div>
 
 <div class="divider"></div>
@@ -276,6 +291,10 @@
 <p>把 RLVR 外推到 agent（任务完成即奖励），训练长程、多轮、带真实工具的策略；context 工程（如何在有限窗口里维持长任务记忆）与多智能体协作训练同步起步。本质难点是：<strong>真实世界任务的奖励既稀疏又难验证</strong>，这让 RLVR 的红利无法直接复制。</p>
 </div>
 
+<div class="fin">
+<p><span class="tag">金融落地</span>金融 Agent 的特殊性在于<strong>动作有真实后果且强监管</strong>：查账户、算还款、发起转账、办业务，错一步代价高。因此除了算法侧训规划/用工具能力，落地必须叠"人在回路确认 + 高危动作熔断 + 全程可审计"。可验证奖励在金融 agent 上反而更可得（业务是否办成、金额是否正确可判定），是相对适合用 RL 训练的垂类。</p>
+</div>
+
 <div class="divider"></div>
 
 <h2><span class="num">05</span>多模态：把感知接进认知</h2>
@@ -299,6 +318,10 @@
 <div class="row"><div class="term">CLIP 对比学习</div><div class="def">用海量图文对做对比训练，让"图"和"描述它的文字"在表示空间靠近——图文互通的基石。</div></div>
 <div class="row"><div class="term">连接器 / Q-Former</div><div class="def">把视觉特征对齐并压缩进语言空间的桥接模块，决定视觉信息进入大脑时的质量与数量。</div></div>
 <div class="row"><div class="term">扩散 / DiT</div><div class="def">去噪式生成范式；DiT 用 Transformer 替换 U-Net 骨架，更易随规模扩展，是当前文生图/视频主流。</div></div>
+</div>
+
+<div class="fin">
+<p><span class="tag">金融落地</span>金融的高价值区在<strong>理解侧</strong>而非生成侧：身份证/银行卡/票据/合同的 OCR 与结构化抽取、研报图表与 K 线解读、报表数字提取——核心难点正是上面说的"细粒度对齐"（数字、小字、密集表格不能错）。生成侧（文生图/视频）匹配度低，仅投教内容等少数场景用得上。</p>
 </div>
 
 <div class="divider"></div>
@@ -345,6 +368,10 @@
 <div class="row"><div class="term">生成式推荐</div><div class="def">给每个物品一个语义 ID，把推荐建模成"生成下一个物品 ID"的序列问题，让 LLM 直接生成——新范式，仍在探索。</div></div>
 </div>
 
+<div class="fin">
+<p><span class="tag">金融落地</span>两个落点：① <strong>产品推荐</strong>——按风险偏好/资产状况匹配理财、贷款、保险，本质是带强合规约束（适当性管理：不能给保守客户推高风险品）的搜推；② <strong>RAG 作事实底座</strong>——金融问答先检索权威条款/最新行情/产品说明再作答，是压幻觉、可溯源、满足合规留痕的关键形态，往往比"把知识训进模型"更安全可控。</p>
+</div>
+
 <div class="divider"></div>
 
 <h2><span class="num">07</span>评估：决定上面一切是否可信</h2>
@@ -369,18 +396,18 @@
 <p><strong>预训练</strong>把能力压进参数 → <strong>后训练 / RL</strong> 激发并对齐（RLVR 正把它从"对齐偏好"推向"对齐正确"）→ <strong>Agent 算法</strong>让能力在长链条任务里自主释放 → <strong>多模态</strong>给它接上感知 → <strong>搜推 / RAG</strong> 给它接上海量外部事实。全程被<strong>推理效率</strong>托底、被<strong>评估</strong>校验。</p>
 </div>
 <table>
-<thead><tr><th>板块</th><th>一句话技术内核</th><th>当前最热的点</th><th>最硬的未解难题</th></tr></thead>
+<thead><tr><th>板块</th><th>技术内核</th><th>最热的点</th><th>金融落点</th></tr></thead>
 <tbody>
-<tr><td>预训练</td><td>规模 + 数据把能力压进参数</td><td>MoE、合成数据、过度训练</td><td>数据墙、合成数据导致的分布坍缩</td></tr>
-<tr><td>后训练 / RL</td><td>激发能力并对齐偏好/正确性</td><td>RLVR、GRPO、推理模型</td><td>开放任务如何设计可验证奖励、reward hacking</td></tr>
-<tr><td>推理与效率</td><td>便宜快速稳定地跑起来</td><td>投机解码、量化、PagedAttention</td><td>长上下文 KV 显存的线性增长</td></tr>
-<tr><td>Agent 算法</td><td>训模型自主完成长链条任务</td><td>agent RL、轨迹合成</td><td>长程信用分配、稀疏难验证奖励</td></tr>
-<tr><td>多模态</td><td>把视觉/语音接进语言认知</td><td>原生多模态、高分辨率理解</td><td>细粒度对齐、模态干扰、视觉 token 爆炸</td></tr>
-<tr><td>搜推 / RAG</td><td>从海量候选高效挑选并增强生成</td><td>语义召回、Agentic RAG、生成式推荐</td><td>检索质量度量、多跳推理可靠性</td></tr>
+<tr><td>预训练</td><td>规模 + 数据把能力压进参数</td><td>MoE、合成数据、过度训练</td><td>金融语料继续预训练、数值/长文档</td></tr>
+<tr><td>后训练 / RL</td><td>激发能力并对齐偏好/正确性</td><td>RLVR、GRPO、推理模型</td><td>可验证奖励 + 合规红线对齐、压幻觉</td></tr>
+<tr><td>推理与效率</td><td>便宜快速稳定地跑起来</td><td>投机解码、量化、PagedAttention</td><td>高并发成本、大小模型分层、长文档</td></tr>
+<tr><td>Agent 算法</td><td>训模型自主完成长链条任务</td><td>agent RL、轨迹合成</td><td>查账办业务 + 人在回路/熔断/审计</td></tr>
+<tr><td>多模态</td><td>把视觉/语音接进语言认知</td><td>原生多模态、高分辨率理解</td><td>票据/证件/图表理解（重理解侧）</td></tr>
+<tr><td>搜推 / RAG</td><td>从海量候选高效挑选并增强生成</td><td>语义召回、Agentic RAG</td><td>适当性产品推荐 + RAG 事实底座</td></tr>
 </tbody>
 </table>
 
-<div class="footer">大模型算法方向技术下探 v2 · 整理于 2026-06-12 · 纯算法技术纵深视角 · 内部参考</div>
+<div class="footer">大模型算法方向技术下探 v3 融合版 · 整理于 2026-06-12 · 算法技术纵深 + 金融应用补注 · 内部参考</div>
 
 </div>
 </body>
