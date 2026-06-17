@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 学习知识库 · 文档总览</title>
+<style>
+  :root{
+    --ink:#1f2329; --ink2:#3d4451; --muted:#6b7280; --line:#e6e8eb;
+    --bg:#ffffff; --soft:#f7f8fa;
+    --purple:#534AB7; --purpleBg:#EEEDFE; --purpleInk:#3C3489;
+    --teal:#0F6E56; --tealBg:#E1F5EE; --tealInk:#085041;
+    --amber:#854F0B; --amberBg:#FAEEDA; --amberInk:#633806;
+    --blue:#185FA5; --blueBg:#E6F1FB; --blueInk:#0C447C;
+    --red:#A32D2D; --redBg:#FCEBEB; --redInk:#791F1F;
+    --pink:#993556; --pinkBg:#FBEAF0; --pinkInk:#72243E;
+    --gray:#5F5E5A; --grayBg:#F1EFE8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.75; font-size:15px;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px 80px;}
+  .hero{padding:72px 24px 40px; text-align:center; border-bottom:1px solid var(--line); background:var(--bg); margin-bottom:36px;}
+  .hero .kicker{color:var(--purple); font-size:13px; letter-spacing:3px; font-weight:600; margin-bottom:16px;}
+  .hero h1{font-size:32px; margin:0 0 14px; font-weight:700; letter-spacing:.5px;}
+  .hero p{color:var(--muted); font-size:15px; max-width:560px; margin:0 auto;}
+  .hero .count{margin-top:22px; font-size:13px; color:var(--muted);}
+  .hero .count b{color:var(--purple); font-size:15px;}
+  .group-title{font-size:14px; font-weight:600; color:var(--muted); letter-spacing:1px; margin:32px 4px 14px; display:flex; align-items:center; gap:10px;}
+  .group-title::after{content:""; flex:1; height:1px; background:var(--line);}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:18px;}
+  .card{
+    display:flex; flex-direction:column; text-decoration:none; color:inherit;
+    background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:22px 22px 20px;
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position:relative; overflow:hidden;
+  }
+  .card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent,#534AB7);}
+  .card:hover{transform:translateY(-3px); box-shadow:0 10px 28px rgba(31,35,41,.10); border-color:transparent;}
+  .card .idx{font-size:12px; font-weight:700; color:var(--accent,#534AB7); letter-spacing:1px; margin-bottom:8px;}
+  .card h3{font-size:17px; margin:0 0 8px; font-weight:700; line-height:1.4;}
+  .card p{font-size:13px; color:var(--muted); margin:0 0 14px; flex:1; line-height:1.7;}
+  .card .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
+  .card .tag{font-size:11px; padding:2px 9px; border-radius:20px; background:var(--soft); color:var(--ink2); font-weight:500;}
+  .card .go{font-size:13px; font-weight:600; color:var(--accent,#534AB7); display:flex; align-items:center; gap:5px;}
+  .card .go .arrow{transition:transform .15s ease;}
+  .card:hover .go .arrow{transform:translateX(4px);}
+  .empty{text-align:center; color:var(--muted); padding:60px 0; font-size:14px;}
+  .footer{margin-top:56px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center;}
+  @media(max-width:560px){.hero h1{font-size:25px;} .grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">AI LEARNING KB</div>
+  <h1>AI 学习知识库 · 文档总览</h1>
+  <p>金融大模型与前沿 AI 的系统化学习笔记。从岗位认知、算法技术，到基模全流程与前沿论文解读，持续更新。</p>
+  <div class="count">当前收录 <b id="docCount">0</b> 篇文档</div>
+</div>
+
+<div class="wrap">
+  <div id="board"></div>
+  <div class="footer">AI 学习知识库 · 持续更新中 · 点击任意卡片进入对应文档</div>
+</div>
+
+<script>
+/* =====================================================================
+   ▼▼▼  文档清单（日后追加文档，只需在这里加一条对象即可，无需改其他代码）▼▼▼
+   字段说明：
+     group  分组名（相同 group 会归到同一栏；新建分组直接写新名字即可）
+     idx    左上角编号/标签（自由填写，如 "第六册"、"专题"）
+     title  标题
+     desc   一句话简介
+     tags   标签数组
+     href   相对链接（同仓库子目录用 "../子目录/"）
+     color  主题色（可选，从下方 COLORS 里选，不填默认紫色）
+   ===================================================================== */
+const DOCS = [
+  {
+    group: "金融大模型 · 认知与算法",
+    idx: "第一册",
+    title: "金融大模型岗位认知手册",
+    desc: "从职能区分到全链路串链：算法/工程/产品各自做什么、一个 AI 金融产品背后有哪些角色。",
+    tags: ["岗位全景", "职能区分", "全链路"],
+    href: "../finance-roles/",
+    color: "blue"
+  },
+  {
+    group: "金融大模型 · 认知与算法",
+    idx: "第二册",
+    title: "算法方向细化认知手册",
+    desc: "算法分类坐标系：按模型生命周期 × 技术领域，把各类算法岗对号入座。",
+    tags: ["算法分类", "技术栈", "招聘视角"],
+    href: "../algo-guide/",
+    color: "teal"
+  },
+  {
+    group: "金融大模型 · 认知与算法",
+    idx: "第三册",
+    title: "大模型算法方向技术下探 v3",
+    desc: "纯技术纵深：预训练、后训练/RL、推理效率、Agent、多模态、搜推六大板块，每节附金融落地补注。",
+    tags: ["技术纵深", "RL", "多模态", "RAG"],
+    href: "../algo-tech/",
+    color: "amber"
+  },
+  {
+    group: "基座模型专题",
+    idx: "第四册",
+    title: "LLM 基座模型从 0 到 1 全流程拆解",
+    desc: "基模怎么被造出来：架构设计→数据工程→预训练→后训练→评测→发布六阶段，附人选检验建议。",
+    tags: ["基座模型", "预训练", "全流程", "人选检验"],
+    href: "../base-model/",
+    color: "purple"
+  },
+  {
+    group: "前沿论文解读",
+    idx: "第五册",
+    title: "VoLo 论文学习解读",
+    desc: "VLA 不是机器人的大脑，而是 Agent 可调用的工具。新手友好地拆解 NVIDIA 这篇具身 Agent 框架。",
+    tags: ["VLA", "具身智能", "Physical AI"],
+    href: "../volo-paper/",
+    color: "pink"
+  }
+  /* 追加示例（复制下面这段，去掉注释，改成你的新文档即可）：
+  ,{
+    group: "前沿论文解读",
+    idx: "第六册",
+    title: "新文档标题",
+    desc: "一句话简介。",
+    tags: ["标签A", "标签B"],
+    href: "../新子目录/",
+    color: "blue"
+  }
+  */
+];
+
+/* 主题色映射（如需新增配色，在这里加一项） */
+const COLORS = {
+  purple: "#534AB7", teal: "#0F6E56", amber: "#854F0B",
+  blue: "#185FA5", red: "#A32D2D", pink: "#993556", gray: "#5F5E5A"
+};
+
+/* ---------- 以下为渲染逻辑，追加文档时无需改动 ---------- */
+(function render(){
+  const board = document.getElementById("board");
+  document.getElementById("docCount").textContent = DOCS.length;
+  if(!DOCS.length){ board.innerHTML = '<div class="empty">暂无文档</div>'; return; }
+  // 按出现顺序保留分组顺序
+  const order = [];
+  const groups = {};
+  DOCS.forEach(d => {
+    const g = d.group || "未分组";
+    if(!groups[g]){ groups[g] = []; order.push(g); }
+    groups[g].push(d);
+  });
+  let html = "";
+  order.forEach(g => {
+    html += `<div class="group-title">${g}</div><div class="grid">`;
+    groups[g].forEach(d => {
+      const c = COLORS[d.color] || COLORS.purple;
+      const tags = (d.tags||[]).map(t => `<span class="tag">${t}</span>`).join("");
+      html += `<a class="card" href="${d.href}" style="--accent:${c}">
+        <div class="idx">${d.idx||""}</div>
+        <h3>${d.title}</h3>
+        <p>${d.desc||""}</p>
+        <div class="tags">${tags}</div>
+        <div class="go">阅读文档 <span class="arrow">→</span></div>
+      </a>`;
+    });
+    html += `</div>`;
+  });
+  board.innerHTML = html;
+})();
+</script>
+</body>
+</html>
