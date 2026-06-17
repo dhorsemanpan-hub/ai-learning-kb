@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM 基座模型从 0 到 1 全流程拆解</title>
+<style>
+  :root{
+    --ink:#1f2329; --ink2:#3d4451; --muted:#6b7280; --line:#e6e8eb;
+    --bg:#ffffff; --soft:#f7f8fa;
+    --purple:#534AB7; --purpleBg:#EEEDFE; --purpleInk:#3C3489;
+    --teal:#0F6E56; --tealBg:#E1F5EE; --tealInk:#085041;
+    --amber:#854F0B; --amberBg:#FAEEDA; --amberInk:#633806;
+    --blue:#185FA5; --blueBg:#E6F1FB; --blueInk:#0C447C;
+    --red:#A32D2D; --redBg:#FCEBEB; --redInk:#791F1F;
+    --pink:#993556; --pinkBg:#FBEAF0; --pinkInk:#72243E;
+    --gray:#5F5E5A; --grayBg:#F1EFE8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--soft); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.8; font-size:15px;
+  }
+  .page{max-width:880px; margin:0 auto; background:var(--bg); padding:56px 64px 80px;}
+  .cover{padding:64px 64px 48px; border-bottom:1px solid var(--line);}
+  .cover .kicker{color:var(--purple); font-size:13px; letter-spacing:2px; font-weight:600; margin-bottom:14px;}
+  .cover h1{font-size:30px; margin:0 0 16px; line-height:1.35; font-weight:700; letter-spacing:.5px;}
+  .cover .sub{color:var(--muted); font-size:15px; max-width:680px;}
+  .cover .meta{margin-top:28px; font-size:13px; color:var(--muted);}
+  h2{font-size:21px; margin:54px 0 6px; font-weight:700; letter-spacing:.3px;}
+  h2 .num{color:var(--purple); margin-right:10px;}
+  h3{font-size:16px; margin:30px 0 8px; font-weight:600; color:var(--ink);}
+  h4{font-size:14px; margin:20px 0 4px; font-weight:600; color:var(--ink2);}
+  .lead{color:var(--ink2); margin:8px 0 18px; font-size:15px;}
+  p{margin:12px 0; color:var(--ink2);}
+  .essence{background:var(--soft); border-radius:10px; padding:12px 16px; margin:14px 0; font-size:14px; color:var(--ink2);}
+  .essence b{color:var(--ink);}
+  .divider{height:1px; background:var(--line); margin:48px 0;}
+  .fig{margin:26px 0 10px; border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .cap{font-size:12.5px; color:var(--muted); text-align:center; margin:10px 0 4px;}
+  .callout{border-left:3px solid var(--purple); background:var(--purpleBg); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .callout.teal{border-color:var(--teal); background:var(--tealBg);}
+  .callout.amber{border-color:var(--amber); background:var(--amberBg);}
+  .callout.red{border-color:var(--red); background:var(--redBg);}
+  .callout.blue{border-color:var(--blue); background:var(--blueBg);}
+  .callout p{margin:6px 0; color:var(--ink);}
+  .callout .t{font-weight:600; color:var(--ink);}
+  .role{border:1px solid var(--blueBg); border-left:3px solid var(--blue); background:#fff; padding:13px 18px; border-radius:0 10px 10px 0; margin:20px 0;}
+  .role .tag{display:inline-block; font-size:11px; padding:1px 9px; border-radius:20px; background:var(--blueBg); color:var(--blueInk); font-weight:600; margin-right:8px;}
+  .role p{margin:7px 0; color:var(--ink2); font-size:13.5px;}
+  .role .rn{font-weight:600; color:var(--ink);}
+  table{width:100%; border-collapse:collapse; margin:22px 0; font-size:13.5px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:var(--soft); font-weight:600; color:var(--ink); font-size:13px;}
+  td:first-child{font-weight:600; color:var(--ink);}
+  ul{margin:12px 0; padding-left:22px;} li{margin:7px 0; color:var(--ink2);}
+  .key{background:var(--grayBg); padding:2px 7px; border-radius:5px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss{margin:18px 0; border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .gloss .row{display:flex; gap:0; border-bottom:1px solid var(--line);}
+  .gloss .row:last-child{border-bottom:none;}
+  .gloss .term{flex:0 0 168px; background:var(--soft); padding:11px 14px; font-weight:600; color:var(--ink); font-size:13.5px;}
+  .gloss .def{padding:11px 14px; color:var(--ink2); font-size:13.5px;}
+  .step{display:flex; gap:14px; margin:14px 0; align-items:flex-start;}
+  .step .n{flex:0 0 30px; height:30px; border-radius:8px; background:var(--purple); color:#fff; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .step .b{flex:1;}
+  .step .b h4{margin:2px 0 4px;}
+  .step .b p{margin:0; font-size:13.5px;}
+  .chk li::marker{content:"✓  "; color:var(--teal); font-weight:700;}
+  .grn{border-left:3px solid var(--teal); background:var(--tealBg); padding:9px 14px; border-radius:0 8px 8px 0; margin:8px 0; font-size:13.5px; color:var(--ink);}
+  .bad{border-left:3px solid var(--red); background:var(--redBg); padding:9px 14px; border-radius:0 8px 8px 0; margin:8px 0; font-size:13.5px; color:var(--ink);}
+  .footer{margin-top:60px; padding-top:24px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); text-align:center;}
+  @media print{ body{background:#fff;} .page,.cover{padding:32px 22px;} h2{page-break-after:avoid;} .fig{page-break-inside:avoid;} table{page-break-inside:avoid;} .gloss{page-break-inside:avoid;} .role{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">技术下探 · 基座模型专题</div>
+  <h1>LLM 基座模型从 0 到 1<br>是怎么被「做」出来的</h1>
+  <div class="sub">一个基座大模型，从一张白纸到能上岗，中间要走完哪些流程、做哪些技术决策、由谁来做、产出什么。本篇按流程阶段逐层拆开，技术拆分尽量细，术语配大白话，深度直抵行内一线实操层面。文末附一份「人选检验建议」——怎么判断候选人的基模经验是否足够 solid。</div>
+  <div class="meta">整理日期：2026-06-17 ｜ 视角：基座模型全流程技术纵深 ｜ 内部学习用</div>
+</div>
+
+<div class="page">
+
+<!-- 00 -->
+<h2><span class="num">00</span>先搞清楚：什么是「基座模型」，为什么它最金贵</h2>
+<p class="lead">在拆流程之前，先把概念钉死，否则后面所有阶段都会含糊。</p>
+<p><strong>基座模型（Base Model / Foundation Model）</strong>，指的是经过大规模预训练、但<strong>还没做任务特化微调的「裸模型」</strong>。它本质上只会做一件事：看着前面的文字，预测下一个词（token）。但就是这个看似简单到无聊的目标，在海量数据 + 巨大参数规模的加持下，把语法、常识、逻辑、代码、数学这些通用能力，全都「压」进了模型参数里。</p>
+
+<div class="essence"><b>一个关键事实：</b>所有下游能力的天花板，都由基座模型决定。后训练（SFT / RLHF 那一套）做的是「从天花板往下取能力」，<b>它无法创造基座里根本不存在的东西</b>。基座推理弱，再怎么对齐也变不出强推理；基座金融知识少，后训练只能改表达方式，补不了底子。</div>
+
+<div class="callout">
+  <p class="t">用盖楼来类比整件事</p>
+  <p><strong>基座模型 = 地基 + 建筑主体框架</strong>。后训练是精装修、摆家具、贴标识。装修再豪华，地基不牢就是危楼。而打地基是最贵、最耗时、技术门槛最高的环节——这也正是「有基座模型经验的人」最值钱的原因：会装修的人很多，会从零打地基并且打得稳的人，凤毛麟角。</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 01 全景 -->
+<h2><span class="num">01</span>全流程总览：六个阶段 + 三道决策闸门</h2>
+<p class="lead">基座模型的制作不是「一条路走到底」，而是小步验证、随时可能回退的工程。先看一张全景图。</p>
+
+<div class="fig">
+<svg viewBox="0 0 680 540" role="img" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<!-- row1 -->
+<rect x="30" y="40" width="180" height="62" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="120" y="66" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#3C3489">① 架构设计</text>
+<text x="120" y="86" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#534AB7">结构 · 超参 · Tokenizer</text>
+<rect x="250" y="40" width="180" height="62" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="66" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#085041">② 数据工程</text>
+<text x="340" y="86" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#0F6E56">采集 · 清洗 · 配比</text>
+<rect x="470" y="40" width="180" height="62" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+<text x="560" y="66" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#633806">③ 预训练</text>
+<text x="560" y="86" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#854F0B">分布式 · 稳定性 · 监控</text>
+<path d="M210 71 L248 71" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<path d="M430 71 L468 71" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<!-- gate A -->
+<rect x="180" y="120" width="320" height="40" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="340" y="138" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#633806">闸门 A：小规模验证通过？ablation 达标</text>
+<text x="340" y="153" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#854F0B">不通过 → 回退调整数据配比或架构</text>
+<path d="M560 102 L560 112 L340 112 L340 120" fill="none" stroke="#854F0B" stroke-width="1"/>
+<!-- row2 -->
+<rect x="30" y="190" width="180" height="62" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+<text x="120" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#0C447C">④ 后训练 / 对齐</text>
+<text x="120" y="236" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#185FA5">SFT · RLHF · 安全</text>
+<rect x="250" y="190" width="180" height="62" rx="10" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
+<text x="340" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#72243E">⑤ 评测</text>
+<text x="340" y="236" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#993556">自动 · 人工 · 去污染</text>
+<rect x="470" y="190" width="180" height="62" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="560" y="216" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="600" fill="#3d4451">⑥ 优化与发布</text>
+<text x="560" y="236" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#5F5E5A">量化 · 蒸馏 · 模型卡</text>
+<path d="M340 160 L340 190" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<path d="M210 221 L248 221" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<path d="M430 221 L468 221" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<!-- gate B -->
+<rect x="180" y="270" width="320" height="40" rx="8" fill="#FBEAF0" stroke="#993556" stroke-width="1"/>
+<text x="340" y="288" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#72243E">闸门 B：评测达标？能力维度 &amp; 安全底线</text>
+<text x="340" y="303" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#993556">不通过 → 回退调后训练策略，甚至回炉补数据重训</text>
+<path d="M560 252 L560 262 L340 262 L340 270" fill="none" stroke="#993556" stroke-width="1"/>
+<!-- iterate -->
+<path d="M340 310 L340 338" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#a1)"/>
+<rect x="220" y="338" width="240" height="50" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.7"/>
+<text x="340" y="360" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#085041">⑦ 持续迭代</text>
+<text x="340" y="378" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#0F6E56">数据扩充 · 架构升级 · 新能力注入</text>
+<!-- gate C -->
+<rect x="180" y="406" width="320" height="40" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1"/>
+<text x="340" y="424" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#085041">闸门 C：线上效果驱动下一轮方向</text>
+<text x="340" y="439" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#0F6E56">迭代不限于后训练，可能一路回到预训练</text>
+<path d="M340 388 L340 406" fill="none" stroke="#0F6E56" stroke-width="1"/>
+<!-- note -->
+<text x="340" y="478" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b7280">虚线闸门处的每一次「回退」，都意味着真金白银的算力浪费</text>
+<text x="340" y="498" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b7280">——所以「会判断何时停、何时回头」比「会跑脚本」金贵得多</text>
+</svg>
+<div class="cap">图 1 · 基座模型从 0 到 1 的六阶段流程与三道决策闸门</div>
+</div>
+
+<table>
+<thead><tr><th>阶段</th><th>一句话在干嘛</th><th>典型耗时（70B Dense 参考）</th><th>成本重心</th></tr></thead>
+<tbody>
+<tr><td>① 架构设计</td><td>画图纸：定模型长什么样</td><td>1–3 个月</td><td>人力 + 小规模 ablation 算力</td></tr>
+<tr><td>② 数据工程</td><td>备料：把万亿 token 洗干净配好</td><td>2–4 个月（可与①并行）</td><td>存储 + 清洗算力，人力密集</td></tr>
+<tr><td>③ 预训练</td><td>烧钱核心：把能力训进参数</td><td>1–3 个月</td><td>💰 算力最高（数千卡·月）</td></tr>
+<tr><td>④ 后训练 / 对齐</td><td>调教：让它听话、安全、会答</td><td>1–2 个月</td><td>标注成本 + 中等算力</td></tr>
+<tr><td>⑤ 评测</td><td>验收 + 全程体检</td><td>贯穿全程</td><td>人工评估成本</td></tr>
+<tr><td>⑥ 优化与发布</td><td>瘦身上线：量化蒸馏出报告</td><td>2–4 周</td><td>工程为主</td></tr>
+</tbody>
+</table>
+
+<div class="callout amber">
+  <p class="t">为什么强调「随时回退」这件事</p>
+  <p>架构设计前会做小规模 ablation；预训练途中会跑 mid-training eval 提前发现问题；后训练完评测不过要回去补数据或调策略。<strong>每一次回退都在烧钱</strong>——一次完整预训练成本在百万到千万级。所以真正做过基模的人，最有价值的不是「会跑训练脚本」，而是他知道<strong>什么时候该叫停、什么时候该回头、回到哪一步</strong>。这个判断力是检验经验是否 solid 的核心。</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 02 架构 -->
+<h2><span class="num">02</span>阶段一 · 架构设计：在烧第一张卡之前定好图纸</h2>
+<p class="lead">这是整个流程的「图纸阶段」。错了，后面几百万的算力全白费。</p>
+
+<h3>2.1 模型结构选型</h3>
+<p>当前主流基座几乎全是 <span class="key">Decoder-only Transformer</span>，但内部有几处关键分化，每一处都是一次权衡：</p>
+
+<div class="gloss">
+  <div class="row"><div class="term">Dense vs MoE</div><div class="def"><b>Dense</b>＝每个 token 都过全部参数；<b>MoE（混合专家）</b>＝稀疏激活，每个 token 只过少数几个「专家」（Mixtral、DeepSeek-V3、Qwen-MoE 走这条路）。MoE 用「总参数很大、实际激活很少」冲规模，核心难题是 <b>路由均衡</b>（别让少数专家被挤爆）和 <b>通信开销</b>（专家分散在多卡上）。</div></div>
+  <div class="row"><div class="term">注意力机制谱系</div><div class="def"><b>MHA</b>（每个头独立 KV，最费显存）→ <b>GQA</b>（多个查询头共享一组 KV，省显存、几乎不掉点，当前最常用）→ <b>MQA</b>（所有头共享一份 KV，最省但易掉质量）→ <b>MLA</b>（DeepSeek 提出，低秩压缩 KV，极致省显存还保质量）。这个选择直接决定推理成本和长上下文可行性。</div></div>
+  <div class="row"><div class="term">位置编码</div><div class="def">主流是 <b>RoPE（旋转位置编码）</b>，好处是支持长度外推。后面扩长上下文时，就是对 RoPE 做缩放/插值（NTK-aware、YaRN 等）。</div></div>
+  <div class="row"><div class="term">激活函数</div><div class="def"><b>SwiGLU</b> 已成标配——同等参数下比 ReLU/GELU 表现更好，代价是 FFN 层参数量略增。</div></div>
+  <div class="row"><div class="term">归一化</div><div class="def"><b>RMSNorm + Pre-Norm</b> 成为主流，比老的 LayerNorm + Post-Norm 训练更稳、深层梯度更健康。</div></div>
+</div>
+
+<h3>2.2 超参数：每个数字背后都是千万级算力赌注</h3>
+<div class="gloss">
+  <div class="row"><div class="term">模型规模</div><div class="def">参数量多大？1B / 7B / 14B / 72B？由 <b>Scaling Law（规模规律）</b> 决定「给定算力，参数多大 + 数据多少最优」。Chinchilla 之后大家倾向「小模型多喂数据」（过度训练），因为这样推理成本低、更划算。</div></div>
+  <div class="row"><div class="term">深度 vs 宽度</div><div class="def">层数和隐藏维度怎么配。深而窄泛化往往更好，但训练时跨层通信更复杂。</div></div>
+  <div class="row"><div class="term">词表大小</div><div class="def">影响压缩率和多语言覆盖，常见 32K–150K。中文/多语言要更大词表，但词表越大、embedding 层越占参数。</div></div>
+  <div class="row"><div class="term">上下文长度</div><div class="def">预训练通常先用较短（4K–8K）省算力，长上下文（32K/128K）留到后续持续预训练再扩。</div></div>
+</div>
+
+<h3>2.3 Tokenizer 设计（容易被外行忽略，但极重要）</h3>
+<p>Tokenizer 决定文本怎么被切成模型能吃的最小单元，直接影响压缩率、多语言、以及数字/代码这类特殊内容的表现。</p>
+<div class="gloss">
+  <div class="row"><div class="term">BPE / BBPE</div><div class="def">字节对编码，最主流。从字符级开始，反复把高频组合「合并」成新词，生成词表。BBPE 在字节级操作，天然支持任意语言。</div></div>
+  <div class="row"><div class="term">SentencePiece</div><div class="def">Google 的 tokenizer 工具，支持 BPE 与 Unigram 两种算法，多语言友好，LLaMA 系列在用。</div></div>
+  <div class="row"><div class="term">tiktoken</div><div class="def">OpenAI 的高效 BPE 实现，Rust 写核心，速度快，GPT-4 系列在用。</div></div>
+  <div class="row"><div class="term">数字 / 代码处理</div><div class="def">数字是否逐位切分（影响算术能力）？代码缩进会不会被浪费成大量空格 token？这些细节直接影响下游能力——<b>金融场景里金额数字的编码方式尤其要抠</b>。</div></div>
+</div>
+
+<h3>2.4 前置验证：用小钱排除不确定性</h3>
+<p>大规模训练前，必须用<strong>小模型 + 小数据</strong>先验证：</p>
+<ul class="chk">
+  <li><b>架构 ablation</b>：小规模上对比 Dense/MoE、不同头数、不同归一化，看谁更好</li>
+  <li><b>数据配比 ablation</b>：小模型试不同配比，看哪组下游任务最均衡</li>
+  <li><b>Scaling Law 外推</b>：用 1B/3B/7B 的 loss 曲线拟合，<b>预测</b> 70B 要喂多少数据、何时到目标 loss</li>
+  <li><b>Tokenizer 评估</b>：压缩率、多语言覆盖、数字编码质量</li>
+</ul>
+<div class="callout amber"><p class="t">⚠️ 这一步的隐形价值＝省钱</p><p>一次完整预训练算力成本百万到千万级，而前置验证只花其百分之一。老手会在这一步尽量把不确定性榨干，而不是等大模型训完才发现「架构选错了」。</p></div>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">架构算法工程师</span>（主）— 定结构、超参、Tokenizer，跑 ablation。产出：模型配置（config）、Tokenizer 文件、ablation 报告</p>
+  <p><span class="rn">数据算法工程师</span>（协同）— 提供配比初始建议与 ablation 数据集</p>
+  <p><span class="rn">训练基础设施工程师</span>（协同）— 评估该架构在现有集群上的训练可行性、预设计并行策略</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 03 数据 -->
+<h2><span class="num">03</span>阶段二 · 数据工程：决定上限的「备料」</h2>
+<p class="lead">行内话：数据决定上限，算法逼近上限。同样的架构，喂不同的数据，结果天差地别。</p>
+
+<h3>3.1 数据来源</h3>
+<table>
+<thead><tr><th>来源</th><th>内容</th><th>典型规模</th><th>主要注意点</th></tr></thead>
+<tbody>
+<tr><td>Common Crawl</td><td>互联网网页快照</td><td>PB 级原始 / TB 级清洗后</td><td>质量极度参差，需重度清洗</td></tr>
+<tr><td>GitHub 等</td><td>开源代码</td><td>数百 GB</td><td>许可证合规、去重</td></tr>
+<tr><td>arXiv / 论文</td><td>学术文献</td><td>数十 GB</td><td>LaTeX/公式需特殊处理</td></tr>
+<tr><td>维基百科</td><td>百科知识</td><td>数十 GB</td><td>高质量但量少</td></tr>
+<tr><td>书籍</td><td>版权书籍</td><td>数十 GB</td><td>版权是最大风险</td></tr>
+<tr><td>金融/法律垂类</td><td>行业语料</td><td>视来源</td><td>合规、PII（个人信息）是红线</td></tr>
+</tbody>
+</table>
+
+<h3>3.2 数据清洗流水线（最脏最累，也最见功力）</h3>
+<p>一条语料从原始到能喂模型，通常要过 7–8 道关卡：</p>
+<div class="step"><div class="n">1</div><div class="b"><h4>提取</h4><p>从 HTML/PDF/文档里抠出纯文本。难点是表格、公式、多栏排版的正确还原（trafilatura / readability / PDF 解析器）。</p></div></div>
+<div class="step"><div class="n">2</div><div class="b"><h4>语言识别与过滤</h4><p>识别语种、过滤不需要的语言或低质混杂文本（fasttext 语言分类器）。</p></div></div>
+<div class="step"><div class="n">3</div><div class="b"><h4>质量分类</h4><p>用小模型（fasttext / 小 BERT）给文本打质量分，滤掉广告、垃圾评论、模板。有的团队用强模型标注高质语料来训这个分类器。</p></div></div>
+<div class="step"><div class="n">4</div><div class="b"><h4>去重（最关键一步）</h4><p><b>精确去重</b>（MinHash + LSH）删完全重复段落；<b>模糊去重</b>（SimHash / 语义嵌入）删高度相似；<b>文档级去重</b>删整篇重复。去重不彻底，模型会「背答案」而不是「学规律」。</p></div></div>
+<div class="step"><div class="n">5</div><div class="b"><h4>PII 脱敏</h4><p>移除姓名、身份证、电话、邮箱等个人信息。在金融/医疗是<b>法律红线</b>，用正则 + NER 模型双保险。</p></div></div>
+<div class="step"><div class="n">6</div><div class="b"><h4>有害内容过滤</h4><p>滤掉色情、暴力、极端言论（分类器 + 规则组合）。</p></div></div>
+<div class="step"><div class="n">7</div><div class="b"><h4>基准去污染（Decontamination）</h4><p>把评测集（MMLU、HumanEval 等）的题目/答案从训练数据里<b>精确剔除</b>，否则模型「作弊」拿高分但真实能力不行。这步容易被忽略却极重要。</p></div></div>
+<div class="step"><div class="n">8</div><div class="b"><h4>格式标准化</h4><p>统一编码、换行、清理残留标记、规范公式表示。</p></div></div>
+
+<h3>3.3 数据配比：整个数据工程里最「玄学」也最核心的决策</h3>
+<div class="callout teal">
+  <p class="t">配比的核心直觉</p>
+  <p><strong>代码和数学被反复证明能提升通用推理能力</strong>——即便做中文模型也要喂大量代码。为什么？因为代码逼模型学「严格的因果与规则」，这种能力会迁移到自然语言推理上。</p>
+  <p>一个 70B 级模型的<b>参考</b>配比：网页 50–60% · 代码 15–25% · 数学 5–10% · 书籍 5–10% · 维基 3–5% · 垂类 2–5%。但<strong>没有万能配比</strong>，每个团队都要在自己的小规模 ablation 上验证。</p>
+</div>
+
+<h3>3.4 合成数据：当真实语料见底</h3>
+<p>用强模型（如 GPT-4 级）生成数据来训自己的模型，是当前最热也最有争议的方向：</p>
+<ul class="chk">
+  <li>优势：可控、能定向补短板、理论上可无限扩展</li>
+  <li>风险：<b>模型坍缩（Model Collapse）</b>——用模型生成的数据训模型，分布会一代比一代窄，多样性塌掉</li>
+  <li>最佳实践：合成数据<strong>补充</strong>而非替代真实数据；多源模型生成增加多样性；严格质量筛选</li>
+</ul>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">数据算法工程师</span>（主）— 设计清洗管线、定配比策略、跑 ablation。产出：清洗管线代码、最终训练集、配比报告</p>
+  <p><span class="rn">数据工程师</span>— 搭分布式数据加工基础设施（Spark/Ray 等）、保障存储与吞吐</p>
+  <p><span class="rn">领域专家（金融）</span>— 审核垂类语料质量、给配比建议</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 04 预训练 -->
+<h2><span class="num">04</span>阶段三 · 预训练：烧钱的核心，最考验真功夫</h2>
+<p class="lead">把海量数据喂进模型，让它通过「预测下一个 token」学会一切。一次完整预训练成本百万到千万级，所以稳定性和效率压倒一切。</p>
+
+<h3>4.1 训练基础设施</h3>
+<div class="gloss">
+  <div class="row"><div class="term">GPU 选型</div><div class="def">A100 80G / H100 / H800 是主流训练卡。卡间互联用 NVLink（机内）+ InfiniBand（机间），带宽是大规模并行的命脉。</div></div>
+  <div class="row"><div class="term">集群规模</div><div class="def">70B Dense 通常要数百到上千卡。MoE 因总参数大但激活少，往往要更多卡、但单卡计算量更低。</div></div>
+</div>
+
+<h3>4.2 分布式训练策略（单卡装不下，必须拆）</h3>
+<p>实际是几种并行策略的组合，业内叫 3D / 4D 并行：</p>
+<div class="fig">
+<svg viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="30" width="150" height="180" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/>
+<text x="105" y="54" text-anchor="middle" font-size="12.5" font-weight="600" fill="#3C3489">数据并行 DP</text>
+<text x="105" y="78" text-anchor="middle" font-size="10.5" fill="#534AB7">每卡一份完整模型</text>
+<text x="105" y="96" text-anchor="middle" font-size="10.5" fill="#534AB7">吃不同数据</text>
+<text x="105" y="120" text-anchor="middle" font-size="10" fill="#6b7280">升级版＝ZeRO</text>
+<text x="105" y="137" text-anchor="middle" font-size="10" fill="#6b7280">优化器/梯度/参数</text>
+<text x="105" y="153" text-anchor="middle" font-size="10" fill="#6b7280">分片到各卡</text>
+<rect x="195" y="30" width="150" height="180" rx="10" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.6"/>
+<text x="270" y="54" text-anchor="middle" font-size="12.5" font-weight="600" fill="#085041">张量并行 TP</text>
+<text x="270" y="78" text-anchor="middle" font-size="10.5" fill="#0F6E56">一层权重切到多卡</text>
+<text x="270" y="96" text-anchor="middle" font-size="10.5" fill="#0F6E56">各卡算一部分</text>
+<text x="270" y="120" text-anchor="middle" font-size="10" fill="#6b7280">通信频繁</text>
+<text x="270" y="137" text-anchor="middle" font-size="10" fill="#6b7280">只在机内 NVLink</text>
+<text x="270" y="153" text-anchor="middle" font-size="10" fill="#6b7280">卡间用</text>
+<rect x="360" y="30" width="150" height="180" rx="10" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.6"/>
+<text x="435" y="54" text-anchor="middle" font-size="12.5" font-weight="600" fill="#633806">流水线并行 PP</text>
+<text x="435" y="78" text-anchor="middle" font-size="10.5" fill="#854F0B">不同层放不同卡</text>
+<text x="435" y="96" text-anchor="middle" font-size="10.5" fill="#854F0B">像流水线依次过</text>
+<text x="435" y="120" text-anchor="middle" font-size="10" fill="#6b7280">通信少，但有</text>
+<text x="435" y="137" text-anchor="middle" font-size="10" fill="#6b7280">「气泡」(等待)</text>
+<text x="435" y="153" text-anchor="middle" font-size="10" fill="#6b7280">用微批次填补</text>
+<rect x="525" y="30" width="125" height="180" rx="10" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.6"/>
+<text x="587" y="54" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0C447C">序列并行 SP</text>
+<text x="587" y="78" text-anchor="middle" font-size="10.5" fill="#185FA5">长序列切到多卡</text>
+<text x="587" y="100" text-anchor="middle" font-size="10" fill="#6b7280">解决超长上下文</text>
+<text x="587" y="116" text-anchor="middle" font-size="10" fill="#6b7280">单卡显存不够</text>
+<text x="587" y="140" text-anchor="middle" font-size="10" fill="#6b7280">与上面正交</text>
+<text x="587" y="156" text-anchor="middle" font-size="10" fill="#6b7280">可叠加使用</text>
+<text x="340" y="238" text-anchor="middle" font-size="11" fill="#6b7280">实战典型组合：TP(机内 8 卡) + PP(跨机) + ZeRO-DP(全局) + SP(长序列时)</text>
+</svg>
+<div class="cap">图 2 · 四种并行策略各管一件事，实战中叠加使用</div>
+</div>
+
+<div class="gloss">
+  <div class="row"><div class="term">Megatron-LM</div><div class="def">NVIDIA 出品，最成熟的 TP+PP 实现，性能最优，但对模型代码侵入大。</div></div>
+  <div class="row"><div class="term">DeepSpeed</div><div class="def">微软出品，ZeRO 的开创者，侵入性小；纯 ZeRO 在超大规模下不如 Megatron 的 TP+PP 高效。</div></div>
+  <div class="row"><div class="term">FSDP</div><div class="def">PyTorch 原生 ZeRO 实现，易用灵活，极致优化略弱。</div></div>
+  <div class="row"><div class="term">现实选择</div><div class="def">多数团队用 <b>Megatron + DeepSpeed ZeRO</b> 混合方案取长补短，也越来越多基于 FSDP 做定制。</div></div>
+</div>
+
+<h3>4.3 训练配置</h3>
+<div class="gloss">
+  <div class="row"><div class="term">学习率调度</div><div class="def">标准做法：<b>warmup（线性升温到峰值）→ cosine decay（余弦退火到最小值）</b>。warmup 防初期梯度爆炸，decay 让后期「收细」。峰值 LR 常见 1e-4 ~ 3e-4，最小值约峰值 10%。</div></div>
+  <div class="row"><div class="term">Batch size 渐增</div><div class="def">初期用小 batch，逐步增大到目标值，帮助早期稳定。</div></div>
+  <div class="row"><div class="term">权重衰减 & 梯度裁剪</div><div class="def">前者防过拟合，后者（clip grad norm）防梯度爆炸，是稳定性基础保障。</div></div>
+  <div class="row"><div class="term">数值精度</div><div class="def"><b>bf16</b> 已成主流——比 fp16 动态范围大、不用 loss scaling、更稳。混合精度：前向 bf16，梯度/优化器状态 fp32。fp8 在兴起但还不成熟。</div></div>
+  <div class="row"><div class="term">梯度检查点 / 重计算</div><div class="def">前向不存全部中间激活，反向时重算。用计算换显存，大模型标配。</div></div>
+</div>
+
+<h3>4.4 训练稳定性：Loss Spike 是头号敌人</h3>
+<div class="callout red">
+  <p class="t">🚨 Loss Spike（损失突然飙升）</p>
+  <p>大规模训练最常见也最致命的问题。诱因：LR 太高、混入异常样本、硬件故障导致梯度异常、MoE 路由突然偏斜。</p>
+  <p><strong>预防</strong>：warmup + 梯度裁剪 + 数据把关 + 动态调 LR；<strong>检测</strong>：实时监控 loss，设阈值自动告警；<strong>恢复</strong>：回滚到最近 checkpoint、跳过问题数据、降 LR 继续。但<strong>回滚本身有代价</strong>（加载时间 + 数据偏移），所以老手会在前置验证阶段就尽量排除诱因。</p>
+</div>
+
+<h3>4.5 训练过程监控（不是按下启动键就走人）</h3>
+<ul class="chk">
+  <li><b>Loss 曲线</b>：是否正常下降？有无 spike？训练/验证 loss 是否开始分离（过拟合信号）</li>
+  <li><b>Mid-training eval</b>：途中定期跑下游 benchmark，看能力是否按预期「涌现」</li>
+  <li><b>Scaling Law 对比</b>：实际 loss 是否贴合预测曲线？偏差大说明数据/架构有问题</li>
+  <li><b>梯度范数 / 参数范数</b>：是否稳定，突变常预示问题</li>
+  <li><b>硬件监控</b>：GPU 利用率、显存、通信占比、慢卡检测</li>
+</ul>
+
+<h3>4.6 课程学习与退火（不是一套配置跑到底）</h3>
+<div class="gloss">
+  <div class="row"><div class="term">课程学习</div><div class="def">先喂「容易/通用/干净」的数据，后喂「难/专业/复杂」的，模仿人从易到难。怎么定义「难」本身是研究问题。</div></div>
+  <div class="row"><div class="term">退火（Annealing）</div><div class="def">训练最后 5–10% 的 token，用<b>高质量数据</b>替换混合数据、同时 LR 走到最低。这步对最终质量影响极大——相当于冲刺阶段用最精的粮。</div></div>
+  <div class="row"><div class="term">长上下文扩展</div><div class="def">预训练用 4K–8K，扩到 32K/128K 需<b>持续预训练</b>：对 RoPE 缩放（NTK-aware/YaRN）+ 长文档数据 + 序列并行。难点不是「塞进去」，而是塞进去后「中间信息会不会被忽略」（lost-in-the-middle）。</div></div>
+</div>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">预训练算法工程师</span>（主）— 定训练配置、监控全程、处理 spike、调策略。产出：base model checkpoint、训练日志、Scaling Law 拟合报告</p>
+  <p><span class="rn">训练基础设施工程师</span>— 搭维护分布式集群、优化并行策略、保障 checkpoint 存储与网络。产出：训练框架配置、性能优化报告</p>
+  <p><span class="rn">数据算法工程师</span>（协同）— 按 mid-eval 反馈调整数据配比</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 05 后训练 -->
+<h2><span class="num">05</span>阶段四 · 后训练 / 对齐：把「书呆子」调教成能干活</h2>
+<p class="lead">base model 是个「懂很多但不会好好干活」的状态——它会续写文本，但不会按指令答、不会拒绝不当请求、不会按格式输出。后训练就是教规矩。</p>
+
+<h3>5.1 SFT（监督微调）</h3>
+<div class="callout">
+  <p class="t">SFT 的关键认知</p>
+  <p>用高质量「指令—回答」对，手把手教模型「这种问题就该这么答」。当前共识是<strong>质量远比数量重要</strong>：几千到几万条精品，胜过百万条噪声。因为 SFT 本质在教「格式和风格」，知识底子已由预训练决定。进阶手法 <b>拒绝采样</b>：让模型对一个指令生成多个答案，用评分模型挑最好的回灌训练——这是 SFT 通往 RL 的桥梁。</p>
+</div>
+
+<h3>5.2 对齐方法谱系</h3>
+<div class="gloss">
+  <div class="row"><div class="term">RLHF（PPO）</div><div class="def">经典路线：先训奖励模型（RM）→ 再用 PPO 优化策略。要同时维护 4 个模型，<b>最重最不稳但上限最高</b>。主要风险是 reward hacking——模型学会「骗」奖励而非真变好。</div></div>
+  <div class="row"><div class="term">DPO</div><div class="def">跳过显式 RM，直接用偏好对优化，把 RL 问题变成一个分类损失。<b>轻、稳、好复现</b>，工业界落地首选，但精细控制不如在线 RL。</div></div>
+  <div class="row"><div class="term">GRPO</div><div class="def">DeepSeek 提出，去掉 critic，用「一组采样的组内相对优劣」估计优势，<b>省一半资源</b>，训推理模型的热门。</div></div>
+  <div class="row"><div class="term">RLVR</div><div class="def">奖励来自<b>可自动验证的信号</b>（数学答案对不对、代码能否跑通），干净可无限生成，是推理模型爆发的核心。<b>金融这类强正确/强合规场景特别契合</b>。</div></div>
+</div>
+
+<h3>5.3 安全对齐（金融场景的命根子）</h3>
+<ul class="chk">
+  <li><b>Red Teaming</b>：专门团队「攻击」模型诱导有害输出，发现的漏洞反哺训练</li>
+  <li><b>安全 SFT 数据</b>：教模型识别并拒绝不当请求</li>
+  <li><b>Constitutional AI</b>：让模型用「宪法原则」自审自改输出</li>
+  <li><b>金融特有红线</b>：不承诺收益、不荐具体个股、不泄露用户金融信息——需专门构建安全训练数据</li>
+</ul>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">后训练算法工程师</span>（主）— 构建 SFT 数据、训奖励模型、执行 RLHF/DPO/GRPO、迭代对齐。产出：aligned model、对齐报告</p>
+  <p><span class="rn">标注团队</span>— 产出偏好标注、安全 red-team 数据</p>
+  <p><span class="rn">安全工程师</span>（协同）— 定义安全边界、组织 red team、审核安全数据</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 06 评测 -->
+<h2><span class="num">06</span>阶段五 · 评测：贯穿全程的决策依据</h2>
+<p class="lead">评测不是「最后贴个分数」，而是全程的体检表——决定能不能发布、哪块能力要补、该不该回退。</p>
+
+<h3>6.1 自动评测</h3>
+<table>
+<thead><tr><th>能力维度</th><th>代表 Benchmark</th><th>注意点</th></tr></thead>
+<tbody>
+<tr><td>通用知识</td><td>MMLU, MMLU-Pro</td><td>污染严重，需去污染版本</td></tr>
+<tr><td>推理</td><td>GSM8K, MATH, ARC</td><td>数学推理是能力硬指标</td></tr>
+<tr><td>代码</td><td>HumanEval, MBPP, LiveCodeBench</td><td>LiveCodeBench 动态更新，更抗污染</td></tr>
+<tr><td>长上下文</td><td>大海捞针, LongBench</td><td>不只看「找不找得到」，还看中间/尾部信息利用率</td></tr>
+<tr><td>指令遵循</td><td>IFEval, AlpacaEval</td><td>看是否严格按指令格式输出</td></tr>
+<tr><td>安全</td><td>TruthfulQA + 自建集</td><td>金融合规需自建测试集</td></tr>
+</tbody>
+</table>
+
+<h3>6.2 人工评测（补自动评测的盲区）</h3>
+<ul class="chk">
+  <li><b>Arena 式盲评</b>：两模型匿名对决，人类选更优者（Chatbot Arena 那套）</li>
+  <li><b>领域专家评估</b>：金融场景要从业者审专业性与合规性</li>
+  <li><b>LLM-as-Judge</b>：用强模型当评审，便宜但自带偏置（偏好更长、更像自己的输出）</li>
+</ul>
+
+<div class="callout red">
+  <p class="t">🚨 基准污染（Benchmark Contamination）</p>
+  <p>训练数据混入了评测题/答案，模型「背了答案」拿高分但真实能力不行——这是当前评测体系最大的信任危机。对策：训练数据去污染、用动态更新的 benchmark、自建不公开的内部评测集、对比「污染题 vs 干净题」的得分差。</p>
+</div>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">评测工程师</span>（主）— 搭自动化评测管线、维护 benchmark 套件、跑分出报告。产出：评测报告、能力雷达图、回归结果</p>
+  <p><span class="rn">领域专家（金融）</span>— 审金融专业题的质量与答案标准</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 07 优化发布 -->
+<h2><span class="num">07</span>阶段六 · 优化与发布：瘦身上线</h2>
+<p class="lead">训好不等于能上线——还得让它跑得起、跑得快、跑得省。</p>
+
+<h3>7.1 模型效率优化</h3>
+<div class="gloss">
+  <div class="row"><div class="term">量化 Quantization</div><div class="def"><b>GPTQ</b>（训练后量化）、<b>AWQ</b>（激活感知）、<b>GGUF</b>（llama.cpp 格式，支持 CPU）。INT4 量化通常只损失 1–2% 能力，但速度提升显著。</div></div>
+  <div class="row"><div class="term">蒸馏 Distillation</div><div class="def">用大模型（教师）指导小模型（学生），让小模型逼近大模型能力。DeepSeek-R1 把 671B 的推理能力蒸馏到 7B/14B 就是典型。</div></div>
+  <div class="row"><div class="term">KV Cache 优化</div><div class="def"><b>PagedAttention</b>（vLLM）分页管理 KV、消除显存碎片；架构层用 GQA/MLA 减少 KV；还可量化 KV。</div></div>
+  <div class="row"><div class="term">投机解码</div><div class="def">小模型快速「猜」后续 token，大模型并行验证；猜对就加速，猜错回退。在代码/数学这类确定性高的场景加速最明显。</div></div>
+</div>
+
+<h3>7.2 模型卡与技术报告</h3>
+<ul class="chk">
+  <li><b>Model Card</b>：能力边界、训练数据概况、已知局限、使用许可</li>
+  <li><b>Technical Report</b>：架构、训练方法、评测、安全评估（Llama/Qwen/DeepSeek 的报告是范本）</li>
+  <li><b>开源协议</b>：Apache 2.0 / MIT / 自定义（商用限制、输出归属等）</li>
+</ul>
+
+<div class="role">
+  <p><span class="tag">参与角色</span><span class="rn">推理优化工程师</span>（主）— 量化、蒸馏、推理框架优化。产出：优化后权重、推理性能报告</p>
+  <p><span class="rn">算法工程师</span>（协同）— 评估优化后能力损失是否可接受</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 08 角色全景 -->
+<h2><span class="num">08</span>角色全景：一张表看清谁对什么负责</h2>
+<p class="lead">基模团队往往 40+ 人，但核心可归为「定方向 / 造能力 / 保运行」三类。下表只列与基模制作直接相关的角色。</p>
+<table>
+<thead><tr><th>角色</th><th>主战场阶段</th><th>对「什么结果」负责</th></tr></thead>
+<tbody>
+<tr><td>架构算法工程师</td><td>① 架构设计</td><td>模型结构与超参选得对不对</td></tr>
+<tr><td>数据算法工程师</td><td>② 数据工程</td><td>训练数据干不干净、配比好不好</td></tr>
+<tr><td>预训练算法工程师</td><td>③ 预训练</td><td>能不能稳定训出聪明的 base model</td></tr>
+<tr><td>后训练算法工程师</td><td>④ 后训练</td><td>答得专不专业、听不听话、安不安全</td></tr>
+<tr><td>评测工程师</td><td>⑤ 评测</td><td>能否真实、可信地衡量模型好坏</td></tr>
+<tr><td>推理优化工程师</td><td>⑥ 优化发布</td><td>瘦身后能否又快又省地上线</td></tr>
+<tr><td>训练基础设施工程师</td><td>③ 贯穿</td><td>几千卡集群稳不稳、并行效率高不高</td></tr>
+<tr><td>数据工程师</td><td>② 贯穿</td><td>数据管线吞吐与存储</td></tr>
+<tr><td>领域专家（金融）</td><td>②④⑤</td><td>垂类数据与评测的专业性、合规性</td></tr>
+<tr><td>安全工程师</td><td>④⑤</td><td>安全红线与 red team</td></tr>
+</tbody>
+</table>
+
+<div class="callout teal">
+  <p class="t">招聘视角的关键提醒</p>
+  <p>「有基座模型经验」是个很宽的说法。同样号称做过基模，<strong>架构、数据、预训练、后训练四个工种的能力栈差别极大</strong>。你要先搞清业务真正缺哪一段——是缺能定架构、跑预训练的「打地基的人」，还是缺后训练对齐的人。下一节给你按工种拆开的检验方法。</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 09 人选检验 -->
+<h2><span class="num">09</span>人选检验建议：怎么判断基模经验是否 solid</h2>
+<p class="lead">核心是分辨「真正主导过决策」还是「只在周边打杂、跑过脚本」。</p>
+
+<div class="callout">
+  <p class="t">一句话总判断口诀</p>
+  <p>真正做过基模的人，能讲清这条完整闭环：<strong>「我面对什么问题 → 我做了什么决策 → 为什么这么选 → 结果怎样 → 如果重来我会怎么改」</strong>。只会说「我参与了训练」却讲不清决策逻辑的，大概率是执行者而非负责人。</p>
+</div>
+
+<h3>9.1 架构设计</h3>
+<div class="grn">🟢 「我对比了 Dense 和 MoE 在 XX 规模下的 loss 与推理成本，最终选 XX，因为……」</div>
+<div class="grn">🟢 「Tokenizer 词表大小我们做过消融，XX 大小在中文压缩率和参数效率上最优」</div>
+<div class="bad">🔴 「架构是 leader 定的，我负责实现」——没有决策参与</div>
+<div class="bad">🔴 「我们用的就是 LLaMA 架构」——只说结果，讲不出为什么</div>
+
+<h3>9.2 数据工程</h3>
+<div class="grn">🟢 「配比从 40% 代码起调，发现超过 25% 后通用能力反降，最后定在 18%」</div>
+<div class="grn">🟢 「去重用 MinHash+LSH，阈值 XX，去重率 XX%，对 loss 的影响是……」</div>
+<div class="grn">🟢 「合成数据我们做了分布对比，发现 XX 维度会坍缩，所以只用了 5%」</div>
+<div class="bad">🔴 「数据是数据团队准备的，我只管训练」——核心能力缺失</div>
+<div class="bad">🔴 「清洗就是去重和过滤」——说不清具体做法、阈值怎么定</div>
+
+<h3>9.3 预训练</h3>
+<div class="grn">🟢 「训到 40% 时出现 loss spike，我判断是 XX 数据导致，回退到 XX checkpoint 并跳过那批数据」</div>
+<div class="grn">🟢 「Scaling Law 预测 70B 要训 XX token，实际在 XX 时 loss 偏离预测，我分析原因是……」</div>
+<div class="grn">🟢 「并行用 TP=8 + PP=4 + ZeRO-3，通信占比 XX%，瓶颈在 XX，我们这样优化……」</div>
+<div class="bad">🔴 「我负责盯训练曲线」——只监控不决策</div>
+<div class="bad">🔴 「训练用 Megatron 跑的」——只说工具，讲不出策略</div>
+<div class="bad">🔴 「训练一直很稳，没出过问题」——要么规模太小，要么没真正负责过</div>
+
+<h3>9.4 后训练 / 对齐</h3>
+<div class="grn">🟢 「我们从 PPO 切到 DPO，因为 PPO 在 XX 上 reward hacking 严重，切完 XX 指标提升 XX」</div>
+<div class="grn">🟢 「奖励模型我们用过程奖励 PRM 而非只看结果，在数学题上对齐效果更好」</div>
+<div class="bad">🔴 「我做了 SFT，把数据喂进去微调」——讲不清数据怎么构造、质量怎么控</div>
+<div class="bad">🔴 「对齐就是 RLHF」——背概念，落不到自己做过的决策</div>
+
+<h3>9.5 跨阶段的「资深度」信号</h3>
+<ul class="chk">
+  <li><b>谈成本意识</b>：能自然提到算力预算、何时该停、回退代价——说明真烧过钱</li>
+  <li><b>谈失败经验</b>：能讲清楚「踩过的坑、走过的弯路」，比只讲成功更可信</li>
+  <li><b>谈取舍而非堆名词</b>：资深的人讲的是 trade-off（为何选 A 不选 B），新手堆术语</li>
+  <li><b>能外推到没做过的规模</b>：「我做过 7B，但我知道到 70B 时 XX 会变成瓶颈」——体现对原理的理解，而非死记流程</li>
+  <li><b>对数据的敬畏</b>：顶尖的预训练人都会强调「数据是上限」，张口只谈模型结构、不谈数据的，往往深度不够</li>
+</ul>
+
+<div class="callout amber">
+  <p class="t">给你筛人时的最后提醒</p>
+  <p>顶会论文数量（JD 里说的 5–10 篇）主要对应<strong>架构 / 预训练方向</strong>——因为这块创新最容易出论文。但要注意：<strong>论文多 ≠ 工程落地强</strong>。能发论文的人未必扛过千卡集群的 loss spike，扛过大规模训练的人未必爱发论文。判断时把「学术产出」和「工程实战」分开看，再对照业务到底要哪一种。</p>
+</div>
+
+<div class="footer">LLM 基座模型从 0 到 1 全流程拆解 · 整理于 2026-06-17 · 基座模型技术纵深 + 人选检验 · 内部学习用</div>
+
+</div>
+</body>
+</html>
